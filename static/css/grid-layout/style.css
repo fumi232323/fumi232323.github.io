@@ -1,0 +1,134 @@
+@charset "UTF-8";
+
+/* --------------------------------
+ * base
+ * -------------------------------- */
+html {
+    font-size: 62.5%;
+}
+body {
+    padding: 30px;
+    background-color: #f8f4e6;
+    color: #333333;
+    font-size: 1.2rem;
+    font-family: Griffy,  "Sawarabi Mincho", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+}
+
+/*
+    - 擬似要素を存在させるには、 CSS で擬似要素の中身を指定する content プロパティの指定。P.103を見よ。
+    - ::before, ::after 擬似要素の display プロパティの初期値は inline なので、デフォルトではインラインレベルの要素として表示される。
+    - 高さや幅を指定したい場合には、 display プロパティに block や inline-block の指定が必要。
+ */
+*, *::before, *::after {  /* `*`: 全称セレクタといい、すべての要素を表す。 */
+    box-sizing: border-box;  /* padding と border を含めた要素全体のサイズを width と height で指定できるようになる。 */
+}
+a:link, a:visited, a:hover, a:active {
+    color: #777777;
+    text-decoration: none;
+}
+
+/* --------------------------------
+ * flexbox
+ * -------------------------------- */
+.container {
+    display: flex;
+    flex-flow: row nowrap;
+}
+.header {
+    flex-grow: 0;
+}
+.main {
+    flex-grow: 1;
+}
+
+/* --------------------------------
+ * header
+ * -------------------------------- */
+.item-header {
+    text-align: center;
+    border-color: #7C5119;
+}
+.logo {
+    width: 140px;       /* 外枠のサイズ。 i 要素の display プロパティの初期値は inline ですが、 Font Awesome の CSS により inline-block になってるので、サイズ指定できる。 */
+    height: 140px;
+    border-radius: 50%;     /* 丸型にする */
+    background-color: #7C5119;
+    color: #FFFFFF;         /* アイコンの色を指定 */
+    font-size: 8rem;        /* アイコンはアイコンフォントなので、 font-size プロパティで大きさを指定する。 */
+    line-height: 140px;     /* 縦方向の中央寄せ。高さの 150px から上下の border4px * 2 分を除いた値。 */
+    transition: transform 0.3s;  /* 回っていることがわかるように、0.3秒かけて変化させる */
+}
+/* ロゴ画像をホバーすると1回転する */
+.logo:hover {
+    transform: rotate(360deg);  /* 360度回転 */
+}
+.nav {
+    margin: 35px auto 10px;  /* nav の上部に間隔をあける */
+}
+.nav-category {
+    margin-top: 20px;   /* リスト項目の間を20pxずつあける。一番上の項目はマージンが相殺されるので空き過ぎないとのこと。 */
+    /* ブロックレベル要素のマージンは相殺される
+     * - 隣接した要素の上下のマージン（マージンの値が異なる場合は大きほうになる）
+     * - 入れ子になった要素の上下のマージン
+     */
+    text-align: center;
+    letter-spacing: 1px;
+    font-weight: bold;
+    font-size: 2.0rem;
+}
+/* リンクをホバーしたときに、下線が中央から両側に伸びて表示されるような動きをつける。 */
+.nav-category a {
+    display: inline-block;  /* a要素の幅をリンクテキストと同じに保ちつつ子要素の%指定を有効にする。 */
+    color: #7C5119;
+}
+.nav-category a::after {
+    content: '';
+    display: block;         /* ブロックレベルの::after擬似要素を作る */
+    width: 0;               /* 通常時には見えないように横幅を 0 にする */
+    margin: 6px auto 0;     /* リンクテキストとの間隔をあける。左右に auto を指定して中央寄せにする */
+    border-bottom: 1px solid #7C5119;
+    transition: width 0.3s ease-in-out;
+    /* ホバーしたときに横幅の変化がアニメーションするよう、 transition プロパティに width を指定。 */
+    /* ease-in-out: タイミング関数のキーワード。線が伸びる始まりと終わりで伸びる速度を緩めることができる。 */
+}
+.nav-category a:hover::after {
+    width: 100%;     /* リンクにホバーしたときの ::after 擬似要素の横幅を指定 */
+}
+.nav-article {
+    margin-top: 5px;
+    font-weight: normal;
+    font-size: 1.2rem;
+}
+.nav-article a::after {
+    margin: 3px auto 0;
+}
+
+/* --------------------------------
+ * item
+ * -------------------------------- */
+.item {
+    width: 180px;
+    margin-bottom: 4px;  /* ボックス間の隙間 */
+    padding: 8px;        /* ボックス内の余白 */
+    border-bottom: 3px solid;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+}
+
+/* カテゴリーごとに色分け */
+.item-maindish,
+.item-maindish .title::before {
+    border-color: #FFC0CB;
+}
+.item-appetizer,
+.item-appetizer .title::before {
+    border-color: #76C047;
+}
+.item-column,
+.item-column .title::before {
+    border-color: #FFF100;
+}
+.item-breaktime,
+.item-breaktime .title::before {
+    border-color: #C1EFFF;
+}
