@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>32imuf.com</title><link href="http://localhost:8888/" rel="alternate"></link><link href="http://localhost:8888/atom.xml" rel="self"></link><id>http://localhost:8888/</id><updated>2018-07-01T00:00:00+09:00</updated><entry><title>『HTML5/CSS3モダンコーディング フロントエンドエンジニアが教える3つの本格レイアウト スタンダード・グリッド・シングルページレイアウトの作り方』を読んで気になったことメモ</title><link href="http://localhost:8888/2018/html5-css3-modern-coding/" rel="alternate"></link><published>2018-07-01T00:00:00+09:00</published><updated>2018-07-01T00:00:00+09:00</updated><id>tag:localhost,2018-07-01:/2018/html5-css3-modern-coding/</id><summary type="html">&lt;div class="section" id="id1"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>32imuf.com</title><link href="http://localhost:8888/" rel="alternate"></link><link href="http://localhost:8888/atom.xml" rel="self"></link><id>http://localhost:8888/</id><updated>2018-07-31T00:00:00+09:00</updated><entry><title>S3ResponseError の原因はなんと時刻ずれだった</title><link href="http://localhost:8888/2018/s3-response-error/" rel="alternate"></link><published>2018-07-31T00:00:00+09:00</published><updated>2018-07-31T00:00:00+09:00</updated><id>tag:localhost,2018-07-31:/2018/s3-response-error/</id><summary type="html">&lt;div class="section" id="id1"&gt;
+&lt;div class="header_target" id="h_2018_s3_2dresponse_2derror_index_2erst_1"&gt;&lt;/div&gt;&lt;h1&gt;何が起こったか&lt;/h1&gt;
+&lt;p&gt;&lt;span class="docutils literal"&gt;storages.backends.s3boto.S3BotoStorage&lt;/span&gt; というのを使って、 AWS S3 にアクセスしようとしたら、こんなエラーが出た。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;エラーメッセージ&lt;/p&gt;
+&lt;div class="code-block"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;S3ResponseError: S3ResponseError: &lt;span class="m"&gt;403&lt;/span&gt; Forbidden
+&amp;lt;?xml &lt;span class="nv"&gt;version&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"1.0"&lt;/span&gt; &lt;span class="nv"&gt;encoding&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"UTF-8"&lt;/span&gt;?&amp;gt;
+&amp;lt;Error&amp;gt;
+  &amp;lt;Code&amp;gt;RequestTimeTooSkewed&amp;lt;/Code&amp;gt;
+  &amp;lt;Message&amp;gt;The difference between the request &lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/blockquote&gt;&lt;/div&gt;</summary></entry><entry><title>vim に怒られていたのでなおした</title><link href="http://localhost:8888/2018/fix-vim-okorare/" rel="alternate"></link><published>2018-07-30T00:00:00+09:00</published><updated>2018-07-30T00:00:00+09:00</updated><id>tag:localhost,2018-07-30:/2018/fix-vim-okorare/</id><summary type="html">&lt;div class="section" id="id1"&gt;
+&lt;div class="header_target" id="h_2018_fix_2dvim_2dokorare_index_2erst_1"&gt;&lt;/div&gt;&lt;h1&gt;どういうわけか&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;何にもしていないのに（たぶん何かしたんだと思う）、 vim が怒って起動しなくなったので、なおすことにした。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;こう言っていた。&lt;/p&gt;
+&lt;div class="code-block"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Error detected &lt;span class="k"&gt;while&lt;/span&gt; processing /Users/fumi23/.vimrc:
+line   &lt;span class="m"&gt;19&lt;/span&gt;:
+E484: Can&lt;span class="err"&gt;'&lt;/span&gt;t open file /usr/share/vim/vim74/defaults.vim
+line   &lt;span class="m"&gt;60&lt;/span&gt;:
+E492: Not an editor command:   packadd! matchit
+Press ENTER or &lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</summary></entry><entry><title>『HTML5/CSS3モダンコーディング フロントエンドエンジニアが教える3つの本格レイアウト スタンダード・グリッド・シングルページレイアウトの作り方』を読んで気になったことメモ</title><link href="http://localhost:8888/2018/html5-css3-modern-coding/" rel="alternate"></link><published>2018-07-01T00:00:00+09:00</published><updated>2018-07-01T00:00:00+09:00</updated><id>tag:localhost,2018-07-01:/2018/html5-css3-modern-coding/</id><summary type="html">&lt;div class="section" id="id1"&gt;
 &lt;div class="header_target" id="h_2018_html5_2dcss3_2dmodern_2dcoding_index_2erst_1"&gt;&lt;/div&gt;&lt;h1&gt;読んだ本&lt;/h1&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://www.shoeisha.co.jp/book/detail/9784798141572"&gt;HTML5/CSS3モダンコーディング フロントエンドエンジニアが教える3つの本格レイアウト スタンダード・グリッド・シングルページレイアウトの作り方&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
