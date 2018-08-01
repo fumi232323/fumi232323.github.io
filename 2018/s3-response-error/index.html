@@ -182,8 +182,8 @@ Tue Jul <span class="m">31</span> <span class="m">16</span>:40:26 JST <span clas
 </li>
 <li><p>ホストOSの日時</p>
 <div class="code-block">
-<div class="highlight"><pre><span></span><span class="o">(</span>venv<span class="o">)</span> <span class="o">[</span>vagrant@localhost mikan<span class="o">]</span>$ date
-Tue Jul <span class="m">31</span> <span class="m">16</span>:58:26 JST <span class="m">2018</span>
+<div class="highlight"><pre><span></span>host-machine:mikan fumi23$ date
+2018年 7月 31日 火曜日 16時58分26秒 JST
 </pre></div>
 </div>
 </li>
@@ -192,16 +192,24 @@ Tue Jul <span class="m">31</span> <span class="m">16</span>:58:26 JST <span clas
 </ul>
 </div>
 <div class="section" id="id3">
-<div class="header_target" id="h_2018_s3_2dresponse_2derror_index_2erst_3"></div><h1>わかったこと</h1>
+<div class="header_target" id="h_2018_s3_2dresponse_2derror_index_2erst_3"></div><h1>時刻のなおしかた</h1>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="o">(</span>venv<span class="o">)</span> <span class="o">[</span>vagrant@localhost mikan<span class="o">]</span>$ sudo date -s <span class="s2">"07/31 17:02 2018"</span>
+Tue Jul <span class="m">31</span> <span class="m">17</span>:02:00 JST <span class="m">2018</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<div class="header_target" id="h_2018_s3_2dresponse_2derror_index_2erst_4"></div><h1>わかったこと</h1>
 <p>時刻がずれ過ぎているひとも出禁！( <cite>403 Forbidden</cite> )</p>
 <ul class="simple">
 <li><p>常日頃からまわりの人に「エラーメッセージをよく読みましょう」と言ってもらっているし、自分でも「エラーをよく見るエラーをよく見る・・・」と散々唱えているのに、ちっとも見られていなかった。落ち込んだ。</p></li>
-<li><p>エラーメッセージが xml 形式で戻ってきたら、おおちゃくせずに整形してみようと思った。見やすくすると、重要なことも見逃しにくくなるかも。</p></li>
+<li><p>エラーメッセージが xml 形式で戻ってきたら、おおちゃくせずに整形してみようと思った。見やすくすると、大事なことも見逃しにくくなるかも。</p></li>
 <li><p>そういえば、ローカルVMから、3月はアクセスできていたけど、4月の中旬くらいからアクセスできなくなってた気がするので、そのタイミングで時刻ずれが先方の許容値を超えてたのかもしれない。</p></li>
 </ul>
 </div>
-<div class="section" id="id4">
-<div class="header_target" id="h_2018_s3_2dresponse_2derror_index_2erst_4"></div><h1>宿題</h1>
+<div class="section" id="id5">
+<div class="header_target" id="h_2018_s3_2dresponse_2derror_index_2erst_5"></div><h1>宿題</h1>
 <ul class="simple">
 <li><p><span class="docutils literal">storages.backends.s3boto.S3BotoStorage</span> が何かあんまりわかっていない。</p></li>
 <li><p>ホストマシンとゲストマシンの時刻の自動同期設定ができるらしい。調べて設定しよう。</p>
