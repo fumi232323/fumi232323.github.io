@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Vagrant のメモ/32imuf.com</title>
+    <link rel="shortcut icon" href="/static/icons/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Griffy" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="/static/css/style.css?20180821">
+    
+  <link rel="stylesheet" href="/static/css/article.css?20180923">
+  <link rel="stylesheet" href="/static/css/monokai.css">
+
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="header"><header class="item item-header">
+  <h1>
+    <a href="/">
+      <img class="logo" src="/static/images/inuu.png" alt="犬">
+    </a>
+  </h1>
+  <nav class="nav">
+    <ul>
+      <li class="nav-category"><a href="/">HOME</a></li>
+      
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_aws.html">aws</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../aws/s3-response-error/">S3ResponseError の原因はなんと時刻ずれだった</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_blog.html">blog</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../blog/rules/">ブログを書くときの注意点</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_git.html">git</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../git/configuration/">Git の設定まとめ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../git/command/">Git のコマンドまとめ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_github.html">github</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../gitHub/how-to-create-new-repository/">GitHub に新しいリポジトリを作成して、pushする</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../github/github-pages-custom-domain-setting/">GitHub Pages にカスタムドメインを設定する</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_miyadaiku.html">miyadaiku</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../miyadaiku/build/">Miyadaiku ビルドするときのコマンド</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../miyadaiku/article-directory-structure/">article の置きかた</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_pycharm.html">pycharm</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../pycharm/useful-menu-and-shortcuts/">PyCharm ショートカットと便利メニュー</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_python.html">python</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../python/pyconjp2018/">PyConJP 2018 で聞いた講演メモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_sample.html">sample</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../2018/sample-h1-h2-h3-li/">h1, h2, h3, リストの sample</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_sql.html">sql</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../sql/note/">SQL のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_vim.html">vim</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../vim/command/">Vim のコマンド</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+    </ul>
+  </nav>
+</header></div>
+      <div class="main">
+  <main class="item item-article item-vagrant">
+    <time class="date" datetime="2018-09-02 00:00:00+09:00">
+      2018-09-02 Sun
+    </time>
+    <div class="title">Vagrant のメモ</div>
+    <div class="category">
+      <a href="/index_category_category_vagrant.html">
+          vagrant
+      </a>
+    </div>
+    <div class="text">
+      <div class="section" id="synced-folder">
+<div class="header_target" id="h_vagrant_note_index_2erst_1"></div><h1>synced_folder が効かなくなった</h1>
+<p>ホストOS 側のフォルダ構成を変えたので、 _repo_file を書き換えて、vagrant reload したのに、エラー↓になった。</p>
+<p><a class="reference external" href="https://blog.kazu69.net/2014/07/16/by-vagrant-nfs-exports-error-has-occurred/">https://blog.kazu69.net/2014/07/16/by-vagrant-nfs-exports-error-has-occurred/</a></p>
+<ul>
+<li><p>エラー内容</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">FumienoMacBook-Pro:ansible fumi23$</span> vagrant reload
+<span class="go">==&gt; default: Attempting graceful shutdown of VM...</span>
+<span class="go">==&gt; default: Clearing any previously set forwarded ports...</span>
+<span class="go">==&gt; default: Pruning invalid NFS exports. Administrator privileges will be required...</span>
+<span class="go">Password:</span>
+<span class="go">==&gt; default: Clearing any previously set network interfaces...</span>
+<span class="go">==&gt; default: Preparing network interfaces based on configuration...</span>
+<span class="go">    default: Adapter 1: nat</span>
+<span class="go">    default: Adapter 2: hostonly</span>
+<span class="go">==&gt; default: Forwarding ports...</span>
+<span class="go">    default: 22 (guest) =&gt; 2222 (host) (adapter 1)</span>
+<span class="go">==&gt; default: Running 'pre-boot' VM customizations...</span>
+<span class="go">==&gt; default: Booting VM...</span>
+<span class="go">==&gt; default: Waiting for machine to boot. This may take a few minutes...</span>
+<span class="go">    default: SSH address: 127.0.0.1:2222</span>
+<span class="go">    default: SSH username: vagrant</span>
+<span class="go">    default: SSH auth method: private key</span>
+<span class="go">==&gt; default: Machine booted and ready!</span>
+<span class="go">==&gt; default: Checking for guest additions in VM...</span>
+<span class="go">    default: The guest additions on this VM do not match the installed version of</span>
+<span class="go">    default: VirtualBox! In most cases this is fine, but in rare cases it can</span>
+<span class="go">    default: prevent things such as shared folders from working properly. If you see</span>
+<span class="go">    default: shared folder errors, please make sure the guest additions within the</span>
+<span class="go">    default: virtual machine match the version of VirtualBox you have installed on</span>
+<span class="go">    default: your host and reload your VM.</span>
+<span class="go">    default:</span>
+<span class="go">    default: Guest Additions Version: 4.3.8</span>
+<span class="go">    default: VirtualBox Version: 5.1</span>
+<span class="go">==&gt; default: Configuring and enabling network interfaces...</span>
+<span class="go">    default: SSH address: 127.0.0.1:2222</span>
+<span class="go">    default: SSH username: vagrant</span>
+<span class="go">    default: SSH auth method: private key</span>
+<span class="go">==&gt; default: Exporting NFS shared folders...</span>
+<span class="go">NFS is reporting that your exports file is invalid. Vagrant does</span>
+<span class="go">this check before making any changes to the file. Please correct</span>
+<span class="go">the issues below and execute "vagrant reload":</span>
+
+<span class="go">exports:2: path contains non-directory or non-existent components: /Users/fumi23/apple-projects/apple-apple</span>
+<span class="go">exports:2: path contains non-directory or non-existent components: /Users/fumi23/apple-projects/apple-apple-apple</span>
+<span class="go">exports:2: no usable directories in export entry</span>
+<span class="go">exports:2: using fallback (marked offline): /</span>
+</pre></div>
+</div>
+</li>
+<li><p>元の /etc/exports がこれで、</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span>FumienoMacBook-Pro:ansible fumi23$ cat /etc/exports.bk
+<span class="c1"># VAGRANT-BEGIN: 501 e9fe3cbf-63c6-48a1-beca-2702bc2527e4</span>
+<span class="s2">"/Users/fumi23/apple-projects/apple-apple"</span> <span class="s2">"/Users/fumi23/apple-projects/apple-apple-apple"</span> <span class="m">192</span>.168.34.10 -alldirs -mapall<span class="o">=</span><span class="m">501</span>:20
+<span class="c1"># VAGRANT-END: 501 e9fe3cbf-63c6-48a1-beca-2702bc2527e4</span>
+</pre></div>
+</div>
+</li>
+<li><p>今の /etc/exports に書き換えた</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span>FumienoMacBook-Pro:ansible fumi23$ cat /etc/exports
+<span class="c1"># VAGRANT-BEGIN: 501 e9fe3cbf-63c6-48a1-beca-2702bc2527e4</span>
+<span class="s2">"/Users/fumi23/new-apple/apple-apple"</span> <span class="s2">"/Users/fumi23/new-apple/apple-apple-apple"</span> <span class="m">192</span>.168.34.10 -alldirs -mapall<span class="o">=</span><span class="m">501</span>:20
+<span class="c1"># VAGRANT-END: 501 e9fe3cbf-63c6-48a1-beca-2702bc2527e4</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="id1">
+<div class="header_target" id="h_vagrant_note_index_2erst_2"></div><h1>ログを詳細に出す</h1>
+<div class="code-block">
+<div class="highlight"><pre><span></span>$ <span class="nv">VAGRANT_LOG</span><span class="o">=</span>DEBUG vagrant <span class="o">[</span>command<span class="o">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="virtualbox">
+<div class="header_target" id="h_vagrant_note_index_2erst_3"></div><h1>VirtualBox の仮想マシンの保存先を変更する</h1>
+<pre class="literal-block">VirtualBOXのVMの保存先も変更します。
+環境設定 &gt; 一般 にあるデフォルトの仮想マシンフォルダーを任意のパスに変更すればVMは指定したフォルダーに保存されます。</pre>
+<ul class="simple">
+<li><p><a class="reference external" href="http://kiraba.jp/change-save-point-vagrant-box-and-virtual-machine/">http://kiraba.jp/change-save-point-vagrant-box-and-virtual-machine/</a></p></li>
+</ul>
+</div>
+<div class="section" id="vagrant-home">
+<div class="header_target" id="h_vagrant_note_index_2erst_4"></div><h1>VAGRANT_HOME</h1>
+<p>環境変数: <span class="docutils literal">VAGRANT_HOME</span> を設定すれば、 <cite>~/.vagrant.d</cite> の場所を好きなところに変えられそう</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.vagrantup.com/docs/other/environmental-variables.html#vagrant_home">https://www.vagrantup.com/docs/other/environmental-variables.html#vagrant_home</a></p></li>
+</ul>
+</div>
+<div class="section" id="ssh">
+<div class="header_target" id="h_vagrant_note_index_2erst_5"></div><h1>ハイフンふたつの後は、普通にSSHのオプションを指定できる。</h1>
+<div class="code-block">
+<div class="highlight"><pre><span></span>$ vagrant ssh -- -A
+</pre></div>
+</div>
+</div>
+<div class="section" id="vmbox">
+<div class="header_target" id="h_vagrant_note_index_2erst_6"></div><h1>VMとboxは違う</h1>
+<pre class="literal-block">vagrant destroy で消えるのは VM 自体、 vagrant box というのは VM 作成の素になるものです。
+VM がインスタンスだとすると、 box はクラス的な。</pre>
+</div>
+<div class="section" id="id2">
+<div class="header_target" id="h_vagrant_note_index_2erst_7"></div><h1>調べる</h1>
+<ul class="simple">
+<li><p>Vagrant Userの鍵認証のところがわからない</p></li>
+</ul>
+</div>
+    </div>
+  </main>
+</div>
+    </div>
+  </body>
+
+</html>

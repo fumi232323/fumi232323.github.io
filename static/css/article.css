@@ -65,15 +65,17 @@
 }
 
 .text h1 {
-    font-size: 1.8em;
+    font-size: 2.8rem;
     border-bottom: 1px solid #aaaaaa;
     padding-bottom: .1em;
 }
 .text h2 {
-    font-size: 1.6em;
+    font-size: 2.2rem;;
+    border-bottom: 1px dotted #aaaaaa;
+    padding-bottom: .1em;
 }
 .text h3 {
-    font-size: 1.4em;
+    font-size: 2.0rem;
 }
 
 /* list */
@@ -90,6 +92,9 @@
 .text li li li{
     list-style-type: square;
 }
+.text li li li li{
+    list-style-type: disc;
+}
 .text .arabic li {
     list-style-type: decimal;
 }
@@ -102,41 +107,50 @@
     transition: all 0.3s;
 }
 
-/* code-block */
 .text .code-block {
+    overflow: auto;             /* スクロールバー: はみ出したら出す */
+    white-space: pre-wrap;        /* 連続する空白はそのまま残されます。行の折り返しは、改行文字や <br> 要素のあるときか、行ボックスを埋めるのに必要なときに行います。 */
     line-height: 1.3;
-    font-size: 2.2rem;
+    font-size: 2.0rem;
     margin: 1.6rem 0 1.6rem;
-    padding: 24px 40px 24px;
+    padding: 0 32px;
+    /*padding: 12px 32px 12px;*/
+    /*padding: 0.5em 32px;*/
     background: #364549;
     color: #f8f8f2;
+    max-height: 600px;
 }
 
-.text cite {
-    padding: 1px 3px;
+.text .literal-block {
+    overflow: auto;               /* スクロールバー: はみ出したら出す */
+    white-space: pre-wrap;        /* 連続する空白はそのまま残されます。行の折り返しは、改行文字や <br> 要素のあるときか、行ボックスを埋めるのに必要なときに行います。 */
+    line-height: 1.3;
+    font-size: inherit;
+    font-family: inherit;
+    margin: 1.6rem 0 1.6rem;
+    /*padding: 12px 24px 12px;*/
+    padding: 1em 32px;
     border-radius: 2px;
-    background-color: #dfd;  /*ffffdb*/
+    background-color: #fef4f4;
     color: #777777;
+    max-height: 600px;
 }
 .text .docutils {
     padding: 1px 3px;
     border-radius: 2px;
-    background-color: #eee;
+    background-color: #fef4f4;
+    color: #777777;
+}
+.text cite {
+    padding: 1px 3px;
+    border-radius: 2px;
+    background-color: #ffffdb;
     color: #777777;
 }
 
-.text .literal-block {
-    /*line-height: 1.3;*/
-    font-size: inherit;
-    font-family: inherit;
-    margin: 1.6rem 0 1.6rem;
-    padding: 12px 24px 12px;
-    border-radius: 2px;
-    background-color: #eee;
-    color: #777777;
-}
 
 /* TODO: あといるもの */
 /*
-    web master 登録?
+    - テーブルの CSS 書きたい
+    - web master 登録?
 */

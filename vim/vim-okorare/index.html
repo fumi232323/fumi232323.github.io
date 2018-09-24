@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>vim に怒られていたのでなおした/32imuf.com</title>
+    <link rel="shortcut icon" href="/static/icons/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Griffy" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="/static/css/style.css?20180821">
+    
+  <link rel="stylesheet" href="/static/css/article.css?20180923">
+  <link rel="stylesheet" href="/static/css/monokai.css">
+
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="header"><header class="item item-header">
+  <h1>
+    <a href="/">
+      <img class="logo" src="/static/images/inuu.png" alt="犬">
+    </a>
+  </h1>
+  <nav class="nav">
+    <ul>
+      <li class="nav-category"><a href="/">HOME</a></li>
+      
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_aws.html">aws</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../aws/s3-response-error/">S3ResponseError の原因はなんと時刻ずれだった</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_blog.html">blog</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../blog/rules/">ブログを書くときの注意点</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_git.html">git</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../git/configuration/">Git の設定まとめ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../git/command/">Git のコマンドまとめ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_github.html">github</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../gitHub/how-to-create-new-repository/">GitHub に新しいリポジトリを作成して、pushする</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../github/github-pages-custom-domain-setting/">GitHub Pages にカスタムドメインを設定する</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_miyadaiku.html">miyadaiku</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../miyadaiku/build/">Miyadaiku ビルドするときのコマンド</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../miyadaiku/article-directory-structure/">article の置きかた</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_pycharm.html">pycharm</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../pycharm/useful-menu-and-shortcuts/">PyCharm ショートカットと便利メニュー</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_python.html">python</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../python/pyconjp2018/">PyConJP 2018 で聞いた講演メモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_sample.html">sample</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../2018/sample-h1-h2-h3-li/">h1, h2, h3, リストの sample</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_sql.html">sql</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../sql/note/">SQL のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_vim.html">vim</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../command/">Vim のコマンド</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+    </ul>
+  </nav>
+</header></div>
+      <div class="main">
+  <main class="item item-article item-vim">
+    <time class="date" datetime="2018-07-30 00:00:00+09:00">
+      2018-07-30 Mon
+    </time>
+    <div class="title">vim に怒られていたのでなおした</div>
+    <div class="category">
+      <a href="/index_category_category_vim.html">
+          vim
+      </a>
+    </div>
+    <div class="text">
+      <p>TODO: 後から見直したら、よくわからなかった。もうすこし、整理してください (to わたし)。次に困ったときに見てわかるようにして下さい。</p>
+<div class="section" id="id1">
+<div class="header_target" id="h_vim_vim_2dokorare_index_2erst_1"></div><h1>どういうわけか</h1>
+<ul>
+<li><p>何にもしていないのに（たぶん何かしたんだと思う）、 vim が怒って起動しなくなったので、なおすことにした。</p></li>
+<li><p>こう言っていた。</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span>Error detected <span class="k">while</span> processing /Users/fumi23/.vimrc:
+line   <span class="m">19</span>:
+E484: Can<span class="err">'</span>t open file /usr/share/vim/vim74/defaults.vim
+line   <span class="m">60</span>:
+E492: Not an editor command:   packadd! matchit
+Press ENTER or <span class="nb">type</span> <span class="nb">command</span> to <span class="k">continue</span>
+</pre></div>
+</div>
+</li>
+<li><p>実際に <span class="docutils literal">/usr/share/vim/vim74/defaults.vim</span> あるかな？と確認したら、ちゃんとなかった。消してないけど・・（消したのかもしれない）？不思議。</p></li>
+<li><p><span class="docutils literal">defaults.vim</span> って何？？</p>
+<ul>
+<li><p>こういうことだそうです↓</p>
+<ul>
+<li><p><a class="reference external" href="https://qiita.com/thinca/items/9a42ef9047d44a765bdd#%E8%83%8C%E6%99%AF">https://qiita.com/thinca/items/9a42ef9047d44a765bdd#%E8%83%8C%E6%99%AF</a></p>
+<pre class="literal-block">Vim には今でも多くの新機能が追加され便利になっていっていますが、一方で互換性も重視しています。
+中には、シンタックスハイライトなど明らかに便利であるにも関わらず、デフォルトでは有効になっていない機能があります。
+新しく Vim を使い始めるユーザーにとって、互換性が理由で便利な機能がすぐに使えないことはあまり嬉しくはないでしょう。
+そこで追加されたのが defaults.vim です。あくまで Vim 自体のデフォルト値は変えずに、ユーザーに便利な設定を提供します。</pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id2">
+<div class="header_target" id="h_vim_vim_2dokorare_index_2erst_2"></div><h1>どうしたか</h1>
+<p>再インストールしたら失くしたものを取り戻せるのでは？？と考え、 アンインストール -&gt; インストール することにした。</p>
+<ol class="arabic">
+<li><p>vim をアンインストール</p>
+<blockquote>
+<div class="code-block">
+<div class="highlight"><pre><span></span>$ brew uninstall vim
+Uninstalling /usr/local/Cellar/vim/8.1.0202... <span class="o">(</span><span class="m">1</span>,434 files, <span class="m">23</span>.4MB<span class="o">)</span>
+</pre></div>
+</div>
+<p>インストール時に <span class="docutils literal">brew</span> でやったような覚えがあった</p>
+</blockquote>
+</li>
+<li><p>アンインストールできたか確認してみる。</p>
+<blockquote>
+<div class="code-block">
+<div class="highlight"><pre><span></span>$ which vim
+/usr/bin/vim
+</pre></div>
+</div>
+<p>あれ・・ある。 mac にデフォルトで入っていたやつかな・・・</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span>$ vim --version
+-bash: /usr/local/bin/vim: No such file or directory
+</pre></div>
+</div>
+<p>今度はないって言う。でもよく見たら↑とパスが違うな・・ <span class="docutils literal">/usr/local/bin/vim</span></p>
+<p>これならどうかな</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span>$ /usr/bin/vim --version
+VIM - Vi IMproved <span class="m">7</span>.4 <span class="o">(</span><span class="m">2013</span> Aug <span class="m">10</span>, compiled Apr  <span class="m">4</span> <span class="m">2017</span> <span class="m">18</span>:14:54<span class="o">)</span>
+Included patches: <span class="m">1</span>-898, <span class="m">8056</span>
+<span class="o">(</span>以下省略<span class="o">)</span>
+</pre></div>
+</div>
+<p>なんか出た。</p>
+<p>どうして、ふたつもみっつも（みっつはないかもしれない）あるんだろう・・・</p>
+<p>これもアンインストールしたいと思ってごにょごにょ調べた結果、</p>
+<blockquote>
+<ul class="simple">
+<li><p>手動でひとつずつファイルを削除するっぽい。（めんどう）</p></li>
+<li><p>古いバージョンのものがあっても、手動もしくは自動で置き換えられるっぽい。</p></li>
+</ul>
+</blockquote>
+</blockquote>
+</li>
+<li><p>というわけで、無視して再度インストールしてみる。</p>
+<blockquote>
+<div class="code-block">
+<div class="highlight"><pre><span></span>$ brew install vim
+<span class="o">(</span>以下省略<span class="o">)</span>
+</pre></div>
+</div>
+<p>けっこう長かった。</p>
+</blockquote>
+</li>
+<li><p>インストールできたか確認してみる。</p>
+<blockquote>
+<div class="code-block">
+<div class="highlight"><pre><span></span>$ which vim
+/usr/local/bin/vim
+</pre></div>
+</div>
+<p>む。さっき見たパスだ・・・ <span class="docutils literal">/usr/local/bin/vim</span></p>
+<div class="code-block">
+<div class="highlight"><pre><span></span>$ vim --version
+VIM - Vi IMproved <span class="m">8</span>.1 <span class="o">(</span><span class="m">2018</span> May <span class="m">18</span>, compiled Jul <span class="m">22</span> <span class="m">2018</span> <span class="m">05</span>:24:59<span class="o">)</span>
+macOS version
+Included patches: <span class="m">1</span>-202
+<span class="o">(</span>以下省略<span class="o">)</span>
+</pre></div>
+</div>
+</blockquote>
+</li>
+<li><p>適当なファイルを開いてみる。</p>
+<blockquote>
+<p>なおった。</p>
+</blockquote>
+</li>
+</ol>
+</div>
+<div class="section" id="id3">
+<div class="header_target" id="h_vim_vim_2dokorare_index_2erst_3"></div><h1>参考にしたサイト</h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://qiita.com/thinca/items/9a42ef9047d44a765bdd">https://qiita.com/thinca/items/9a42ef9047d44a765bdd</a></p></li>
+<li><p><a class="reference external" href="https://oki2a24.com/2016/08/17/install-uninstall-start-vim-with-homebrew-in-mac/">https://oki2a24.com/2016/08/17/install-uninstall-start-vim-with-homebrew-in-mac/</a></p></li>
+</ul>
+<p>ありがとうございました。</p>
+</div>
+    </div>
+  </main>
+</div>
+    </div>
+  </body>
+
+</html>

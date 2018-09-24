@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Git のコマンドまとめ/32imuf.com</title>
+    <link rel="shortcut icon" href="/static/icons/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Griffy" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="/static/css/style.css?20180821">
+    
+  <link rel="stylesheet" href="/static/css/article.css?20180923">
+  <link rel="stylesheet" href="/static/css/monokai.css">
+
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="header"><header class="item item-header">
+  <h1>
+    <a href="/">
+      <img class="logo" src="/static/images/inuu.png" alt="犬">
+    </a>
+  </h1>
+  <nav class="nav">
+    <ul>
+      <li class="nav-category"><a href="/">HOME</a></li>
+      
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_aws.html">aws</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../aws/s3-response-error/">S3ResponseError の原因はなんと時刻ずれだった</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_blog.html">blog</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../blog/rules/">ブログを書くときの注意点</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_git.html">git</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../configuration/">Git の設定まとめ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="./">Git のコマンドまとめ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_github.html">github</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../gitHub/how-to-create-new-repository/">GitHub に新しいリポジトリを作成して、pushする</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../github/github-pages-custom-domain-setting/">GitHub Pages にカスタムドメインを設定する</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_miyadaiku.html">miyadaiku</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../miyadaiku/build/">Miyadaiku ビルドするときのコマンド</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../miyadaiku/article-directory-structure/">article の置きかた</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_pycharm.html">pycharm</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../pycharm/useful-menu-and-shortcuts/">PyCharm ショートカットと便利メニュー</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_python.html">python</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../python/pyconjp2018/">PyConJP 2018 で聞いた講演メモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_sample.html">sample</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../2018/sample-h1-h2-h3-li/">h1, h2, h3, リストの sample</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_sql.html">sql</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../sql/note/">SQL のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_vim.html">vim</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../vim/command/">Vim のコマンド</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+    </ul>
+  </nav>
+</header></div>
+      <div class="main">
+  <main class="item item-article item-git">
+    <time class="date" datetime="2018-09-10 00:00:00+09:00">
+      2018-09-10 Mon
+    </time>
+    <div class="title">Git のコマンドまとめ</div>
+    <div class="category">
+      <a href="/index_category_category_git.html">
+          git
+      </a>
+    </div>
+    <div class="text">
+      <div class="section" id="id1">
+<div class="header_target" id="h_git_command_index_2erst_1"></div><h1>Git の絵</h1>
+<div class="figure">
+<img alt="areas.png" src="areas.png"/>
+<p class="caption"><a class="reference external" href="https://git-scm.com/book/en/v2/Getting-Started-Git-Basics">https://git-scm.com/book/en/v2/Getting-Started-Git-Basics</a></p>
+</div>
+</div>
+<div class="section" id="id2">
+<div class="header_target" id="h_git_command_index_2erst_2"></div><h1>ブランチ操作</h1>
+<ul>
+<li><p>新しいブランチを作成して、新しいブランチにチェックアウト</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> git checkout &lt;元にしたいブランチ&gt;
+<span class="gp">$</span> git checkout -b &lt;new-branch-name&gt;
+</pre></div>
+</div>
+</li>
+<li><p>ブランチ名を変更</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> git branch -m &lt;old-branch-name&gt; &lt;new-branch-name&gt;
+</pre></div>
+</div>
+</li>
+<li><p>ブランチを削除</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> git checkout &lt;違うブランチ&gt;
+<span class="gp">$</span> git branch -D &lt;branch-you-want-to-delete&gt;
+</pre></div>
+</div>
+</li>
+<li><p>ブランチを強制チェックアウト（ローカル変更はなくなる）</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> git checkout --force &lt;branch-you-want-to-checkout&gt;
+</pre></div>
+</div>
+</li>
+<li><p>ブランチをプッシュ（初回）</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> git push -u origin &lt;branch-you-want-to-push&gt;
+</pre></div>
+</div>
+</li>
+<li><p>リモートブランチをチェックアウト</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> git checkout -b &lt;branch-you-want-to-checkout&gt; origin/&lt;branch-you-want-to-checkout&gt;
+</pre></div>
+</div>
+</li>
+<li><p>リモートブランチの一覧を表示</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> git branch -a
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<div class="header_target" id="h_git_command_index_2erst_3"></div><h1>リベース</h1>
+<ul>
+<li><p>master ブランチにリベースする</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> git rebase master
+
+<span class="gp">#</span> コンフリクトしたらコンフリクトを解消して、
+<span class="gp">$</span> git add .
+<span class="gp">$</span> git rebase --continue
+
+<span class="gp">#</span> リベースが終わったらフォースプッシュ
+<span class="gp">$</span> git push -f
+</pre></div>
+</div>
+</li>
+<li><p>間違えてリベースして元に戻したい</p>
+<ul>
+<li><p>push しちゃった場合</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> git reflog
+<span class="gp">$</span> git reset --hard HEAD@<span class="o">{</span><span class="m">6</span><span class="o">}</span>  <span class="c1"># 戻りたい番号そのものを書けばよいみたい</span>
+<span class="gp">$</span> git push -f
+</pre></div>
+</div>
+</li>
+<li><p>push してない場合</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">#</span> 間違えてリベースしたブランチを origin に戻す
+<span class="gp">$</span> git checkout -B &lt;branch-you-want-to-restore&gt; origin/&lt;branch-you-want-to-restore&gt;
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id4">
+<div class="header_target" id="h_git_command_index_2erst_4"></div><h1>マージする</h1>
+<ul>
+<li><p>topic ブランチを acceptance ブランチへマージする</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> git checkout acceptance
+<span class="gp">$</span> git merge topic
+<span class="gp">#</span> コンフリクトしたら、解消して、
+<span class="gp">$</span> git add .
+<span class="gp">$</span> git commit -m <span class="s2">"Merge branch 'topic-branch-name' into acceptance"</span>
+<span class="gp">#</span> マージに成功したら、強制push
+<span class="gp">$</span> git push -u origin acceptance -f
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="git-reset">
+<div class="header_target" id="h_git_command_index_2erst_5"></div><h1>git reset 使い分け</h1>
+<p>ちなみに <span class="docutils literal">git reset</span> == <span class="docutils literal">git reset <span class="pre">--mixed</span></span> ですね</p>
+<ul>
+<li><p>git commit だけ取り消し</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> git reset --soft
+</pre></div>
+</div>
+</li>
+<li><p>git add と git commit を取り消し、ファイルの変更は保持する</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> git reset --mixed
+</pre></div>
+</div>
+</li>
+<li><p>git add と git commit を取り消して、ファイルの変更も削除する</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> git reset --hard
+</pre></div>
+</div>
+</li>
+<li><p>コミットを取り消し（直前のコミットまで戻す。 git commit を取り消し、ファイルの変更は保持する。）</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> git reset --mixed HEAD^
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="id5">
+<div class="header_target" id="h_git_command_index_2erst_6"></div><h1>コミット</h1>
+<ul>
+<li><p>コミットをもう一度やりなおす</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> git commit --amend
+</pre></div>
+</div>
+</li>
+<li><p>コミットメッセージの修正</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> git commit --amend -m <span class="s2">"new commit message"</span>
+</pre></div>
+</div>
+</li>
+<li><p>いったんコミットした後、 add 忘れに気づいた</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> git add &lt;わすれもの&gt;
+<span class="gp">$</span> git commit --amend
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="stash">
+<div class="header_target" id="h_git_command_index_2erst_7"></div><h1>stash: コミットはせずに変更を退避したい</h1>
+<ul>
+<li><p>これがわかりやすい</p>
+<p><a class="reference external" href="https://qiita.com/chihiro/items/f373873d5c2dfbd03250">https://qiita.com/chihiro/items/f373873d5c2dfbd03250</a></p>
+</li>
+</ul>
+</div>
+<div class="section" id="git-log">
+<div class="header_target" id="h_git_command_index_2erst_8"></div><h1>git log</h1>
+<ul>
+<li><p>各コミットを 1 行ずつ表示</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> git log --oneline
+</pre></div>
+</div>
+</li>
+<li><p>master と topic の共通の祖先がわかる</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> git log -1 <span class="k">$(</span>git merge-base origin/master origin/topic<span class="k">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>見本がたくさん書いてあって良い</p>
+<p><a class="reference external" href="http://yanor.net/wiki/?Git%2Fgit%20log%2F%E6%9D%A1%E4%BB%B6%E6%8C%87%E5%AE%9A%E3%81%97%E3%81%A6%E3%82%B3%E3%83%9F%E3%83%83%E3%83%88%E3%82%92%E7%B5%9E%E3%82%8A%E8%BE%BC%E3%82%80">http://yanor.net/wiki/?Git%2Fgit%20log%2F%E6%9D%A1%E4%BB%B6%E6%8C%87%E5%AE%9A%E3%81%97%E3%81%A6%E3%82%B3%E3%83%9F%E3%83%83%E3%83%88%E3%82%92%E7%B5%9E%E3%82%8A%E8%BE%BC%E3%82%80</a></p>
+</li>
+</ul>
+</div>
+<div class="section" id="rebase-i">
+<div class="header_target" id="h_git_command_index_2erst_9"></div><h1>rebase -i</h1>
+<div class="section" id="squash">
+<div class="header_target" id="h_git_command_index_2erst_10"></div><h2>squash : 離れたふたつのコミットをまとめる</h2>
+<ol class="arabic">
+<li><p>くっつけ先のコミット番号を確かめる</p>
+<blockquote>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> git log --oneline
+</pre></div>
+</div>
+</blockquote>
+</li>
+<li><p>コミットが一覧表示されるので、くっつけ先のコミット番号を控え、 <span class="docutils literal">:q</span> で閉じる</p></li>
+<li><p>rebase を開始する。</p>
+<blockquote>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> git rebase -i &lt;くっつけ先のコミット番号&gt;
+</pre></div>
+</div>
+</blockquote>
+</li>
+<li><p>エディターが開き、 3 で指定したコミット番号より後のコミット一覧が表示されるので、くっつけたいほうの pick を一番上に移動する。</p></li>
+<li><p><span class="docutils literal">pick</span> を <span class="docutils literal">squash</span> に書き換える。</p></li>
+<li><p><span class="docutils literal">:wq</span> で保存して閉じる</p></li>
+<li><p>コミットメッセージを書く用？のエディタが開くので、</p>
+<blockquote>
+<pre class="literal-block">You are currently rebasing branch 'master' on 'リビジョン番号'.</pre>
+<p>の次の行のコメントを外して、コミットメッセージを書く。</p>
+<p>(たぶん、その上のほうにあるコミットメッセージも変えたければ編集したほうがよいんだと思う)</p>
+</blockquote>
+</li>
+<li><p><span class="docutils literal">:wq</span> で保存して閉じる</p></li>
+<li><p>リモートリポジトリにフォースプッシュする。</p>
+<blockquote>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> git push -f
+</pre></div>
+</div>
+</blockquote>
+</li>
+</ol>
+</div>
+<div class="section" id="reword">
+<div class="header_target" id="h_git_command_index_2erst_11"></div><h2>reword: コミットメッセージを変更する</h2>
+<ol class="arabic">
+<li><p>コミット一覧を表示し、コミットメッセージを変更したいコミットの一つ前のコミット番号を控える</p>
+<blockquote>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> git log --oneline
+</pre></div>
+</div>
+</blockquote>
+</li>
+<li><p><span class="docutils literal">:q</span> で閉じる</p></li>
+<li><p>rebase を開始する。</p>
+<blockquote>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> git rebase -i &lt;<span class="m">1</span> で控えたコミット番号&gt;
+</pre></div>
+</div>
+</blockquote>
+</li>
+<li><p>エディターが開き、 3 で指定したコミット番号より後のコミット一覧が表示されるので、コミットメッセージを変更したいコミット番号の <span class="docutils literal">pick</span> を <span class="docutils literal">reword</span> 書き換える。</p></li>
+<li><p><span class="docutils literal">:wq</span> で保存して閉じる</p></li>
+<li><p>コミットメッセージを書く用？のエディタが開くので、コミットメッセージを変更する。</p></li>
+<li><p><span class="docutils literal">:wq</span> で保存して閉じる</p></li>
+<li><p>リモートリポジトリにフォースプッシュする。</p>
+<blockquote>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> git push -f
+</pre></div>
+</div>
+</blockquote>
+</li>
+</ol>
+</div>
+<div class="section" id="id6">
+<div class="header_target" id="h_git_command_index_2erst_12"></div><h2>参考にしたサイト</h2>
+<ul>
+<li><p>これがわかりやすかった</p>
+<p><a class="reference external" href="https://www.karakaram.com/git-rebase-i-usage#whats-rebase-i">https://www.karakaram.com/git-rebase-i-usage#whats-rebase-i</a></p>
+</li>
+</ul>
+</div>
+</div>
+    </div>
+  </main>
+</div>
+    </div>
+  </body>
+
+</html>

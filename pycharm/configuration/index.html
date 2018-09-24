@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>h1, h2, h3, リストの sample/32imuf.com</title>
+    <title>PyCharm の設定/32imuf.com</title>
     <link rel="shortcut icon" href="/static/icons/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Griffy" rel="stylesheet">
     <link href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css" rel="stylesheet" />
@@ -108,7 +108,7 @@
           <ul>
             
               <li class="nav-article">
-                <a href="../../pycharm/useful-menu-and-shortcuts/">PyCharm ショートカットと便利メニュー</a>
+                <a href="../useful-menu-and-shortcuts/">PyCharm ショートカットと便利メニュー</a>
               </li>
             
           </ul>
@@ -132,7 +132,7 @@
           <ul>
             
               <li class="nav-article">
-                <a href="./">h1, h2, h3, リストの sample</a>
+                <a href="../../2018/sample-h1-h2-h3-li/">h1, h2, h3, リストの sample</a>
               </li>
             
           </ul>
@@ -166,65 +166,119 @@
   </nav>
 </header></div>
       <div class="main">
-  <main class="item item-article item-sample">
-    <time class="date" datetime="2018-05-07 00:00:00+09:00">
-      2018-05-07 Mon
+  <main class="item item-article item-pycharm">
+    <time class="date" datetime="2018-09-23 00:00:00+09:00">
+      2018-09-23 Sun
     </time>
-    <div class="title">h1, h2, h3, リストの sample</div>
+    <div class="title">PyCharm の設定</div>
     <div class="category">
-      <a href="/index_category_category_sample.html">
-          sample
+      <a href="/index_category_category_pycharm.html">
+          pycharm
       </a>
     </div>
     <div class="text">
       <div class="section" id="id1">
-<div class="header_target" id="h_2018_sample_2dh1_2dh2_2dh3_2dli_index_2erst_1"></div><h1>みかん</h1>
-<div class="section" id="id2">
-<div class="header_target" id="h_2018_sample_2dh1_2dh2_2dh3_2dli_index_2erst_2"></div><h2>みかんがたくさん</h2>
-<ul>
-<li><p>甘夏</p></li>
-<li><p>いよかん</p>
-<ul>
-<li><p>はっさく</p></li>
-<li><p>でこぽん</p>
-<blockquote>
+<div class="header_target" id="h_pycharm_configuration_index_2erst_1"></div><h1>ガイド</h1>
 <ul class="simple">
-<li><p>みかん</p></li>
-<li><p>みかん</p></li>
-</ul>
-</blockquote>
-</li>
-</ul>
-</li>
+<li><p><a class="reference external" href="https://pleiades.io/help/pycharm/">PyCharm ヘルプ</a></p></li>
 </ul>
 </div>
 <div class="section" id="id3">
-<div class="header_target" id="h_2018_sample_2dh1_2dh2_2dh3_2dli_index_2erst_3"></div><h2>みかん箱いっぱい</h2>
-<ul class="simple">
-<li><p>みかん</p></li>
-<li><p>みかん</p></li>
-</ul>
+<div class="header_target" id="h_pycharm_configuration_index_2erst_2"></div><h1>設定</h1>
 <div class="section" id="id4">
-<div class="header_target" id="h_2018_sample_2dh1_2dh2_2dh3_2dli_index_2erst_4"></div><h3>さらにみかん</h3>
+<div class="header_target" id="h_pycharm_configuration_index_2erst_3"></div><h2>エディター設定</h2>
+<div class="section" id="id5">
+<div class="header_target" id="h_pycharm_configuration_index_2erst_4"></div><h3>コード補完</h3>
+<ol class="arabic simple">
+<li><p>Preferences</p></li>
+<li><p>Editor -&gt; General -&gt; Code Completion</p></li>
+</ol>
+</div>
+<div class="section" id="import">
+<div class="header_target" id="h_pycharm_configuration_index_2erst_5"></div><h3>import 文を折りたたまない</h3>
+<ol class="arabic simple">
+<li><p>Preferences</p></li>
+<li><p>Editor -&gt; General -&gt; Code Folding</p></li>
+<li><p>Imports: OFF</p></li>
+</ol>
+</div>
+<div class="section" id="pep-8">
+<div class="header_target" id="h_pycharm_configuration_index_2erst_6"></div><h3>PEP 8 警告の色を目立つようにする</h3>
+<ol class="arabic simple">
+<li><p>Preferences</p></li>
+<li><p>Editor -&gt; Inspections -&gt; PEP 8 coding style violation</p></li>
+<li><p>色変えたりする</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="django">
+<div class="header_target" id="h_pycharm_configuration_index_2erst_7"></div><h2>Django</h2>
+<div class="section" id="django-support">
+<div class="header_target" id="h_pycharm_configuration_index_2erst_8"></div><h3>Django Support を有効にする</h3>
+<ol class="arabic">
+<li><p>Preferences</p></li>
+<li><p>Languages &amp; Frameworks -&gt; Django</p>
+<blockquote>
 <ul class="simple">
-<li><p>みかん</p></li>
-<li><p>みかん</p></li>
+<li><p>Enable Django Support: <span class="docutils literal">ON</span></p></li>
+<li><p>Django project root: <span class="docutils literal">apps</span> ( <cite>settings.py および manage.py ファイルを格納するディレクトリ</cite> を指定するっぽかったので。合っているかどうかわからない。)</p></li>
+<li><p>Settings: <span class="docutils literal">settings/_.py</span> ( <cite>Djangoプロジェクトルートの下にある名前が *settings*.pyに一致するファイルです</cite> と書いてあったのでたぶんこれだろう。)</p></li>
+</ul>
+</blockquote>
+</li>
+</ol>
+</div>
+<div class="section" id="template-language">
+<div class="header_target" id="h_pycharm_configuration_index_2erst_9"></div><h3>Template language を設定する</h3>
+<ol class="arabic">
+<li><p>Preferences</p></li>
+<li><p>Languages &amp; Frameworks -&gt; Python Template Languages</p>
+<blockquote>
+<ul class="simple">
+<li><p>Template language: <span class="docutils literal">Django</span></p></li>
+</ul>
+</blockquote>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="sources-root">
+<div class="header_target" id="h_pycharm_configuration_index_2erst_10"></div><h2>Sources Root</h2>
+<ul class="simple">
+<li><p>Sources Root を設定</p>
+<ol class="arabic simple">
+<li><p>左ツリーの <span class="docutils literal">apps</span> を右クリック</p></li>
+<li><p>メニューの <span class="docutils literal">Mark Directory as</span> -&gt; <span class="docutils literal">Sources Root</span></p></li>
+</ol>
+</li>
+<li><p>Template Folder を設定</p>
+<ol class="arabic simple">
+<li><p>左ツリーの <span class="docutils literal">templates</span> を右クリック</p></li>
+<li><p>メニューの <span class="docutils literal">Mark Directory as</span> -&gt; <span class="docutils literal">Template Folder</span></p></li>
+</ol>
+</li>
 </ul>
 </div>
-<div class="section" id="id5">
-<div class="header_target" id="h_2018_sample_2dh1_2dh2_2dh3_2dli_index_2erst_5"></div><h3>とにかくみかん</h3>
-<p>　みかんみかんみかんみかんここはリストじゃない。仁和寺にある法師、年寄るまで、石淸水を拝まざりければ、心うく覚えて、ある時思ひ立ちて、たゞひとり、徒歩よりまうでけり。極樂寺・高良などを拝みて、かばかりと心得て帰りにけり。さて、かたへの人にあひて、「年比思ひつること、果たし侍りぬ。聞きしにも過ぎて、尊くこそおはしけれ。そも、参りたる人ごとに山へ登りしは、何事かありけん、ゆかしかりしかど、神へ参るこそ本意なれと思ひて、山までは見ず」と言ひける。</p>
-<p>　すこしのことにも、先達はあらまほしき事なり。</p>
 </div>
-</div>
-</div>
-<div class="section" id="id6">
-<div class="header_target" id="h_2018_sample_2dh1_2dh2_2dh3_2dli_index_2erst_6"></div><h1>手順(数字のリスト)</h1>
-<ol class="arabic simple">
-<li><p>みかんを購入する</p></li>
-<li><p>みかんを食べまくる</p></li>
-<li><p><a class="reference external" href="https://help.github.com/articles/adding-or-removing-a-custom-domain-for-your-github-pages-site/">みかんのリンク</a> を見る</p></li>
-</ol>
+<div class="section" id="todo">
+<div class="header_target" id="h_pycharm_configuration_index_2erst_11"></div><h1>TODO: やってみる</h1>
+<ul class="simple">
+<li><p>SQL
+- SQL 実行結果をファイルにも出せる</p></li>
+<li><p>デバッガー
+- セロリーのデバッグもできる、Django のデバッグもできる
+- テスト実行中にもブレークポイントはって、デバッグできる
+- テンプレートの中でもデバッグポイントで止められる</p></li>
+<li><p>aws に ssh 接続して redshift につないだりもできる</p></li>
+<li><p>HTML のマークでる *</p></li>
+<li><p>post の中身を見られる</p></li>
+<li><p>Django ORM とか SQLA も</p></li>
+<li><p>Django サポート、モデル間のER図みたいなのとかも出してくれる</p></li>
+<li><p>リファクタリングできる</p></li>
+<li><p>コードデプロイもできる</p></li>
+<li><p>テストも便利</p></li>
+<li><p>再起動したりクリーンインストールとかしても治らないときは、ジェットブレインさんに言う</p></li>
+</ul>
 </div>
     </div>
   </main>

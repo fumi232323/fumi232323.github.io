@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>h1, h2, h3, リストの sample/32imuf.com</title>
+    <title>Redshift のメモ/32imuf.com</title>
     <link rel="shortcut icon" href="/static/icons/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Griffy" rel="stylesheet">
     <link href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css" rel="stylesheet" />
@@ -132,7 +132,7 @@
           <ul>
             
               <li class="nav-article">
-                <a href="./">h1, h2, h3, リストの sample</a>
+                <a href="../../2018/sample-h1-h2-h3-li/">h1, h2, h3, リストの sample</a>
               </li>
             
           </ul>
@@ -166,65 +166,75 @@
   </nav>
 </header></div>
       <div class="main">
-  <main class="item item-article item-sample">
-    <time class="date" datetime="2018-05-07 00:00:00+09:00">
-      2018-05-07 Mon
+  <main class="item item-article item-redshift">
+    <time class="date" datetime="2018-09-02 00:00:00+09:00">
+      2018-09-02 Sun
     </time>
-    <div class="title">h1, h2, h3, リストの sample</div>
+    <div class="title">Redshift のメモ</div>
     <div class="category">
-      <a href="/index_category_category_sample.html">
-          sample
+      <a href="/index_category_category_redshift.html">
+          redshift
       </a>
     </div>
     <div class="text">
-      <div class="section" id="id1">
-<div class="header_target" id="h_2018_sample_2dh1_2dh2_2dh3_2dli_index_2erst_1"></div><h1>みかん</h1>
+      <div class="section" id="diststyle-all">
+<div class="header_target" id="h_redshift_note_index_2erst_1"></div><h1>diststyle all</h1>
+<ul class="simple">
+<li><p>分散の設定だった。 <cite>DISTKEY</cite> も載ってた。</p></li>
+</ul>
+<pre class="literal-block">CREATE TABLE ステートメントで定義したオプションに応じてデータがどのように分散されるかを示しています。</pre>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.aws.amazon.com/ja_jp/redshift/latest/dg/c_Distribution_examples.html">https://docs.aws.amazon.com/ja_jp/redshift/latest/dg/c_Distribution_examples.html</a></p></li>
+</ul>
+</div>
+<div class="section" id="varchar">
+<div class="header_target" id="h_redshift_note_index_2erst_2"></div><h1>マルチバイト文字の VARCHAR</h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.aws.amazon.com/ja_jp/redshift/latest/dg/r_Character_types.html">https://docs.aws.amazon.com/ja_jp/redshift/latest/dg/r_Character_types.html</a></p></li>
+</ul>
+<pre class="literal-block">例えば、VARCHAR(12) 列には、シングルバイト文字なら 12 個、2 バイト文字なら 6 個、3 バイト文字なら 4 個、4 バイト文字なら 3 個含めることができます。</pre>
+<ul class="simple">
+<li><p>3バイト文字と4バイト文字の違いがわかってない・・</p></li>
+</ul>
+</div>
+<div class="section" id="id1">
+<div class="header_target" id="h_redshift_note_index_2erst_3"></div><h1>圧縮分析</h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.aws.amazon.com/ja_jp/redshift/latest/dg/r_ANALYZE_COMPRESSION.html">https://docs.aws.amazon.com/ja_jp/redshift/latest/dg/r_ANALYZE_COMPRESSION.html</a></p></li>
+</ul>
+</div>
 <div class="section" id="id2">
-<div class="header_target" id="h_2018_sample_2dh1_2dh2_2dh3_2dli_index_2erst_2"></div><h2>みかんがたくさん</h2>
-<ul>
-<li><p>甘夏</p></li>
-<li><p>いよかん</p>
-<ul>
-<li><p>はっさく</p></li>
-<li><p>でこぽん</p>
-<blockquote>
-<ul class="simple">
-<li><p>みかん</p></li>
-<li><p>みかん</p></li>
-</ul>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
+<div class="header_target" id="h_redshift_note_index_2erst_4"></div><h1>未整理</h1>
+<pre class="literal-block">fumi23 [13:47]
+&gt;https://docs.aws.amazon.com/ja_jp/redshift/latest/dg/r_ANALYZE_COMPRESSION.html
+こんなのあるのかあ
+docs.aws.amazon.com
+ANALYZE COMPRESSION - Amazon Redshift
+圧縮分析を実行し、分析されたテーブルの推奨列エンコードスキームと圧縮可能率の推定値のレポートを生成します。
+
+fumi23 [13:56]
+- https://docs.aws.amazon.com/ja_jp/redshift/latest/dg/t_Compressing_data_on_disk.html
+&gt; テーブルの作成後に列の圧縮エンコードを変更することはできません。ALTER TABLE コマンドを使用して列をテーブルに追加する際には、列のエンコードを指定できます。
+
+ALTER 文にもつけられるのかあ・・
+docs.aws.amazon.com
+列圧縮タイプの選択 - Amazon Redshift
+圧縮は、データの格納時にそのサイズを小さくする列レベルの操作です。圧縮によりストレージ領域が節約され、ストレージから読み取るデータのサイズが縮小されます。
+&gt; CREATE TABLE または ALTER TABLE ステートメントで圧縮が指定されていない場合、Amazon Redshift は以下のように自動的に圧縮エンコードを割り当てます。
+- https://docs.aws.amazon.com/ja_jp/redshift/latest/dg/c_Compression_encodings.html
+docs.aws.amazon.com
+圧縮エンコード - Amazon Redshift
+圧縮エンコードは、行がテーブルに追加されるときにデータ値の列に適用される圧縮のタイプを指定します。</pre>
 </div>
-<div class="section" id="id3">
-<div class="header_target" id="h_2018_sample_2dh1_2dh2_2dh3_2dli_index_2erst_3"></div><h2>みかん箱いっぱい</h2>
-<ul class="simple">
-<li><p>みかん</p></li>
-<li><p>みかん</p></li>
-</ul>
-<div class="section" id="id4">
-<div class="header_target" id="h_2018_sample_2dh1_2dh2_2dh3_2dli_index_2erst_4"></div><h3>さらにみかん</h3>
-<ul class="simple">
-<li><p>みかん</p></li>
-<li><p>みかん</p></li>
-</ul>
-</div>
-<div class="section" id="id5">
-<div class="header_target" id="h_2018_sample_2dh1_2dh2_2dh3_2dli_index_2erst_5"></div><h3>とにかくみかん</h3>
-<p>　みかんみかんみかんみかんここはリストじゃない。仁和寺にある法師、年寄るまで、石淸水を拝まざりければ、心うく覚えて、ある時思ひ立ちて、たゞひとり、徒歩よりまうでけり。極樂寺・高良などを拝みて、かばかりと心得て帰りにけり。さて、かたへの人にあひて、「年比思ひつること、果たし侍りぬ。聞きしにも過ぎて、尊くこそおはしけれ。そも、参りたる人ごとに山へ登りしは、何事かありけん、ゆかしかりしかど、神へ参るこそ本意なれと思ひて、山までは見ず」と言ひける。</p>
-<p>　すこしのことにも、先達はあらまほしき事なり。</p>
-</div>
-</div>
-</div>
-<div class="section" id="id6">
-<div class="header_target" id="h_2018_sample_2dh1_2dh2_2dh3_2dli_index_2erst_6"></div><h1>手順(数字のリスト)</h1>
-<ol class="arabic simple">
-<li><p>みかんを購入する</p></li>
-<li><p>みかんを食べまくる</p></li>
-<li><p><a class="reference external" href="https://help.github.com/articles/adding-or-removing-a-custom-domain-for-your-github-pages-site/">みかんのリンク</a> を見る</p></li>
-</ol>
+<div class="section" id="max">
+<div class="header_target" id="h_redshift_note_index_2erst_5"></div><h1>MAX 設定</h1>
+<p><a class="reference external" href="https://docs.aws.amazon.com/ja_jp/redshift/latest/dg/r_Character_types.html#r_Character_types-char-or-character">https://docs.aws.amazon.com/ja_jp/redshift/latest/dg/r_Character_types.html#r_Character_types-char-or-character</a>
+&gt; 「MAX 設定は列幅を定義します。CHAR の場合は 4096 バイトであり、VARCHAR の場合は 65535 となります。」
+docs.aws.amazon.com
+文字型 - Amazon Redshift
+Amazon Redshift によってサポートされている文字型を使用する際に従うべき規則について説明します。
+&gt; text    制限なし可変長
+<a class="reference external" href="https://www.postgresql.jp/document/9.6/html/datatype-character.html">https://www.postgresql.jp/document/9.6/html/datatype-character.html</a></p>
 </div>
     </div>
   </main>
