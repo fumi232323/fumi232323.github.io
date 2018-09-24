@@ -202,9 +202,7 @@
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="section" id="template"&gt;
-&lt;div class="header_target" id="h_django_note_index_2erst_6"&gt;&lt;/div&gt;&lt;h1&gt;template&lt;/h1&gt;&lt;/div&gt;</summary></entry><entry><title>Vagrant のメモ</title><link href="http://localhost:8888/vagrant/note/" rel="alternate"></link><published>2018-09-02T00:00:00+09:00</published><updated>2018-09-02T00:00:00+09:00</updated><id>tag:localhost,2018-09-02:/vagrant/note/</id><summary type="html">&lt;p&gt;TODO: 整理する
-- papaer から移行する&lt;/p&gt;
-&lt;div class="section" id="synced-folder"&gt;
+&lt;div class="header_target" id="h_django_note_index_2erst_6"&gt;&lt;/div&gt;&lt;h1&gt;template&lt;/h1&gt;&lt;/div&gt;</summary></entry><entry><title>Vagrant のメモ</title><link href="http://localhost:8888/vagrant/note/" rel="alternate"></link><published>2018-09-02T00:00:00+09:00</published><updated>2018-09-02T00:00:00+09:00</updated><id>tag:localhost,2018-09-02:/vagrant/note/</id><summary type="html">&lt;div class="section" id="synced-folder"&gt;
 &lt;div class="header_target" id="h_vagrant_note_index_2erst_1"&gt;&lt;/div&gt;&lt;h1&gt;synced_folder が効かなくなった&lt;/h1&gt;
 &lt;div class="section" id="id1"&gt;
 &lt;div class="header_target" id="h_vagrant_note_index_2erst_2"&gt;&lt;/div&gt;&lt;h2&gt;現象&lt;/h2&gt;
