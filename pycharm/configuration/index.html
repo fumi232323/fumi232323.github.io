@@ -72,6 +72,18 @@
       
         
         <li class="nav-category">
+          <a href="/index_category_category_django.html">django</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../django/note/">Django のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
           <a href="/index_category_category_git.html">git</a>
           <ul>
             
@@ -137,6 +149,10 @@
             
               <li class="nav-article">
                 <a href="../useful-menu-and-shortcuts/">PyCharm ショートカットと便利メニュー</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="./">PyCharm の設定</a>
               </li>
             
           </ul>
@@ -240,18 +256,16 @@
 </ul>
 </div>
 <div class="section" id="id3">
-<div class="header_target" id="h_pycharm_configuration_index_2erst_2"></div><h1>設定</h1>
+<div class="header_target" id="h_pycharm_configuration_index_2erst_2"></div><h1>エディター設定</h1>
 <div class="section" id="id4">
-<div class="header_target" id="h_pycharm_configuration_index_2erst_3"></div><h2>エディター設定</h2>
-<div class="section" id="id5">
-<div class="header_target" id="h_pycharm_configuration_index_2erst_4"></div><h3>コード補完</h3>
+<div class="header_target" id="h_pycharm_configuration_index_2erst_3"></div><h2>コード補完</h2>
 <ol class="arabic simple">
 <li><p>Preferences</p></li>
 <li><p>Editor -&gt; General -&gt; Code Completion</p></li>
 </ol>
 </div>
 <div class="section" id="import">
-<div class="header_target" id="h_pycharm_configuration_index_2erst_5"></div><h3>import 文を折りたたまない</h3>
+<div class="header_target" id="h_pycharm_configuration_index_2erst_4"></div><h2>import 文を折りたたまない</h2>
 <ol class="arabic simple">
 <li><p>Preferences</p></li>
 <li><p>Editor -&gt; General -&gt; Code Folding</p></li>
@@ -259,7 +273,7 @@
 </ol>
 </div>
 <div class="section" id="pep-8">
-<div class="header_target" id="h_pycharm_configuration_index_2erst_6"></div><h3>PEP 8 警告の色を目立つようにする</h3>
+<div class="header_target" id="h_pycharm_configuration_index_2erst_5"></div><h2>PEP 8 警告の色を目立つようにする</h2>
 <ol class="arabic simple">
 <li><p>Preferences</p></li>
 <li><p>Editor -&gt; Inspections -&gt; PEP 8 coding style violation</p></li>
@@ -268,9 +282,9 @@
 </div>
 </div>
 <div class="section" id="django">
-<div class="header_target" id="h_pycharm_configuration_index_2erst_7"></div><h2>Django</h2>
+<div class="header_target" id="h_pycharm_configuration_index_2erst_6"></div><h1>Django</h1>
 <div class="section" id="django-support">
-<div class="header_target" id="h_pycharm_configuration_index_2erst_8"></div><h3>Django Support を有効にする</h3>
+<div class="header_target" id="h_pycharm_configuration_index_2erst_7"></div><h2>Django Support を有効にする</h2>
 <ol class="arabic">
 <li><p>Preferences</p></li>
 <li><p>Languages &amp; Frameworks -&gt; Django</p>
@@ -285,7 +299,7 @@
 </ol>
 </div>
 <div class="section" id="template-language">
-<div class="header_target" id="h_pycharm_configuration_index_2erst_9"></div><h3>Template language を設定する</h3>
+<div class="header_target" id="h_pycharm_configuration_index_2erst_8"></div><h2>Template language を設定する</h2>
 <ol class="arabic">
 <li><p>Preferences</p></li>
 <li><p>Languages &amp; Frameworks -&gt; Python Template Languages</p>
@@ -299,42 +313,27 @@
 </div>
 </div>
 <div class="section" id="sources-root">
-<div class="header_target" id="h_pycharm_configuration_index_2erst_10"></div><h2>Sources Root</h2>
-<ul class="simple">
-<li><p>Sources Root を設定</p>
+<div class="header_target" id="h_pycharm_configuration_index_2erst_9"></div><h1>Sources Root</h1>
+<div class="section" id="id5">
+<div class="header_target" id="h_pycharm_configuration_index_2erst_10"></div><h2>Sources Root を設定</h2>
+<p><span class="docutils literal">定義へジャンプ</span> ( <span class="docutils literal">Cmd + B</span> ) などが使えるようになる</p>
+<blockquote>
 <ol class="arabic simple">
 <li><p>左ツリーの <span class="docutils literal">apps</span> を右クリック</p></li>
 <li><p>メニューの <span class="docutils literal">Mark Directory as</span> -&gt; <span class="docutils literal">Sources Root</span></p></li>
 </ol>
-</li>
-<li><p>Template Folder を設定</p>
+</blockquote>
+</div>
+<div class="section" id="template-folder">
+<div class="header_target" id="h_pycharm_configuration_index_2erst_11"></div><h2>Template Folder を設定</h2>
+<p><span class="docutils literal">HTML マーク</span> (押下すると template へジャンプできる) が出るようになる</p>
+<blockquote>
 <ol class="arabic simple">
 <li><p>左ツリーの <span class="docutils literal">templates</span> を右クリック</p></li>
 <li><p>メニューの <span class="docutils literal">Mark Directory as</span> -&gt; <span class="docutils literal">Template Folder</span></p></li>
 </ol>
-</li>
-</ul>
+</blockquote>
 </div>
-</div>
-<div class="section" id="todo">
-<div class="header_target" id="h_pycharm_configuration_index_2erst_11"></div><h1>TODO: やってみる</h1>
-<ul class="simple">
-<li><p>SQL
-- SQL 実行結果をファイルにも出せる</p></li>
-<li><p>デバッガー
-- セロリーのデバッグもできる、Django のデバッグもできる
-- テスト実行中にもブレークポイントはって、デバッグできる
-- テンプレートの中でもデバッグポイントで止められる</p></li>
-<li><p>aws に ssh 接続して redshift につないだりもできる</p></li>
-<li><p>HTML のマークでる *</p></li>
-<li><p>post の中身を見られる</p></li>
-<li><p>Django ORM とか SQLA も</p></li>
-<li><p>Django サポート、モデル間のER図みたいなのとかも出してくれる</p></li>
-<li><p>リファクタリングできる</p></li>
-<li><p>コードデプロイもできる</p></li>
-<li><p>テストも便利</p></li>
-<li><p>再起動したりクリーンインストールとかしても治らないときは、ジェットブレインさんに言う</p></li>
-</ul>
 </div>
     </div>
   </main>

@@ -72,6 +72,18 @@
       
         
         <li class="nav-category">
+          <a href="/index_category_category_django.html">django</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="./">Django のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
           <a href="/index_category_category_git.html">git</a>
           <ul>
             
@@ -137,6 +149,10 @@
             
               <li class="nav-article">
                 <a href="../../pycharm/useful-menu-and-shortcuts/">PyCharm ショートカットと便利メニュー</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../pycharm/configuration/">PyCharm の設定</a>
               </li>
             
           </ul>
@@ -233,26 +249,90 @@
       </a>
     </div>
     <div class="text">
-      <div class="section" id="id1">
-<div class="header_target" id="h_django_note_index_2erst_1"></div><h1>独自のテンプレートタグとフィルタ</h1>
+      <div class="section" id="django-orm">
+<div class="header_target" id="h_django_note_index_2erst_1"></div><h1>Django ORM</h1>
+<div class="section" id="aggregate-annotate">
+<div class="header_target" id="h_django_note_index_2erst_2"></div><h2>aggregate と annotate の違いがわかりやすい</h2>
 <ul class="simple">
-<li><p><a class="reference external" href="https://docs.djangoproject.com/ja/1.11/howto/custom-template-tags/#custom-template-tags-and-filters">https://docs.djangoproject.com/ja/1.11/howto/custom-template-tags/#custom-template-tags-and-filters</a></p></li>
+<li><p><a class="reference external" href="http://note.crohaco.net/2014/django-aggregate/">Djangoの集計について</a></p></li>
 </ul>
 </div>
-<div class="section" id="id2">
-<div class="header_target" id="h_django_note_index_2erst_2"></div><h1>django に便利コマンド追加してくれるさん</h1>
+<div class="section" id="prefetch-related">
+<div class="header_target" id="h_django_note_index_2erst_3"></div><h2>prefetch_relatedの話</h2>
 <ul class="simple">
-<li><p><a class="reference external" href="https://django-extensions.readthedocs.io/en/latest/">https://django-extensions.readthedocs.io/en/latest/</a></p></li>
+<li><p><a class="reference external" href="http://tokibito.hatenablog.com/entry/20140718/1405691738">Djangoでprefetch_relatedを使ってクエリ数を減らす</a></p></li>
+</ul>
+</div>
+<div class="section" id="q-object">
+<div class="header_target" id="h_django_note_index_2erst_4"></div><h2>Q Object</h2>
+<p>クエリの検索条件を作れるやつ</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.djangoproject.com/ja/1.11/ref/models/querysets/#q-objects">Q() objects</a></p></li>
+</ul>
+</div>
+<div class="section" id="set">
+<div class="header_target" id="h_django_note_index_2erst_5"></div><h2>モデルクラス名を全部小文字にしたのに <span class="docutils literal">_set</span> がつく</h2>
+<p><a class="reference external" href="https://docs.djangoproject.com/ja/1.11/ref/models/relations/">Related objects reference</a></p>
+<ul class="simple">
+<li><p><span class="docutils literal">_set</span> というのは子テーブルのデータを参照する django の機能</p></li>
+<li><p>モデルクラス名を全部小文字にしたのに <span class="docutils literal">_set</span> がつく</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="template">
+<div class="header_target" id="h_django_note_index_2erst_6"></div><h1>template</h1>
+<div class="section" id="id2">
+<div class="header_target" id="h_django_note_index_2erst_7"></div><h2>独自のテンプレートタグとフィルタ</h2>
+<p>カスタムタグやカスタムフィルタをつくることができる。</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.djangoproject.com/ja/1.11/howto/custom-template-tags/#custom-template-tags-and-filters">独自のテンプレートタグとフィルタ</a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="class-based-views">
+<div class="header_target" id="h_django_note_index_2erst_8"></div><h1>Class-based views</h1>
+<pre class="literal-block">関数形式の view はコンテキスト、テンプレート、フォーム、全部変えしてあげないといけなかった。つまり全部関数内に書く必要があった。
+必要なものを切り離して属性として定義できるようにしたのが genericview (class based view)。</pre>
+<div class="section" id="formview">
+<div class="header_target" id="h_django_note_index_2erst_9"></div><h2>FormView</h2>
+<ul class="simple">
+<li><p><span class="docutils literal">genericview</span> はたくさん種類がある。</p></li>
+<li><p>何らかの登録・更新処理で <span class="docutils literal">form</span> を使ったバリデーションが必要なら 大体 <span class="docutils literal">FormView</span> を使う</p></li>
+</ul>
+</div>
+<div class="section" id="as-view">
+<div class="header_target" id="h_django_note_index_2erst_10"></div><h2>as_view</h2>
+<ul class="simple">
+<li><p>as_view は view関数を生成して返している</p></li>
+<li><p>実際の処理は self.dispatch で クラスベースビューに処理を委譲してるんだと思います</p></li>
+<li><p>ソースコード URL: <a class="reference external" href="https://github.com/django/django/blob/master/django/views/generic/base.py#L49">https://github.com/django/django/blob/master/django/views/generic/base.py#L49</a></p></li>
+</ul>
+</div>
+<div class="section" id="get-context-data">
+<div class="header_target" id="h_django_note_index_2erst_11"></div><h2>get_context_data</h2>
+<ul class="simple">
+<li><p>大抵の場合、ビューというのはレンダリングに必要なコンテキストを組み立てるものなので 大体の処理は <span class="docutils literal">get_context_data</span> というメソッドに書く。</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id4">
+<div class="header_target" id="h_django_note_index_2erst_12"></div><h1>こんなのある</h1>
+<div class="section" id="id5">
+<div class="header_target" id="h_django_note_index_2erst_13"></div><h2>インラインフォームセット</h2>
+<p>使い方はよくわかっていない</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.djangoproject.com/ja/1.11/topics/forms/modelforms/#inline-formsets">https://docs.djangoproject.com/ja/1.11/topics/forms/modelforms/#inline-formsets</a></p></li>
+<li><p><a class="reference external" href="https://docs.djangoproject.com/ja/1.11/ref/forms/models/#inlineformset-factory">https://docs.djangoproject.com/ja/1.11/ref/forms/models/#inlineformset-factory</a></p></li>
 </ul>
 </div>
 <div class="section" id="multivaluedict">
-<div class="header_target" id="h_django_note_index_2erst_3"></div><h1>MultiValueDict</h1>
+<div class="header_target" id="h_django_note_index_2erst_14"></div><h2>MultiValueDict</h2>
+<p>なにがうれしいのかさっぱりわからない =&gt; <cite>MultiValueDict を継承してる QueryDict とか見るとユースケースはなんとなく想像つくと思います</cite> と教えて頂いた。</p>
 <ul>
 <li><p><a class="reference external" href="https://docs.djangoproject.com/ja/2.1/_modules/django/utils/datastructures/">https://docs.djangoproject.com/ja/2.1/_modules/django/utils/datastructures/</a></p>
 <pre class="literal-block">A subclass of dictionary customized to handle multiple values for the same key.</pre>
 </li>
-<li><p>何がうれしいのかさっぱりわからない・・・とつぶやいたら、 <cite>MultiValueDict を継承してる QueryDict とか見るとユースケースはなんとなく想像つくと思います</cite> と教えて頂き見てみてたら、ほー、となった。</p></li>
-<li><p>あとよく見たら、こういうところが便利だと思った ↓</p>
+<li><p>よく見たら、こういうところが便利だと思った ↓</p>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">django.utils.datastructures</span> <span class="kn">import</span> <span class="n">MultiValueDict</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">d</span> <span class="o">=</span> <span class="n">MultiValueDict</span><span class="p">({</span><span class="s1">'name'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'Adrian'</span><span class="p">,</span> <span class="s1">'Simon'</span><span class="p">],</span> <span class="s1">'position'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'Developer'</span><span class="p">]})</span>
@@ -269,76 +349,25 @@
 </ul>
 </div>
 <div class="section" id="querydict">
-<div class="header_target" id="h_django_note_index_2erst_4"></div><h1>QueryDict オブジェクト</h1>
+<div class="header_target" id="h_django_note_index_2erst_15"></div><h2>QueryDict オブジェクト</h2>
+<p><cite>In an HttpRequest object, the GET and POST attributes are instances of django.http.QueryDict</cite> だそうです。</p>
+<blockquote>
 <ul>
-<li><p><a class="reference external" href="https://docs.djangoproject.com/ja/2.1/ref/request-response/#querydict-objects">https://docs.djangoproject.com/ja/2.1/ref/request-response/#querydict-objects</a></p>
+<li><p><a class="reference external" href="https://docs.djangoproject.com/ja/2.1/ref/request-response/#querydict-objects">QueryDict オブジェクト</a></p>
 <pre class="literal-block">In an HttpRequest object, the GET and POST attributes are instances of django.http.QueryDict, a dictionary-like class customized to deal with multiple values for the same key. This is necessary because some HTML form elements, notably &lt;select multiple&gt;, pass multiple values for the same key.</pre>
 </li>
-<li><p><cite>In an HttpRequest object, the GET and POST attributes are instances of django.http.QueryDict</cite> だった・・・今まで全然気にしてなかった・・・</p></li>
+</ul>
+</blockquote>
+</div>
+</div>
+<div class="section" id="id7">
+<div class="header_target" id="h_django_note_index_2erst_16"></div><h1>便利さん</h1>
+<div class="section" id="id8">
+<div class="header_target" id="h_django_note_index_2erst_17"></div><h2>django に便利コマンド追加してくれるさん</h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://django-extensions.readthedocs.io/en/latest/">https://django-extensions.readthedocs.io/en/latest/</a></p></li>
 </ul>
 </div>
-<div class="section" id="id3">
-<div class="header_target" id="h_django_note_index_2erst_5"></div><h1>こんなのあるらしい</h1>
-<ul class="simple">
-<li><p><a class="reference external" href="https://docs.djangoproject.com/ja/1.11/topics/forms/modelforms/#django.forms.models.BaseInlineFormSet">https://docs.djangoproject.com/ja/1.11/topics/forms/modelforms/#django.forms.models.BaseInlineFormSet</a></p></li>
-<li><p><a class="reference external" href="https://docs.djangoproject.com/ja/1.11/ref/forms/models/#inlineformset-factory">https://docs.djangoproject.com/ja/1.11/ref/forms/models/#inlineformset-factory</a></p></li>
-</ul>
-</div>
-<div class="section" id="aggregateannotate">
-<div class="header_target" id="h_django_note_index_2erst_6"></div><h1>aggregateとannotateの違いがわかりやすい</h1>
-<ul class="simple">
-<li><p><a class="reference external" href="http://note.crohaco.net/2014/django-aggregate/">http://note.crohaco.net/2014/django-aggregate/</a></p></li>
-</ul>
-</div>
-<div class="section" id="prefetch-related">
-<div class="header_target" id="h_django_note_index_2erst_7"></div><h1>prefetch_relatedの話</h1>
-<ul class="simple">
-<li><p><a class="reference external" href="http://tokibito.hatenablog.com/entry/20140718/1405691738">http://tokibito.hatenablog.com/entry/20140718/1405691738</a></p></li>
-</ul>
-</div>
-<div class="section" id="q-object">
-<div class="header_target" id="h_django_note_index_2erst_8"></div><h1>Q Object</h1>
-<ul class="simple">
-<li><p><a class="reference external" href="https://docs.djangoproject.com/ja/1.11/ref/models/querysets/#q-objects">https://docs.djangoproject.com/ja/1.11/ref/models/querysets/#q-objects</a></p></li>
-<li><p>クエリの検索条件を作れるやつ</p></li>
-</ul>
-</div>
-<div class="section" id="set">
-<div class="header_target" id="h_django_note_index_2erst_9"></div><h1>モデルクラス名を全部小文字にしたのに <span class="docutils literal">_set</span> がつく</h1>
-<ul class="simple">
-<li><p><a class="reference external" href="https://docs.djangoproject.com/ja/1.11/ref/models/relations/">https://docs.djangoproject.com/ja/1.11/ref/models/relations/</a></p></li>
-<li><p><span class="docutils literal">_set</span> というのは子テーブルのデータを参照する django の機能</p></li>
-<li><p>モデルクラス名を全部小文字にしたのに <span class="docutils literal">_set</span> がつく</p></li>
-</ul>
-</div>
-<div class="section" id="formview">
-<div class="header_target" id="h_django_note_index_2erst_10"></div><h1>FormView</h1>
-<ul class="simple">
-<li><p><span class="docutils literal">genericview</span> はたくさん種類がある。</p></li>
-<li><p>何らかの登録・更新処理で <span class="docutils literal">form</span> を使ったバリデーションが必要なら 大体 <span class="docutils literal">FormView</span> を使う</p></li>
-</ul>
-</div>
-<div class="section" id="get-context-data">
-<div class="header_target" id="h_django_note_index_2erst_11"></div><h1>get_context_data</h1>
-<ul class="simple">
-<li><p>大抵の場合、ビューというのはレンダリングに必要なコンテキストを組み立てるものなので 大体の処理は <span class="docutils literal">get_context_data</span> というメソッドに書く。</p></li>
-</ul>
-</div>
-<div class="section" id="as-view">
-<div class="header_target" id="h_django_note_index_2erst_12"></div><h1>as_view</h1>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/django/django/blob/master/django/views/generic/base.py#L49">https://github.com/django/django/blob/master/django/views/generic/base.py#L49</a></p></li>
-<li><p>as_view は view関数を生成して返してる</p></li>
-<li><p>実際の処理は self.dispatch で クラスベースビューに処理を委譲してるんだと思います。とのこと。</p></li>
-</ul>
-</div>
-<div class="section" id="genericview-class-based-view">
-<div class="header_target" id="h_django_note_index_2erst_13"></div><h1>genericview(class based view)</h1>
-<ul class="simple">
-<li><p>関数形式のviewはコンテキスト、テンプレート、フォーム、全部変えしてあげないといけなかった。つまり全部関数内に書く必要があった。</p></li>
-<li><p>必要なものを切り離して属性として定義できるようにしたのが genericview(class based view)。</p></li>
-<li><p>とのこと。</p></li>
-</ul>
 </div>
     </div>
   </main>
