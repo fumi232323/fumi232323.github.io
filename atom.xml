@@ -136,7 +136,19 @@
 &lt;li&gt;&lt;p&gt;行を切り取って貼り付け: &lt;span class="docutils literal"&gt;dd&lt;/span&gt; -&amp;gt; &lt;span class="docutils literal"&gt;p&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;行をコピーして貼り付け: &lt;span class="docutils literal"&gt;yy&lt;/span&gt; -&amp;gt; &lt;span class="docutils literal"&gt;p&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/div&gt;</summary></entry><entry><title>SQL のメモ</title><link href="http://localhost:8888/sql/note/" rel="alternate"></link><published>2018-09-02T00:00:00+09:00</published><updated>2018-09-02T00:00:00+09:00</updated><id>tag:localhost,2018-09-02:/sql/note/</id><summary type="html">&lt;div class="section" id="select"&gt;
+&lt;/div&gt;</summary></entry><entry><title>Vagrant のメモ</title><link href="http://localhost:8888/vagrant/note/" rel="alternate"></link><published>2018-09-02T00:00:00+09:00</published><updated>2018-09-02T00:00:00+09:00</updated><id>tag:localhost,2018-09-02:/vagrant/note/</id><summary type="html">&lt;p&gt;TODO: 整理する
+- papaer から移行する&lt;/p&gt;
+&lt;div class="section" id="synced-folder"&gt;
+&lt;div class="header_target" id="h_vagrant_note_index_2erst_1"&gt;&lt;/div&gt;&lt;h1&gt;synced_folder が効かなくなった&lt;/h1&gt;
+&lt;div class="section" id="id1"&gt;
+&lt;div class="header_target" id="h_vagrant_note_index_2erst_2"&gt;&lt;/div&gt;&lt;h2&gt;現象&lt;/h2&gt;
+&lt;p&gt;ホスト OS 側のディレクトリ構成を変えたので、 &lt;span class="docutils literal"&gt;_repo_file&lt;/span&gt; を書き換えて、 &lt;span class="docutils literal"&gt;vagrant reload&lt;/span&gt; したのに、エラーになった。&lt;/p&gt;
+&lt;div class="section" id="id2"&gt;
+&lt;div class="header_target" id="h_vagrant_note_index_2erst_3"&gt;&lt;/div&gt;&lt;h3&gt;エラー内容&lt;/h3&gt;
+&lt;div class="code-block"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;FumienoMacBook-Pro:ansible fumi23$&lt;/span&gt; vagrant reload
+&lt;span class="go"&gt;==&amp;gt; default: Attempting graceful shutdown of VM...&lt;/span&gt;
+&lt;span class="go"&gt;==&amp;gt; default: Clearing any previously set forwarded ports...&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</summary></entry><entry><title>SQL のメモ</title><link href="http://localhost:8888/sql/note/" rel="alternate"></link><published>2018-09-02T00:00:00+09:00</published><updated>2018-09-02T00:00:00+09:00</updated><id>tag:localhost,2018-09-02:/sql/note/</id><summary type="html">&lt;div class="section" id="select"&gt;
 &lt;div class="header_target" id="h_sql_note_index_2erst_1"&gt;&lt;/div&gt;&lt;h1&gt;SELECT文の評価順序&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;これがわかりやすい (いつも見せていただいています、ありがとうございます)&lt;/p&gt;
@@ -173,11 +185,4 @@
 &lt;p&gt;CHAR および VARCHAR のデータ型は、文字単位でなくバイト単位で定義される。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://docs.aws.amazon.com/ja_jp/redshift/latest/dg/r_Character_types.html"&gt;文字型&lt;/a&gt;&lt;/p&gt;
-&lt;pre class="literal-block"&gt;例えば、VARCHAR(12) 列には、シングルバイト文字なら 12 個、2 バイト文字なら 6 個、3 バイト文字なら 4 個、4 バイト文字なら 3 個含めることができます。&lt;/pre&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;</summary></entry><entry><title>Miyadaiku ビルドするときのコマンド</title><link href="http://localhost:8888/miyadaiku/build/" rel="alternate"></link><published>2018-09-02T00:00:00+09:00</published><updated>2018-09-02T00:00:00+09:00</updated><id>tag:localhost,2018-09-02:/miyadaiku/build/</id><summary type="html">&lt;div class="section" id="id1"&gt;
-&lt;div class="header_target" id="h_miyadaiku_build_index_2erst_1"&gt;&lt;/div&gt;&lt;h1&gt;ビルド&lt;/h1&gt;
-&lt;p&gt;blogディレクトリの中で、これを実行&lt;/p&gt;
-&lt;div class="code-block"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ miyadaiku-build . --watch --server --port &lt;span class="m"&gt;8181&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;</summary></entry></feed>
+&lt;pre class="literal-block"&gt;例えば、VARCHAR(12) 列には、シングルバイト文字なら 12 個、2 バイト文字なら 6 個、3 バイト文字なら 4 個、4 バイト文字なら 3 個含めることができます。&lt;/pre&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;</summary></entry></feed>

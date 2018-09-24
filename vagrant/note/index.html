@@ -56,6 +56,22 @@
       
         
         <li class="nav-category">
+          <a href="/index_category_category_css.html">css</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../html-css/css/note/">CSS のメモ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../html-css/html5-css3-modern-coding/">『HTML5/CSS3モダンコーディング フロントエンドエンジニアが教える3つの本格レイアウト スタンダード・グリッド・シングルページレイアウトの作り方』を読んで気になったことメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
           <a href="/index_category_category_git.html">git</a>
           <ul>
             
@@ -81,6 +97,18 @@
             
               <li class="nav-article">
                 <a href="../../github/github-pages-custom-domain-setting/">GitHub Pages にカスタムドメインを設定する</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_mac.html">mac</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../mac/note/">Mac のメモ</a>
               </li>
             
           </ul>
@@ -168,6 +196,18 @@
       
         
         <li class="nav-category">
+          <a href="/index_category_category_vagrant.html">vagrant</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="./">Vagrant のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
           <a href="/index_category_category_vim.html">vim</a>
           <ul>
             
@@ -193,12 +233,15 @@
       </a>
     </div>
     <div class="text">
-      <div class="section" id="synced-folder">
+      <p>TODO: 整理する
+- papaer から移行する</p>
+<div class="section" id="synced-folder">
 <div class="header_target" id="h_vagrant_note_index_2erst_1"></div><h1>synced_folder が効かなくなった</h1>
-<p>ホストOS 側のフォルダ構成を変えたので、 _repo_file を書き換えて、vagrant reload したのに、エラー↓になった。</p>
-<p><a class="reference external" href="https://blog.kazu69.net/2014/07/16/by-vagrant-nfs-exports-error-has-occurred/">https://blog.kazu69.net/2014/07/16/by-vagrant-nfs-exports-error-has-occurred/</a></p>
-<ul>
-<li><p>エラー内容</p>
+<div class="section" id="id1">
+<div class="header_target" id="h_vagrant_note_index_2erst_2"></div><h2>現象</h2>
+<p>ホスト OS 側のディレクトリ構成を変えたので、 <span class="docutils literal">_repo_file</span> を書き換えて、 <span class="docutils literal">vagrant reload</span> したのに、エラーになった。</p>
+<div class="section" id="id2">
+<div class="header_target" id="h_vagrant_note_index_2erst_3"></div><h3>エラー内容</h3>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="gp">FumienoMacBook-Pro:ansible fumi23$</span> vagrant reload
 <span class="go">==&gt; default: Attempting graceful shutdown of VM...</span>
@@ -237,71 +280,90 @@
 <span class="go">this check before making any changes to the file. Please correct</span>
 <span class="go">the issues below and execute "vagrant reload":</span>
 
-<span class="go">exports:2: path contains non-directory or non-existent components: /Users/fumi23/apple-projects/apple-apple</span>
-<span class="go">exports:2: path contains non-directory or non-existent components: /Users/fumi23/apple-projects/apple-apple-apple</span>
+<span class="go">exports:2: path contains non-directory or non-existent components: /Users/fumi23/my-projects/my-project-1</span>
+<span class="go">exports:2: path contains non-directory or non-existent components: /Users/fumi23/my-projects/my-project-2</span>
 <span class="go">exports:2: no usable directories in export entry</span>
 <span class="go">exports:2: using fallback (marked offline): /</span>
 </pre></div>
 </div>
-</li>
-<li><p>元の /etc/exports がこれで、</p>
+</div>
+</div>
+<div class="section" id="id3">
+<div class="header_target" id="h_vagrant_note_index_2erst_4"></div><h2>解決策</h2>
+<p><span class="docutils literal">/etc/exports</span> を新しい情報に書き変えた。</p>
+<ul>
+<li><p>元の /etc/exports</p>
 <div class="code-block">
-<div class="highlight"><pre><span></span>FumienoMacBook-Pro:ansible fumi23$ cat /etc/exports.bk
-<span class="c1"># VAGRANT-BEGIN: 501 e9fe3cbf-63c6-48a1-beca-2702bc2527e4</span>
-<span class="s2">"/Users/fumi23/apple-projects/apple-apple"</span> <span class="s2">"/Users/fumi23/apple-projects/apple-apple-apple"</span> <span class="m">192</span>.168.34.10 -alldirs -mapall<span class="o">=</span><span class="m">501</span>:20
-<span class="c1"># VAGRANT-END: 501 e9fe3cbf-63c6-48a1-beca-2702bc2527e4</span>
+<div class="highlight"><pre><span></span><span class="gp">FumienoMacBook-Pro:ansible fumi23$</span> cat /etc/exports.bk
+<span class="gp">#</span> VAGRANT-BEGIN: <span class="m">501</span> e9fe3cbf-63c6-48a1-beca-2702bc2527e4
+<span class="go">"/Users/fumi23/my-projects/my-project-1" "/Users/fumi23/my-projects/my-project-2" 192.168.34.10 -alldirs -mapall=501:20</span>
+<span class="gp">#</span> VAGRANT-END: <span class="m">501</span> e9fe3cbf-63c6-48a1-beca-2702bc2527e4
 </pre></div>
 </div>
 </li>
-<li><p>今の /etc/exports に書き換えた</p>
+<li><p>今の /etc/exports</p>
 <div class="code-block">
-<div class="highlight"><pre><span></span>FumienoMacBook-Pro:ansible fumi23$ cat /etc/exports
-<span class="c1"># VAGRANT-BEGIN: 501 e9fe3cbf-63c6-48a1-beca-2702bc2527e4</span>
-<span class="s2">"/Users/fumi23/new-apple/apple-apple"</span> <span class="s2">"/Users/fumi23/new-apple/apple-apple-apple"</span> <span class="m">192</span>.168.34.10 -alldirs -mapall<span class="o">=</span><span class="m">501</span>:20
-<span class="c1"># VAGRANT-END: 501 e9fe3cbf-63c6-48a1-beca-2702bc2527e4</span>
+<div class="highlight"><pre><span></span><span class="gp">FumienoMacBook-Pro:ansible fumi23$</span> cat /etc/exports
+<span class="gp">#</span> VAGRANT-BEGIN: <span class="m">501</span> e9fe3cbf-63c6-48a1-beca-2702bc2527e4
+<span class="go">"/Users/fumi23/new-my-projects/my-project-1" "/Users/fumi23/new-my-projects/my-project-2" 192.168.34.10 -alldirs -mapall=501:20</span>
+<span class="gp">#</span> VAGRANT-END: <span class="m">501</span> e9fe3cbf-63c6-48a1-beca-2702bc2527e4
 </pre></div>
 </div>
 </li>
 </ul>
 </div>
-<div class="section" id="id1">
-<div class="header_target" id="h_vagrant_note_index_2erst_2"></div><h1>ログを詳細に出す</h1>
+<div class="section" id="id4">
+<div class="header_target" id="h_vagrant_note_index_2erst_5"></div><h2>参考</h2>
+<p>助かりました。ありがとうございました。</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://blog.kazu69.net/2014/07/16/by-vagrant-nfs-exports-error-has-occurred/">VagrantのNFS設定でexportsのエラーが発生した</a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id5">
+<div class="header_target" id="h_vagrant_note_index_2erst_6"></div><h1>ログを詳細に出す</h1>
 <div class="code-block">
 <div class="highlight"><pre><span></span>$ <span class="nv">VAGRANT_LOG</span><span class="o">=</span>DEBUG vagrant <span class="o">[</span>command<span class="o">]</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="virtualbox">
-<div class="header_target" id="h_vagrant_note_index_2erst_3"></div><h1>VirtualBox の仮想マシンの保存先を変更する</h1>
-<pre class="literal-block">VirtualBOXのVMの保存先も変更します。
-環境設定 &gt; 一般 にあるデフォルトの仮想マシンフォルダーを任意のパスに変更すればVMは指定したフォルダーに保存されます。</pre>
-<ul class="simple">
-<li><p><a class="reference external" href="http://kiraba.jp/change-save-point-vagrant-box-and-virtual-machine/">http://kiraba.jp/change-save-point-vagrant-box-and-virtual-machine/</a></p></li>
+<div class="header_target" id="h_vagrant_note_index_2erst_7"></div><h1>VirtualBox の仮想マシンの保存先を変更する</h1>
+<ul>
+<li><p><a class="reference external" href="http://kiraba.jp/change-save-point-vagrant-box-and-virtual-machine/">Vagrant BOXとVMの保存先を変更する方法</a></p>
+<pre class="literal-block">環境設定 &gt; 一般 にあるデフォルトの仮想マシンフォルダーを任意のパスに変更すればVMは指定したフォルダーに保存されます。</pre>
+</li>
 </ul>
 </div>
 <div class="section" id="vagrant-home">
-<div class="header_target" id="h_vagrant_note_index_2erst_4"></div><h1>VAGRANT_HOME</h1>
-<p>環境変数: <span class="docutils literal">VAGRANT_HOME</span> を設定すれば、 <cite>~/.vagrant.d</cite> の場所を好きなところに変えられそう</p>
+<div class="header_target" id="h_vagrant_note_index_2erst_8"></div><h1>VAGRANT_HOME</h1>
+<p>環境変数: <span class="docutils literal">VAGRANT_HOME</span> を設定すれば、 <span class="docutils literal"><span class="pre">~/.vagrant.d</span></span> の場所を好きなところに変えられそう</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://www.vagrantup.com/docs/other/environmental-variables.html#vagrant_home">https://www.vagrantup.com/docs/other/environmental-variables.html#vagrant_home</a></p></li>
+<li><p><a class="reference external" href="https://www.vagrantup.com/docs/other/environmental-variables.html#vagrant_home">VAGRANT_HOME</a></p></li>
 </ul>
 </div>
 <div class="section" id="ssh">
-<div class="header_target" id="h_vagrant_note_index_2erst_5"></div><h1>ハイフンふたつの後は、普通にSSHのオプションを指定できる。</h1>
+<div class="header_target" id="h_vagrant_note_index_2erst_9"></div><h1>ハイフンふたつの後は、普通にSSHのオプションを指定できる。</h1>
 <div class="code-block">
 <div class="highlight"><pre><span></span>$ vagrant ssh -- -A
 </pre></div>
 </div>
 </div>
 <div class="section" id="vmbox">
-<div class="header_target" id="h_vagrant_note_index_2erst_6"></div><h1>VMとboxは違う</h1>
+<div class="header_target" id="h_vagrant_note_index_2erst_10"></div><h1>VMとboxは違う</h1>
 <pre class="literal-block">vagrant destroy で消えるのは VM 自体、 vagrant box というのは VM 作成の素になるものです。
 VM がインスタンスだとすると、 box はクラス的な。</pre>
 </div>
-<div class="section" id="id2">
-<div class="header_target" id="h_vagrant_note_index_2erst_7"></div><h1>調べる</h1>
+<div class="section" id="id7">
+<div class="header_target" id="h_vagrant_note_index_2erst_11"></div><h1>調べる</h1>
 <ul class="simple">
 <li><p>Vagrant Userの鍵認証のところがわからない</p></li>
+</ul>
+</div>
+<div class="section" id="todo">
+<div class="header_target" id="h_vagrant_note_index_2erst_12"></div><h1>TODO</h1>
+<ul class="simple">
+<li><p>paper から移動する</p></li>
 </ul>
 </div>
     </div>
