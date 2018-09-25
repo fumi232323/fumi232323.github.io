@@ -148,6 +148,10 @@
           <ul>
             
               <li class="nav-article">
+                <a href="../../pycharm/connect-db/">PyCharm で Amazon Redshift につなぐ</a>
+              </li>
+            
+              <li class="nav-article">
                 <a href="../../pycharm/useful-menu-and-shortcuts/">PyCharm ショートカットと便利メニュー</a>
               </li>
             
@@ -249,10 +253,157 @@
       </a>
     </div>
     <div class="text">
-      <div class="section" id="id1">
+      <p>TODO: 整理整頓
+- 固有名詞出てきてるので、整理整頓終わるまで push しないでね</p>
+<div class="section" id="id1">
 <div class="header_target" id="h_python_note_index_2erst_1"></div><h1>どんどん足してくやつ</h1>
 <ul class="simple">
 <li><p><a class="reference external" href="https://docs.python.org/ja/3/library/functools.html#functools.reduce">https://docs.python.org/ja/3/library/functools.html#functools.reduce</a></p></li>
+</ul>
+</div>
+<div class="section" id="coding-utf-8">
+<div class="header_target" id="h_python_note_index_2erst_2"></div><h1># -<em>- coding: utf-8 -</em>- のようにソースコードの文字エンコーディングを指定することを推奨します。</h1>
+<p>Python3 環境では発生しませんが、 Python2 環境だとファイルにマルチバイトが含まれているとSyntaxErrorが発生します。BPではまだ Python2 系のプロジェクトが存在するので、Pythonのバージョンを問わず記述しておくとよいでしょう。
+ファイルの先頭にはこれつける。</p>
+</div>
+<div class="section" id="yield-dict-zip-columns-data">
+<div class="header_target" id="h_python_note_index_2erst_3"></div><h1>yield dict(zip(columns, data))</h1>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">column</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">columns</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="n">row_dict</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="k">yield</span> <span class="n">row_dict</span>
+</pre></div>
+</div>
+<p>yield dict(zip(columns, data)) のように書けばループも必要ないと思います。</p>
+<ul>
+<li><p>zipはタプルのイテレータを返す -&gt; タプルから辞書を作れる -&gt; ほいで、 <span class="docutils literal">dict(iterable, **kwarg)</span> なんだと思う。</p>
+<pre class="literal-block">それ以外の場合、位置引数は iterable オブジェクトでなければなりません。iterable のそれぞれの要素自身は、ちょうど 2 個のオブジェクトを持つイテラブルでなければなりません。それぞれの要素の最初のオブジェクトは新しい辞書のキーになり、2 番目のオブジェクトはそれに対応する値になります。同一のキーが 2 回以上現れた場合は、そのキーの最後の値が新しい辞書での対応する値になります。</pre>
+</li>
+</ul>
+</div>
+<div class="section" id="defaultdict">
+<div class="header_target" id="h_python_note_index_2erst_4"></div><h1>defaultdict</h1>
+<p>リストの初期化が不要になる！</p>
+<p>from collections import defaultdict
+summary_dict = defaultdict(int)</p>
+</div>
+<div class="section" id="sorted">
+<div class="header_target" id="h_python_note_index_2erst_5"></div><h1>sorted</h1>
+<p>summary_list = list(summary_dict.values())
+summary_list.sort(key=lambda x: x['sort_key'])
+⇒
+sorted という関数を使って以下のように書けます
+summary_list = sorted(summary_dict.values(), key=lambda x: x['sort_key'])</p>
+<p>更に言うとfor文をこんなふうにかくとsummary_list を作る工程が不要です。
+※たぶん、タプルって、ソートできるんだと思う。賢いなぁ。
+for _, summary in sorted(summary_dict.items()):</p>
+</div>
+<div class="section" id="id2">
+<div class="header_target" id="h_python_note_index_2erst_6"></div><h1>バックスラッシュ感染症</h1>
+<p>正規表現の文字列を定義するときは、バックスラッシュ感染症を回避するためにraw文字列というのが使われます。
+raw文字列を使わなくても大丈夫場合も多々ありますが、大抵raw文字列にしていることが多いので、そのようにするほうが無難かと思います。</p>
+<p><a class="reference external" href="http://docs.python.jp/3.6/howto/regex.html#the-backslash-plague">http://docs.python.jp/3.6/howto/regex.html#the-backslash-plague</a></p>
+<p>↓こんなふうに書く
+r"ab*"</p>
+</div>
+<div class="section" id="id3">
+<div class="header_target" id="h_python_note_index_2erst_7"></div><h1>正規表現のグループ化機能</h1>
+<p><a class="reference external" href="http://docs.python.jp/3.6/howto/regex.html#non-capturing-and-named-groups">http://docs.python.jp/3.6/howto/regex.html#non-capturing-and-named-groups</a></p>
+<p>長い正規表現を記述する方法としては、以下のような方法があります。</p>
+<p>を使って文字列を複数行に分ける
+カンマ区切り無しで文字列リテラルを複数に分ける
+<a class="reference external" href="https://github.com/beproud/pychallenge/blob/master/work/xiao/003.py#L9">https://github.com/beproud/pychallenge/blob/master/work/xiao/003.py#L9</a>
+<a class="reference external" href="http://docs.python-guide.org/en/latest/writing/style/#line-continuations">http://docs.python-guide.org/en/latest/writing/style/#line-continuations</a>
+re. VERBOSE オプションを使う
+<a class="reference external" href="https://github.com/beproud/pychallenge/blob/master/work/furi/003/analyse.py#L13">https://github.com/beproud/pychallenge/blob/master/work/furi/003/analyse.py#L13</a>
+<a class="reference external" href="http://docs.python.jp/3.6/library/re.html#module-contents">http://docs.python.jp/3.6/library/re.html#module-contents</a></p>
+</div>
+<div class="section" id="id4">
+<div class="header_target" id="h_python_note_index_2erst_8"></div><h1>組み込み型と名前が被った場合</h1>
+<p>in や file, int など、キーワード・組み込み型と同じ名前を変数名にしたい場合は、末尾に _ を付けてください。</p>
+</div>
+<div class="section" id="property">
+<div class="header_target" id="h_python_note_index_2erst_9"></div><h1>@property</h1>
+<p><a class="reference external" href="http://docs.python.jp/3.6/library/functions.html#property">http://docs.python.jp/3.6/library/functions.html#property</a></p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="err">@</span> <span class="nb">property</span>
+<span class="k">def</span> <span class="nf">access_datehour</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_datetime</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">'%Y/%m/</span><span class="si">%d</span><span class="s1"> %H'</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>使うときは xxx.access_datehour とすれば値が取得出来ます。（ () 不要）</p></li>
+</ul>
+</div>
+<div class="section" id="all">
+<div class="header_target" id="h_python_note_index_2erst_10"></div><h1>all()</h1>
+<p>全ての条件がTrueになることを判定する書き方としては、 all() を使うという方法もあります。
+<a class="reference external" href="http://docs.python.jp/3.6/library/functions.html#all">http://docs.python.jp/3.6/library/functions.html#all</a></p>
+</div>
+<div class="section" id="id5">
+<div class="header_target" id="h_python_note_index_2erst_11"></div><h1>例外を補足するのはコストが高くなる</h1>
+<p>return self.categories.get(int(category_id), None)</p>
+</div>
+<div class="section" id="id6">
+<div class="header_target" id="h_python_note_index_2erst_12"></div><h1>シーケンスアンパッキング</h1>
+<p>cd = cleaned_data
+cd['bl_genre1'], cd['bl_genre2'], cd['bl_genre3'], cd['bl_genre4'],cd['bl_genre5'] = cd.pop(‘bl_genres')
+<a class="reference external" href="https://docs.python.jp/3/tutorial/datastructures.html#tuples-and-sequences">https://docs.python.jp/3/tutorial/datastructures.html#tuples-and-sequences</a></p>
+</div>
+<div class="section" id="list">
+<div class="header_target" id="h_python_note_index_2erst_13"></div><h1>デバッグ時は list() で囲むと良い</h1>
+<ul class="simple">
+<li><p>paperにまとめた <cite>When QuerySets are evaluated</cite></p></li>
+<li><p>囲まないと途中までしか見えない</p></li>
+</ul>
+</div>
+<div class="section" id="stringio-seek-0">
+<div class="header_target" id="h_python_note_index_2erst_14"></div><h1>StringIO().seek(0)</h1>
+<p>先頭にもどす、（カーソルを先頭に戻すみたいなイメージ</p>
+</div>
+<div class="section" id="lambda">
+<div class="header_target" id="h_python_note_index_2erst_15"></div><h1>lambda</h1>
+<p>これよくわからん</p>
+</div>
+<div class="section" id="id7">
+<div class="header_target" id="h_python_note_index_2erst_16"></div><h1>これなんですか</h1>
+<p>あ、
+<span class="docutils literal">`if agreement_division_individual_name is None `</span>
+て書いたらちゃんとひっかかった・・・
+<span class="docutils literal">`if not agreement_division_individual_name `</span>
+じゃだめだったのに・・・この辺ちゃんとわかってないとこかもしれない・・
+じぶん用語集書いとこう・・</p>
+</div>
+<div class="section" id="unicode-str">
+<div class="header_target" id="h_python_note_index_2erst_17"></div><h1>unicode と str</h1>
+<p><cite>u'名称'</cite> を <cite>'名称'</cite> と書いてたので出なかった？みたいだ・・
+この <cite>u</cite> 今まであんまり気にしてこなかったけど、気にしないとだめみたいだ・・・・・
+（じぶん用語集にかいとこう・・</p>
+<p>crohaco [12:41 PM]
+python 側での比較には必要</p>
+<p>xiao [12:42 PM]
+お、よかった &gt; 見つけました</p>
+<p>fumi23 [12:42 PM]
+（あ、ころはこ先生だ・・
+python 側での比較・・調べる・・</p>
+<p>crohaco [12:43 PM]
+うーんと
+SQL とかに持ってくとユニコードであっても自動的に 文字コードが変換されるはずなので、気にしなくてもいいけど
+python(2) だと マルチバイトを含むと uの有無で違うオブジェクトとして判定されるのでね (edited)
+python2の文字には unicode と str がある。 ascii 文字しか含まない場合は 同じ値と判断されるけど基本的に別物として考えたほうがいい。
+sql は1種類なので unicode は勝手に str に変換される(はず)</p>
+<p>fumi23 [12:52 PM]
+はー、すると、マルチバイト文字（？）は、 <cite>u</cite> をつけて、明示的に「ユニコードだよー」とPythonに教えてあげないと、「asciiにその字ない」と思われてしまうから、表示されなかったということ？でしょうか・・・？？ (edited)</p>
+<p>crohaco [12:54 PM]
+表示されるされないっていう仕様は良く分かってないんですが、基本的に違う値なので注意しましょうという話です。
+<span class="docutils literal"><span class="pre">`&gt;&gt;&gt;</span> 'ふみ' == u'ふみ' False `</span></p>
+<p>fumi23 [12:56 PM]
+はい、注意します。</p>
+</div>
+<div class="section" id="todo">
+<div class="header_target" id="h_python_note_index_2erst_18"></div><h1>TODO</h1>
+<ul class="simple">
+<li><p>クラス変数とインスタンス変数、Python のクラスについて整理したい</p></li>
 </ul>
 </div>
     </div>

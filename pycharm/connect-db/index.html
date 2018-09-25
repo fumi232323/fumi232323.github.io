@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>AWS に SSH 接続して Redshift につなぐ/32imuf.com</title>
+    <title>PyCharm で Amazon Redshift につなぐ/32imuf.com</title>
     <link rel="shortcut icon" href="/static/icons/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Griffy" rel="stylesheet">
     <link href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css" rel="stylesheet" />
@@ -148,6 +148,10 @@
           <ul>
             
               <li class="nav-article">
+                <a href="./">PyCharm で Amazon Redshift につなぐ</a>
+              </li>
+            
+              <li class="nav-article">
                 <a href="../useful-menu-and-shortcuts/">PyCharm ショートカットと便利メニュー</a>
               </li>
             
@@ -239,27 +243,24 @@
 </header></div>
       <div class="main">
   <main class="item item-article item-pycharm">
-    <time class="date" datetime="2018-09-24 00:00:00+09:00">
-      2018-09-24 Mon
+    <time class="date" datetime="2018-09-25 00:00:00+09:00">
+      2018-09-25 Tue
     </time>
-    <div class="title">AWS に SSH 接続して Redshift につなぐ</div>
+    <div class="title">PyCharm で Amazon Redshift につなぐ</div>
     <div class="category">
       <a href="/index_category_category_pycharm.html">
           pycharm
       </a>
     </div>
     <div class="text">
-      <p>TODO: 明日、tech-pycharm できく</p>
-<div class="section" id="id1">
+      <div class="section" id="id1">
 <div class="header_target" id="h_pycharm_connect_2ddb_index_2erst_1"></div><h1>ガイド</h1>
 <ul class="simple">
 <li><p><a class="reference external" href="https://pleiades.io/help/pycharm/">PyCharm ヘルプ</a></p></li>
 </ul>
 </div>
 <div class="section" id="id2">
-<div class="header_target" id="h_pycharm_connect_2ddb_index_2erst_2"></div><h1>AWS に SSH 接続して Redshift につなぐ</h1>
-<div class="section" id="id3">
-<div class="header_target" id="h_pycharm_connect_2ddb_index_2erst_3"></div><h2>手順</h2>
+<div class="header_target" id="h_pycharm_connect_2ddb_index_2erst_2"></div><h1>手順</h1>
 <ol class="arabic">
 <li><p>View -&gt; Tool Windows -&gt; Database で、スパナのボタン押下</p></li>
 <li><p>Data Sources and Drivers ダイアログで、 <span class="docutils literal">+</span> ボタン押下</p></li>
@@ -271,7 +272,11 @@
 <li><p>Comment: 任意のコメント</p></li>
 <li><p>User: 接続先 DB のユーザー名</p></li>
 <li><p>Password: 接続先 DB のユーザーのパスワード</p></li>
-<li><p>URL: AWS コンソール -&gt; Redshift ダッシュボード -&gt; クラスターメニュー -&gt; 接続したいクラスター -&gt; クラスターデータベースのプロパティ -&gt; JDBC URL に記載の URL</p></li>
+<li><p>URL: AWS コンソール -&gt; Redshift ダッシュボード -&gt; クラスターメニュー -&gt; 接続したいクラスター -&gt; クラスターデータベースのプロパティ -&gt; JDBC URL に記載の URL</p>
+<ul>
+<li><p>末尾は接続先 DB 名 ( <span class="docutils literal">port番号/</span> のあと)</p></li>
+</ul>
+</li>
 <li><p>URL の右横のプルダウン: URL only</p></li>
 <li><p>Driver: Amazon Redshift</p></li>
 </ul>
@@ -281,8 +286,8 @@
 <blockquote>
 <ul class="simple">
 <li><p>Use SSH tunnel: ON</p></li>
-<li><p>Proxy host: ゲートウェイ</p></li>
-<li><p>Port: 5438</p></li>
+<li><p>Proxy host: ゲートウェイ (HostName)</p></li>
+<li><p>Port: 22 (SSH接続時のPort番号)</p></li>
 <li><p>Proxy user: www</p></li>
 <li><p>Auth type: OpenSSH config and authentication agent</p></li>
 </ul>
@@ -292,44 +297,10 @@
 </ol>
 </div>
 <div class="section" id="url">
-<div class="header_target" id="h_pycharm_connect_2ddb_index_2erst_4"></div><h2>参考URL</h2>
+<div class="header_target" id="h_pycharm_connect_2ddb_index_2erst_3"></div><h1>参考URL</h1>
 <ul class="simple">
 <li><p><a class="reference external" href="https://pleiades.io/help/pycharm/connecting-to-a-database.html#amazon_redshift">データベースへの接続 -&gt; Amazon Redshift</a></p></li>
 <li><p><a class="reference external" href="https://pleiades.io/help/pycharm/connecting-to-a-database.html#connect_via_ssh">データベースへの接続 -&gt; SSHによる接続</a></p></li>
-</ul>
-</div>
-</div>
-<div class="section" id="todo">
-<div class="header_target" id="h_pycharm_connect_2ddb_index_2erst_5"></div><h1>TODO: やってみる</h1>
-<ul class="simple">
-<li><p>SQL</p>
-<ul>
-<li><p>SQL 実行結果をファイルにも出せる</p></li>
-</ul>
-</li>
-<li><p>デバッガー</p>
-<ul>
-<li><p>celery のデバッグもできる</p></li>
-<li><p>Django のデバッグもできる</p></li>
-<li><p>テスト実行中にもブレークポイントはって、デバッグできる</p></li>
-<li><p>テンプレートの中でもブレークポイントで止められる</p></li>
-</ul>
-</li>
-<li><p>Post の中身を見られる</p></li>
-<li><p>SQLA もコード補完・サジェストできるのかな？</p></li>
-<li><p>Django サポート</p>
-<ul>
-<li><p>モデル間のER図みたいなのとかも出してくれる</p></li>
-</ul>
-</li>
-<li><p>リファクタリングできる</p>
-<ul>
-<li><p>やりかたわからん</p></li>
-</ul>
-</li>
-<li><p>コードデプロイもできる</p></li>
-<li><p>テストも便利</p></li>
-<li><p>再起動したりクリーンインストールとかしても治らないときは、ジェットブレインさんに言う</p></li>
 </ul>
 </div>
     </div>
