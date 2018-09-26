@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>Vim のコマンド/32imuf.com</title>
+    <title>PyCharm で SSH tunnel して Amazon Redshift につなぐ/32imuf.com</title>
     <link rel="shortcut icon" href="/static/icons/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Griffy" rel="stylesheet">
     <link href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css" rel="stylesheet" />
@@ -148,19 +148,19 @@
           <ul>
             
               <li class="nav-article">
-                <a href="../../pycharm/add-psql-var-to-user-params-for-db-console/">PyCharm の Database Console で PostgreSQL の変数を SQL パラメータとして使えるようにする</a>
+                <a href="../add-psql-var-to-user-params-for-db-console/">PyCharm の Database Console で PostgreSQL の変数を SQL パラメータとして使えるようにする</a>
               </li>
             
               <li class="nav-article">
-                <a href="../../pycharm/connect-db-using-ssh-tunnel/">PyCharm で SSH tunnel して Amazon Redshift につなぐ</a>
+                <a href="./">PyCharm で SSH tunnel して Amazon Redshift につなぐ</a>
               </li>
             
               <li class="nav-article">
-                <a href="../../pycharm/useful-menu-and-shortcuts/">PyCharm ショートカットと便利メニュー</a>
+                <a href="../useful-menu-and-shortcuts/">PyCharm ショートカットと便利メニュー</a>
               </li>
             
               <li class="nav-article">
-                <a href="../../pycharm/configuration/">PyCharm の設定</a>
+                <a href="../configuration/">PyCharm の設定</a>
               </li>
             
           </ul>
@@ -236,7 +236,7 @@
           <ul>
             
               <li class="nav-article">
-                <a href="./">Vim のコマンド</a>
+                <a href="../../vim/command/">Vim のコマンド</a>
               </li>
             
           </ul>
@@ -246,27 +246,65 @@
   </nav>
 </header></div>
       <div class="main">
-  <main class="item item-article item-vim">
-    <time class="date" datetime="2018-09-09 00:00:00+09:00">
-      2018-09-09 Sun
+  <main class="item item-article item-pycharm">
+    <time class="date" datetime="2018-09-25 00:00:00+09:00">
+      2018-09-25 Tue
     </time>
-    <div class="title">Vim のコマンド</div>
+    <div class="title">PyCharm で SSH tunnel して Amazon Redshift につなぐ</div>
     <div class="category">
-      <a href="/index_category_category_vim.html">
-          vim
+      <a href="/index_category_category_pycharm.html">
+          pycharm
       </a>
     </div>
     <div class="text">
       <div class="section" id="id1">
-<div class="header_target" id="h_vim_command_index_2erst_1"></div><h1>便利</h1>
+<div class="header_target" id="h_pycharm_connect_2ddb_2dusing_2dssh_2dtunnel_index_2erst_1"></div><h1>ガイド</h1>
 <ul class="simple">
-<li><p>行全体を削除: <span class="docutils literal">dd</span></p></li>
-<li><p>1文字削除: <span class="docutils literal">x</span></p></li>
-<li><p>Undo: <span class="docutils literal">u</span></p></li>
-<li><p>行全体を Undo: <span class="docutils literal">U</span></p></li>
-<li><p>単語の一部、もしくは全体を変更する: <span class="docutils literal">cw</span></p></li>
-<li><p>行を切り取って貼り付け: <span class="docutils literal">dd</span> -&gt; <span class="docutils literal">p</span></p></li>
-<li><p>行をコピーして貼り付け: <span class="docutils literal">yy</span> -&gt; <span class="docutils literal">p</span></p></li>
+<li><p><a class="reference external" href="https://pleiades.io/help/pycharm/">PyCharm ヘルプ</a></p></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<div class="header_target" id="h_pycharm_connect_2ddb_2dusing_2dssh_2dtunnel_index_2erst_2"></div><h1>手順</h1>
+<ol class="arabic">
+<li><p>View -&gt; Tool Windows -&gt; Database で、スパナのボタン押下</p></li>
+<li><p>Data Sources and Drivers ダイアログで、 <span class="docutils literal">+</span> ボタン押下</p></li>
+<li><p><span class="docutils literal">Amazon Redshift</span> を選択</p></li>
+<li><p>General タブ</p>
+<blockquote>
+<ul class="simple">
+<li><p>Name: 任意の名前</p></li>
+<li><p>Comment: 任意のコメント</p></li>
+<li><p>User: 接続先 DB のユーザー名</p></li>
+<li><p>Password: 接続先 DB のユーザーのパスワード</p></li>
+<li><p>URL: AWS コンソール -&gt; Redshift ダッシュボード -&gt; クラスターメニュー -&gt; 接続したいクラスター -&gt; クラスターデータベースのプロパティ -&gt; JDBC URL に記載の URL</p>
+<ul>
+<li><p>末尾は接続先 DB 名 ( <span class="docutils literal">port番号/</span> のあと)</p></li>
+</ul>
+</li>
+<li><p>URL の右横のプルダウン: <span class="docutils literal">URL only</span></p></li>
+<li><p>Driver: <span class="docutils literal">Amazon Redshift</span></p></li>
+</ul>
+</blockquote>
+</li>
+<li><p>SSH/SSL タブ</p>
+<blockquote>
+<ul class="simple">
+<li><p>Use SSH tunnel: <span class="docutils literal">ON</span></p></li>
+<li><p>Proxy host: gateway (HostName)</p></li>
+<li><p>Port: <span class="docutils literal">22</span> (SSH接続時のPort番号)</p></li>
+<li><p>Proxy user: gateway のユーザー名</p></li>
+<li><p>Auth type: <span class="docutils literal">OpenSSH config and authentication agent</span></p></li>
+</ul>
+</blockquote>
+</li>
+<li><p>Test Connection してみる</p></li>
+</ol>
+</div>
+<div class="section" id="url">
+<div class="header_target" id="h_pycharm_connect_2ddb_2dusing_2dssh_2dtunnel_index_2erst_3"></div><h1>参考URL</h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pleiades.io/help/pycharm/connecting-to-a-database.html#amazon_redshift">データベースへの接続 -&gt; Amazon Redshift</a></p></li>
+<li><p><a class="reference external" href="https://pleiades.io/help/pycharm/connecting-to-a-database.html#connect_via_ssh">データベースへの接続 -&gt; SSHによる接続</a></p></li>
 </ul>
 </div>
     </div>
