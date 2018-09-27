@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>32imuf.com</title><link href="https://32imuf.com/" rel="alternate"></link><link href="https://32imuf.com/atom.xml" rel="self"></link><id>https://32imuf.com/</id><updated>2018-09-26T00:00:00+09:00</updated><entry><title>PyCharm の Database Console で PostgreSQL の変数を SQL パラメータとして使えるようにする</title><link href="https://32imuf.com/pycharm/add-psql-var-to-user-params-for-db-console/" rel="alternate"></link><published>2018-09-26T00:00:00+09:00</published><updated>2018-09-26T00:00:00+09:00</updated><id>tag:32imuf.com,2018-09-26:/pycharm/add-psql-var-to-user-params-for-db-console/</id><summary type="html">&lt;div class="section" id="id1"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>32imuf.com</title><link href="https://32imuf.com/" rel="alternate"></link><link href="https://32imuf.com/atom.xml" rel="self"></link><id>https://32imuf.com/</id><updated>2018-09-26T00:00:00+09:00</updated><entry><title>PyCharm の Database Console で PostgreSQL のプレースホルダー (インタポレーション) を SQL パラメーターとして使えるようにする</title><link href="https://32imuf.com/pycharm/add-psql-var-to-user-params-for-db-console/" rel="alternate"></link><published>2018-09-26T00:00:00+09:00</published><updated>2018-09-26T00:00:00+09:00</updated><id>tag:32imuf.com,2018-09-26:/pycharm/add-psql-var-to-user-params-for-db-console/</id><summary type="html">&lt;div class="section" id="id1"&gt;
 &lt;div class="header_target" id="h_pycharm_add_2dpsql_2dvar_2dto_2duser_2dparams_2dfor_2ddb_2dconsole_index_2erst_1"&gt;&lt;/div&gt;&lt;h1&gt;ガイド&lt;/h1&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://pleiades.io/help/pycharm/settings-tools-database-user-parameters.html"&gt;PyCharm ヘルプ -&amp;gt; ユーザー・パラメーター&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
@@ -19,9 +19,13 @@
 &lt;div class="figure"&gt;
 &lt;img alt="user-parameters.png" src="user-parameters.png"/&gt;
 &lt;/div&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class="docutils literal"&gt;In scripts&lt;/span&gt; を ON にしないと、 Database Console で使用できない&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Apply ボタンを押下&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;OK ボタンを押下&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</summary></entry><entry><title>PyCharm で SSH tunnel して Amazon Redshift につなぐ</title><link href="https://32imuf.com/pycharm/connect-db-using-ssh-tunnel/" rel="alternate"></link><published>2018-09-25T00:00:00+09:00</published><updated>2018-09-25T00:00:00+09:00</updated><id>tag:32imuf.com,2018-09-25:/pycharm/connect-db-using-ssh-tunnel/</id><summary type="html">&lt;div class="section" id="id1"&gt;
 &lt;div class="header_target" id="h_pycharm_connect_2ddb_2dusing_2dssh_2dtunnel_index_2erst_1"&gt;&lt;/div&gt;&lt;h1&gt;ガイド&lt;/h1&gt;
