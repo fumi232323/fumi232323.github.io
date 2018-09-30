@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>PyCharm やってみたいこと/32imuf.com</title>
+    <title>git rebase/32imuf.com</title>
     <link rel="shortcut icon" href="/static/icons/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Griffy" rel="stylesheet">
     <link href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css" rel="stylesheet" />
@@ -76,6 +76,10 @@
           <ul>
             
               <li class="nav-article">
+                <a href="../../django/django_orm/">Django ORM のメモ</a>
+              </li>
+            
+              <li class="nav-article">
                 <a href="../../django/note/">Django のメモ</a>
               </li>
             
@@ -88,11 +92,23 @@
           <ul>
             
               <li class="nav-article">
-                <a href="../../git/configuration/">Git の設定まとめ</a>
+                <a href="../rebase-i/">git rebase -i</a>
               </li>
             
               <li class="nav-article">
-                <a href="../../git/command/">Git のコマンドまとめ</a>
+                <a href="./">git rebase</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../note/">Git のメモ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../configuration/">Git の設定まとめ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../command/">Git のコマンドまとめ</a>
               </li>
             
           </ul>
@@ -148,19 +164,23 @@
           <ul>
             
               <li class="nav-article">
-                <a href="../add-psql-var-to-user-params-for-db-console/">PyCharm の Database Console で PostgreSQL のプレースホルダー (インタポレーション) を SQL パラメーターとして使えるようにする</a>
+                <a href="../../pycharm/django-support/">Pycharm の Django support を使う</a>
               </li>
             
               <li class="nav-article">
-                <a href="../connect-db-using-ssh-tunnel/">PyCharm で SSH tunnel して Amazon Redshift につなぐ</a>
+                <a href="../../pycharm/add-psql-var-to-user-params-for-db-console/">PyCharm の Database Console で PostgreSQL のプレースホルダー (インタポレーション) を SQL パラメーターとして使えるようにする</a>
               </li>
             
               <li class="nav-article">
-                <a href="../useful-menu-and-shortcuts/">PyCharm ショートカットと便利メニュー</a>
+                <a href="../../pycharm/connect-db-using-ssh-tunnel/">PyCharm で SSH tunnel して Amazon Redshift につなぐ</a>
               </li>
             
               <li class="nav-article">
-                <a href="../configuration/">PyCharm の設定</a>
+                <a href="../../pycharm/useful-menu-and-shortcuts/">PyCharm ショートカットと便利メニュー</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../pycharm/configuration/">PyCharm の設定</a>
               </li>
             
           </ul>
@@ -172,7 +192,11 @@
           <ul>
             
               <li class="nav-article">
-                <a href="../../python/pyconjp2018/">PyConJP 2018 で聞いた講演メモ</a>
+                <a href="../../python/note/">Python のメモ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../python/pyconjp2018/">PyConJP 2018 で聞いた講演</a>
               </li>
             
           </ul>
@@ -220,6 +244,18 @@
       
         
         <li class="nav-category">
+          <a href="/index_category_category_test.html">test</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../python-test/note/">Python テストのメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
           <a href="/index_category_category_vagrant.html">vagrant</a>
           <ul>
             
@@ -246,44 +282,78 @@
   </nav>
 </header></div>
       <div class="main">
-  <main class="item item-article item-pycharm">
-    <time class="date" datetime="2018-09-25 00:00:00+09:00">
-      2018-09-25 Tue
+  <main class="item item-article item-git">
+    <time class="date" datetime="2018-09-30 00:00:00+09:00">
+      2018-09-30 Sun
     </time>
-    <div class="title">PyCharm やってみたいこと</div>
+    <div class="title">git rebase</div>
     <div class="category">
-      <a href="/index_category_category_pycharm.html">
-          pycharm
+      <a href="/index_category_category_git.html">
+          git
       </a>
     </div>
     <div class="text">
-      <div class="section" id="todo">
-<div class="header_target" id="h_pycharm_try_index_2erst_1"></div><h1>TODO: やってみる</h1>
+      <div class="section" id="id1">
+<div class="header_target" id="h_git_rebase_index_2erst_1"></div><h1>リベース</h1>
+<div class="section" id="master">
+<div class="header_target" id="h_git_rebase_index_2erst_2"></div><h2>master ブランチにリベースする</h2>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> git rebase master
+</pre></div>
+</div>
+<p>コンフリクトしたらコンフリクトを解消して、</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> git add .
+<span class="gp">$</span> git rebase --continue
+</pre></div>
+</div>
+<p>リベースが終わったらフォースプッシュ</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> git push -f
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<div class="header_target" id="h_git_rebase_index_2erst_3"></div><h2>間違えてリベースして元に戻したい</h2>
+<div class="section" id="push">
+<div class="header_target" id="h_git_rebase_index_2erst_4"></div><h3>push しちゃった場合</h3>
+<blockquote>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> git reflog
+<span class="gp">$</span> git reset --hard HEAD@<span class="o">{</span><span class="m">6</span><span class="o">}</span>  <span class="c1"># 戻りたい番号そのものを書けばよいみたい</span>
+<span class="gp">$</span> git push -f
+</pre></div>
+</div>
+</blockquote>
+</div>
+<div class="section" id="id3">
+<div class="header_target" id="h_git_rebase_index_2erst_5"></div><h3>push してない場合</h3>
+<blockquote>
+<p>間違えてリベースしたブランチを origin に戻す</p>
+<blockquote>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> git checkout -B &lt;branch-you-want-to-restore&gt; origin/&lt;branch-you-want-to-restore&gt;
+</pre></div>
+</div>
+</blockquote>
+</blockquote>
+</div>
+</div>
+<div class="section" id="preserve-merges">
+<div class="header_target" id="h_git_rebase_index_2erst_6"></div><h2>preserve-merges オプション</h2>
+<p>分岐してマージしたよ、という履歴みたいなのを保ったまま、リベースしてくれる</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> git rebase --preserve-merges master
+</pre></div>
+</div>
+<div class="section" id="id4">
+<div class="header_target" id="h_git_rebase_index_2erst_7"></div><h3>リファレンス</h3>
 <ul class="simple">
-<li><p>デバッガー</p>
-<ul>
-<li><p>celery のデバッグもできる</p></li>
-<li><p>Django のデバッグもできる</p></li>
-<li><p>テスト実行中にもブレークポイントはって、デバッグできる</p></li>
-<li><p>テンプレートの中でもブレークポイントで止められる</p></li>
+<li><p><a class="reference external" href="https://git-scm.com/docs/git-rebase">https://git-scm.com/docs/git-rebase</a></p></li>
+<li><p><a class="reference external" href="https://git-scm.com/book/ja/v2/Git-%E3%81%AE%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E6%A9%9F%E8%83%BD-%E3%83%AA%E3%83%99%E3%83%BC%E3%82%B9">3.6 Git のブランチ機能 - リベース</a></p></li>
 </ul>
-</li>
-<li><p>Django サポート</p>
-<ul>
-<li><p>モデル間のER図みたいなのとかも出してくれる</p></li>
-</ul>
-</li>
-<li><p>Post の中身を見られる</p></li>
-<li><p>SQLA もコード補完・サジェストできるのかな？</p></li>
-<li><p>リファクタリングできる</p>
-<ul>
-<li><p>やりかたわからん</p></li>
-</ul>
-</li>
-<li><p>コードデプロイもできる</p></li>
-<li><p>テストも便利</p></li>
-<li><p>再起動したりクリーンインストールとかしても治らないときは、ジェットブレインさんに言う</p></li>
-</ul>
+</div>
+</div>
 </div>
     </div>
   </main>

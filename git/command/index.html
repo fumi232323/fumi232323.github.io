@@ -76,6 +76,10 @@
           <ul>
             
               <li class="nav-article">
+                <a href="../../django/django_orm/">Django ORM のメモ</a>
+              </li>
+            
+              <li class="nav-article">
                 <a href="../../django/note/">Django のメモ</a>
               </li>
             
@@ -86,6 +90,18 @@
         <li class="nav-category">
           <a href="/index_category_category_git.html">git</a>
           <ul>
+            
+              <li class="nav-article">
+                <a href="../rebase-i/">git rebase -i</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../rebase/">git rebase</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../note/">Git のメモ</a>
+              </li>
             
               <li class="nav-article">
                 <a href="../configuration/">Git の設定まとめ</a>
@@ -148,6 +164,10 @@
           <ul>
             
               <li class="nav-article">
+                <a href="../../pycharm/django-support/">Pycharm の Django support を使う</a>
+              </li>
+            
+              <li class="nav-article">
                 <a href="../../pycharm/add-psql-var-to-user-params-for-db-console/">PyCharm の Database Console で PostgreSQL のプレースホルダー (インタポレーション) を SQL パラメーターとして使えるようにする</a>
               </li>
             
@@ -172,7 +192,11 @@
           <ul>
             
               <li class="nav-article">
-                <a href="../../python/pyconjp2018/">PyConJP 2018 で聞いた講演メモ</a>
+                <a href="../../python/note/">Python のメモ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../python/pyconjp2018/">PyConJP 2018 で聞いた講演</a>
               </li>
             
           </ul>
@@ -213,6 +237,18 @@
             
               <li class="nav-article">
                 <a href="../../sql/note/">SQL のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_test.html">test</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../python-test/note/">Python テストのメモ</a>
               </li>
             
           </ul>
@@ -314,44 +350,7 @@
 </ul>
 </div>
 <div class="section" id="id3">
-<div class="header_target" id="h_git_command_index_2erst_3"></div><h1>リベース</h1>
-<ul>
-<li><p>master ブランチにリベースする</p>
-<div class="code-block">
-<div class="highlight"><pre><span></span><span class="gp">$</span> git rebase master
-
-<span class="gp">#</span> コンフリクトしたらコンフリクトを解消して、
-<span class="gp">$</span> git add .
-<span class="gp">$</span> git rebase --continue
-
-<span class="gp">#</span> リベースが終わったらフォースプッシュ
-<span class="gp">$</span> git push -f
-</pre></div>
-</div>
-</li>
-<li><p>間違えてリベースして元に戻したい</p>
-<ul>
-<li><p>push しちゃった場合</p>
-<div class="code-block">
-<div class="highlight"><pre><span></span><span class="gp">$</span> git reflog
-<span class="gp">$</span> git reset --hard HEAD@<span class="o">{</span><span class="m">6</span><span class="o">}</span>  <span class="c1"># 戻りたい番号そのものを書けばよいみたい</span>
-<span class="gp">$</span> git push -f
-</pre></div>
-</div>
-</li>
-<li><p>push してない場合</p>
-<div class="code-block">
-<div class="highlight"><pre><span></span><span class="gp">#</span> 間違えてリベースしたブランチを origin に戻す
-<span class="gp">$</span> git checkout -B &lt;branch-you-want-to-restore&gt; origin/&lt;branch-you-want-to-restore&gt;
-</pre></div>
-</div>
-</li>
-</ul>
-</li>
-</ul>
-</div>
-<div class="section" id="id4">
-<div class="header_target" id="h_git_command_index_2erst_4"></div><h1>マージする</h1>
+<div class="header_target" id="h_git_command_index_2erst_3"></div><h1>マージする</h1>
 <ul>
 <li><p>topic ブランチを acceptance ブランチへマージする</p>
 <div class="code-block">
@@ -368,7 +367,7 @@
 </ul>
 </div>
 <div class="section" id="git-reset">
-<div class="header_target" id="h_git_command_index_2erst_5"></div><h1>git reset 使い分け</h1>
+<div class="header_target" id="h_git_command_index_2erst_4"></div><h1>git reset 使い分け</h1>
 <p>ちなみに <span class="docutils literal">git reset</span> == <span class="docutils literal">git reset <span class="pre">--mixed</span></span> ですね</p>
 <ul>
 <li><p>git commit だけ取り消し</p>
@@ -397,8 +396,8 @@
 </li>
 </ul>
 </div>
-<div class="section" id="id5">
-<div class="header_target" id="h_git_command_index_2erst_6"></div><h1>コミット</h1>
+<div class="section" id="id4">
+<div class="header_target" id="h_git_command_index_2erst_5"></div><h1>コミット</h1>
 <ul>
 <li><p>コミットをもう一度やりなおす</p>
 <div class="code-block">
@@ -422,7 +421,7 @@
 </ul>
 </div>
 <div class="section" id="stash">
-<div class="header_target" id="h_git_command_index_2erst_7"></div><h1>stash: コミットはせずに変更を退避したい</h1>
+<div class="header_target" id="h_git_command_index_2erst_6"></div><h1>stash: コミットはせずに変更を退避したい</h1>
 <ul>
 <li><p>これがわかりやすい</p>
 <p><a class="reference external" href="https://qiita.com/chihiro/items/f373873d5c2dfbd03250">https://qiita.com/chihiro/items/f373873d5c2dfbd03250</a></p>
@@ -430,7 +429,7 @@
 </ul>
 </div>
 <div class="section" id="git-log">
-<div class="header_target" id="h_git_command_index_2erst_8"></div><h1>git log</h1>
+<div class="header_target" id="h_git_command_index_2erst_7"></div><h1>git log</h1>
 <ul>
 <li><p>各コミットを 1 行ずつ表示</p>
 <div class="code-block">
@@ -449,89 +448,48 @@
 </li>
 </ul>
 </div>
-<div class="section" id="rebase-i">
-<div class="header_target" id="h_git_command_index_2erst_9"></div><h1>rebase -i</h1>
-<div class="section" id="squash">
-<div class="header_target" id="h_git_command_index_2erst_10"></div><h2>squash : 離れたふたつのコミットをまとめる</h2>
+<div class="section" id="id5">
+<div class="header_target" id="h_git_command_index_2erst_8"></div><h1>リセットする</h1>
+<p>履歴を全部消して force push する。</p>
 <ol class="arabic">
-<li><p>くっつけ先のコミット番号を確かめる</p>
+<li><p><span class="docutils literal">.git</span> を消す</p></li>
+<li><p>force push する</p>
 <blockquote>
 <div class="code-block">
-<div class="highlight"><pre><span></span><span class="gp">$</span> git log --oneline
-</pre></div>
-</div>
-</blockquote>
-</li>
-<li><p>コミットが一覧表示されるので、くっつけ先のコミット番号を控え、 <span class="docutils literal">:q</span> で閉じる</p></li>
-<li><p>rebase を開始する。</p>
-<blockquote>
-<div class="code-block">
-<div class="highlight"><pre><span></span><span class="gp">$</span> git rebase -i &lt;くっつけ先のコミット番号&gt;
-</pre></div>
-</div>
-</blockquote>
-</li>
-<li><p>エディターが開き、 3 で指定したコミット番号より後のコミット一覧が表示されるので、くっつけたいほうの pick を一番上に移動する。</p></li>
-<li><p><span class="docutils literal">pick</span> を <span class="docutils literal">squash</span> に書き換える。</p></li>
-<li><p><span class="docutils literal">:wq</span> で保存して閉じる</p></li>
-<li><p>コミットメッセージを書く用？のエディタが開くので、</p>
-<blockquote>
-<pre class="literal-block">You are currently rebasing branch 'master' on 'リビジョン番号'.</pre>
-<p>の次の行のコメントを外して、コミットメッセージを書く。</p>
-<p>(たぶん、その上のほうにあるコミットメッセージも変えたければ編集したほうがよいんだと思う)</p>
-</blockquote>
-</li>
-<li><p><span class="docutils literal">:wq</span> で保存して閉じる</p></li>
-<li><p>リモートリポジトリにフォースプッシュする。</p>
-<blockquote>
-<div class="code-block">
-<div class="highlight"><pre><span></span><span class="gp">$</span> git push -f
+<div class="highlight"><pre><span></span><span class="gp">$</span> git add *
+<span class="gp">$</span> git commit -m <span class="err">'</span>initialize
+<span class="gp">$</span> git remote add origin <span class="o">{</span>URL<span class="o">}</span>
+<span class="gp">$</span> git push origin master --force
 </pre></div>
 </div>
 </blockquote>
 </li>
 </ol>
 </div>
-<div class="section" id="reword">
-<div class="header_target" id="h_git_command_index_2erst_11"></div><h2>reword: コミットメッセージを変更する</h2>
-<ol class="arabic">
-<li><p>コミット一覧を表示し、コミットメッセージを変更したいコミットの一つ前のコミット番号を控える</p>
-<blockquote>
-<div class="code-block">
-<div class="highlight"><pre><span></span><span class="gp">$</span> git log --oneline
-</pre></div>
+<div class="section" id="fetch-pull">
+<div class="header_target" id="h_git_command_index_2erst_9"></div><h1>fetch と pull</h1>
+<div class="section" id="fetch">
+<div class="header_target" id="h_git_command_index_2erst_10"></div><h2>fetch</h2>
+<p>リモートリポジトリの最新の履歴の取得だけを行う。</p>
+<ul class="simple">
+<li><p><span class="docutils literal">hogehoge</span> ブランチをfetchすると、 ローカルの <span class="docutils literal">origin/hogehoge</span> がリモートの <span class="docutils literal">origin/hogehoge</span> リポジトリと同期されて最新状態になる。</p></li>
+<li><p>ローカルの <span class="docutils literal">hogehoge</span> ブランチは、そのまま何にも変更されない。</p></li>
+</ul>
 </div>
-</blockquote>
-</li>
-<li><p><span class="docutils literal">:q</span> で閉じる</p></li>
-<li><p>rebase を開始する。</p>
-<blockquote>
-<div class="code-block">
-<div class="highlight"><pre><span></span><span class="gp">$</span> git rebase -i &lt;<span class="m">1</span> で控えたコミット番号&gt;
-</pre></div>
-</div>
-</blockquote>
-</li>
-<li><p>エディターが開き、 3 で指定したコミット番号より後のコミット一覧が表示されるので、コミットメッセージを変更したいコミット番号の <span class="docutils literal">pick</span> を <span class="docutils literal">reword</span> 書き換える。</p></li>
-<li><p><span class="docutils literal">:wq</span> で保存して閉じる</p></li>
-<li><p>コミットメッセージを書く用？のエディタが開くので、コミットメッセージを変更する。</p></li>
-<li><p><span class="docutils literal">:wq</span> で保存して閉じる</p></li>
-<li><p>リモートリポジトリにフォースプッシュする。</p>
-<blockquote>
-<div class="code-block">
-<div class="highlight"><pre><span></span><span class="gp">$</span> git push -f
-</pre></div>
-</div>
-</blockquote>
-</li>
+<div class="section" id="pull">
+<div class="header_target" id="h_git_command_index_2erst_11"></div><h2>pull</h2>
+<p>fetch + merge</p>
+<ul class="simple">
+<li><p><span class="docutils literal">hogehoge</span> ブランチを pull すると、 ローカルの <span class="docutils literal">origin/hogehoge</span> も <span class="docutils literal">hogehoge</span> も両方リモートの <span class="docutils literal">origin/hogehoge</span> リポジトリの変更とマージされる。</p></li>
+<li><p>内部的には、</p>
+<ol class="arabic simple">
+<li><p>リモートの <span class="docutils literal">origin/hogehoge</span> と、ローカルの <span class="docutils literal">origin/hogehoge</span> とマージ</p></li>
+<li><p>ローカルの <span class="docutils literal">origin/hogehoge</span> と <span class="docutils literal">hogehoge</span> をマージ</p></li>
 </ol>
-</div>
-<div class="section" id="id6">
-<div class="header_target" id="h_git_command_index_2erst_12"></div><h2>参考にしたサイト</h2>
-<ul>
-<li><p>これがわかりやすかった</p>
-<p><a class="reference external" href="https://www.karakaram.com/git-rebase-i-usage#whats-rebase-i">https://www.karakaram.com/git-rebase-i-usage#whats-rebase-i</a></p>
 </li>
+<li><p>ローカルの <span class="docutils literal">hogehoge</span> に、自分の変更とリモートの変更と両方入った状態になる。</p></li>
+<li><p>競合があったら自分で解決してコミットする必要がある。</p></li>
+<li><p>通常ローカルで触るのは <span class="docutils literal">origin</span> がついていない <span class="docutils literal">hogehoge</span> ブランチ。</p></li>
 </ul>
 </div>
 </div>

@@ -76,6 +76,10 @@
           <ul>
             
               <li class="nav-article">
+                <a href="../../django/django_orm/">Django ORM のメモ</a>
+              </li>
+            
+              <li class="nav-article">
                 <a href="../../django/note/">Django のメモ</a>
               </li>
             
@@ -86,6 +90,18 @@
         <li class="nav-category">
           <a href="/index_category_category_git.html">git</a>
           <ul>
+            
+              <li class="nav-article">
+                <a href="../rebase-i/">git rebase -i</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../rebase/">git rebase</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="./">Git のメモ</a>
+              </li>
             
               <li class="nav-article">
                 <a href="../configuration/">Git の設定まとめ</a>
@@ -148,6 +164,10 @@
           <ul>
             
               <li class="nav-article">
+                <a href="../../pycharm/django-support/">Pycharm の Django support を使う</a>
+              </li>
+            
+              <li class="nav-article">
                 <a href="../../pycharm/add-psql-var-to-user-params-for-db-console/">PyCharm の Database Console で PostgreSQL のプレースホルダー (インタポレーション) を SQL パラメーターとして使えるようにする</a>
               </li>
             
@@ -172,7 +192,11 @@
           <ul>
             
               <li class="nav-article">
-                <a href="../../python/pyconjp2018/">PyConJP 2018 で聞いた講演メモ</a>
+                <a href="../../python/note/">Python のメモ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../python/pyconjp2018/">PyConJP 2018 で聞いた講演</a>
               </li>
             
           </ul>
@@ -220,6 +244,18 @@
       
         
         <li class="nav-category">
+          <a href="/index_category_category_test.html">test</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../python-test/note/">Python テストのメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
           <a href="/index_category_category_vagrant.html">vagrant</a>
           <ul>
             
@@ -247,8 +283,8 @@
 </header></div>
       <div class="main">
   <main class="item item-article item-git">
-    <time class="date" datetime="2018-09-09 00:00:00+09:00">
-      2018-09-09 Sun
+    <time class="date" datetime="2018-09-30 00:00:00+09:00">
+      2018-09-30 Sun
     </time>
     <div class="title">Git のメモ</div>
     <div class="category">
@@ -268,54 +304,20 @@
 <p>Gitで作成したリポジトリをホスティングするためのWebサービス。名前の通りGitを使うHub(拠点)になる場所。</p>
 </div>
 </div>
-<div class="section" id="fetch-pull">
-<div class="header_target" id="h_git_note_index_2erst_4"></div><h1>fetch と pull</h1>
-<div class="section" id="fetch">
-<div class="header_target" id="h_git_note_index_2erst_5"></div><h2>fetch</h2>
-<p>リモートリポジトリの最新の履歴の取得だけを行う。</p>
-<ul class="simple">
-<li><p><span class="docutils literal">hogehoge</span> ブランチをfetchすると、 ローカルの <span class="docutils literal">origin/hogehoge</span> がリモートの <span class="docutils literal">origin/hogehoge</span> リポジトリと同期されて最新状態になる。</p></li>
-<li><p>ローカルの <span class="docutils literal">hogehoge</span> ブランチは、そのまま何にも変更されない。</p></li>
-</ul>
-</div>
-<div class="section" id="pull">
-<div class="header_target" id="h_git_note_index_2erst_6"></div><h2>pull</h2>
-<p>fetch + merge</p>
-<ul class="simple">
-<li><p><span class="docutils literal">hogehoge</span> ブランチを pull すると、 ローカルの <span class="docutils literal">origin/hogehoge</span> も <span class="docutils literal">hogehoge</span> も両方リモートの <span class="docutils literal">origin/hogehoge</span> リポジトリの変更とマージされる。</p></li>
-<li><p>内部的には、</p>
-<ol class="arabic simple">
-<li><p>リモートの <span class="docutils literal">origin/hogehoge</span> と、ローカルの <span class="docutils literal">origin/hogehoge</span> とマージ</p></li>
-<li><p>ローカルの <span class="docutils literal">origin/hogehoge</span> と <span class="docutils literal">hogehoge</span> をマージ</p></li>
-</ol>
-</li>
-<li><p>ローカルの <span class="docutils literal">hogehoge</span> に、自分の変更とリモートの変更と両方入った状態になる。</p></li>
-<li><p>競合があったら自分で解決してコミットする必要がある。</p></li>
-<li><p>通常、ローカルで触るのは <span class="docutils literal">origin</span> がついてない <span class="docutils literal">hogehoge</span> ブランチ</p></li>
-</ul>
-</div>
-</div>
 <div class="section" id="id2">
-<div class="header_target" id="h_git_note_index_2erst_7"></div><h1>Gitの基本</h1>
+<div class="header_target" id="h_git_note_index_2erst_4"></div><h1>Gitの基本</h1>
+<p><a class="reference external" href="https://git-scm.com/book/ja/v2/%E4%BD%BF%E3%81%84%E5%A7%8B%E3%82%81%E3%82%8B-Git%E3%81%AE%E5%9F%BA%E6%9C%AC">1.3 使い始める - Gitの基本</a></p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://git-scm.com/book/ja/v2/%E4%BD%BF%E3%81%84%E5%A7%8B%E3%82%81%E3%82%8B-Git%E3%81%AE%E5%9F%BA%E6%9C%AC">https://git-scm.com/book/ja/v2/%E4%BD%BF%E3%81%84%E5%A7%8B%E3%82%81%E3%82%8B-Git%E3%81%AE%E5%9F%BA%E6%9C%AC</a></p></li>
 <li><p>スナップショットで、差分ではない</p></li>
 </ul>
 </div>
-<div class="section" id="id3">
-<div class="header_target" id="h_git_note_index_2erst_8"></div><h1>3.6 Git のブランチ機能 - リベース</h1>
-<ul class="simple">
-<li><p><a class="reference external" href="https://git-scm.com/book/ja/v2/Git-%E3%81%AE%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E6%A9%9F%E8%83%BD-%E3%83%AA%E3%83%99%E3%83%BC%E3%82%B9">https://git-scm.com/book/ja/v2/Git-%E3%81%AE%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E6%A9%9F%E8%83%BD-%E3%83%AA%E3%83%99%E3%83%BC%E3%82%B9</a></p></li>
-</ul>
-</div>
 <div class="section" id="git-submodule">
-<div class="header_target" id="h_git_note_index_2erst_9"></div><h1>git submodule</h1>
-<ul class="simple">
-<li><p><a class="reference external" href="https://git-scm.com/book/ja/v2/Git-%E3%81%AE%E3%81%95%E3%81%BE%E3%81%96%E3%81%BE%E3%81%AA%E3%83%84%E3%83%BC%E3%83%AB-%E3%82%B5%E3%83%96%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB">https://git-scm.com/book/ja/v2/Git-%E3%81%AE%E3%81%95%E3%81%BE%E3%81%96%E3%81%BE%E3%81%AA%E3%83%84%E3%83%BC%E3%83%AB-%E3%82%B5%E3%83%96%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB</a></p></li>
-</ul>
+<div class="header_target" id="h_git_note_index_2erst_5"></div><h1>git submodule</h1>
+<p><a class="reference external" href="https://git-scm.com/book/ja/v2/Git-%E3%81%AE%E3%81%95%E3%81%BE%E3%81%96%E3%81%BE%E3%81%AA%E3%83%84%E3%83%BC%E3%83%AB-%E3%82%B5%E3%83%96%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB">7.11 Git のさまざまなツール - サブモジュール</a></p>
+<pre class="literal-block">サブモジュールを使うと、ある Git リポジトリを別の Git リポジトリのサブディレクトリとして扱うことができるようになります。 これで、別のリポジトリをプロジェクト内にクローンしても自分のコミットは別管理とすることができるようになります。</pre>
 </div>
 <div class="section" id="origin">
-<div class="header_target" id="h_git_note_index_2erst_10"></div><h1>origin の謎が解けた</h1>
+<div class="header_target" id="h_git_note_index_2erst_6"></div><h1>origin の謎が解けた</h1>
 <p><span class="docutils literal">origin</span> は「リモートリポジトリの〜」という意味。</p>
 <p><span class="docutils literal">hogehoge</span> ブランチを作成すると、</p>
 <ol class="arabic simple">
@@ -329,7 +331,7 @@
 </ol>
 </div>
 <div class="section" id="master">
-<div class="header_target" id="h_git_note_index_2erst_11"></div><h1>master の謎が解けた</h1>
+<div class="header_target" id="h_git_note_index_2erst_7"></div><h1>master の謎が解けた</h1>
 <p><span class="docutils literal">master</span> は、</p>
 <ul class="simple">
 <li><p>物理的には単なるブランチに過ぎないが、</p></li>

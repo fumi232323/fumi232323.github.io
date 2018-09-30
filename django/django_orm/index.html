@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>PyCharm で SSH tunnel して Amazon Redshift につなぐ/32imuf.com</title>
+    <title>Django ORM のメモ/32imuf.com</title>
     <link rel="shortcut icon" href="/static/icons/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Griffy" rel="stylesheet">
     <link href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css" rel="stylesheet" />
@@ -76,11 +76,11 @@
           <ul>
             
               <li class="nav-article">
-                <a href="../../django/django_orm/">Django ORM のメモ</a>
+                <a href="./">Django ORM のメモ</a>
               </li>
             
               <li class="nav-article">
-                <a href="../../django/note/">Django のメモ</a>
+                <a href="../note/">Django のメモ</a>
               </li>
             
           </ul>
@@ -164,23 +164,23 @@
           <ul>
             
               <li class="nav-article">
-                <a href="../django-support/">Pycharm の Django support を使う</a>
+                <a href="../../pycharm/django-support/">Pycharm の Django support を使う</a>
               </li>
             
               <li class="nav-article">
-                <a href="../add-psql-var-to-user-params-for-db-console/">PyCharm の Database Console で PostgreSQL のプレースホルダー (インタポレーション) を SQL パラメーターとして使えるようにする</a>
+                <a href="../../pycharm/add-psql-var-to-user-params-for-db-console/">PyCharm の Database Console で PostgreSQL のプレースホルダー (インタポレーション) を SQL パラメーターとして使えるようにする</a>
               </li>
             
               <li class="nav-article">
-                <a href="./">PyCharm で SSH tunnel して Amazon Redshift につなぐ</a>
+                <a href="../../pycharm/connect-db-using-ssh-tunnel/">PyCharm で SSH tunnel して Amazon Redshift につなぐ</a>
               </li>
             
               <li class="nav-article">
-                <a href="../useful-menu-and-shortcuts/">PyCharm ショートカットと便利メニュー</a>
+                <a href="../../pycharm/useful-menu-and-shortcuts/">PyCharm ショートカットと便利メニュー</a>
               </li>
             
               <li class="nav-article">
-                <a href="../configuration/">PyCharm の設定</a>
+                <a href="../../pycharm/configuration/">PyCharm の設定</a>
               </li>
             
           </ul>
@@ -282,66 +282,80 @@
   </nav>
 </header></div>
       <div class="main">
-  <main class="item item-article item-pycharm">
-    <time class="date" datetime="2018-09-25 00:00:00+09:00">
-      2018-09-25 Tue
+  <main class="item item-article item-django">
+    <time class="date" datetime="2018-09-29 00:00:00+09:00">
+      2018-09-29 Sat
     </time>
-    <div class="title">PyCharm で SSH tunnel して Amazon Redshift につなぐ</div>
+    <div class="title">Django ORM のメモ</div>
     <div class="category">
-      <a href="/index_category_category_pycharm.html">
-          pycharm
+      <a href="/index_category_category_django.html">
+          django
       </a>
     </div>
     <div class="text">
       <div class="section" id="id1">
-<div class="header_target" id="h_pycharm_connect_2ddb_2dusing_2dssh_2dtunnel_index_2erst_1"></div><h1>ガイド</h1>
+<div class="header_target" id="h_django_django_orm_index_2erst_1"></div><h1>Django ORM</h1>
+<div class="section" id="aggregate-annotate">
+<div class="header_target" id="h_django_django_orm_index_2erst_2"></div><h2>aggregate と annotate</h2>
+<p><span class="docutils literal">aggregate</span> と <span class="docutils literal">annotate</span> の違いがわかりやすい</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://pleiades.io/help/pycharm/">PyCharm ヘルプ</a></p></li>
+<li><p><a class="reference external" href="http://note.crohaco.net/2014/django-aggregate/">Djangoの集計について</a></p></li>
 </ul>
 </div>
-<div class="section" id="id2">
-<div class="header_target" id="h_pycharm_connect_2ddb_2dusing_2dssh_2dtunnel_index_2erst_2"></div><h1>手順</h1>
-<ol class="arabic">
-<li><p>View -&gt; Tool Windows -&gt; Database で、スパナのボタン押下</p></li>
-<li><p>Data Sources and Drivers ダイアログで、 <span class="docutils literal">+</span> ボタン押下</p></li>
-<li><p><span class="docutils literal">Amazon Redshift</span> を選択</p></li>
-<li><p>General タブ</p>
-<blockquote>
+<div class="section" id="prefetch-related">
+<div class="header_target" id="h_django_django_orm_index_2erst_3"></div><h2>prefetch_relatedの話</h2>
 <ul class="simple">
-<li><p>Name: 任意の名前</p></li>
-<li><p>Comment: 任意のコメント</p></li>
-<li><p>User: 接続先 DB のユーザー名</p></li>
-<li><p>Password: 接続先 DB のユーザーのパスワード</p></li>
-<li><p>URL: AWS コンソール -&gt; Redshift ダッシュボード -&gt; クラスターメニュー -&gt; 接続したいクラスター -&gt; クラスターデータベースのプロパティ -&gt; JDBC URL に記載の URL</p>
+<li><p><a class="reference external" href="http://tokibito.hatenablog.com/entry/20140718/1405691738">Djangoでprefetch_relatedを使ってクエリ数を減らす</a></p></li>
+</ul>
+</div>
+<div class="section" id="q-object">
+<div class="header_target" id="h_django_django_orm_index_2erst_4"></div><h2>Q Object</h2>
+<p><a class="reference external" href="https://docs.djangoproject.com/ja/1.11/ref/models/querysets/#q-objects">Q() objects</a></p>
 <ul>
-<li><p>末尾は接続先 DB 名 ( <span class="docutils literal">port番号/</span> のあと)</p></li>
-</ul>
-</li>
-<li><p>URL の右横のプルダウン: <span class="docutils literal">URL only</span></p></li>
-<li><p>Driver: <span class="docutils literal">Amazon Redshift</span></p></li>
-</ul>
-</blockquote>
-</li>
-<li><p>SSH/SSL タブ</p>
-<blockquote>
-<ul class="simple">
-<li><p>Use SSH tunnel: <span class="docutils literal">ON</span></p></li>
-<li><p>Proxy host: gateway (HostName)</p></li>
-<li><p>Port: <span class="docutils literal">22</span> (SSH接続時のPort番号)</p></li>
-<li><p>Proxy user: gateway のユーザー名</p></li>
-<li><p>Auth type: <span class="docutils literal">OpenSSH config and authentication agent</span></p></li>
-</ul>
-</blockquote>
-</li>
-<li><p>Test Connection してみる</p></li>
-</ol>
+<li><p>クエリの検索条件を作ることができる</p></li>
+<li><p><span class="docutils literal">OR</span> を表現したいときはこれを使う</p>
+<ul>
+<li><p>e.g.</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="n">queryset</span> <span class="o">=</span> <span class="n">queryset</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+    <span class="n">Q</span><span class="p">(</span><span class="n">name__contains</span><span class="o">=</span><span class="n">q</span><span class="p">)</span> <span class="o">|</span>
+    <span class="n">Q</span><span class="p">(</span><span class="n">username__contains</span><span class="o">=</span><span class="n">q</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
 </div>
-<div class="section" id="url">
-<div class="header_target" id="h_pycharm_connect_2ddb_2dusing_2dssh_2dtunnel_index_2erst_3"></div><h1>参考URL</h1>
-<ul class="simple">
-<li><p><a class="reference external" href="https://pleiades.io/help/pycharm/connecting-to-a-database.html#amazon_redshift">データベースへの接続 -&gt; Amazon Redshift</a></p></li>
-<li><p><a class="reference external" href="https://pleiades.io/help/pycharm/connecting-to-a-database.html#connect_via_ssh">データベースへの接続 -&gt; SSHによる接続</a></p></li>
+</li>
 </ul>
+</li>
+</ul>
+</div>
+<div class="section" id="set">
+<div class="header_target" id="h_django_django_orm_index_2erst_5"></div><h2>モデルクラス名を全部小文字にしたのに <span class="docutils literal">_set</span> がつく</h2>
+<p><a class="reference external" href="https://docs.djangoproject.com/ja/1.11/ref/models/relations/">Related objects reference</a></p>
+<ul class="simple">
+<li><p><span class="docutils literal">_set</span> というのは子テーブルのデータを参照する django の機能</p></li>
+<li><p>モデルクラス名を全部小文字にしたのに <span class="docutils literal">_set</span> がつく</p></li>
+</ul>
+</div>
+<div class="section" id="foreignkey-on-delete">
+<div class="header_target" id="h_django_django_orm_index_2erst_6"></div><h2>ForeignKey.on_delete</h2>
+<p><a class="reference external" href="https://docs.djangoproject.com/en/1.11/ref/models/fields/#django.db.models.ForeignKey.on_delete">ForeignKey.on_delete</a></p>
+<ul>
+<li><p>6種類くらいあって、用途に応じて選べる</p></li>
+<li><p>Django 2.0 から、必須の引数となる</p></li>
+<li><p>それ以前のバージョンでは、デフォルトで <span class="docutils literal">CASCADE</span></p>
+<pre class="literal-block">A many-to-one relationship. Requires two positional arguments: the class to which the model is related and the on_delete option. (on_delete isn’t actually required, but not providing it gives a deprecation warning. It will be required in Django 2.0.)</pre>
+<pre class="literal-block">Deprecated since version 1.9:
+on_delete will become a required argument in Django 2.0. In older versions it defaults to CASCADE.</pre>
+</li>
+</ul>
+</div>
+<div class="section" id="left-outer-join">
+<div class="header_target" id="h_django_django_orm_index_2erst_7"></div><h2>LEFT OUTER JOIN</h2>
+<p>Django のクエリセットは LEFT OUTER JOIN を表現できない</p>
+<ul class="simple">
+<li><p>SQLAlchemy でやろう</p></li>
+</ul>
+</div>
 </div>
     </div>
   </main>

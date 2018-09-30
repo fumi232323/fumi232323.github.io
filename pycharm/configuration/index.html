@@ -76,6 +76,10 @@
           <ul>
             
               <li class="nav-article">
+                <a href="../../django/django_orm/">Django ORM のメモ</a>
+              </li>
+            
+              <li class="nav-article">
                 <a href="../../django/note/">Django のメモ</a>
               </li>
             
@@ -86,6 +90,18 @@
         <li class="nav-category">
           <a href="/index_category_category_git.html">git</a>
           <ul>
+            
+              <li class="nav-article">
+                <a href="../../git/rebase-i/">git rebase -i</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../git/rebase/">git rebase</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../git/note/">Git のメモ</a>
+              </li>
             
               <li class="nav-article">
                 <a href="../../git/configuration/">Git の設定まとめ</a>
@@ -148,6 +164,10 @@
           <ul>
             
               <li class="nav-article">
+                <a href="../django-support/">Pycharm の Django support を使う</a>
+              </li>
+            
+              <li class="nav-article">
                 <a href="../add-psql-var-to-user-params-for-db-console/">PyCharm の Database Console で PostgreSQL のプレースホルダー (インタポレーション) を SQL パラメーターとして使えるようにする</a>
               </li>
             
@@ -172,7 +192,11 @@
           <ul>
             
               <li class="nav-article">
-                <a href="../../python/pyconjp2018/">PyConJP 2018 で聞いた講演メモ</a>
+                <a href="../../python/note/">Python のメモ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../python/pyconjp2018/">PyConJP 2018 で聞いた講演</a>
               </li>
             
           </ul>
@@ -213,6 +237,18 @@
             
               <li class="nav-article">
                 <a href="../../sql/note/">SQL のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_test.html">test</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../python-test/note/">Python テストのメモ</a>
               </li>
             
           </ul>
@@ -261,6 +297,7 @@
 <div class="header_target" id="h_pycharm_configuration_index_2erst_1"></div><h1>ガイド</h1>
 <ul class="simple">
 <li><p><a class="reference external" href="https://pleiades.io/help/pycharm/">PyCharm ヘルプ</a></p></li>
+<li><p><a class="reference external" href="https://www.jetbrains.com/help/pycharm/meet-pycharm.html">PyCharm Help</a></p></li>
 </ul>
 </div>
 <div class="section" id="id3">
@@ -289,41 +326,10 @@
 </ol>
 </div>
 </div>
-<div class="section" id="django">
-<div class="header_target" id="h_pycharm_configuration_index_2erst_6"></div><h1>Django</h1>
-<div class="section" id="django-support">
-<div class="header_target" id="h_pycharm_configuration_index_2erst_7"></div><h2>Django Support を有効にする</h2>
-<ol class="arabic">
-<li><p>Preferences</p></li>
-<li><p>Languages &amp; Frameworks -&gt; Django</p>
-<blockquote>
-<ul class="simple">
-<li><p>Enable Django Support: <span class="docutils literal">ON</span></p></li>
-<li><p>Django project root: <span class="docutils literal">apps</span> ( <cite>settings.py および manage.py ファイルを格納するディレクトリ</cite> を指定するっぽかったので。合っているかどうかわからない。)</p></li>
-<li><p>Settings: <span class="docutils literal">settings/_.py</span> ( <cite>Djangoプロジェクトルートの下にある名前が *settings*.pyに一致するファイルです</cite> と書いてあったのでたぶんこれだろう。)</p></li>
-</ul>
-</blockquote>
-</li>
-</ol>
-</div>
-<div class="section" id="template-language">
-<div class="header_target" id="h_pycharm_configuration_index_2erst_8"></div><h2>Template language を設定する</h2>
-<ol class="arabic">
-<li><p>Preferences</p></li>
-<li><p>Languages &amp; Frameworks -&gt; Python Template Languages</p>
-<blockquote>
-<ul class="simple">
-<li><p>Template language: <span class="docutils literal">Django</span></p></li>
-</ul>
-</blockquote>
-</li>
-</ol>
-</div>
-</div>
 <div class="section" id="sources-root">
-<div class="header_target" id="h_pycharm_configuration_index_2erst_9"></div><h1>Sources Root</h1>
+<div class="header_target" id="h_pycharm_configuration_index_2erst_6"></div><h1>Sources Root</h1>
 <div class="section" id="id5">
-<div class="header_target" id="h_pycharm_configuration_index_2erst_10"></div><h2>Sources Root を設定</h2>
+<div class="header_target" id="h_pycharm_configuration_index_2erst_7"></div><h2>Sources Root を設定</h2>
 <p><span class="docutils literal">定義へジャンプ</span> ( <span class="docutils literal">Cmd + B</span> ) などが使えるようになる</p>
 <blockquote>
 <ol class="arabic simple">
@@ -333,7 +339,7 @@
 </blockquote>
 </div>
 <div class="section" id="template-folder">
-<div class="header_target" id="h_pycharm_configuration_index_2erst_11"></div><h2>Template Folder を設定</h2>
+<div class="header_target" id="h_pycharm_configuration_index_2erst_8"></div><h2>Template Folder を設定</h2>
 <p><span class="docutils literal">HTML マーク</span> (押下すると template へジャンプできる) が出るようになる</p>
 <blockquote>
 <ol class="arabic simple">
