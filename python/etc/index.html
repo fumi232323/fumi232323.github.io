@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>Docker のメモ/32imuf.com</title>
+    <title>Python いろいろメモ/32imuf.com</title>
     <link rel="shortcut icon" href="/static/icons/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Griffy" rel="stylesheet">
     <link href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css" rel="stylesheet" />
@@ -192,11 +192,15 @@
           <ul>
             
               <li class="nav-article">
-                <a href="../../python/note/">Python のメモ</a>
+                <a href="../note/">Python のメモ</a>
               </li>
             
               <li class="nav-article">
-                <a href="../../python/pyconjp2018/">PyConJP 2018 で聞いた講演</a>
+                <a href="./">Python いろいろメモ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../pyconjp2018/">PyConJP 2018 で聞いた講演</a>
               </li>
             
           </ul>
@@ -282,31 +286,113 @@
   </nav>
 </header></div>
       <div class="main">
-  <main class="item item-article item-docker">
-    <time class="date" datetime="2018-09-29 00:00:00+09:00">
-      2018-09-29 Sat
+  <main class="item item-article item-python">
+    <time class="date" datetime="2018-10-11 00:00:00+09:00">
+      2018-10-11 Thu
     </time>
-    <div class="title">Docker のメモ</div>
+    <div class="title">Python いろいろメモ</div>
     <div class="category">
-      <a href="/index_category_category_docker.html">
-          docker
+      <a href="/index_category_category_python.html">
+          python
       </a>
     </div>
     <div class="text">
-      <div class="section" id="id1">
-<div class="header_target" id="h_docker_note_index_2erst_1"></div><h1>インストール</h1>
-<p><a class="reference external" href="https://docs.docker.com/docker-for-mac/install/">https://docs.docker.com/docker-for-mac/install/</a></p>
+      <div class="section" id="pip">
+<div class="header_target" id="h_python_etc_index_2erst_1"></div><h1>pip</h1>
+<div class="section" id="id1">
+<div class="header_target" id="h_python_etc_index_2erst_2"></div><h2>pip のリファレンス</h2>
+<p><a class="reference external" href="https://pip.pypa.io/en/stable/reference/">https://pip.pypa.io/en/stable/reference/</a></p>
 </div>
-<div class="section" id="docker-run">
-<div class="header_target" id="h_docker_note_index_2erst_2"></div><h1>docker run</h1>
+<div class="section" id="pip-install-r">
+<div class="header_target" id="h_python_etc_index_2erst_3"></div><h2>pip install -r</h2>
+<p>requirements.txt に指定したライブラリをインストールする</p>
 <div class="code-block">
-<div class="highlight"><pre><span></span><span class="gp">$</span> docker run &lt;イメージ名（VMのイメージ的なモノ）&gt; &lt;実行するコマンド&gt;
+<div class="highlight"><pre><span></span><span class="gp">$</span> pip install -r requirements.txt
 </pre></div>
 </div>
+<ul>
+<li><p>すでにインストール済みのものはスキップしてくれる</p></li>
+<li><p>requirements.txt にインストールオプションを書いておくことができる</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="go">--no-index           # PyPI に問い合わせない (Index サーバーを使わない)</span>
+<span class="go">-f wheelhouse        # ライブラリの取得元を wheelhouse に限定する</span>
+<span class="go">-r run-requires.txt  # インストールしたいライブラリはこっちに書いたから見てね</span>
+</pre></div>
 </div>
-<div class="section" id="docker-compose">
-<div class="header_target" id="h_docker_note_index_2erst_3"></div><h1>docker-compose</h1>
-<p>開発環境だけでも docker (docker-compose)にすると楽だよ。環境による差異も出にくいし、イメージも小さい</p>
+</li>
+</ul>
+<div class="section" id="id2">
+<div class="header_target" id="h_python_etc_index_2erst_4"></div><h3>参考</h3>
+<p>Python プロフェッショナルプログラミング 第3版 P.272 - P.274</p>
+</div>
+</div>
+<div class="section" id="pip-install-u">
+<div class="header_target" id="h_python_etc_index_2erst_5"></div><h2>pip install -U</h2>
+<p>最新のバージョンに更新する</p>
+<blockquote>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> pip install -U requests
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>pip は、指定されたパッケージがすでにインストール済みの場合、新しいバージョンが公開されていても自動的に最新版に更新したりしない</p></li>
+</ul>
+</blockquote>
+<div class="section" id="id3">
+<div class="header_target" id="h_python_etc_index_2erst_6"></div><h3>参考</h3>
+<p>Python プロフェッショナルプログラミング 第3版 P.63</p>
+</div>
+</div>
+</div>
+<div class="section" id="rundeckrun">
+<div class="header_target" id="h_python_etc_index_2erst_7"></div><h1>rundeckrun</h1>
+<p>Python コードから Rundeck を操作できる。</p>
+<div class="section" id="id4">
+<div class="header_target" id="h_python_etc_index_2erst_8"></div><h2>リファレンス</h2>
+<p><a class="reference external" href="https://rundeckrun.readthedocs.io/en/latest/index.html">https://rundeckrun.readthedocs.io/en/latest/index.html</a></p>
+</div>
+</div>
+<div class="section" id="autopep8">
+<div class="header_target" id="h_python_etc_index_2erst_9"></div><h1>autopep8</h1>
+<p><cite>autopep8 automatically formats Python code to conform to the PEP 8 style guide.</cite></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pypi.python.org/pypi/autopep8">https://pypi.python.org/pypi/autopep8</a></p></li>
+</ul>
+</div>
+<div class="section" id="pipdeptree">
+<div class="header_target" id="h_python_etc_index_2erst_10"></div><h1>pipdeptree</h1>
+<p>ライブラリの依存関係を調べられる。</p>
+<ul>
+<li><p><a class="reference external" href="https://github.com/naiquevin/pipdeptree">https://github.com/naiquevin/pipdeptree</a></p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> pip install pipdeptree
+<span class="gp">$</span> pipdeptree -p django
+<span class="go">Django==1.11.15</span>
+<span class="go">  - pytz [required: Any, installed: 2018.3]</span>
+</pre></div>
+</div>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> pipdeptree -r -p django
+<span class="go">django==1.11.15</span>
+<span class="go">  - dj-inmemorystorage==1.4.1 [requires: Django&gt;=1.4]</span>
+<span class="go">  - model-mommy==1.5.1 [requires: django&gt;=1.8.0]</span>
+</pre></div>
+</div>
+<ul>
+<li><p>オプションの意味</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="go">-r, --reverse         Shows the dependency tree in the reverse fashion ie.</span>
+<span class="go">                      the sub-dependencies are listed with the list of</span>
+<span class="go">                      packages that need them under them.</span>
+<span class="go">-p PACKAGES, --packages PACKAGES</span>
+<span class="go">                      Comma separated list of select packages to show in the</span>
+<span class="go">                      output. If set, --all will be ignored.</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
 </div>
     </div>
   </main>

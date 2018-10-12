@@ -196,6 +196,10 @@
               </li>
             
               <li class="nav-article">
+                <a href="../../python/etc/">Python いろいろメモ</a>
+              </li>
+            
+              <li class="nav-article">
                 <a href="../../python/pyconjp2018/">PyConJP 2018 で聞いた講演</a>
               </li>
             
@@ -283,8 +287,8 @@
 </header></div>
       <div class="main">
   <main class="item item-article item-test">
-    <time class="date" datetime="2018-09-24 00:00:00+09:00">
-      2018-09-24 Mon
+    <time class="date" datetime="2018-10-11 00:00:00+09:00">
+      2018-10-11 Thu
     </time>
     <div class="title">Python テストのメモ</div>
     <div class="category">
@@ -295,21 +299,38 @@
     <div class="text">
       <div class="section" id="id1">
 <div class="header_target" id="h_python_2dtest_note_index_2erst_1"></div><h1>Python テストのメモ</h1>
+<div class="section" id="id2">
+<div class="header_target" id="h_python_2dtest_note_index_2erst_2"></div><h2>例外のテストはこれ</h2>
+<p><a class="reference external" href="https://docs.pytest.org/en/latest/reference.html#pytest-raises">https://docs.pytest.org/en/latest/reference.html#pytest-raises</a></p>
+<ul>
+<li><p><span class="docutils literal">with pytest.raises(RuntimeError) as excinfo:</span> の <span class="docutils literal">excinfo</span> には、 <a class="reference external" href="https://docs.pytest.org/en/latest/reference.html#exceptioninfo">ExceptionInfo</a> が入ってくる</p></li>
+<li><p>例外のインスタンスは、 <span class="docutils literal">value</span> フィールドに入っている</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="n">ListFileError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="n">target</span><span class="p">(</span><span class="n">list_file</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">'201803'</span><span class="p">)</span>
+
+<span class="c1"># assert</span>
+<span class="k">assert</span> <span class="n">e</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">line</span> <span class="o">==</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
 <div class="section" id="parametrize">
-<div class="header_target" id="h_python_2dtest_note_index_2erst_2"></div><h2>parametrize</h2>
+<div class="header_target" id="h_python_2dtest_note_index_2erst_3"></div><h2>parametrize</h2>
 <p><span class="docutils literal">unittest.TestCase</span> を継承したテストクラス内では、 <span class="docutils literal">@pytest.mark.parametrize</span> を使えない。</p>
 </div>
 <div class="section" id="tox">
-<div class="header_target" id="h_python_2dtest_note_index_2erst_3"></div><h2>tox</h2>
+<div class="header_target" id="h_python_2dtest_note_index_2erst_4"></div><h2>tox</h2>
 <p>これをテストに使いたいとは限らないのでもうテスト用に環境分けちゃおうぜ的なツール</p>
 </div>
 <div class="section" id="pytest-fixture">
-<div class="header_target" id="h_python_2dtest_note_index_2erst_4"></div><h2>pytest.fixture</h2>
+<div class="header_target" id="h_python_2dtest_note_index_2erst_5"></div><h2>pytest.fixture</h2>
 <p><a class="reference external" href="https://docs.pytest.org/en/latest/fixture.html">https://docs.pytest.org/en/latest/fixture.html</a></p>
 <pre class="literal-block">Test functions can receive fixture objects by naming them as an input argument. For each argument name, a fixture function with that name provides the fixture object. Fixture functions are registered by marking them with @pytest.fixture.</pre>
 </div>
 <div class="section" id="a">
-<div class="header_target" id="h_python_2dtest_note_index_2erst_5"></div><h2>3a スタイル</h2>
+<div class="header_target" id="h_python_2dtest_note_index_2erst_6"></div><h2>3a スタイル</h2>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="c1"># arrange</span>
 <span class="c1"># act</span>
@@ -319,14 +340,14 @@
 <p><a class="reference external" href="http://wiki.c2.com/?arrangeactassert">http://wiki.c2.com/?arrangeactassert</a> (つながらない)</p>
 </div>
 <div class="section" id="testpyramid">
-<div class="header_target" id="h_python_2dtest_note_index_2erst_6"></div><h2>TestPyramid</h2>
+<div class="header_target" id="h_python_2dtest_note_index_2erst_7"></div><h2>TestPyramid</h2>
 <p>UI 寄りのテストは、コストと実行時間が長くなってしまうので、いきなり書かない方がいい</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://martinfowler.com/bliki/TestPyramid.html">https://martinfowler.com/bliki/TestPyramid.html</a></p></li>
 </ul>
 </div>
-<div class="section" id="id2">
-<div class="header_target" id="h_python_2dtest_note_index_2erst_7"></div><h2>テストターゲットの取得方法</h2>
+<div class="section" id="id3">
+<div class="header_target" id="h_python_2dtest_note_index_2erst_8"></div><h2>テストターゲットの取得方法</h2>
 <p><a class="reference external" href="http://pelican.aodag.jp/xiao-guo-de-naunittest-mataha-callfutnomi-mi.html">http://pelican.aodag.jp/xiao-guo-de-naunittest-mataha-callfutnomi-mi.html</a></p>
 </div>
 </div>

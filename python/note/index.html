@@ -196,6 +196,10 @@
               </li>
             
               <li class="nav-article">
+                <a href="../etc/">Python いろいろメモ</a>
+              </li>
+            
+              <li class="nav-article">
                 <a href="../pyconjp2018/">PyConJP 2018 で聞いた講演</a>
               </li>
             
@@ -283,8 +287,8 @@
 </header></div>
       <div class="main">
   <main class="item item-article item-python">
-    <time class="date" datetime="2018-09-30 00:00:00+09:00">
-      2018-09-30 Sun
+    <time class="date" datetime="2018-10-11 00:00:00+09:00">
+      2018-10-11 Thu
     </time>
     <div class="title">Python のメモ</div>
     <div class="category">
@@ -302,13 +306,43 @@
 <li><p><a class="reference external" href="https://docs.python.org/ja/3/library/index.html">Python 標準ライブラリ</a></p></li>
 </ul>
 <div class="section" id="id6">
-<div class="header_target" id="h_python_note_index_2erst_2"></div><h2>どんどん足してくやつ</h2>
+<div class="header_target" id="h_python_note_index_2erst_2"></div><h2>ユーザー定義例外</h2>
+<ul>
+<li><p>Exception クラスを、直接または間接的に継承する</p>
+<ul>
+<li><p><a class="reference external" href="https://docs.python.org/ja/3/library/exceptions.html#BaseException">https://docs.python.org/ja/3/library/exceptions.html#BaseException</a></p>
+<pre class="literal-block">全ての組み込み例外の基底クラスです。ユーザ定義の例外に直接継承されることは意図されていません (継承には Exception を使ってください)。</pre>
+</li>
+</ul>
+</li>
+<li><p>大抵は、いくつかの属性だけを提供し、例外が発生したときにハンドラがエラーに関する情報を取り出せるようにする程度にとどめる</p></li>
+<li><p>だいたいは、標準の例外の名前付けと同様に、 "Error" で終わる名前で定義する</p></li>
+<li><p>複数の別個の例外を送出するようなモジュールを作成する際には、そのモジュールで定義されている例外の基底クラスを作成するのが一般的なプラクティス</p></li>
+</ul>
+<div class="section" id="id7">
+<div class="header_target" id="h_python_note_index_2erst_3"></div><h3>リファレンス</h3>
+<p><a class="reference external" href="https://docs.python.org/ja/3.7/tutorial/errors.html#user-defined-exceptions">8.5. ユーザー定義例外</a></p>
+</div>
+</div>
+<div class="section" id="re-matchobject-groupdict">
+<div class="header_target" id="h_python_note_index_2erst_4"></div><h2>re.MatchObject.groupdict</h2>
+<ul class="simple">
+<li><p>マッチの、すべての 名前つきの サブグループを含む、サブグループ名でキー付けされた辞書を返す</p></li>
+<li><p>リファレンスのサンプルコードを見ると一目瞭然なので、そちらを見てください</p></li>
+</ul>
+<div class="section" id="id9">
+<div class="header_target" id="h_python_note_index_2erst_5"></div><h3>リファレンス</h3>
+<p><a class="reference external" href="https://docs.python.org/ja/2.7/library/re.html#re.MatchObject.groupdict">https://docs.python.org/ja/2.7/library/re.html#re.MatchObject.groupdict</a></p>
+</div>
+</div>
+<div class="section" id="id10">
+<div class="header_target" id="h_python_note_index_2erst_6"></div><h2>どんどん足してくやつ</h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://docs.python.org/ja/3/library/functools.html#functools.reduce">functools.reduce</a></p></li>
 </ul>
 </div>
 <div class="section" id="coding-utf-8">
-<div class="header_target" id="h_python_note_index_2erst_3"></div><h2>coding: utf-8</h2>
+<div class="header_target" id="h_python_note_index_2erst_7"></div><h2>coding: utf-8</h2>
 <p>ソースコードの文字エンコーディングを指定する</p>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
@@ -321,7 +355,7 @@
 </ul>
 </div>
 <div class="section" id="yield-dict-zip-columns-data">
-<div class="header_target" id="h_python_note_index_2erst_4"></div><h2>yield dict(zip(columns, data))</h2>
+<div class="header_target" id="h_python_note_index_2erst_8"></div><h2>yield dict(zip(columns, data))</h2>
 <p>これは、</p>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">column</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">columns</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
@@ -343,26 +377,19 @@
 </ul>
 </div>
 <div class="section" id="defaultdict">
-<div class="header_target" id="h_python_note_index_2erst_5"></div><h2>defaultdict</h2>
+<div class="header_target" id="h_python_note_index_2erst_9"></div><h2>defaultdict</h2>
 <p>リストの初期化が不要になる！</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://docs.python.org/ja/3/library/collections.html#defaultdict-objects">defaultdict オブジェクト</a></p></li>
 <li><p><a class="reference external" href="https://docs.python.org/ja/3/library/collections.html#defaultdict-examples">defaultdict の使用例</a></p></li>
 </ul>
 </div>
-<div class="section" id="id9">
-<div class="header_target" id="h_python_note_index_2erst_6"></div><h2>組み込み型と名前が被った場合</h2>
+<div class="section" id="id13">
+<div class="header_target" id="h_python_note_index_2erst_10"></div><h2>組み込み型と名前が被った場合</h2>
 <p><span class="docutils literal">in</span> や <span class="docutils literal">int</span> など、キーワード・組み込み型と同じ名前を変数名にしたい場合は、末尾に <span class="docutils literal">_</span> を付ける。</p>
 </div>
-<div class="section" id="autopep8">
-<div class="header_target" id="h_python_note_index_2erst_7"></div><h2>autopep8</h2>
-<p><cite>autopep8 automatically formats Python code to conform to the PEP 8 style guide.</cite></p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://pypi.python.org/pypi/autopep8">https://pypi.python.org/pypi/autopep8</a></p></li>
-</ul>
-</div>
 <div class="section" id="sorted">
-<div class="header_target" id="h_python_note_index_2erst_8"></div><h2>sorted</h2>
+<div class="header_target" id="h_python_note_index_2erst_11"></div><h2>sorted</h2>
 <p>これは、</p>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="n">summary_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">summary_dict</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
@@ -380,8 +407,8 @@
     <span class="o">....</span>
 </pre></div>
 </div>
-<div class="section" id="id10">
-<div class="header_target" id="h_python_note_index_2erst_9"></div><h3>リファレンス</h3>
+<div class="section" id="id14">
+<div class="header_target" id="h_python_note_index_2erst_12"></div><h3>リファレンス</h3>
 <p><cite>タプルはイミュータブルなシーケンス</cite> なので、 ソートできる。</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://docs.python.org/ja/3/library/functions.html#sorted">sorted</a></p></li>
@@ -390,14 +417,14 @@
 </div>
 </div>
 <div class="section" id="all">
-<div class="header_target" id="h_python_note_index_2erst_10"></div><h2>all()</h2>
+<div class="header_target" id="h_python_note_index_2erst_13"></div><h2>all()</h2>
 <p><a class="reference external" href="https://docs.python.org/ja/3/library/functions.html#all">all(iterable)</a></p>
 <ul class="simple">
 <li><p>iterable の全ての要素が真ならば (もしくは iterable が空ならば) True を返す。</p></li>
 </ul>
 </div>
 <div class="section" id="property">
-<div class="header_target" id="h_python_note_index_2erst_11"></div><h2>@property</h2>
+<div class="header_target" id="h_python_note_index_2erst_14"></div><h2>@property</h2>
 <p><span class="docutils literal">@property</span> デコレータ を付けると、プロパティのように呼び出せる。</p>
 <ul>
 <li><p>付け方</p>
@@ -415,34 +442,34 @@
 </div>
 </li>
 </ul>
-<div class="section" id="id12">
-<div class="header_target" id="h_python_note_index_2erst_12"></div><h3>リファレンス</h3>
+<div class="section" id="id16">
+<div class="header_target" id="h_python_note_index_2erst_15"></div><h3>リファレンス</h3>
 <p><a class="reference external" href="https://docs.python.org/ja/3/library/functions.html#property">https://docs.python.org/ja/3/library/functions.html#property</a></p>
 <ul class="simple">
 <li><p>同じ名前のまま 読み出し専用属性の <span class="docutils literal">getter</span> にしてくれる</p></li>
 </ul>
 </div>
 </div>
-<div class="section" id="id13">
-<div class="header_target" id="h_python_note_index_2erst_13"></div><h2>シーケンスのアンパッキング</h2>
+<div class="section" id="id17">
+<div class="header_target" id="h_python_note_index_2erst_16"></div><h2>シーケンスのアンパッキング</h2>
 <p><a class="reference external" href="https://docs.python.org/ja/3/tutorial/datastructures.html#tuples-and-sequences">タプルとシーケンス</a></p>
 </div>
 <div class="section" id="stringio-seek-0">
-<div class="header_target" id="h_python_note_index_2erst_14"></div><h2>StringIO().seek(0)</h2>
+<div class="header_target" id="h_python_note_index_2erst_17"></div><h2>StringIO().seek(0)</h2>
 <p><a class="reference external" href="https://docs.python.org/ja/3/library/io.html#io.IOBase.seek">https://docs.python.org/ja/3/library/io.html#io.IOBase.seek</a></p>
 <ul class="simple">
 <li><p>先頭にもどす、 (カーソルを先頭に戻すみたいなイメージ)</p></li>
 </ul>
 </div>
 <div class="section" id="if-name-main">
-<div class="header_target" id="h_python_note_index_2erst_15"></div><h2>if __name__ == "__main__"</h2>
+<div class="header_target" id="h_python_note_index_2erst_18"></div><h2>if __name__ == "__main__"</h2>
 <p><a class="reference external" href="http://blog.pyq.jp/entry/Python_kaiketsu_180207">http://blog.pyq.jp/entry/Python_kaiketsu_180207</a></p>
 <ul class="simple">
 <li><p>Pythonでは、インポートされたファイルの中身は実行される</p></li>
 </ul>
 </div>
 <div class="section" id="unicode-str">
-<div class="header_target" id="h_python_note_index_2erst_16"></div><h2>unicode と str</h2>
+<div class="header_target" id="h_python_note_index_2erst_19"></div><h2>unicode と str</h2>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="s1">'ふみ'</span> <span class="o">==</span> <span class="sa">u</span><span class="s1">'ふみ'</span>
@@ -456,20 +483,20 @@
 <li><p>python2 の場合、マルチバイトを含むと <span class="docutils literal">u</span> の有無で違うオブジェクトとして判定される。</p></li>
 <li><p>python2の文字には <span class="docutils literal">unicode</span> と <span class="docutils literal">str</span> がある。 ascii 文字しか含まない場合は 同じ値と判断されるけど基本的に別物として考えたほうがいい。</p></li>
 </ul>
-<div class="section" id="id15">
-<div class="header_target" id="h_python_note_index_2erst_17"></div><h3>リファレンス</h3>
+<div class="section" id="id19">
+<div class="header_target" id="h_python_note_index_2erst_20"></div><h3>リファレンス</h3>
 <p><a class="reference external" href="https://docs.python.org/ja/2.7/tutorial/introduction.html#unicode-strings">3.1.3. Unicode 文字列</a></p>
 </div>
 </div>
-<div class="section" id="id16">
-<div class="header_target" id="h_python_note_index_2erst_18"></div><h2>バックスラッシュ感染症</h2>
+<div class="section" id="id20">
+<div class="header_target" id="h_python_note_index_2erst_21"></div><h2>バックスラッシュ感染症</h2>
 <p>こんなふうに書く</p>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="sa">r</span><span class="s2">"ab*"</span>
 </pre></div>
 </div>
-<div class="section" id="id17">
-<div class="header_target" id="h_python_note_index_2erst_19"></div><h3>リファレンス</h3>
+<div class="section" id="id21">
+<div class="header_target" id="h_python_note_index_2erst_22"></div><h3>リファレンス</h3>
 <p><a class="reference external" href="https://docs.python.org/ja/3.7/howto/regex.html#the-backslash-plague">バックスラッシュ感染症</a></p>
 <ul class="simple">
 <li><p><span class="docutils literal">r</span> を文字列リテラルの先頭に書くことでバックスラッシュは特別扱いされなくなる</p></li>
@@ -477,22 +504,22 @@
 </ul>
 </div>
 </div>
-<div class="section" id="id19">
-<div class="header_target" id="h_python_note_index_2erst_20"></div><h2>正規表現のグループ化機能</h2>
+<div class="section" id="id23">
+<div class="header_target" id="h_python_note_index_2erst_23"></div><h2>正規表現のグループ化機能</h2>
 <p>このあたりから</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://docs.python.org/ja/3.7/howto/regex.html#non-capturing-and-named-groups">取り出さないグループと名前つきグループ</a></p></li>
 </ul>
 </div>
-<div class="section" id="id21">
-<div class="header_target" id="h_python_note_index_2erst_21"></div><h2>長い正規表現を記述する方法</h2>
+<div class="section" id="id25">
+<div class="header_target" id="h_python_note_index_2erst_24"></div><h2>長い正規表現を記述する方法</h2>
 <ul class="simple">
 <li><p>カンマ区切り無しで文字列リテラルを複数に分ける</p>
 <ul>
 <li><p><a class="reference external" href="http://docs.python-guide.org/en/latest/writing/style/#line-continuations">http://docs.python-guide.org/en/latest/writing/style/#line-continuations</a></p></li>
 </ul>
 </li>
-<li><p>re. VERBOSE オプションを使う</p>
+<li><p>re.VERBOSE オプションを使う</p>
 <ul>
 <li><p><a class="reference external" href="https://docs.python.org/ja/3/library/re.html#re.VERBOSE">https://docs.python.org/ja/3/library/re.html#re.VERBOSE</a></p></li>
 </ul>
