@@ -92,11 +92,11 @@
           <ul>
             
               <li class="nav-article">
-                <a href="../../git/rebase-i/">git rebase -i</a>
+                <a href="../../git/command/rebase-i/">git rebase -i</a>
               </li>
             
               <li class="nav-article">
-                <a href="../../git/rebase/">git rebase</a>
+                <a href="../../git/command/rebase/">git rebase</a>
               </li>
             
               <li class="nav-article">
@@ -248,6 +248,22 @@
       
         
         <li class="nav-category">
+          <a href="/index_category_category_ssh.html">ssh</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../ssh/command/ssh-add">ssh-add</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../ssh/command/ssh">ssh のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
           <a href="/index_category_category_test.html">test</a>
           <ul>
             
@@ -297,14 +313,64 @@
       </a>
     </div>
     <div class="text">
-      <div class="section" id="pip">
-<div class="header_target" id="h_python_etc_index_2erst_1"></div><h1>pip</h1>
+      <div class="section" id="wheel">
+<div class="header_target" id="h_python_etc_index_2erst_1"></div><h1>wheel</h1>
+<ul>
+<li><p>ビルド済みの C 拡張や Python パッケージのみを含み、ファイルを展開するだけでインストールが完了する</p></li>
+<li><p>sdist : パッケージのソース、メタデータ、ビルド方法などをアーカイブしたソース配布形式</p>
+<ul class="simple">
+<li><p>インストールのたびに各環境でアーカイブに同梱される setup スクリプトを読み込み、 C 拡張があればビルドし、必要は Python パッケージを確認して、 site-packages へコピーする</p></li>
+</ul>
+</li>
+<li><p>Python の公式バイナリパッケージは wheel 形式 (PEP491)</p></li>
+<li><p>pip コマンドは、 wheel 形式を優先して利用する</p></li>
+<li><p>pip は、 PyPI にアップロードされている wheel 形式のパッケージを直接インストールできる</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> pip install <span class="nv">django</span><span class="o">==</span><span class="m">1</span>.11.15
+</pre></div>
+</div>
+</li>
+<li><p><a class="reference external" href="https://pythonwheels.com/">https://pythonwheels.com/</a> : 定番パッケージの wheel 配布状況を確認できる</p></li>
+</ul>
 <div class="section" id="id1">
-<div class="header_target" id="h_python_etc_index_2erst_2"></div><h2>pip のリファレンス</h2>
+<div class="header_target" id="h_python_etc_index_2erst_2"></div><h2>wheel の作り方</h2>
+<p>PyPI で sdist で配布されているパッケージを wheel 形式のパッケージに変換してローカルに保存する。</p>
+<ol class="arabic">
+<li><p>wheel をインストールする</p>
+<blockquote>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">(venv) $</span> pip install wheel
+</pre></div>
+</div>
+</blockquote>
+</li>
+<li><p>wheelhouse ディレクトリに wheel 形式パッケージを作成する</p>
+<blockquote>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">(venv) $</span> pip wheel markupsafe -w wheelhouse
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><span class="docutils literal">wheelhouse</span> ディレクトリがなくても、 <span class="docutils literal"><span class="pre">-w</span> wheelhouse</span> を指定すると勝手に作ってくれる</p></li>
+<li><p>wheel 形式のパッケージの保存ディレクトリ名は何でもよいが、慣習的に <span class="docutils literal">wheelhouse</span> という名前を使う</p></li>
+</ul>
+</blockquote>
+</li>
+</ol>
+<div class="section" id="id2">
+<div class="header_target" id="h_python_etc_index_2erst_3"></div><h3>参考</h3>
+<p>Python プロフェッショナルプログラミング 第3版 P.256 - P.259</p>
+</div>
+</div>
+</div>
+<div class="section" id="pip">
+<div class="header_target" id="h_python_etc_index_2erst_4"></div><h1>pip</h1>
+<div class="section" id="id3">
+<div class="header_target" id="h_python_etc_index_2erst_5"></div><h2>pip のリファレンス</h2>
 <p><a class="reference external" href="https://pip.pypa.io/en/stable/reference/">https://pip.pypa.io/en/stable/reference/</a></p>
 </div>
 <div class="section" id="pip-install-r">
-<div class="header_target" id="h_python_etc_index_2erst_3"></div><h2>pip install -r</h2>
+<div class="header_target" id="h_python_etc_index_2erst_6"></div><h2>pip install -r</h2>
 <p>requirements.txt に指定したライブラリをインストールする</p>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="gp">$</span> pip install -r requirements.txt
@@ -319,15 +385,23 @@
 <span class="go">-r run-requires.txt  # インストールしたいライブラリはこっちに書いたから見てね</span>
 </pre></div>
 </div>
+<ul class="simple">
+<li><p><span class="docutils literal"><span class="pre">-f(--find-links)</span> &lt;url&gt;</span> : 参照したいパッケージがあるページのリンクを指定する。</p>
+<ul>
+<li><p>url に存在するパッケージは、 Index サーバーよりも優先的に使用される</p></li>
+<li><p>url に見つからないパッケージは、 Index サーバーからインストールする</p></li>
+</ul>
 </li>
 </ul>
-<div class="section" id="id2">
-<div class="header_target" id="h_python_etc_index_2erst_4"></div><h3>参考</h3>
-<p>Python プロフェッショナルプログラミング 第3版 P.272 - P.274</p>
+</li>
+</ul>
+<div class="section" id="id4">
+<div class="header_target" id="h_python_etc_index_2erst_7"></div><h3>参考</h3>
+<p>Python プロフェッショナルプログラミング 第3版 P.272 - P.274, P.255</p>
 </div>
 </div>
 <div class="section" id="pip-install-u">
-<div class="header_target" id="h_python_etc_index_2erst_5"></div><h2>pip install -U</h2>
+<div class="header_target" id="h_python_etc_index_2erst_8"></div><h2>pip install -U</h2>
 <p>最新のバージョンに更新する</p>
 <blockquote>
 <div class="code-block">
@@ -338,29 +412,29 @@
 <li><p>pip は、指定されたパッケージがすでにインストール済みの場合、新しいバージョンが公開されていても自動的に最新版に更新したりしない</p></li>
 </ul>
 </blockquote>
-<div class="section" id="id3">
-<div class="header_target" id="h_python_etc_index_2erst_6"></div><h3>参考</h3>
+<div class="section" id="id5">
+<div class="header_target" id="h_python_etc_index_2erst_9"></div><h3>参考</h3>
 <p>Python プロフェッショナルプログラミング 第3版 P.63</p>
 </div>
 </div>
 </div>
 <div class="section" id="rundeckrun">
-<div class="header_target" id="h_python_etc_index_2erst_7"></div><h1>rundeckrun</h1>
+<div class="header_target" id="h_python_etc_index_2erst_10"></div><h1>rundeckrun</h1>
 <p>Python コードから Rundeck を操作できる。</p>
-<div class="section" id="id4">
-<div class="header_target" id="h_python_etc_index_2erst_8"></div><h2>リファレンス</h2>
+<div class="section" id="id6">
+<div class="header_target" id="h_python_etc_index_2erst_11"></div><h2>リファレンス</h2>
 <p><a class="reference external" href="https://rundeckrun.readthedocs.io/en/latest/index.html">https://rundeckrun.readthedocs.io/en/latest/index.html</a></p>
 </div>
 </div>
 <div class="section" id="autopep8">
-<div class="header_target" id="h_python_etc_index_2erst_9"></div><h1>autopep8</h1>
+<div class="header_target" id="h_python_etc_index_2erst_12"></div><h1>autopep8</h1>
 <p><cite>autopep8 automatically formats Python code to conform to the PEP 8 style guide.</cite></p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://pypi.python.org/pypi/autopep8">https://pypi.python.org/pypi/autopep8</a></p></li>
 </ul>
 </div>
 <div class="section" id="pipdeptree">
-<div class="header_target" id="h_python_etc_index_2erst_10"></div><h1>pipdeptree</h1>
+<div class="header_target" id="h_python_etc_index_2erst_13"></div><h1>pipdeptree</h1>
 <p>ライブラリの依存関係を調べられる。</p>
 <ul>
 <li><p><a class="reference external" href="https://github.com/naiquevin/pipdeptree">https://github.com/naiquevin/pipdeptree</a></p>
