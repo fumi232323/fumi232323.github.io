@@ -92,11 +92,11 @@
           <ul>
             
               <li class="nav-article">
-                <a href="../../git/rebase-i/">git rebase -i</a>
+                <a href="../../git/command/rebase-i/">git rebase -i</a>
               </li>
             
               <li class="nav-article">
-                <a href="../../git/rebase/">git rebase</a>
+                <a href="../../git/command/rebase/">git rebase</a>
               </li>
             
               <li class="nav-article">
@@ -248,6 +248,22 @@
       
         
         <li class="nav-category">
+          <a href="/index_category_category_ssh.html">ssh</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../command/ssh-add">ssh-add</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../command/ssh">ssh のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
           <a href="/index_category_category_test.html">test</a>
           <ul>
             
@@ -297,7 +313,8 @@
       </a>
     </div>
     <div class="text">
-      <div class="section" id="id1">
+      <p>TODO: ssh-keygen と残りとで、メモをふたつに分けようと思う</p>
+<div class="section" id="id1">
 <div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_1"></div><h1>何が起こったか</h1>
 <p>サーバーに ssh 接続しようとしたら、こんなエラーが出た。</p>
 <blockquote>
@@ -370,14 +387,18 @@ Last login: Fri Jul <span class="m">13</span> <span class="m">15</span>:43:09 <s
 <li><p>接続できました。</p></li>
 </ol>
 </div>
-<div class="section" id="ssh-keygen">
-<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_4"></div><h1>ssh-keygen のおさらい</h1>
 <div class="section" id="id4">
+<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_4"></div><h1>ssh-keygen のおさらい</h1>
+<div class="section" id="id5">
 <div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_5"></div><h2>何者か</h2>
 <p>認証鍵の生成と管理・変換が役割。</p>
 </div>
-<div class="section" id="id5">
-<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_6"></div><h2>秘密鍵・公開鍵のペアを作る</h2>
+<div class="section" id="id6">
+<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_6"></div><h2>サーバ側の公開鍵の置き場所</h2>
+<p>$HOME/.ssh/authorized_keys</p>
+</div>
+<div class="section" id="id7">
+<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_7"></div><h2>秘密鍵・公開鍵のペアを作る</h2>
 <div class="code-block">
 <div class="highlight"><pre><span></span>$ ssh-keygen -t rsa
 </pre></div>
@@ -394,14 +415,14 @@ Last login: Fri Jul <span class="m">13</span> <span class="m">15</span>:43:09 <s
 <li><p><span class="docutils literal"><span class="pre">-N</span> new_passphrase</span> で、パスフレーズ（鍵の鍵みたいなやつ）を指定できる。後からでもつけられる。</p></li>
 </ul>
 </div>
-<div class="section" id="id6">
-<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_7"></div><h2>秘密鍵から公開鍵を取り出す</h2>
+<div class="section" id="id8">
+<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_8"></div><h2>秘密鍵から公開鍵を取り出す</h2>
 <div class="code-block">
 <div class="highlight"><pre><span></span>$ ssh-keygen -y -f private_key_file
 </pre></div>
 </div>
-<div class="section" id="id7">
-<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_8"></div><h3>ためしてみる</h3>
+<div class="section" id="id9">
+<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_9"></div><h3>ためしてみる</h3>
 <ol class="arabic simple">
 <li><p>カレントディレクトリに、↓で rsa 鍵のペアを作成する。</p></li>
 </ol>
@@ -473,7 +494,7 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDfq5BPUHIRnrxBX1b3sp8OFTzFh3k9e1VZ3OXlRQRA
 </div>
 </div>
 <div class="section" id="fingerprint">
-<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_9"></div><h2>公開鍵から fingerprint を表示</h2>
+<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_10"></div><h2>公開鍵から fingerprint を表示</h2>
 <p>fingerprint は、公開鍵にくっついているものらしい。</p>
 <ul>
 <li><p>カレントディレクトリ配下の公開鍵ファイルを指定して表示</p>
@@ -493,14 +514,14 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDfq5BPUHIRnrxBX1b3sp8OFTzFh3k9e1VZ3OXlRQRA
 </ul>
 </div>
 <div class="section" id="known-hosts-file">
-<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_10"></div><h2>known_hosts file からキーを削除</h2>
+<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_11"></div><h2>known_hosts file からキーを削除</h2>
 <div class="code-block">
 <div class="highlight"><pre><span></span>$ ssh-keygen -R hostname <span class="o">[</span>-f known_hosts_file<span class="o">]</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id8">
-<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_11"></div><h2>fingerprint とは何ですか</h2>
+<div class="section" id="id10">
+<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_12"></div><h2>fingerprint とは何ですか</h2>
 <ul>
 <li><p>流れとしては、</p>
 <ol class="arabic">
@@ -553,15 +574,14 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDfq5BPUHIRnrxBX1b3sp8OFTzFh3k9e1VZ3OXlRQRA
 <p>TODO: あした、↑たしかめよう</p>
 </div>
 </div>
-<div class="section" id="id9">
-<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_12"></div><h1>宿題</h1>
+<div class="section" id="id11">
+<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_13"></div><h1>宿題</h1>
 <ul class="simple">
 <li><p><span class="docutils literal">中間者攻撃</span> とは何ですか。</p></li>
-<li><p>ssh-agent のほうもあやしいので(自分の理解が)、復習しておこう</p></li>
 </ul>
 </div>
-<div class="section" id="id10">
-<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_13"></div><h1>参考にしたサイト</h1>
+<div class="section" id="id12">
+<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_14"></div><h1>参考にしたサイト</h1>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.freebsd.org/cgi/man.cgi?query=ssh-keygen&amp;apropos=0&amp;sektion=1&amp;manpath=CentOS+6.5&amp;arch=default&amp;format=html">SSH-KEYGEN(1)</a></p></li>
 <li><p><a class="reference external" href="http://note.crohaco.net/2014/public-key-basic-config/">秘密鍵/公開鍵の基本的な設定</a></p></li>

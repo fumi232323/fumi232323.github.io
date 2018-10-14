@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>Vagrant のメモ/32imuf.com</title>
+    <title>ssh のメモ/32imuf.com</title>
     <link rel="shortcut icon" href="/static/icons/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Griffy" rel="stylesheet">
     <link href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css" rel="stylesheet" />
@@ -252,11 +252,11 @@
           <ul>
             
               <li class="nav-article">
-                <a href="../../ssh/command/ssh-add">ssh-add</a>
+                <a href="ssh-add">ssh-add</a>
               </li>
             
               <li class="nav-article">
-                <a href="../../ssh/command/ssh">ssh のメモ</a>
+                <a href="ssh">ssh のメモ</a>
               </li>
             
           </ul>
@@ -280,7 +280,7 @@
           <ul>
             
               <li class="nav-article">
-                <a href="./">Vagrant のメモ</a>
+                <a href="../../vagrant/note/">Vagrant のメモ</a>
               </li>
             
           </ul>
@@ -302,147 +302,92 @@
   </nav>
 </header></div>
       <div class="main">
-  <main class="item item-article item-vagrant">
-    <time class="date" datetime="2018-09-02 00:00:00+09:00">
-      2018-09-02 Sun
+  <main class="item item-article item-ssh">
+    <time class="date" datetime="2018-10-14 00:00:00+09:00">
+      2018-10-14 Sun
     </time>
-    <div class="title">Vagrant のメモ</div>
+    <div class="title">ssh のメモ</div>
     <div class="category">
-      <a href="/index_category_category_vagrant.html">
-          vagrant
+      <a href="/index_category_category_ssh.html">
+          ssh
       </a>
     </div>
     <div class="text">
-      <div class="section" id="synced-folder">
-<div class="header_target" id="h_vagrant_note_index_2erst_1"></div><h1>synced_folder が効かなくなった</h1>
-<div class="section" id="id1">
-<div class="header_target" id="h_vagrant_note_index_2erst_2"></div><h2>現象</h2>
-<p>ホスト OS 側のディレクトリ構成を変えたので、 <span class="docutils literal">_repo_file</span> を書き換えて、 <span class="docutils literal">vagrant reload</span> したのに、エラーになった。</p>
-<div class="section" id="id2">
-<div class="header_target" id="h_vagrant_note_index_2erst_3"></div><h3>エラー内容</h3>
-<div class="code-block">
-<div class="highlight"><pre><span></span><span class="gp">FumienoMacBook-Pro:ansible fumi23$</span> vagrant reload
-<span class="go">==&gt; default: Attempting graceful shutdown of VM...</span>
-<span class="go">==&gt; default: Clearing any previously set forwarded ports...</span>
-<span class="go">==&gt; default: Pruning invalid NFS exports. Administrator privileges will be required...</span>
-<span class="go">Password:</span>
-<span class="go">==&gt; default: Clearing any previously set network interfaces...</span>
-<span class="go">==&gt; default: Preparing network interfaces based on configuration...</span>
-<span class="go">    default: Adapter 1: nat</span>
-<span class="go">    default: Adapter 2: hostonly</span>
-<span class="go">==&gt; default: Forwarding ports...</span>
-<span class="go">    default: 22 (guest) =&gt; 2222 (host) (adapter 1)</span>
-<span class="go">==&gt; default: Running 'pre-boot' VM customizations...</span>
-<span class="go">==&gt; default: Booting VM...</span>
-<span class="go">==&gt; default: Waiting for machine to boot. This may take a few minutes...</span>
-<span class="go">    default: SSH address: 127.0.0.1:2222</span>
-<span class="go">    default: SSH username: vagrant</span>
-<span class="go">    default: SSH auth method: private key</span>
-<span class="go">==&gt; default: Machine booted and ready!</span>
-<span class="go">==&gt; default: Checking for guest additions in VM...</span>
-<span class="go">    default: The guest additions on this VM do not match the installed version of</span>
-<span class="go">    default: VirtualBox! In most cases this is fine, but in rare cases it can</span>
-<span class="go">    default: prevent things such as shared folders from working properly. If you see</span>
-<span class="go">    default: shared folder errors, please make sure the guest additions within the</span>
-<span class="go">    default: virtual machine match the version of VirtualBox you have installed on</span>
-<span class="go">    default: your host and reload your VM.</span>
-<span class="go">    default:</span>
-<span class="go">    default: Guest Additions Version: 4.3.8</span>
-<span class="go">    default: VirtualBox Version: 5.1</span>
-<span class="go">==&gt; default: Configuring and enabling network interfaces...</span>
-<span class="go">    default: SSH address: 127.0.0.1:2222</span>
-<span class="go">    default: SSH username: vagrant</span>
-<span class="go">    default: SSH auth method: private key</span>
-<span class="go">==&gt; default: Exporting NFS shared folders...</span>
-<span class="go">NFS is reporting that your exports file is invalid. Vagrant does</span>
-<span class="go">this check before making any changes to the file. Please correct</span>
-<span class="go">the issues below and execute "vagrant reload":</span>
-
-<span class="go">exports:2: path contains non-directory or non-existent components: /Users/fumi23/my-projects/my-project-1</span>
-<span class="go">exports:2: path contains non-directory or non-existent components: /Users/fumi23/my-projects/my-project-2</span>
-<span class="go">exports:2: no usable directories in export entry</span>
-<span class="go">exports:2: using fallback (marked offline): /</span>
-</pre></div>
-</div>
-</div>
+      <div class="section" id="id1">
+<div class="header_target" id="h_ssh_command_ssh_index_2erst_1"></div><h1>リファレンス</h1>
+<p>ubuntu のやつ</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://manpages.ubuntu.com/manpages/bionic/en/man1/ssh.1.html">ssh</a></p></li>
+<li><p><a class="reference external" href="http://manpages.ubuntu.com/manpages/bionic/en/man5/ssh_config.5.html">ssh_config</a></p></li>
+</ul>
+<p>種類やバージョンが選べるやつ</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.freebsd.org/cgi/man.cgi?query=ssh&amp;apropos=0&amp;sektion=0&amp;manpath=CentOS+6.5&amp;arch=default&amp;format=html">SSH(1)</a></p></li>
+<li><p><a class="reference external" href="https://www.freebsd.org/cgi/man.cgi?query=ssh_config&amp;apropos=0&amp;sektion=0&amp;manpath=CentOS+6.5&amp;arch=default&amp;format=html">SSH_CONFIG(5)</a></p></li>
+</ul>
 </div>
 <div class="section" id="id3">
-<div class="header_target" id="h_vagrant_note_index_2erst_4"></div><h2>解決策</h2>
-<p><span class="docutils literal">/etc/exports</span> を新しい情報に書き変えた。</p>
-<ul>
-<li><p>元の /etc/exports</p>
-<div class="code-block">
-<div class="highlight"><pre><span></span><span class="gp">FumienoMacBook-Pro:ansible fumi23$</span> cat /etc/exports.bk
-<span class="gp">#</span> VAGRANT-BEGIN: <span class="m">501</span> e9fe3cbf-63c6-48a1-beca-2702bc2527e4
-<span class="go">"/Users/fumi23/my-projects/my-project-1" "/Users/fumi23/my-projects/my-project-2" 192.168.34.10 -alldirs -mapall=501:20</span>
-<span class="gp">#</span> VAGRANT-END: <span class="m">501</span> e9fe3cbf-63c6-48a1-beca-2702bc2527e4
-</pre></div>
-</div>
-</li>
-<li><p>今の /etc/exports</p>
-<div class="code-block">
-<div class="highlight"><pre><span></span><span class="gp">FumienoMacBook-Pro:ansible fumi23$</span> cat /etc/exports
-<span class="gp">#</span> VAGRANT-BEGIN: <span class="m">501</span> e9fe3cbf-63c6-48a1-beca-2702bc2527e4
-<span class="go">"/Users/fumi23/new-my-projects/my-project-1" "/Users/fumi23/new-my-projects/my-project-2" 192.168.34.10 -alldirs -mapall=501:20</span>
-<span class="gp">#</span> VAGRANT-END: <span class="m">501</span> e9fe3cbf-63c6-48a1-beca-2702bc2527e4
-</pre></div>
-</div>
-</li>
-</ul>
-</div>
-<div class="section" id="id4">
-<div class="header_target" id="h_vagrant_note_index_2erst_5"></div><h2>参考</h2>
-<p>助かりました。ありがとうございました。</p>
+<div class="header_target" id="h_ssh_command_ssh_index_2erst_2"></div><h1>sshとは</h1>
+<p>SecureShell</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://blog.kazu69.net/2014/07/16/by-vagrant-nfs-exports-error-has-occurred/">VagrantのNFS設定でexportsのエラーが発生した</a></p></li>
+<li><p>リモートマシンにログインし、リモートマシン上でコマンドを実行できるプログラム</p></li>
+<li><p>セキュアでないネットワーク上の、信頼できないホスト間で、セキュアな暗号化通信を提供する</p></li>
 </ul>
+<div class="section" id="id4">
+<div class="header_target" id="h_ssh_command_ssh_index_2erst_3"></div><h2>ssh の使い方</h2>
+<ul>
+<li><p>リモートホストに接続する</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> ssh &lt;hostname&gt;
+</pre></div>
 </div>
+</li>
+<li><p>秘密鍵を指定して接続する</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> ssh -i &lt;identity_file&gt; &lt;user&gt;@&lt;hostname&gt;
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><span class="docutils literal"><span class="pre">-i</span> &lt;identity_file&gt;</span> : 公開鍵認証のためのID（秘密鍵）ファイルを指定する</p></li>
+<li><p>identity files は、 ssh config ファイル内でホストごとに指定することもできる</p></li>
+</ul>
+</li>
+</ul>
 </div>
 <div class="section" id="id5">
-<div class="header_target" id="h_vagrant_note_index_2erst_6"></div><h1>ログを詳細に出す</h1>
-<div class="code-block">
-<div class="highlight"><pre><span></span>$ <span class="nv">VAGRANT_LOG</span><span class="o">=</span>DEBUG vagrant <span class="o">[</span>command<span class="o">]</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="virtualbox">
-<div class="header_target" id="h_vagrant_note_index_2erst_7"></div><h1>VirtualBox の仮想マシンの保存先を変更する</h1>
+<div class="header_target" id="h_ssh_command_ssh_index_2erst_4"></div><h2>オプションいろいろ</h2>
+<ul class="simple">
+<li><p><span class="docutils literal"><span class="pre">-v</span></span> : 詳細を表示する</p>
 <ul>
-<li><p><a class="reference external" href="http://kiraba.jp/change-save-point-vagrant-box-and-virtual-machine/">Vagrant BOXとVMの保存先を変更する方法</a></p>
-<pre class="literal-block">環境設定 &gt; 一般 にあるデフォルトの仮想マシンフォルダーを任意のパスに変更すればVMは指定したフォルダーに保存されます。</pre>
+<li><p>Multiple -v options increase the verbosity.  The maximum is 3.</p></li>
+</ul>
 </li>
+<li><p><span class="docutils literal"><span class="pre">-A</span></span> : ssh-agent 転送を有効にする</p>
+<ul>
+<li><p>ssh config ファイル内でホストごとに指定することもできる</p></li>
+</ul>
+</li>
+<li><p>オプションで指定できるものは (できないものも) だいたい、 ssh config ファイルでも指定できる。</p></li>
 </ul>
 </div>
-<div class="section" id="vagrant-home">
-<div class="header_target" id="h_vagrant_note_index_2erst_8"></div><h1>VAGRANT_HOME</h1>
-<p>環境変数: <span class="docutils literal">VAGRANT_HOME</span> を設定すれば、 <span class="docutils literal"><span class="pre">~/.vagrant.d</span></span> の場所を好きなところに変えられそう</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://www.vagrantup.com/docs/other/environmental-variables.html#vagrant_home">VAGRANT_HOME</a></p></li>
-</ul>
 </div>
-<div class="section" id="ssh">
-<div class="header_target" id="h_vagrant_note_index_2erst_9"></div><h1>ハイフンふたつの後は、普通にSSHのオプションを指定できる。</h1>
+<div class="section" id="ssh-port-forwardings">
+<div class="header_target" id="h_ssh_command_ssh_index_2erst_5"></div><h1>ssh トンネル (Port forwardings)</h1>
+<p>ローカルに対するアクセスをリモートに受け流す。</p>
+<p>ファイアウォールの中にあって直接接続できない DB1 に、 server1 を介して接続するときに使う。</p>
 <div class="code-block">
-<div class="highlight"><pre><span></span>$ vagrant ssh -- -A
+<div class="highlight"><pre><span></span><span class="gp">$</span> ssh -fN &lt;踏み台ホスト&gt; -L &lt;ローカルのポート&gt;:&lt;リモートホスト&gt;:&lt;リモートホストのポート&gt;
 </pre></div>
 </div>
-</div>
-<div class="section" id="vmbox">
-<div class="header_target" id="h_vagrant_note_index_2erst_10"></div><h1>VMとboxは違う</h1>
-<pre class="literal-block">vagrant destroy で消えるのは VM 自体、 vagrant box というのは VM 作成の素になるものです。
-VM がインスタンスだとすると、 box はクラス的な。</pre>
-</div>
-<div class="section" id="id7">
-<div class="header_target" id="h_vagrant_note_index_2erst_11"></div><h1>調べる</h1>
 <ul class="simple">
-<li><p>Vagrant Userの鍵認証のところがわからない</p></li>
+<li><p><span class="docutils literal"><span class="pre">-L</span> <span class="pre">[bind_address:]port:host:hostport</span></span> : ローカルへの通信をリモートにバインドする</p></li>
+<li><p><span class="docutils literal"><span class="pre">-N</span></span> : Do not execute a remote command.  This is useful for just forwarding ports.</p></li>
+<li><p><span class="docutils literal"><span class="pre">-f</span></span> : バックグラウンドで実行してね</p></li>
 </ul>
+<div class="section" id="id6">
+<div class="header_target" id="h_ssh_command_ssh_index_2erst_6"></div><h2>参考</h2>
+<p><a class="reference external" href="http://note.crohaco.net/2017/ssh-tunnel/#local-forwarding">http://note.crohaco.net/2017/ssh-tunnel/#local-forwarding</a></p>
 </div>
-<div class="section" id="todo">
-<div class="header_target" id="h_vagrant_note_index_2erst_12"></div><h1>TODO</h1>
-<ul class="simple">
-<li><p>paper から移動する</p></li>
-</ul>
 </div>
     </div>
   </main>
