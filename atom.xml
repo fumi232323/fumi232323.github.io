@@ -1,5 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>32imuf.com</title><link href="https://32imuf.com/" rel="alternate"></link><link href="https://32imuf.com/atom.xml" rel="self"></link><id>https://32imuf.com/</id><updated>2018-10-14T00:00:00+09:00</updated><entry><title>ssh-add</title><link href="https://32imuf.com/ssh/command/ssh-add" rel="alternate"></link><published>2018-10-14T00:00:00+09:00</published><updated>2018-10-14T00:00:00+09:00</updated><id>tag:32imuf.com,2018-10-14:/ssh/command/ssh-add</id><summary type="html">&lt;div class="section" id="id1"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>32imuf.com</title><link href="https://32imuf.com/" rel="alternate"></link><link href="https://32imuf.com/atom.xml" rel="self"></link><id>https://32imuf.com/</id><updated>2018-10-15T00:00:00+09:00</updated><entry><title>ssh-keygen</title><link href="https://32imuf.com/ssh/command/ssh-keygen/" rel="alternate"></link><published>2018-10-15T00:00:00+09:00</published><updated>2018-10-15T00:00:00+09:00</updated><id>tag:32imuf.com,2018-10-15:/ssh/command/ssh-keygen/</id><summary type="html">&lt;div class="section" id="id1"&gt;
+&lt;div class="header_target" id="h_ssh_command_ssh_2dkeygen_index_2erst_1"&gt;&lt;/div&gt;&lt;h1&gt;リファレンス&lt;/h1&gt;
+&lt;p&gt;ubuntu のやつ&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="http://manpages.ubuntu.com/manpages/bionic/en/man1/ssh-keygen.1.html"&gt;ssh-keygen&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;種類やバージョンが選べるやつ&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.freebsd.org/cgi/man.cgi?query=ssh-keygen&amp;amp;apropos=0&amp;amp;sektion=1&amp;amp;manpath=CentOS+6.5&amp;amp;arch=default&amp;amp;format=html"&gt;SSH-KEYGEN(1)&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id3"&gt;
+&lt;div class="header_target" id="h_ssh_command_ssh_2dkeygen_index_2erst_2"&gt;&lt;/div&gt;&lt;h1&gt;ssh-keygen&lt;/h1&gt;
+&lt;p&gt;認証鍵の生成と管理・変換が役割&lt;/p&gt;
+&lt;div class="section" id="id4"&gt;
+&lt;div class="header_target" id="h_ssh_command_ssh_2dkeygen_index_2erst_3"&gt;&lt;/div&gt;&lt;h2&gt;秘密鍵・公開鍵のペアを作る&lt;/h2&gt;
+&lt;div class="code-block"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ ssh-keygen -t rsa
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class="docutils literal"&gt;&lt;span class="pre"&gt;~/.ssh/id_rsa&lt;/span&gt;&lt;/span&gt; (秘密鍵), &lt;span class="docutils literal"&gt;&lt;span class="pre"&gt;~/.ssh/id_rsa.pub&lt;/span&gt;&lt;/span&gt; (公開鍵) にできあがる。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class="docutils literal"&gt;id_rsa&lt;/span&gt; が、秘密鍵(自分で持っておく、復号用)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class="docutils literal"&gt;id_rsa.pub&lt;/span&gt; が、公開鍵(サーバに置く、暗号用)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class="docutils literal"&gt;&lt;span class="pre"&gt;-t&lt;/span&gt; type&lt;/span&gt; : 生成する鍵のタイプを指定できる&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class="docutils literal"&gt;&lt;span class="pre"&gt;-f&lt;/span&gt; output_keyfile&lt;/span&gt; : 出力先ファイルを指定できる&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;</summary></entry><entry><title>ssh-add</title><link href="https://32imuf.com/ssh/command/ssh-add" rel="alternate"></link><published>2018-10-14T00:00:00+09:00</published><updated>2018-10-14T00:00:00+09:00</updated><id>tag:32imuf.com,2018-10-14:/ssh/command/ssh-add</id><summary type="html">&lt;div class="section" id="id1"&gt;
 &lt;div class="header_target" id="h_ssh_command_ssh_2dadd_index_2erst_1"&gt;&lt;/div&gt;&lt;h1&gt;リファレンス&lt;/h1&gt;
 &lt;p&gt;ubuntu のやつ&lt;/p&gt;
 &lt;ul class="simple"&gt;
@@ -202,29 +230,4 @@
 &lt;div class="section" id="git-submodule"&gt;
 &lt;div class="header_target" id="h_git_note_index_2erst_5"&gt;&lt;/div&gt;&lt;h1&gt;git submodule&lt;/h1&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://git-scm.com/book/ja/v2/Git-%E3%81%AE%E3%81%95%E3%81%BE%E3%81%96%E3%81%BE%E3%81%AA%E3%83%84%E3%83%BC%E3%83%AB-%E3%82%B5%E3%83%96%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB"&gt;7.11 Git のさまざまなツール - サブモジュール&lt;/a&gt;&lt;/p&gt;
-&lt;pre class="literal-block"&gt;サブモジュールを使うと、ある Git リポジトリを別の Git リポジトリのサブディレクトリとして扱うことができるようになります。 これで、別のリポジトリをプロジェクト内にクローンしても自分のコミットは別管理とすることができるようになります。&lt;/pre&gt;&lt;/div&gt;</summary></entry><entry><title>Django ORM のメモ</title><link href="https://32imuf.com/django/django_orm/" rel="alternate"></link><published>2018-09-29T00:00:00+09:00</published><updated>2018-09-29T00:00:00+09:00</updated><id>tag:32imuf.com,2018-09-29:/django/django_orm/</id><summary type="html">&lt;div class="section" id="id1"&gt;
-&lt;div class="header_target" id="h_django_django_orm_index_2erst_1"&gt;&lt;/div&gt;&lt;h1&gt;Django ORM&lt;/h1&gt;
-&lt;div class="section" id="aggregate-annotate"&gt;
-&lt;div class="header_target" id="h_django_django_orm_index_2erst_2"&gt;&lt;/div&gt;&lt;h2&gt;aggregate と annotate&lt;/h2&gt;
-&lt;p&gt;&lt;span class="docutils literal"&gt;aggregate&lt;/span&gt; と &lt;span class="docutils literal"&gt;annotate&lt;/span&gt; の違いがわかりやすい&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="http://note.crohaco.net/2014/django-aggregate/"&gt;Djangoの集計について&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="prefetch-related"&gt;
-&lt;div class="header_target" id="h_django_django_orm_index_2erst_3"&gt;&lt;/div&gt;&lt;h2&gt;prefetch_relatedの話&lt;/h2&gt;
-&lt;p&gt;&lt;a class="reference external" href="http://tokibito.hatenablog.com/entry/20140718/1405691738"&gt;Djangoでprefetch_relatedを使ってクエリ数を減らす&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="q-object"&gt;
-&lt;div class="header_target" id="h_django_django_orm_index_2erst_4"&gt;&lt;/div&gt;&lt;h2&gt;Q Object&lt;/h2&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://docs.djangoproject.com/ja/1.11/ref/models/querysets/#q-objects"&gt;Q() objects&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://docs.djangoproject.com/ja/1.11/topics/db/queries/#complex-lookups-with-q"&gt;Q オブジェクトを用いた複雑な検索&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;クエリの検索条件を作ることができる&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;span class="docutils literal"&gt;OR&lt;/span&gt; を表現したいときはこれを使う&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;e.g.&lt;/p&gt;
-&lt;div class="code-block"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;queryset&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;queryset&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-    &lt;span class="n"&gt;Q&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name__contains&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;
-    &lt;span class="n"&gt;Q&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;username__contains&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;</summary></entry></feed>
+&lt;pre class="literal-block"&gt;サブモジュールを使うと、ある Git リポジトリを別の Git リポジトリのサブディレクトリとして扱うことができるようになります。 これで、別のリポジトリをプロジェクト内にクローンしても自分のコミットは別管理とすることができるようになります。&lt;/pre&gt;&lt;/div&gt;</summary></entry></feed>

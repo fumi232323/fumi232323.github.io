@@ -252,6 +252,10 @@
           <ul>
             
               <li class="nav-article">
+                <a href="../command/ssh-keygen/">ssh-keygen</a>
+              </li>
+            
+              <li class="nav-article">
                 <a href="../command/ssh-add">ssh-add</a>
               </li>
             
@@ -313,7 +317,7 @@
       </a>
     </div>
     <div class="text">
-      <p>TODO: ssh-keygen と残りとで、メモをふたつに分けようと思う</p>
+      <p>TODO: ssh-keygen は分離したので、残りを整理する。</p>
 <div class="section" id="id1">
 <div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_1"></div><h1>何が起こったか</h1>
 <p>サーバーに ssh 接続しようとしたら、こんなエラーが出た。</p>
@@ -386,142 +390,8 @@ Last login: Fri Jul <span class="m">13</span> <span class="m">15</span>:43:09 <s
 </li>
 <li><p>接続できました。</p></li>
 </ol>
-</div>
-<div class="section" id="id4">
-<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_4"></div><h1>ssh-keygen のおさらい</h1>
-<div class="section" id="id5">
-<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_5"></div><h2>何者か</h2>
-<p>認証鍵の生成と管理・変換が役割。</p>
-</div>
-<div class="section" id="id6">
-<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_6"></div><h2>サーバ側の公開鍵の置き場所</h2>
-<p>$HOME/.ssh/authorized_keys</p>
-</div>
-<div class="section" id="id7">
-<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_7"></div><h2>秘密鍵・公開鍵のペアを作る</h2>
-<div class="code-block">
-<div class="highlight"><pre><span></span>$ ssh-keygen -t rsa
-</pre></div>
-</div>
-<ul class="simple">
-<li><p><span class="docutils literal"><span class="pre">~/.ssh/id_rsa</span></span> (秘密鍵), <span class="docutils literal"><span class="pre">~/.ssh/id_rsa.pub</span></span> (公開鍵) にできあがる。</p>
-<ul>
-<li><p><span class="docutils literal">id_rsa</span> が、秘密鍵(自分で持っておく、復号用)</p></li>
-<li><p><span class="docutils literal">id_rsa.pub</span> が、公開鍵(サーバに置く、暗号用)</p></li>
-</ul>
-</li>
-<li><p><span class="docutils literal"><span class="pre">-t</span> type</span> で、生成する鍵のタイプを指定できる。</p></li>
-<li><p><span class="docutils literal"><span class="pre">-f</span> output_keyfile</span> で、出力先ファイルを指定できる。</p></li>
-<li><p><span class="docutils literal"><span class="pre">-N</span> new_passphrase</span> で、パスフレーズ（鍵の鍵みたいなやつ）を指定できる。後からでもつけられる。</p></li>
-</ul>
-</div>
-<div class="section" id="id8">
-<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_8"></div><h2>秘密鍵から公開鍵を取り出す</h2>
-<div class="code-block">
-<div class="highlight"><pre><span></span>$ ssh-keygen -y -f private_key_file
-</pre></div>
-</div>
-<div class="section" id="id9">
-<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_9"></div><h3>ためしてみる</h3>
-<ol class="arabic simple">
-<li><p>カレントディレクトリに、↓で rsa 鍵のペアを作成する。</p></li>
-</ol>
-<blockquote>
-<ul>
-<li><p>ファイル名: <span class="docutils literal">id_rsa_test1</span></p></li>
-<li><p>コメント: <span class="docutils literal">fumi23</span></p></li>
-<li><p>パスフレーズ: <span class="docutils literal">fumi23</span></p>
-<div class="code-block">
-<div class="highlight"><pre><span></span>$ ssh-keygen -t rsa -f id_rsa_test1 -C fumi23
-Generating public/private rsa key pair.
-Enter passphrase <span class="o">(</span>empty <span class="k">for</span> no passphrase<span class="o">)</span>: <span class="o">(</span>ここで <span class="sb">``</span>fumi23<span class="sb">``</span> と入力した<span class="o">)</span>
-Enter same passphrase again:  <span class="o">(</span>ここで <span class="sb">``</span>fumi23<span class="sb">``</span> と入力した<span class="o">)</span>
-Your identification has been saved in id_rsa_test1.
-Your public key has been saved in id_rsa_test1.pub.
-The key fingerprint is:
-SHA256:1WfZC2LtB0bkllFW1bTmSpleRbR+QSnARuYFvT7kLC0 fumi23
-The key<span class="err">'</span>s randomart image is:
-+---<span class="o">[</span>RSA <span class="m">2048</span><span class="o">]</span>----+
-<span class="p">|</span>          <span class="nv">o</span><span class="o">===</span>.*@<span class="p">|</span>
-<span class="p">|</span>          <span class="nv">o</span><span class="o">+=</span><span class="nv">o</span><span class="o">==</span>+<span class="p">|</span>
-<span class="p">|</span>          o+.O*<span class="o">=</span>o<span class="p">|</span>
-<span class="p">|</span>         .. <span class="o">==</span>O +<span class="p">|</span>
-<span class="p">|</span>        S   *<span class="o">=</span> *.<span class="p">|</span>
-<span class="p">|</span>           Eo*+ .<span class="p">|</span>
-<span class="p">|</span>            oo.  <span class="p">|</span>
-<span class="p">|</span>                 <span class="p">|</span>
-<span class="p">|</span>                 <span class="p">|</span>
-+----<span class="o">[</span>SHA256<span class="o">]</span>-----+
-</pre></div>
-</div>
-</li>
-</ul>
-</blockquote>
-<ol class="arabic" start="2">
-<li><p>できあがった。</p>
-<blockquote>
-<div class="code-block">
-<div class="highlight"><pre><span></span>$ ls -la
--rw-------   <span class="m">1</span> fumi23  staff   <span class="m">1766</span>  <span class="m">8</span>  <span class="m">5</span> <span class="m">16</span>:40 id_rsa_test1
--rw-r--r--   <span class="m">1</span> fumi23  staff    <span class="m">388</span>  <span class="m">8</span>  <span class="m">5</span> <span class="m">16</span>:40 id_rsa_test1.pub
-</pre></div>
-</div>
-</blockquote>
-</li>
-<li><p>公開鍵の中身を見てみる。</p>
-<blockquote>
-<p>末尾にコメントとして指定した文字列が付与されている。</p>
-<div class="code-block">
-<div class="highlight"><pre><span></span>$ cat id_rsa_test1.pub
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDfq5BPUHIRnrxBX1b3sp8OFTzFh3k9e1VZ3OXlRQRAKPTJlwdMR0apIatgq4KocFTTc4EKBksOVxOJShG1iVcUNFkhQ0kxpHTMyPHMyQdgpWAqaF5REOKMCI111xWgEC166zLUwZ1SdOHi/p2+5oDFhElsyjprro66o+uVluCD1VmfWORYYZlrMyUTtbdzHOO8xyT4k+yVMnuDJSLgfSGkCA/gXUi9vCqJf0p5iRt1owf520DSLLnkE5Cu9QxIdGDEBbS8lq53oJm5DyOcSXn+V2vKBv6pfjh+TJJNZ6PClrRI7Zk/aZFAkB/9XgqErbhU6mkHWWO9vmRavJh8Wspd fumi23
-</pre></div>
-</div>
-</blockquote>
-</li>
-<li><p>秘密鍵から公開鍵を取り出してみる。</p>
-<blockquote>
-<p>パスフレーズを聞かれる。 3 と同じ公開鍵が取り出せた。</p>
-<div class="code-block">
-<div class="highlight"><pre><span></span>$ ssh-keygen -y -f id_rsa_test1
-Enter passphrase: <span class="o">(</span>ここで <span class="sb">``</span>fumi23<span class="sb">``</span> と入力した<span class="o">)</span>
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDfq5BPUHIRnrxBX1b3sp8OFTzFh3k9e1VZ3OXlRQRAKPTJlwdMR0apIatgq4KocFTTc4EKBksOVxOJShG1iVcUNFkhQ0kxpHTMyPHMyQdgpWAqaF5REOKMCI111xWgEC166zLUwZ1SdOHi/p2+5oDFhElsyjprro66o+uVluCD1VmfWORYYZlrMyUTtbdzHOO8xyT4k+yVMnuDJSLgfSGkCA/gXUi9vCqJf0p5iRt1owf520DSLLnkE5Cu9QxIdGDEBbS8lq53oJm5DyOcSXn+V2vKBv6pfjh+TJJNZ6PClrRI7Zk/aZFAkB/9XgqErbhU6mkHWWO9vmRavJh8Wspd
-</pre></div>
-</div>
-</blockquote>
-</li>
-<li><p>公開鍵のほうは、RSA認証で接続したいサーバーの <span class="docutils literal"><span class="pre">~/.ssh/authorized_keys</span></span> に追記する。(サーバーを持っていないので、した気になる。)</p></li>
-</ol>
-</div>
-</div>
 <div class="section" id="fingerprint">
-<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_10"></div><h2>公開鍵から fingerprint を表示</h2>
-<p>fingerprint は、公開鍵にくっついているものらしい。</p>
-<ul>
-<li><p>カレントディレクトリ配下の公開鍵ファイルを指定して表示</p>
-<div class="code-block">
-<div class="highlight"><pre><span></span>$ ssh-keygen -l -f id_rsa_test1.pub
-<span class="m">2048</span> SHA256:1WfZC2LtB0bkllFW1bTmSpleRbR+QSnARuYFvT7kLC0 fumi23 <span class="o">(</span>RSA<span class="o">)</span>
-</pre></div>
-</div>
-</li>
-<li><p>秘密鍵を指定すると、ペアとなる公開鍵を探してその fingerprint を表示してくれる。</p>
-<div class="code-block">
-<div class="highlight"><pre><span></span>$ ssh-keygen -l -f id_rsa_test1
-<span class="m">2048</span> SHA256:1WfZC2LtB0bkllFW1bTmSpleRbR+QSnARuYFvT7kLC0 fumi23 <span class="o">(</span>RSA<span class="o">)</span>
-</pre></div>
-</div>
-</li>
-</ul>
-</div>
-<div class="section" id="known-hosts-file">
-<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_11"></div><h2>known_hosts file からキーを削除</h2>
-<div class="code-block">
-<div class="highlight"><pre><span></span>$ ssh-keygen -R hostname <span class="o">[</span>-f known_hosts_file<span class="o">]</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="id10">
-<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_12"></div><h2>fingerprint とは何ですか</h2>
+<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_4"></div><h2>fingerprint とは何ですか</h2>
 <ul>
 <li><p>流れとしては、</p>
 <ol class="arabic">
@@ -574,14 +444,14 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDfq5BPUHIRnrxBX1b3sp8OFTzFh3k9e1VZ3OXlRQRA
 <p>TODO: あした、↑たしかめよう</p>
 </div>
 </div>
-<div class="section" id="id11">
-<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_13"></div><h1>宿題</h1>
+<div class="section" id="id4">
+<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_5"></div><h1>宿題</h1>
 <ul class="simple">
 <li><p><span class="docutils literal">中間者攻撃</span> とは何ですか。</p></li>
 </ul>
 </div>
-<div class="section" id="id12">
-<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_14"></div><h1>参考にしたサイト</h1>
+<div class="section" id="id5">
+<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_6"></div><h1>参考にしたサイト</h1>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.freebsd.org/cgi/man.cgi?query=ssh-keygen&amp;apropos=0&amp;sektion=1&amp;manpath=CentOS+6.5&amp;arch=default&amp;format=html">SSH-KEYGEN(1)</a></p></li>
 <li><p><a class="reference external" href="http://note.crohaco.net/2014/public-key-basic-config/">秘密鍵/公開鍵の基本的な設定</a></p></li>

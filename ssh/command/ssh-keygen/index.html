@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>『Python プロフェッショナル プログラミング 第3版』 読書会のメモ: 第一回/32imuf.com</title>
+    <title>ssh-keygen/32imuf.com</title>
     <link rel="shortcut icon" href="/static/icons/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Griffy" rel="stylesheet">
     <link href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css" rel="stylesheet" />
@@ -252,15 +252,15 @@
           <ul>
             
               <li class="nav-article">
-                <a href="../../../ssh/command/ssh-keygen/">ssh-keygen</a>
+                <a href="./">ssh-keygen</a>
               </li>
             
               <li class="nav-article">
-                <a href="../../../ssh/command/ssh-add">ssh-add</a>
+                <a href="../ssh-add">ssh-add</a>
               </li>
             
               <li class="nav-article">
-                <a href="../../../ssh/command/ssh">ssh のメモ</a>
+                <a href="../ssh">ssh のメモ</a>
               </li>
             
           </ul>
@@ -306,155 +306,163 @@
   </nav>
 </header></div>
       <div class="main">
-  <main class="item item-article item-book">
-    <time class="date" datetime="2018-08-29 00:00:00+09:00">
-      2018-08-29 Wed
+  <main class="item item-article item-ssh">
+    <time class="date" datetime="2018-10-15 00:00:00+09:00">
+      2018-10-15 Mon
     </time>
-    <div class="title">『Python プロフェッショナル プログラミング 第3版』 読書会のメモ: 第一回</div>
+    <div class="title">ssh-keygen</div>
     <div class="category">
-      <a href="/index_category_category_book.html">
-          book
+      <a href="/index_category_category_ssh.html">
+          ssh
       </a>
     </div>
     <div class="text">
       <div class="section" id="id1">
-<div class="header_target" id="h_pypro3_reading_2dassociation_1_index_2erst_1"></div><h1>1章</h1>
-<div class="section" id="id2">
-<div class="header_target" id="h_pypro3_reading_2dassociation_1_index_2erst_2"></div><h2>目的</h2>
+<div class="header_target" id="h_ssh_command_ssh_2dkeygen_index_2erst_1"></div><h1>リファレンス</h1>
+<p>ubuntu のやつ</p>
 <ul class="simple">
-<li><p>個人で、Python を使って開発を始めるための準備はこれです。</p></li>
-<li><p>Python で開発するための環境構築</p></li>
+<li><p><a class="reference external" href="http://manpages.ubuntu.com/manpages/bionic/en/man1/ssh-keygen.1.html">ssh-keygen</a></p></li>
+</ul>
+<p>種類やバージョンが選べるやつ</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.freebsd.org/cgi/man.cgi?query=ssh-keygen&amp;apropos=0&amp;sektion=1&amp;manpath=CentOS+6.5&amp;arch=default&amp;format=html">SSH-KEYGEN(1)</a></p></li>
 </ul>
 </div>
 <div class="section" id="id3">
-<div class="header_target" id="h_pypro3_reading_2dassociation_1_index_2erst_3"></div><h2>ポイント</h2>
-<ul class="simple">
-<li><p>仮想環境</p></li>
-<li><p>Python を仕事で使う上で必要な環境について、まずはひととおり、薄く、説明している。</p></li>
-<li><p>インストールの仕方、いくつかある</p></li>
-<li><p>パッケージ管理ツール</p></li>
-<li><p>エディター (社内でも紛糾)</p></li>
-</ul>
-</div>
+<div class="header_target" id="h_ssh_command_ssh_2dkeygen_index_2erst_2"></div><h1>ssh-keygen</h1>
+<p>認証鍵の生成と管理・変換が役割</p>
 <div class="section" id="id4">
-<div class="header_target" id="h_pypro3_reading_2dassociation_1_index_2erst_4"></div><h2>気になったこと</h2>
-<ul class="simple">
-<li><p>Git が増えてる</p></li>
-</ul>
+<div class="header_target" id="h_ssh_command_ssh_2dkeygen_index_2erst_3"></div><h2>秘密鍵・公開鍵のペアを作る</h2>
+<div class="code-block">
+<div class="highlight"><pre><span></span>$ ssh-keygen -t rsa
+</pre></div>
 </div>
-<div class="section" id="id5">
-<div class="header_target" id="h_pypro3_reading_2dassociation_1_index_2erst_5"></div><h2>質問と回答</h2>
 <ul class="simple">
-<li><p>Redhat CentOS</p>
+<li><p><span class="docutils literal"><span class="pre">~/.ssh/id_rsa</span></span> (秘密鍵), <span class="docutils literal"><span class="pre">~/.ssh/id_rsa.pub</span></span> (公開鍵) にできあがる。</p>
 <ul>
-<li><p>保証期間が長いので、有償もある、という理由で使うこともある。</p></li>
+<li><p><span class="docutils literal">id_rsa</span> が、秘密鍵(自分で持っておく、復号用)</p></li>
+<li><p><span class="docutils literal">id_rsa.pub</span> が、公開鍵(サーバに置く、暗号用)</p></li>
 </ul>
 </li>
-<li><p>2011年ごろ ubuntu 楽に使える</p></li>
-<li><p>サーバー用途で使うことはない</p></li>
-<li><p>自動で行う場合もある</p></li>
-<li><p>コマンドをうつ、初心者向けなので、大事</p></li>
-<li><p>仕事でやるときは、自動化する (ansible)</p></li>
-<li><p>BP は多い</p></li>
-<li><p>Docker でやることも多い(tell-kさん)</p></li>
-<li><p><cite>virtualenv</cite> が公式に取り込まれたのが、 <cite>venv</cite></p></li>
-<li><p><cite>pipenv</cite> 公式のおすすめ</p></li>
-<li><p><cite>git init</cite> は <cite>readme</cite> のあるところでやるのが多い</p></li>
-<li><p>tell-k さんは vim 使い</p>
-<ul>
-<li><p>サーバーにはだいたい入ってるだろう</p></li>
-<li><p>環境によっては、IDE使えないからねの理由</p></li>
+<li><p><span class="docutils literal"><span class="pre">-t</span> type</span> : 生成する鍵のタイプを指定できる</p></li>
+<li><p><span class="docutils literal"><span class="pre">-f</span> output_keyfile</span> : 出力先ファイルを指定できる</p></li>
+<li><p><span class="docutils literal"><span class="pre">-N</span> new_passphrase</span> : パスフレーズ（鍵の鍵みたいなやつ）を指定できる。後からでもつけられる。</p></li>
+<li><p><span class="docutils literal"><span class="pre">-C</span> comment</span> : コメント</p></li>
 </ul>
-</li>
-<li><p>shimizukawa さんの pycon の資料がよい PyCharm</p></li>
-<li><p>VSCord</p></li>
-<li><p>秘伝のたれ vagrant ほんとにいいの？いいとは言い切れない。</p>
-<ul>
-<li><p>手順をテキストで用意して、おまけで vagrant の自動化</p></li>
-<li><p>OS が選べるので、 vagrant 用意しとけば誰でも使えるよみたいな</p></li>
-</ul>
-</li>
-</ul>
+<div class="section" id="id5">
+<div class="header_target" id="h_ssh_command_ssh_2dkeygen_index_2erst_4"></div><h3>サーバ側の公開鍵の置き場所</h3>
+<p>$HOME/.ssh/authorized_keys</p>
 </div>
 </div>
 <div class="section" id="id6">
-<div class="header_target" id="h_pypro3_reading_2dassociation_1_index_2erst_6"></div><h1>2章</h1>
+<div class="header_target" id="h_ssh_command_ssh_2dkeygen_index_2erst_5"></div><h2>秘密鍵から公開鍵を取り出す</h2>
+<div class="code-block">
+<div class="highlight"><pre><span></span>$ ssh-keygen -y -f private_key_file
+</pre></div>
+</div>
+</div>
+<div class="section" id="fingerprint">
+<div class="header_target" id="h_ssh_command_ssh_2dkeygen_index_2erst_6"></div><h2>公開鍵から fingerprint を表示</h2>
+<p>fingerprint は、公開鍵にくっついているものらしい。</p>
+<ul>
+<li><p>カレントディレクトリ配下の公開鍵ファイルを指定して表示</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span>$ ssh-keygen -l -f id_rsa_test1.pub
+<span class="m">2048</span> SHA256:1WfZC2LtB0bkllFW1bTmSpleRbR+QSnARuYFvT7kLC0 fumi23 <span class="o">(</span>RSA<span class="o">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>秘密鍵を指定すると、ペアとなる公開鍵を探してその fingerprint を表示してくれる。</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span>$ ssh-keygen -l -f id_rsa_test1
+<span class="m">2048</span> SHA256:1WfZC2LtB0bkllFW1bTmSpleRbR+QSnARuYFvT7kLC0 fumi23 <span class="o">(</span>RSA<span class="o">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="known-hosts-file">
+<div class="header_target" id="h_ssh_command_ssh_2dkeygen_index_2erst_7"></div><h2>known_hosts file からキーを削除</h2>
+<div class="code-block">
+<div class="highlight"><pre><span></span>$ ssh-keygen -R hostname <span class="o">[</span>-f known_hosts_file<span class="o">]</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="id7">
-<div class="header_target" id="h_pypro3_reading_2dassociation_1_index_2erst_7"></div><h2>目的</h2>
-<ul class="simple">
-<li><p>Web アプリケーションのとはどういうものか、仕組みを知る。</p></li>
-<li><p>Web アプリケーション開発の流れを把握する。</p></li>
-<li><p>Python, フレームワーク を使って、簡単な Web アプリの作り方</p></li>
-</ul>
+<div class="header_target" id="h_ssh_command_ssh_2dkeygen_index_2erst_8"></div><h2>ためしてみる</h2>
+<ol class="arabic simple">
+<li><p>カレントディレクトリに、↓で rsa 鍵のペアを作成する。</p></li>
+</ol>
+<blockquote>
+<ul>
+<li><p>ファイル名: <span class="docutils literal">id_rsa_test1</span></p></li>
+<li><p>コメント: <span class="docutils literal">fumi23</span></p></li>
+<li><p>パスフレーズ: <span class="docutils literal">fumi23</span></p>
+<div class="code-block">
+<div class="highlight"><pre><span></span>$ ssh-keygen -t rsa -f id_rsa_test1 -C fumi23
+Generating public/private rsa key pair.
+Enter passphrase <span class="o">(</span>empty <span class="k">for</span> no passphrase<span class="o">)</span>: <span class="o">(</span>ここで <span class="sb">``</span>fumi23<span class="sb">``</span> と入力した<span class="o">)</span>
+Enter same passphrase again:  <span class="o">(</span>ここで <span class="sb">``</span>fumi23<span class="sb">``</span> と入力した<span class="o">)</span>
+Your identification has been saved in id_rsa_test1.
+Your public key has been saved in id_rsa_test1.pub.
+The key fingerprint is:
+SHA256:1WfZC2LtB0bkllFW1bTmSpleRbR+QSnARuYFvT7kLC0 fumi23
+The key<span class="err">'</span>s randomart image is:
++---<span class="o">[</span>RSA <span class="m">2048</span><span class="o">]</span>----+
+<span class="p">|</span>          <span class="nv">o</span><span class="o">===</span>.*@<span class="p">|</span>
+<span class="p">|</span>          <span class="nv">o</span><span class="o">+=</span><span class="nv">o</span><span class="o">==</span>+<span class="p">|</span>
+<span class="p">|</span>          o+.O*<span class="o">=</span>o<span class="p">|</span>
+<span class="p">|</span>         .. <span class="o">==</span>O +<span class="p">|</span>
+<span class="p">|</span>        S   *<span class="o">=</span> *.<span class="p">|</span>
+<span class="p">|</span>           Eo*+ .<span class="p">|</span>
+<span class="p">|</span>            oo.  <span class="p">|</span>
+<span class="p">|</span>                 <span class="p">|</span>
+<span class="p">|</span>                 <span class="p">|</span>
++----<span class="o">[</span>SHA256<span class="o">]</span>-----+
+</pre></div>
 </div>
+</li>
+</ul>
+</blockquote>
+<ol class="arabic" start="2">
+<li><p>できあがった。</p>
+<blockquote>
+<p>カレントディレクトリに、秘密鍵ファイルと公開鍵ファイルが作成できた。</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span>$ ls -la
+-rw-------   <span class="m">1</span> fumi23  staff   <span class="m">1766</span>  <span class="m">8</span>  <span class="m">5</span> <span class="m">16</span>:40 id_rsa_test1
+-rw-r--r--   <span class="m">1</span> fumi23  staff    <span class="m">388</span>  <span class="m">8</span>  <span class="m">5</span> <span class="m">16</span>:40 id_rsa_test1.pub
+</pre></div>
+</div>
+</blockquote>
+</li>
+<li><p>公開鍵の中身を見てみる。</p>
+<blockquote>
+<p>末尾にコメントとして指定した文字列が付与されている。</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span>$ cat id_rsa_test1.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDfq5BPUHIRnrxBX1b3sp8OFTzFh3k9e1VZ3OXlRQRAKPTJlwdMR0apIatgq4KocFTTc4EKBksOVxOJShG1iVcUNFkhQ0kxpHTMyPHMyQdgpWAqaF5REOKMCI111xWgEC166zLUwZ1SdOHi/p2+5oDFhElsyjprro66o+uVluCD1VmfWORYYZlrMyUTtbdzHOO8xyT4k+yVMnuDJSLgfSGkCA/gXUi9vCqJf0p5iRt1owf520DSLLnkE5Cu9QxIdGDEBbS8lq53oJm5DyOcSXn+V2vKBv6pfjh+TJJNZ6PClrRI7Zk/aZFAkB/9XgqErbhU6mkHWWO9vmRavJh8Wspd fumi23
+</pre></div>
+</div>
+</blockquote>
+</li>
+<li><p>秘密鍵から公開鍵を取り出してみる。</p>
+<blockquote>
+<p>パスフレーズを聞かれる。 3 と同じ公開鍵が取り出せた。</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span>$ ssh-keygen -y -f id_rsa_test1
+Enter passphrase: <span class="o">(</span>ここで <span class="sb">``</span>fumi23<span class="sb">``</span> と入力した<span class="o">)</span>
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDfq5BPUHIRnrxBX1b3sp8OFTzFh3k9e1VZ3OXlRQRAKPTJlwdMR0apIatgq4KocFTTc4EKBksOVxOJShG1iVcUNFkhQ0kxpHTMyPHMyQdgpWAqaF5REOKMCI111xWgEC166zLUwZ1SdOHi/p2+5oDFhElsyjprro66o+uVluCD1VmfWORYYZlrMyUTtbdzHOO8xyT4k+yVMnuDJSLgfSGkCA/gXUi9vCqJf0p5iRt1owf520DSLLnkE5Cu9QxIdGDEBbS8lq53oJm5DyOcSXn+V2vKBv6pfjh+TJJNZ6PClrRI7Zk/aZFAkB/9XgqErbhU6mkHWWO9vmRavJh8Wspd
+</pre></div>
+</div>
+</blockquote>
+</li>
+<li><p>公開鍵のほうは、RSA認証で接続したいサーバーの <span class="docutils literal"><span class="pre">~/.ssh/authorized_keys</span></span> に追記する。</p></li>
+</ol>
 <div class="section" id="id8">
-<div class="header_target" id="h_pypro3_reading_2dassociation_1_index_2erst_8"></div><h2>ポイント</h2>
-<ul class="simple">
-<li><p>いきなりプログラム書かないよ、どういうものを作るかちゃんか考える</p></li>
-<li><p>セキュリティ、Xss</p>
-<ul>
-<li><p>初心者やりがち</p></li>
-</ul>
-</li>
-<li><p>仮想環境で開発しよう</p></li>
-<li><p>フレームワーク</p></li>
-<li><p>テンプレートエンジン</p></li>
-</ul>
+<div class="header_target" id="h_ssh_command_ssh_2dkeygen_index_2erst_9"></div><h3>参考</h3>
+<p><a class="reference external" href="http://note.crohaco.net/2014/public-key-basic-config/">http://note.crohaco.net/2014/public-key-basic-config/</a></p>
 </div>
-<div class="section" id="id9">
-<div class="header_target" id="h_pypro3_reading_2dassociation_1_index_2erst_9"></div><h2>気になったこと</h2>
-<ul class="simple">
-<li><p>乗りログになってる！！</p></li>
-<li><p>Python, Django (?) での、 web サーバーとアプリケーションサーバーのところがようわからん・・</p>
-<ul>
-<li><p>WSGI って・・・？</p></li>
-<li><p>プロトコルだったの...</p></li>
-</ul>
-</li>
-</ul>
-</div>
-<div class="section" id="id10">
-<div class="header_target" id="h_pypro3_reading_2dassociation_1_index_2erst_10"></div><h2>質問と回答</h2>
-<ul class="simple">
-<li><p>Python 使う、選ぶ理由</p>
-<ul>
-<li><p>オールラウンドの言語</p></li>
-<li><p>日本ではなく、世界で一般的に使われている</p></li>
-<li><p>たくさんライブラリがある</p></li>
-<li><p>今はたまたま数学系のライブラリが今一番豊富なので、当たりの状態</p></li>
-<li><p>やってる人が多いと、質問しやすい、勉強会、書籍も豊富</p></li>
-<li><p>マルチプロセス、マルチスレッドは大苦手。</p></li>
-</ul>
-</li>
-<li><p>Django と Flask の使いわけ</p>
-<ul>
-<li><p>Django では少ないページ数に治らない。</p></li>
-<li><p>BP では、実案件はほとんど Django を使っている。</p></li>
-<li><p>最初は小さくても、そのうち育っていくと可能性があるから。</p></li>
-<li><p>手元でちょっとつくってみたいときとかに使う</p></li>
-<li><p>シンプルなものをシンプルに作りたい、提供したいときに使う</p></li>
-<li><p>大きいものは、Django。オレオレルールを整理して最初から整えられてるのは Django。</p></li>
-<li><p>Django は、フルスタック。</p></li>
-<li><p>セッション</p></li>
-<li><p>Django はいろいろついてる。</p></li>
-<li><p>Flask はついてない。プロで、色々自分で選んでくっつけたい場合はよいけど。</p></li>
-</ul>
-</li>
-<li><p>フロント系のライブラリ</p>
-<ul>
-<li><p>vue.js が多い。なくすとJS、ラッピングしてフルスタック、リアクトも。</p></li>
-<li><p>SEO 気にすると。シングルページアプリケーション。</p></li>
-<li><p>サーバーサイドレンダリング</p></li>
-<li><p>Web のサイトを簡単に</p></li>
-<li><p>API サーバーとして Django 使う。 ORM として使う。</p></li>
-<li><p>djangorestframework と組み合わせることが多い。</p></li>
-<li><p>JQuery はあまり使いたくない。</p></li>
-<li><p>画像処理を GO で書き換える。</p></li>
-<li><p>パフォーマンスきついとき、 Python + Django だときついときある。</p></li>
-</ul>
-</li>
-<li><p>auto pep 8 フォーマット 自動的にフォーマット vim フォーマッティングしてくれるプラグインある。</p></li>
-</ul>
 </div>
 </div>
     </div>
