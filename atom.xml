@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>32imuf.com</title><link href="https://32imuf.com/" rel="alternate"></link><link href="https://32imuf.com/atom.xml" rel="self"></link><id>https://32imuf.com/</id><updated>2018-10-15T00:00:00+09:00</updated><entry><title>ssh-keygen</title><link href="https://32imuf.com/ssh/command/ssh-keygen/" rel="alternate"></link><published>2018-10-15T00:00:00+09:00</published><updated>2018-10-15T00:00:00+09:00</updated><id>tag:32imuf.com,2018-10-15:/ssh/command/ssh-keygen/</id><summary type="html">&lt;div class="section" id="id1"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>32imuf.com</title><link href="https://32imuf.com/" rel="alternate"></link><link href="https://32imuf.com/atom.xml" rel="self"></link><id>https://32imuf.com/</id><updated>2018-10-18T00:00:00+09:00</updated><entry><title>stylus を使う</title><link href="https://32imuf.com/html-css/stylus/" rel="alternate"></link><published>2018-10-18T00:00:00+09:00</published><updated>2018-10-18T00:00:00+09:00</updated><id>tag:32imuf.com,2018-10-18:/html-css/stylus/</id><summary type="html">&lt;div class="section" id="id1"&gt;
+&lt;div class="header_target" id="h_html_2dcss_stylus_index_2erst_1"&gt;&lt;/div&gt;&lt;h1&gt;リファレンス&lt;/h1&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://stylus-lang.com/"&gt;http://stylus-lang.com/&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id2"&gt;
+&lt;div class="header_target" id="h_html_2dcss_stylus_index_2erst_2"&gt;&lt;/div&gt;&lt;h1&gt;インストール&lt;/h1&gt;
+&lt;ol class="arabic"&gt;
+&lt;li&gt;&lt;p&gt;インストールガイド&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://stylus-lang.com/#get-styling-with-stylus"&gt;http://stylus-lang.com/#get-styling-with-stylus&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Node.js をインストールする&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://nodejs.org/en/"&gt;https://nodejs.org/en/&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;ガイドに書いてある通りにコマンドを実行する。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;div class="code-block"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo npm install stylus -g
+&lt;span class="go"&gt;/usr/local/bin/stylus -&amp;gt; /usr/local/lib/node_modules/stylus/bin/stylus&lt;/span&gt;
+&lt;span class="go"&gt;+ stylus@0.54.5&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;/blockquote&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;</summary></entry><entry><title>ssh-keygen</title><link href="https://32imuf.com/ssh/command/ssh-keygen/" rel="alternate"></link><published>2018-10-15T00:00:00+09:00</published><updated>2018-10-15T00:00:00+09:00</updated><id>tag:32imuf.com,2018-10-15:/ssh/command/ssh-keygen/</id><summary type="html">&lt;div class="section" id="id1"&gt;
 &lt;div class="header_target" id="h_ssh_command_ssh_2dkeygen_index_2erst_1"&gt;&lt;/div&gt;&lt;h1&gt;リファレンス&lt;/h1&gt;
 &lt;p&gt;ubuntu のやつ&lt;/p&gt;
 &lt;ul class="simple"&gt;
@@ -209,25 +231,4 @@
 &lt;blockquote&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;p&gt;Enable Django Support: &lt;span class="docutils literal"&gt;ON&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Django project root: &lt;span class="docutils literal"&gt;apps&lt;/span&gt; ( &lt;cite&gt;settings.py および manage.py ファイルを格納するディレクトリ&lt;/cite&gt;&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/blockquote&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;&lt;/div&gt;</summary></entry><entry><title>Git のメモ</title><link href="https://32imuf.com/git/note/" rel="alternate"></link><published>2018-09-30T00:00:00+09:00</published><updated>2018-09-30T00:00:00+09:00</updated><id>tag:32imuf.com,2018-09-30:/git/note/</id><summary type="html">&lt;div class="section" id="gitgithub"&gt;
-&lt;div class="header_target" id="h_git_note_index_2erst_1"&gt;&lt;/div&gt;&lt;h1&gt;GitとGitHubは別物&lt;/h1&gt;
-&lt;div class="section" id="id1"&gt;
-&lt;div class="header_target" id="h_git_note_index_2erst_2"&gt;&lt;/div&gt;&lt;h2&gt;Git&lt;/h2&gt;
-&lt;p&gt;バージョン管理システム(VCS)。時間の経過ととともに加えられる変更を記録し、特定のバージョンを呼び出したりする。&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="github"&gt;
-&lt;div class="header_target" id="h_git_note_index_2erst_3"&gt;&lt;/div&gt;&lt;h2&gt;GitHub&lt;/h2&gt;
-&lt;p&gt;Gitで作成したリポジトリをホスティングするためのWebサービス。名前の通りGitを使うHub(拠点)になる場所。&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="section" id="id2"&gt;
-&lt;div class="header_target" id="h_git_note_index_2erst_4"&gt;&lt;/div&gt;&lt;h1&gt;Gitの基本&lt;/h1&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://git-scm.com/book/ja/v2/%E4%BD%BF%E3%81%84%E5%A7%8B%E3%82%81%E3%82%8B-Git%E3%81%AE%E5%9F%BA%E6%9C%AC"&gt;1.3 使い始める - Gitの基本&lt;/a&gt;&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;スナップショットで、差分ではない&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="git-submodule"&gt;
-&lt;div class="header_target" id="h_git_note_index_2erst_5"&gt;&lt;/div&gt;&lt;h1&gt;git submodule&lt;/h1&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://git-scm.com/book/ja/v2/Git-%E3%81%AE%E3%81%95%E3%81%BE%E3%81%96%E3%81%BE%E3%81%AA%E3%83%84%E3%83%BC%E3%83%AB-%E3%82%B5%E3%83%96%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB"&gt;7.11 Git のさまざまなツール - サブモジュール&lt;/a&gt;&lt;/p&gt;
-&lt;pre class="literal-block"&gt;サブモジュールを使うと、ある Git リポジトリを別の Git リポジトリのサブディレクトリとして扱うことができるようになります。 これで、別のリポジトリをプロジェクト内にクローンしても自分のコミットは別管理とすることができるようになります。&lt;/pre&gt;&lt;/div&gt;</summary></entry></feed>
+&lt;li&gt;&lt;p&gt;Django project root: &lt;span class="docutils literal"&gt;apps&lt;/span&gt; ( &lt;cite&gt;settings.py および manage.py ファイルを格納するディレクトリ&lt;/cite&gt;&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/blockquote&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;&lt;/div&gt;</summary></entry></feed>
