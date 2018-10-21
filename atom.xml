@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>32imuf.com</title><link href="https://32imuf.com/" rel="alternate"></link><link href="https://32imuf.com/atom.xml" rel="self"></link><id>https://32imuf.com/</id><updated>2018-10-18T00:00:00+09:00</updated><entry><title>stylus を使う</title><link href="https://32imuf.com/html-css/stylus/" rel="alternate"></link><published>2018-10-18T00:00:00+09:00</published><updated>2018-10-18T00:00:00+09:00</updated><id>tag:32imuf.com,2018-10-18:/html-css/stylus/</id><summary type="html">&lt;div class="section" id="id1"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>32imuf.com</title><link href="https://32imuf.com/" rel="alternate"></link><link href="https://32imuf.com/atom.xml" rel="self"></link><id>https://32imuf.com/</id><updated>2018-10-21T00:00:00+09:00</updated><entry><title>Django ORM のメモ</title><link href="https://32imuf.com/django/django_orm/" rel="alternate"></link><published>2018-10-21T00:00:00+09:00</published><updated>2018-10-21T00:00:00+09:00</updated><id>tag:32imuf.com,2018-10-21:/django/django_orm/</id><summary type="html">&lt;div class="section" id="id1"&gt;
+&lt;div class="header_target" id="h_django_django_orm_index_2erst_1"&gt;&lt;/div&gt;&lt;h1&gt;リファレンス&lt;/h1&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://docs.djangoproject.com/ja/2.1/ref/models/querysets/"&gt;QuerySet API reference&lt;/a&gt;&lt;/p&gt;
+&lt;div class="section" id="values-values-list"&gt;
+&lt;div class="header_target" id="h_django_django_orm_index_2erst_2"&gt;&lt;/div&gt;&lt;h2&gt;values() と values_list()&lt;/h2&gt;
+&lt;div class="section" id="values"&gt;
+&lt;div class="header_target" id="h_django_django_orm_index_2erst_3"&gt;&lt;/div&gt;&lt;h3&gt;values()&lt;/h3&gt;
+&lt;p&gt;辞書のクエリセットで取得できる。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://docs.djangoproject.com/ja/2.1/ref/models/querysets/#values"&gt;https://docs.djangoproject.com/ja/2.1/ref/models/querysets/#values&lt;/a&gt;&lt;/p&gt;
+&lt;div class="code-block"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Blog&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;objects&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name__startswith&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'Beatles'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;QuerySet&lt;/span&gt; &lt;span class="p"&gt;[{&lt;/span&gt;&lt;span class="s1"&gt;'id'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'name'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;'Beatles Blog'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'tagline'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</summary></entry><entry><title>stylus を使う</title><link href="https://32imuf.com/html-css/stylus/" rel="alternate"></link><published>2018-10-18T00:00:00+09:00</published><updated>2018-10-18T00:00:00+09:00</updated><id>tag:32imuf.com,2018-10-18:/html-css/stylus/</id><summary type="html">&lt;div class="section" id="id1"&gt;
 &lt;div class="header_target" id="h_html_2dcss_stylus_index_2erst_1"&gt;&lt;/div&gt;&lt;h1&gt;リファレンス&lt;/h1&gt;
 &lt;p&gt;&lt;a class="reference external" href="http://stylus-lang.com/"&gt;http://stylus-lang.com/&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
@@ -49,7 +61,7 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;span class="docutils literal"&gt;&lt;span class="pre"&gt;-t&lt;/span&gt; type&lt;/span&gt; : 生成する鍵のタイプを指定できる&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;span class="docutils literal"&gt;&lt;span class="pre"&gt;-f&lt;/span&gt; output_keyfile&lt;/span&gt; : 出力先ファイルを指定できる&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;</summary></entry><entry><title>ssh-add</title><link href="https://32imuf.com/ssh/command/ssh-add" rel="alternate"></link><published>2018-10-14T00:00:00+09:00</published><updated>2018-10-14T00:00:00+09:00</updated><id>tag:32imuf.com,2018-10-14:/ssh/command/ssh-add</id><summary type="html">&lt;div class="section" id="id1"&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class="docutils literal"&gt;&lt;span class="pre"&gt;-f&lt;/span&gt; output_keyfile&lt;/span&gt; : 出力先ファイルを指定できる&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;</summary></entry><entry><title>ssh-add</title><link href="https://32imuf.com/ssh/command/ssh-add/" rel="alternate"></link><published>2018-10-14T00:00:00+09:00</published><updated>2018-10-14T00:00:00+09:00</updated><id>tag:32imuf.com,2018-10-14:/ssh/command/ssh-add/</id><summary type="html">&lt;div class="section" id="id1"&gt;
 &lt;div class="header_target" id="h_ssh_command_ssh_2dadd_index_2erst_1"&gt;&lt;/div&gt;&lt;h1&gt;リファレンス&lt;/h1&gt;
 &lt;p&gt;ubuntu のやつ&lt;/p&gt;
 &lt;ul class="simple"&gt;
@@ -73,7 +85,7 @@
 &lt;div class="section" id="id4"&gt;
 &lt;div class="header_target" id="h_ssh_command_ssh_2dadd_index_2erst_3"&gt;&lt;/div&gt;&lt;h2&gt;ssh-add の使い方&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;ssh-agent に秘密鍵を登録する&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;</summary></entry><entry><title>ssh のメモ</title><link href="https://32imuf.com/ssh/command/ssh" rel="alternate"></link><published>2018-10-14T00:00:00+09:00</published><updated>2018-10-14T00:00:00+09:00</updated><id>tag:32imuf.com,2018-10-14:/ssh/command/ssh</id><summary type="html">&lt;div class="section" id="id1"&gt;
+&lt;li&gt;&lt;p&gt;ssh-agent に秘密鍵を登録する&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;</summary></entry><entry><title>ssh のメモ</title><link href="https://32imuf.com/ssh/command/ssh/" rel="alternate"></link><published>2018-10-14T00:00:00+09:00</published><updated>2018-10-14T00:00:00+09:00</updated><id>tag:32imuf.com,2018-10-14:/ssh/command/ssh/</id><summary type="html">&lt;div class="section" id="id1"&gt;
 &lt;div class="header_target" id="h_ssh_command_ssh_index_2erst_1"&gt;&lt;/div&gt;&lt;h1&gt;リファレンス&lt;/h1&gt;
 &lt;p&gt;ubuntu のやつ&lt;/p&gt;
 &lt;ul class="simple"&gt;
@@ -207,28 +219,4 @@
 &lt;div class="section" id="id3"&gt;
 &lt;div class="header_target" id="h_git_command_rebase_index_2erst_5"&gt;&lt;/div&gt;&lt;h3&gt;push してない場合&lt;/h3&gt;
 &lt;blockquote&gt;
-&lt;p&gt;間違えてリベースしたブランチを origin に戻す&lt;/p&gt;&lt;/blockquote&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</summary></entry><entry><title>Pycharm の Django support を使う</title><link href="https://32imuf.com/pycharm/django-support/" rel="alternate"></link><published>2018-09-30T00:00:00+09:00</published><updated>2018-09-30T00:00:00+09:00</updated><id>tag:32imuf.com,2018-09-30:/pycharm/django-support/</id><summary type="html">&lt;div class="section" id="id1"&gt;
-&lt;div class="header_target" id="h_pycharm_django_2dsupport_index_2erst_1"&gt;&lt;/div&gt;&lt;h1&gt;ガイド&lt;/h1&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://pleiades.io/help/pycharm/django-support7.html"&gt;Djangoのサポート&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.jetbrains.com/help/pycharm/django-support7.html"&gt;Django support&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="id2"&gt;
-&lt;div class="header_target" id="h_pycharm_django_2dsupport_index_2erst_2"&gt;&lt;/div&gt;&lt;h1&gt;Django Support を有効にする&lt;/h1&gt;
-&lt;div class="section" id="id3"&gt;
-&lt;div class="header_target" id="h_pycharm_django_2dsupport_index_2erst_3"&gt;&lt;/div&gt;&lt;h2&gt;ガイド&lt;/h2&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.jetbrains.com/help/pycharm/django-support.html"&gt;Enabling or disabling Django support&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://pleiades.io/help/pycharm/django-support.html"&gt;Djangoのサポートを有効または無効にする&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="id5"&gt;
-&lt;div class="header_target" id="h_pycharm_django_2dsupport_index_2erst_4"&gt;&lt;/div&gt;&lt;h2&gt;Django Support を有効にする&lt;/h2&gt;
-&lt;ol class="arabic"&gt;
-&lt;li&gt;&lt;p&gt;Preferences&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Languages &amp;amp; Frameworks -&amp;gt; Django&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;Enable Django Support: &lt;span class="docutils literal"&gt;ON&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Django project root: &lt;span class="docutils literal"&gt;apps&lt;/span&gt; ( &lt;cite&gt;settings.py および manage.py ファイルを格納するディレクトリ&lt;/cite&gt;&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/blockquote&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;&lt;/div&gt;</summary></entry></feed>
+&lt;p&gt;間違えてリベースしたブランチを origin に戻す&lt;/p&gt;&lt;/blockquote&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</summary></entry></feed>

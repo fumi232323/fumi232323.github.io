@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <link rel="stylesheet" href="/static/css/reset.css">
     <link rel="stylesheet" href="/static/css/style.css?20181018">
-    <link rel="stylesheet" href="/static/css/style-sp.css?20181019">
     
   <link rel="stylesheet" href="/static/css/article.css?20180923">
   <link rel="stylesheet" href="/static/css/monokai.css">
@@ -261,11 +260,11 @@
               </li>
             
               <li class="nav-article">
-                <a href="../../ssh/command/ssh-add">ssh-add</a>
+                <a href="../../ssh/command/ssh-add/">ssh-add</a>
               </li>
             
               <li class="nav-article">
-                <a href="../../ssh/command/ssh">ssh のメモ</a>
+                <a href="../../ssh/command/ssh/">ssh のメモ</a>
               </li>
             
           </ul>
@@ -365,7 +364,10 @@
 <div class="header_target" id="h_html_2dcss_stylus_index_2erst_3"></div><h1>使い方</h1>
 <ul>
 <li><p>ファイルの拡張子は、 <span class="docutils literal">.styl</span> もしくは <span class="docutils literal">.stylus</span> とする。</p></li>
-<li><p>PyCharm の何か (上に出てきた) の <span class="docutils literal">OK</span> を押したら、自動ビルドされた。以降、変更を検知すると勝手にビルドされる。</p>
+<li><p>初めて <span class="docutils literal">styl</span> ファイルを作成すると、 <span class="docutils literal">File Watchers</span> を有効にするか否か聞かれるので (PyCharm の上部に表示される) <span class="docutils literal">OK</span> を押下すると、自動ビルドされる。</p>
+<p>以降、変更を検知すると勝手にビルドされる。</p>
+<ul>
+<li><p>ログ</p>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="go">...</span>
 <span class="go">2018-10-18 22:14:19,451 INFO Building files/static/css/style-sp.css</span>
@@ -373,6 +375,13 @@
 <span class="go">...</span>
 </pre></div>
 </div>
+</li>
+<li><p><span class="docutils literal">File Watchers</span> の設定変更は、こちらで行う。</p>
+<div class="figure">
+<img alt="file-watchers.png" src="file-watchers.png"/>
+</div>
+</li>
+</ul>
 </li>
 <li><p>PyCharm 上ではこんな風に見える</p>
 <div class="figure">

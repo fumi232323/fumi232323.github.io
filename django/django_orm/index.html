@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <link rel="stylesheet" href="/static/css/reset.css">
     <link rel="stylesheet" href="/static/css/style.css?20181018">
-    <link rel="stylesheet" href="/static/css/style-sp.css?20181019">
     
   <link rel="stylesheet" href="/static/css/article.css?20180923">
   <link rel="stylesheet" href="/static/css/monokai.css">
@@ -261,11 +260,11 @@
               </li>
             
               <li class="nav-article">
-                <a href="../../ssh/command/ssh-add">ssh-add</a>
+                <a href="../../ssh/command/ssh-add/">ssh-add</a>
               </li>
             
               <li class="nav-article">
-                <a href="../../ssh/command/ssh">ssh のメモ</a>
+                <a href="../../ssh/command/ssh/">ssh のメモ</a>
               </li>
             
           </ul>
@@ -312,8 +311,8 @@
 </header></div>
       <div class="main">
   <main class="item item-article item-django">
-    <time class="date" datetime="2018-09-29 00:00:00+09:00">
-      2018-09-29 Sat
+    <time class="date" datetime="2018-10-21 00:00:00+09:00">
+      2018-10-21 Sun
     </time>
     <div class="title">Django ORM のメモ</div>
     <div class="category">
@@ -323,20 +322,59 @@
     </div>
     <div class="text">
       <div class="section" id="id1">
-<div class="header_target" id="h_django_django_orm_index_2erst_1"></div><h1>Django ORM</h1>
+<div class="header_target" id="h_django_django_orm_index_2erst_1"></div><h1>リファレンス</h1>
+<p><a class="reference external" href="https://docs.djangoproject.com/ja/2.1/ref/models/querysets/">QuerySet API reference</a></p>
+<div class="section" id="values-values-list">
+<div class="header_target" id="h_django_django_orm_index_2erst_2"></div><h2>values() と values_list()</h2>
+<div class="section" id="values">
+<div class="header_target" id="h_django_django_orm_index_2erst_3"></div><h3>values()</h3>
+<p>辞書のクエリセットで取得できる。</p>
+<ul>
+<li><p><a class="reference external" href="https://docs.djangoproject.com/ja/2.1/ref/models/querysets/#values">https://docs.djangoproject.com/ja/2.1/ref/models/querysets/#values</a></p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">Blog</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">name__startswith</span><span class="o">=</span><span class="s1">'Beatles'</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+<span class="o">&lt;</span><span class="n">QuerySet</span> <span class="p">[{</span><span class="s1">'id'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'name'</span><span class="p">:</span> <span class="s1">'Beatles Blog'</span><span class="p">,</span> <span class="s1">'tagline'</span><span class="p">:</span> <span class="s1">'All the latest Beatles news.'</span><span class="p">}]</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="values-list">
+<div class="header_target" id="h_django_django_orm_index_2erst_4"></div><h3>values_list()</h3>
+<p>タプルのリストのクエリセットで取得できる。</p>
+<ul>
+<li><p><a class="reference external" href="https://docs.djangoproject.com/ja/2.1/ref/models/querysets/#values-list">https://docs.djangoproject.com/ja/2.1/ref/models/querysets/#values-list</a></p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">Entry</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s1">'id'</span><span class="p">,</span> <span class="s1">'headline'</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">QuerySet</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">'First entry'</span><span class="p">),</span> <span class="o">...</span><span class="p">]</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<ul>
+<li><p>1カラムしか取得しない場合は、 <span class="docutils literal">flat=True</span> をつけると、リストのクエリセットで取得できる。</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">Entry</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s1">'id'</span><span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">'id'</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">QuerySet</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
 <div class="section" id="aggregate-annotate">
-<div class="header_target" id="h_django_django_orm_index_2erst_2"></div><h2>aggregate と annotate</h2>
+<div class="header_target" id="h_django_django_orm_index_2erst_5"></div><h2>aggregate と annotate</h2>
 <p><span class="docutils literal">aggregate</span> と <span class="docutils literal">annotate</span> の違いがわかりやすい</p>
 <ul class="simple">
 <li><p><a class="reference external" href="http://note.crohaco.net/2014/django-aggregate/">Djangoの集計について</a></p></li>
 </ul>
 </div>
 <div class="section" id="prefetch-related">
-<div class="header_target" id="h_django_django_orm_index_2erst_3"></div><h2>prefetch_relatedの話</h2>
+<div class="header_target" id="h_django_django_orm_index_2erst_6"></div><h2>prefetch_relatedの話</h2>
 <p><a class="reference external" href="http://tokibito.hatenablog.com/entry/20140718/1405691738">Djangoでprefetch_relatedを使ってクエリ数を減らす</a></p>
 </div>
 <div class="section" id="q-object">
-<div class="header_target" id="h_django_django_orm_index_2erst_4"></div><h2>Q Object</h2>
+<div class="header_target" id="h_django_django_orm_index_2erst_7"></div><h2>Q Object</h2>
 <p><a class="reference external" href="https://docs.djangoproject.com/ja/1.11/ref/models/querysets/#q-objects">Q() objects</a></p>
 <p><a class="reference external" href="https://docs.djangoproject.com/ja/1.11/topics/db/queries/#complex-lookups-with-q">Q オブジェクトを用いた複雑な検索</a></p>
 <ul>
@@ -357,7 +395,7 @@
 </ul>
 </div>
 <div class="section" id="set">
-<div class="header_target" id="h_django_django_orm_index_2erst_5"></div><h2>モデルクラス名を全部小文字にしたのに <span class="docutils literal">_set</span> がつく</h2>
+<div class="header_target" id="h_django_django_orm_index_2erst_8"></div><h2>モデルクラス名を全部小文字にしたのに <span class="docutils literal">_set</span> がつく</h2>
 <p><a class="reference external" href="https://docs.djangoproject.com/ja/1.11/ref/models/relations/">Related objects reference</a></p>
 <ul class="simple">
 <li><p><span class="docutils literal">_set</span> というのは子テーブルのデータを参照する django の機能</p></li>
@@ -365,7 +403,7 @@
 </ul>
 </div>
 <div class="section" id="foreignkey-on-delete">
-<div class="header_target" id="h_django_django_orm_index_2erst_6"></div><h2>ForeignKey.on_delete</h2>
+<div class="header_target" id="h_django_django_orm_index_2erst_9"></div><h2>ForeignKey.on_delete</h2>
 <p><a class="reference external" href="https://docs.djangoproject.com/en/1.11/ref/models/fields/#django.db.models.ForeignKey.on_delete">ForeignKey.on_delete</a></p>
 <ul>
 <li><p>6種類くらいあって、用途に応じて選べる</p></li>
@@ -378,7 +416,7 @@ on_delete will become a required argument in Django 2.0. In older versions it de
 </ul>
 </div>
 <div class="section" id="left-outer-join">
-<div class="header_target" id="h_django_django_orm_index_2erst_7"></div><h2>LEFT OUTER JOIN</h2>
+<div class="header_target" id="h_django_django_orm_index_2erst_10"></div><h2>LEFT OUTER JOIN</h2>
 <p>Django のクエリセットは LEFT OUTER JOIN を表現できない</p>
 <ul class="simple">
 <li><p>SQLAlchemy でやろう</p></li>
