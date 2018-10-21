@@ -4,15 +4,9 @@
  * -------------------------------- */
 /* article item の大きさを指定 */
 .item-article {
-  width: 100% /* びよーんと伸び縮みしたい */;
-  margin-left: 4px /* ヘッダーとの隙間をあける */;
-  padding: 40px /* ボックス内の余白を普通の item より広くとる */;
-}
-@media (max-width: 768px) {
-  .item-article {
-    margin-left: 0 /* 縦並びにするので、左横の margin はいらない */;
-    word-wrap: break-word /* 幅が狭いので、単語内でも折り返しを許可する */;
-  }
+  width: 100%; /* びよーんと伸び縮みしたい */
+  margin-left: 4px; /* ヘッダーとの隙間をあける */
+  padding: 40px; /* ボックス内の余白を普通の item より広くとる */
 }
 .date {
   display: block;
@@ -27,11 +21,6 @@
   letter-spacing: 1px;
   line-height: 1.4;
   font-family: "Sawarabi Mincho", "Hiragino Kaku Gothic ProN", sans-serif;
-}
-@media (max-width: 768px) {
-  .title {
-    font-size: 3rem;
-  }
 }
 /* タイトル左横の円 */
 .title::before {
@@ -80,12 +69,10 @@
 .text h1 {
   font-size: 2.8rem;
   border-bottom: 1px solid #aaa;
-  padding-bottom: 0.1em;
 }
 .text h2 {
   font-size: 2.2rem;
   border-bottom: 1px dotted #aaa;
-  padding-bottom: 0.1em;
 }
 .text h3 {
   font-size: 2rem;
@@ -125,6 +112,8 @@
   font-size: 2rem;
   margin: 1.6rem 0 1.6rem;
   padding: 0 32px;
+/*padding: 12px 32px 12px;*/
+/*padding: 0.5em 32px;*/
   background: #364549;
   color: #f8f8f2;
   max-height: 600px;
@@ -136,6 +125,7 @@
   font-size: inherit;
   font-family: inherit;
   margin: 1.6rem 0 1.6rem;
+/*padding: 12px 24px 12px;*/
   padding: 1em 32px;
   border-radius: 2px;
   background-color: #fef4f4;
