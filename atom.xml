@@ -1,5 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>32imuf.com</title><link href="https://32imuf.com/" rel="alternate"></link><link href="https://32imuf.com/atom.xml" rel="self"></link><id>https://32imuf.com/</id><updated>2018-10-21T00:00:00+09:00</updated><entry><title>Django ORM のメモ</title><link href="https://32imuf.com/django/django_orm/" rel="alternate"></link><published>2018-10-21T00:00:00+09:00</published><updated>2018-10-21T00:00:00+09:00</updated><id>tag:32imuf.com,2018-10-21:/django/django_orm/</id><summary type="html">&lt;div class="section" id="id1"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>32imuf.com</title><link href="https://32imuf.com/" rel="alternate"></link><link href="https://32imuf.com/atom.xml" rel="self"></link><id>https://32imuf.com/</id><updated>2018-10-26T00:00:00+09:00</updated><entry><title>git merge</title><link href="https://32imuf.com/git/command/merge/" rel="alternate"></link><published>2018-10-26T00:00:00+09:00</published><updated>2018-10-26T00:00:00+09:00</updated><id>tag:32imuf.com,2018-10-26:/git/command/merge/</id><summary type="html">&lt;div class="section" id="id1"&gt;
+&lt;div class="header_target" id="h_git_command_merge_index_2erst_1"&gt;&lt;/div&gt;&lt;h1&gt;マージする&lt;/h1&gt;
+&lt;p&gt;topic ブランチを acceptance ブランチへマージする。&lt;/p&gt;
+&lt;ol class="arabic"&gt;
+&lt;li&gt;&lt;p&gt;acceptance にチェックアウトする&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;div class="code-block"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git checkout acceptance
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;topic をマージします&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;div class="code-block"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git merge topic
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;コンフリクトしたら、解消して、&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;div class="code-block"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git add .
+&lt;span class="gp"&gt;$&lt;/span&gt; git commit -m &lt;span class="s2"&gt;"Merge branch 'topic-branch-name' into acceptance"&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;マージに成功したら、強制push&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;div class="code-block"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git push -u origin acceptance -f
+&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;/blockquote&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;</summary></entry><entry><title>Django ORM のメモ</title><link href="https://32imuf.com/django/django_orm/" rel="alternate"></link><published>2018-10-21T00:00:00+09:00</published><updated>2018-10-21T00:00:00+09:00</updated><id>tag:32imuf.com,2018-10-21:/django/django_orm/</id><summary type="html">&lt;div class="section" id="id1"&gt;
 &lt;div class="header_target" id="h_django_django_orm_index_2erst_1"&gt;&lt;/div&gt;&lt;h1&gt;リファレンス&lt;/h1&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://docs.djangoproject.com/ja/2.1/ref/models/querysets/"&gt;QuerySet API reference&lt;/a&gt;&lt;/p&gt;
 &lt;div class="section" id="values-values-list"&gt;
@@ -183,40 +216,4 @@
 &lt;li&gt;&lt;p&gt;エディターが開き、 3 で指定したコミット番号より後のコミット一覧が表示されるので、くっつけたいほうの pick を一番上に移動する。&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;span class="docutils literal"&gt;pick&lt;/span&gt; を &lt;span class="docutils literal"&gt;squash&lt;/span&gt; に書き換える。&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;span class="docutils literal"&gt;:wq&lt;/span&gt; で保存して閉じる&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;コミットメッセージを書く用？のエディタが開くので、&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;&lt;/div&gt;</summary></entry><entry><title>git rebase</title><link href="https://32imuf.com/git/command/rebase/" rel="alternate"></link><published>2018-09-30T00:00:00+09:00</published><updated>2018-09-30T00:00:00+09:00</updated><id>tag:32imuf.com,2018-09-30:/git/command/rebase/</id><summary type="html">&lt;div class="section" id="id1"&gt;
-&lt;div class="header_target" id="h_git_command_rebase_index_2erst_1"&gt;&lt;/div&gt;&lt;h1&gt;リベース&lt;/h1&gt;
-&lt;div class="section" id="master"&gt;
-&lt;div class="header_target" id="h_git_command_rebase_index_2erst_2"&gt;&lt;/div&gt;&lt;h2&gt;master ブランチにリベースする&lt;/h2&gt;
-&lt;div class="code-block"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git rebase master
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;コンフリクトしたらコンフリクトを解消して、&lt;/p&gt;
-&lt;div class="code-block"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git add .
-&lt;span class="gp"&gt;$&lt;/span&gt; git rebase --continue
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;リベースが終わったらフォースプッシュ&lt;/p&gt;
-&lt;div class="code-block"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git push -f
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="section" id="id2"&gt;
-&lt;div class="header_target" id="h_git_command_rebase_index_2erst_3"&gt;&lt;/div&gt;&lt;h2&gt;間違えてリベースして元に戻したい&lt;/h2&gt;
-&lt;div class="section" id="push"&gt;
-&lt;div class="header_target" id="h_git_command_rebase_index_2erst_4"&gt;&lt;/div&gt;&lt;h3&gt;push しちゃった場合&lt;/h3&gt;
-&lt;blockquote&gt;
-&lt;div class="code-block"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git reflog
-&lt;span class="gp"&gt;$&lt;/span&gt; git reset --hard HEAD@&lt;span class="o"&gt;{&lt;/span&gt;&lt;span class="m"&gt;6&lt;/span&gt;&lt;span class="o"&gt;}&lt;/span&gt;  &lt;span class="c1"&gt;# 戻りたい番号そのものを書けばよいみたい&lt;/span&gt;
-&lt;span class="gp"&gt;$&lt;/span&gt; git push -f
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/blockquote&gt;
-&lt;/div&gt;
-&lt;div class="section" id="id3"&gt;
-&lt;div class="header_target" id="h_git_command_rebase_index_2erst_5"&gt;&lt;/div&gt;&lt;h3&gt;push してない場合&lt;/h3&gt;
-&lt;blockquote&gt;
-&lt;p&gt;間違えてリベースしたブランチを origin に戻す&lt;/p&gt;&lt;/blockquote&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</summary></entry></feed>
+&lt;li&gt;&lt;p&gt;コミットメッセージを書く用？のエディタが開くので、&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;&lt;/div&gt;</summary></entry></feed>

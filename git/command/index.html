@@ -6,15 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <title>Git のコマンドまとめ/32imuf.com</title>
     <link rel="shortcut icon" href="/static/icons/favicon.ico">
-    <link href="https://fonts.googleapis.com/css?family=Griffy" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Griffy">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-    <link rel="stylesheet" href="/static/css/reset.css?20181021">
-    <link rel="stylesheet" href="/static/css/style.css?20181022">
-    
-  <link rel="stylesheet" href="/static/css/article.css?20181020">
-  <link rel="stylesheet" href="/static/css/monokai.css">
-
+    <link rel="stylesheet" href="/static/css/style.css?20181027">
   </head>
 
   <body>
@@ -94,6 +89,10 @@
         <li class="nav-category">
           <a href="/index_category_category_git.html">git</a>
           <ul>
+            
+              <li class="nav-article">
+                <a href="merge/">git merge</a>
+              </li>
             
               <li class="nav-article">
                 <a href="rebase-i/">git rebase -i</a>
@@ -310,6 +309,7 @@
   </nav>
 </header></div>
       <div class="main">
+<div class="article-content">
   <main class="item item-article item-git">
     <time class="date" datetime="2018-09-10 00:00:00+09:00">
       2018-09-10 Mon
@@ -330,6 +330,8 @@
 </div>
 <div class="section" id="id2">
 <div class="header_target" id="h_git_command_index_2erst_2"></div><h1>ブランチ操作</h1>
+<div class="section" id="id3">
+<div class="header_target" id="h_git_command_index_2erst_3"></div><h2>ローカル</h2>
 <ul>
 <li><p>新しいブランチを作成して、新しいブランチにチェックアウト</p>
 <div class="code-block">
@@ -363,6 +365,11 @@
 </pre></div>
 </div>
 </li>
+</ul>
+</div>
+<div class="section" id="id4">
+<div class="header_target" id="h_git_command_index_2erst_4"></div><h2>リモート</h2>
+<ul>
 <li><p>リモートブランチをチェックアウト</p>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="gp">$</span> git checkout -b &lt;branch-you-want-to-checkout&gt; origin/&lt;branch-you-want-to-checkout&gt;
@@ -377,25 +384,9 @@
 </li>
 </ul>
 </div>
-<div class="section" id="id3">
-<div class="header_target" id="h_git_command_index_2erst_3"></div><h1>マージする</h1>
-<ul>
-<li><p>topic ブランチを acceptance ブランチへマージする</p>
-<div class="code-block">
-<div class="highlight"><pre><span></span><span class="gp">$</span> git checkout acceptance
-<span class="gp">$</span> git merge topic
-<span class="gp">#</span> コンフリクトしたら、解消して、
-<span class="gp">$</span> git add .
-<span class="gp">$</span> git commit -m <span class="s2">"Merge branch 'topic-branch-name' into acceptance"</span>
-<span class="gp">#</span> マージに成功したら、強制push
-<span class="gp">$</span> git push -u origin acceptance -f
-</pre></div>
-</div>
-</li>
-</ul>
 </div>
 <div class="section" id="git-reset">
-<div class="header_target" id="h_git_command_index_2erst_4"></div><h1>git reset 使い分け</h1>
+<div class="header_target" id="h_git_command_index_2erst_5"></div><h1>git reset 使い分け</h1>
 <p>ちなみに <span class="docutils literal">git reset</span> == <span class="docutils literal">git reset <span class="pre">--mixed</span></span> ですね</p>
 <ul>
 <li><p>git commit だけ取り消し</p>
@@ -424,8 +415,8 @@
 </li>
 </ul>
 </div>
-<div class="section" id="id4">
-<div class="header_target" id="h_git_command_index_2erst_5"></div><h1>コミット</h1>
+<div class="section" id="id5">
+<div class="header_target" id="h_git_command_index_2erst_6"></div><h1>コミット</h1>
 <ul>
 <li><p>コミットをもう一度やりなおす</p>
 <div class="code-block">
@@ -449,7 +440,7 @@
 </ul>
 </div>
 <div class="section" id="stash">
-<div class="header_target" id="h_git_command_index_2erst_6"></div><h1>stash: コミットはせずに変更を退避したい</h1>
+<div class="header_target" id="h_git_command_index_2erst_7"></div><h1>stash: コミットはせずに変更を退避したい</h1>
 <ul>
 <li><p>これがわかりやすい</p>
 <p><a class="reference external" href="https://qiita.com/chihiro/items/f373873d5c2dfbd03250">https://qiita.com/chihiro/items/f373873d5c2dfbd03250</a></p>
@@ -457,7 +448,7 @@
 </ul>
 </div>
 <div class="section" id="git-log">
-<div class="header_target" id="h_git_command_index_2erst_7"></div><h1>git log</h1>
+<div class="header_target" id="h_git_command_index_2erst_8"></div><h1>git log</h1>
 <ul>
 <li><p>各コミットを 1 行ずつ表示</p>
 <div class="code-block">
@@ -476,8 +467,8 @@
 </li>
 </ul>
 </div>
-<div class="section" id="id5">
-<div class="header_target" id="h_git_command_index_2erst_8"></div><h1>リセットする</h1>
+<div class="section" id="id6">
+<div class="header_target" id="h_git_command_index_2erst_9"></div><h1>リセットする</h1>
 <p>履歴を全部消して force push する。</p>
 <ol class="arabic">
 <li><p><span class="docutils literal">.git</span> を消す</p></li>
@@ -495,9 +486,9 @@
 </ol>
 </div>
 <div class="section" id="fetch-pull">
-<div class="header_target" id="h_git_command_index_2erst_9"></div><h1>fetch と pull</h1>
+<div class="header_target" id="h_git_command_index_2erst_10"></div><h1>fetch と pull</h1>
 <div class="section" id="fetch">
-<div class="header_target" id="h_git_command_index_2erst_10"></div><h2>fetch</h2>
+<div class="header_target" id="h_git_command_index_2erst_11"></div><h2>fetch</h2>
 <p>リモートリポジトリの最新の履歴の取得だけを行う。</p>
 <ul class="simple">
 <li><p><span class="docutils literal">hogehoge</span> ブランチをfetchすると、 ローカルの <span class="docutils literal">origin/hogehoge</span> がリモートの <span class="docutils literal">origin/hogehoge</span> リポジトリと同期されて最新状態になる。</p></li>
@@ -505,7 +496,7 @@
 </ul>
 </div>
 <div class="section" id="pull">
-<div class="header_target" id="h_git_command_index_2erst_11"></div><h2>pull</h2>
+<div class="header_target" id="h_git_command_index_2erst_12"></div><h2>pull</h2>
 <p>fetch + merge</p>
 <ul class="simple">
 <li><p><span class="docutils literal">hogehoge</span> ブランチを pull すると、 ローカルの <span class="docutils literal">origin/hogehoge</span> も <span class="docutils literal">hogehoge</span> も両方リモートの <span class="docutils literal">origin/hogehoge</span> リポジトリの変更とマージされる。</p></li>
@@ -523,6 +514,7 @@
 </div>
     </div>
   </main>
+</div>
 </div>
     </div>
   </body>
