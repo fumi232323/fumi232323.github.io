@@ -75,11 +75,11 @@
           <ul>
             
               <li class="nav-article">
-                <a href="../django_orm/">Django ORM のメモ</a>
+                <a href="./">Django のメモ</a>
               </li>
             
               <li class="nav-article">
-                <a href="./">Django のメモ</a>
+                <a href="../django_orm/">Django ORM のメモ</a>
               </li>
             
           </ul>
@@ -311,8 +311,8 @@
       <div class="main">
 <div class="article-content">
   <main class="item item-article item-django">
-    <time class="date" datetime="2018-09-03 00:00:00+09:00">
-      2018-09-03 Mon
+    <time class="date" datetime="2018-10-28 00:00:00+09:00">
+      2018-10-28 Sun
     </time>
     <div class="title">Django のメモ</div>
     <div class="category">
@@ -321,10 +321,80 @@
       </a>
     </div>
     <div class="text">
-      <div class="section" id="template">
-<div class="header_target" id="h_django_note_index_2erst_1"></div><h1>template</h1>
+      <div class="section" id="django-admin-manage-py">
+<div class="header_target" id="h_django_note_index_2erst_1"></div><h1>django-admin と manage.py</h1>
 <div class="section" id="id1">
-<div class="header_target" id="h_django_note_index_2erst_2"></div><h2>独自のテンプレートタグとフィルタ</h2>
+<div class="header_target" id="h_django_note_index_2erst_2"></div><h2>リファレンス</h2>
+<p><a class="reference external" href="https://docs.djangoproject.com/ja/2.1/ref/django-admin/#cmdoption-shell-command">https://docs.djangoproject.com/ja/2.1/ref/django-admin/#cmdoption-shell-command</a></p>
+</div>
+<div class="section" id="id2">
+<div class="header_target" id="h_django_note_index_2erst_3"></div><h2>Django をインタラクティブモードで実行する</h2>
+<div class="section" id="id3">
+<div class="header_target" id="h_django_note_index_2erst_4"></div><h3>使い方</h3>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">#</span> こうとか
+<span class="gp">$</span> <span class="nv">DJANGO_SETTINGS_MODULE</span><span class="o">=</span>settings._ python manage.py shell
+<span class="gp">#</span> こう
+<span class="gp">$</span> python manage.py shell --settings<span class="o">=</span>settings._
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<div class="header_target" id="h_django_note_index_2erst_5"></div><h3>使用例</h3>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="go">(venv) [vagrant@localhost apps]$ python manage.py shell --settings=settings._</span>
+<span class="go">Python 2.7.7 (default, Dec 11 2017, 18:45:38)</span>
+<span class="go">[GCC 4.4.7 20120313 (Red Hat 4.4.7-18)] on linux2</span>
+<span class="go">Type "help", "copyright", "credits" or "license" for more information.</span>
+<span class="go">(InteractiveConsole)</span>
+<span class="gp">&gt;</span>&gt;&gt; from myapp.models import Entry
+<span class="gp">&gt;</span>&gt;&gt; from django.db.models import Q
+<span class="gp">&gt;</span>&gt;&gt; <span class="nv">target_entry_id</span> <span class="o">=</span> None
+<span class="gp">&gt;</span>&gt;&gt; Entry.objects.filter<span class="o">(</span>
+<span class="go">...     Q(expiration_year_month__gte=target_entry_id) |</span>
+<span class="go">...     Q(expiration_year_month__isnull=True)</span>
+<span class="go">... )</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="django-dbdb">
+<div class="header_target" id="h_django_note_index_2erst_6"></div><h2>Django の DBシェルでローカルDBにつなぐ</h2>
+<div class="section" id="id5">
+<div class="header_target" id="h_django_note_index_2erst_7"></div><h3>使い方</h3>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> python manage.py dbshell --settings<span class="o">=</span>settings.local
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<div class="header_target" id="h_django_note_index_2erst_8"></div><h3>ガイド</h3>
+<p><a class="reference external" href="https://docs.djangoproject.com/ja/2.1/ref/django-admin/#dbshell">https://docs.djangoproject.com/ja/2.1/ref/django-admin/#dbshell</a></p>
+</div>
+</div>
+<div class="section" id="system-check-framework-django">
+<div class="header_target" id="h_django_note_index_2erst_9"></div><h2>System check framework を使って、Django プロジェクトの一般的な問題を検査する</h2>
+<p><a class="reference external" href="https://docs.djangoproject.com/ja/1.11/ref/django-admin/#check">check</a> ,
+<a class="reference external" href="https://docs.djangoproject.com/ja/1.11/ref/checks/#system-check-framework">System check framework</a></p>
+<ul>
+<li><p>使い方 (python2)</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">DJANGO_SETTINGS_MODULE</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">local</span> <span class="n">python</span> <span class="o">-</span><span class="n">Wd</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">check</span>
+</pre></div>
+</div>
+<ul>
+<li><p><a class="reference external" href="https://docs.python.org/ja/2.7/using/cmdline.html#cmdoption-w">https://docs.python.org/ja/2.7/using/cmdline.html#cmdoption-w</a></p>
+<pre class="literal-block">Python 2.7 から、 DeprecationWarning とその子クラスはデフォルトで無視されます。 -Wd オプションを指定して有効にすることができます。</pre>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="template">
+<div class="header_target" id="h_django_note_index_2erst_10"></div><h1>template</h1>
+<div class="section" id="id7">
+<div class="header_target" id="h_django_note_index_2erst_11"></div><h2>独自のテンプレートタグとフィルタ</h2>
 <p>カスタムタグやカスタムフィルタをつくることができる。</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://docs.djangoproject.com/ja/1.11/howto/custom-template-tags/#custom-template-tags-and-filters">独自のテンプレートタグとフィルタ</a></p></li>
@@ -332,18 +402,18 @@
 </div>
 </div>
 <div class="section" id="class-based-views">
-<div class="header_target" id="h_django_note_index_2erst_3"></div><h1>Class-based views</h1>
+<div class="header_target" id="h_django_note_index_2erst_12"></div><h1>Class-based views</h1>
 <pre class="literal-block">関数形式の view はコンテキスト、テンプレート、フォーム、全部変えしてあげないといけなかった。つまり全部関数内に書く必要があった。
 必要なものを切り離して属性として定義できるようにしたのが genericview (class based view)。</pre>
 <div class="section" id="formview">
-<div class="header_target" id="h_django_note_index_2erst_4"></div><h2>FormView</h2>
+<div class="header_target" id="h_django_note_index_2erst_13"></div><h2>FormView</h2>
 <ul class="simple">
 <li><p><span class="docutils literal">genericview</span> はたくさん種類がある。</p></li>
 <li><p>何らかの登録・更新処理で <span class="docutils literal">form</span> を使ったバリデーションが必要なら 大体 <span class="docutils literal">FormView</span> を使う</p></li>
 </ul>
 </div>
 <div class="section" id="as-view">
-<div class="header_target" id="h_django_note_index_2erst_5"></div><h2>as_view</h2>
+<div class="header_target" id="h_django_note_index_2erst_14"></div><h2>as_view</h2>
 <ul class="simple">
 <li><p>as_view は view関数を生成して返している</p></li>
 <li><p>実際の処理は self.dispatch で クラスベースビューに処理を委譲してるんだと思います</p></li>
@@ -351,16 +421,16 @@
 </ul>
 </div>
 <div class="section" id="get-context-data">
-<div class="header_target" id="h_django_note_index_2erst_6"></div><h2>get_context_data</h2>
+<div class="header_target" id="h_django_note_index_2erst_15"></div><h2>get_context_data</h2>
 <ul class="simple">
 <li><p>大抵の場合、ビューというのはレンダリングに必要なコンテキストを組み立てるものなので 大体の処理は <span class="docutils literal">get_context_data</span> というメソッドに書く。</p></li>
 </ul>
 </div>
 </div>
-<div class="section" id="id3">
-<div class="header_target" id="h_django_note_index_2erst_7"></div><h1>こんなのある</h1>
-<div class="section" id="id4">
-<div class="header_target" id="h_django_note_index_2erst_8"></div><h2>インラインフォームセット</h2>
+<div class="section" id="id9">
+<div class="header_target" id="h_django_note_index_2erst_16"></div><h1>こんなのある</h1>
+<div class="section" id="id10">
+<div class="header_target" id="h_django_note_index_2erst_17"></div><h2>インラインフォームセット</h2>
 <p>使い方はよくわかっていない</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://docs.djangoproject.com/ja/1.11/topics/forms/modelforms/#inline-formsets">https://docs.djangoproject.com/ja/1.11/topics/forms/modelforms/#inline-formsets</a></p></li>
@@ -368,7 +438,7 @@
 </ul>
 </div>
 <div class="section" id="multivaluedict">
-<div class="header_target" id="h_django_note_index_2erst_9"></div><h2>MultiValueDict</h2>
+<div class="header_target" id="h_django_note_index_2erst_18"></div><h2>MultiValueDict</h2>
 <p>なにがうれしいのかさっぱりわからない =&gt; <cite>MultiValueDict を継承してる QueryDict とか見るとユースケースはなんとなく想像つくと思います</cite> と教えて頂いた。</p>
 <ul>
 <li><p><a class="reference external" href="https://docs.djangoproject.com/ja/2.1/_modules/django/utils/datastructures/">https://docs.djangoproject.com/ja/2.1/_modules/django/utils/datastructures/</a></p>
@@ -391,7 +461,7 @@
 </ul>
 </div>
 <div class="section" id="querydict">
-<div class="header_target" id="h_django_note_index_2erst_10"></div><h2>QueryDict オブジェクト</h2>
+<div class="header_target" id="h_django_note_index_2erst_19"></div><h2>QueryDict オブジェクト</h2>
 <p><cite>In an HttpRequest object, the GET and POST attributes are instances of django.http.QueryDict</cite> だそうです。</p>
 <blockquote>
 <ul>
@@ -401,29 +471,11 @@
 </ul>
 </blockquote>
 </div>
-<div class="section" id="system-check-framework-django">
-<div class="header_target" id="h_django_note_index_2erst_11"></div><h2>System check framework を使って、Django プロジェクトの一般的な問題を検査する</h2>
-<p><a class="reference external" href="https://docs.djangoproject.com/ja/1.11/ref/django-admin/#check">check</a> ,
-<a class="reference external" href="https://docs.djangoproject.com/ja/1.11/ref/checks/#system-check-framework">System check framework</a></p>
-<ul>
-<li><p>使い方 (python2)</p>
-<div class="code-block">
-<div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">DJANGO_SETTINGS_MODULE</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">local</span> <span class="n">python</span> <span class="o">-</span><span class="n">Wd</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">check</span>
-</pre></div>
-</div>
-<ul>
-<li><p><a class="reference external" href="https://docs.python.org/ja/2.7/using/cmdline.html#cmdoption-w">https://docs.python.org/ja/2.7/using/cmdline.html#cmdoption-w</a></p>
-<pre class="literal-block">Python 2.7 から、 DeprecationWarning とその子クラスはデフォルトで無視されます。 -Wd オプションを指定して有効にすることができます。</pre>
-</li>
-</ul>
-</li>
-</ul>
-</div>
 <div class="section" id="usermanager">
-<div class="header_target" id="h_django_note_index_2erst_12"></div><h2>UserManager</h2>
+<div class="header_target" id="h_django_note_index_2erst_20"></div><h2>UserManager</h2>
 <p><a class="reference external" href="https://docs.djangoproject.com/ja/1.11/ref/contrib/auth/#manager-methods">マネージャメソッド</a></p>
 <div class="section" id="url">
-<div class="header_target" id="h_django_note_index_2erst_13"></div><h3>参考 URL</h3>
+<div class="header_target" id="h_django_note_index_2erst_21"></div><h3>参考 URL</h3>
 <ul>
 <li><p><a class="reference external" href="https://github.com/django/django/blob/master/django/contrib/auth/models.py#L131">https://github.com/django/django/blob/master/django/contrib/auth/models.py#L131</a></p></li>
 <li><p><a class="reference external" href="https://docs.djangoproject.com/ja/1.11/topics/auth/customizing/#a-full-example">https://docs.djangoproject.com/ja/1.11/topics/auth/customizing/#a-full-example</a></p>
@@ -440,14 +492,14 @@
 </div>
 </div>
 <div class="section" id="requestfactory">
-<div class="header_target" id="h_django_note_index_2erst_14"></div><h2>RequestFactory</h2>
+<div class="header_target" id="h_django_note_index_2erst_22"></div><h2>RequestFactory</h2>
 <p><a class="reference external" href="https://docs.djangoproject.com/en/2.1/topics/testing/advanced/#django.test.RequestFactory">https://docs.djangoproject.com/en/2.1/topics/testing/advanced/#django.test.RequestFactory</a></p>
 </div>
 </div>
-<div class="section" id="id7">
-<div class="header_target" id="h_django_note_index_2erst_15"></div><h1>便利さん</h1>
-<div class="section" id="id8">
-<div class="header_target" id="h_django_note_index_2erst_16"></div><h2>django に便利コマンド追加してくれるさん</h2>
+<div class="section" id="id13">
+<div class="header_target" id="h_django_note_index_2erst_23"></div><h1>便利さん</h1>
+<div class="section" id="id14">
+<div class="header_target" id="h_django_note_index_2erst_24"></div><h2>django に便利コマンド追加してくれるさん</h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://django-extensions.readthedocs.io/en/latest/">django-extensions</a></p></li>
 </ul>

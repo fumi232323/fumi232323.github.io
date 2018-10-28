@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>32imuf.com</title><link href="https://32imuf.com/" rel="alternate"></link><link href="https://32imuf.com/atom.xml" rel="self"></link><id>https://32imuf.com/</id><updated>2018-10-26T00:00:00+09:00</updated><entry><title>git merge</title><link href="https://32imuf.com/git/command/merge/" rel="alternate"></link><published>2018-10-26T00:00:00+09:00</published><updated>2018-10-26T00:00:00+09:00</updated><id>tag:32imuf.com,2018-10-26:/git/command/merge/</id><summary type="html">&lt;div class="section" id="id1"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>32imuf.com</title><link href="https://32imuf.com/" rel="alternate"></link><link href="https://32imuf.com/atom.xml" rel="self"></link><id>https://32imuf.com/</id><updated>2018-10-28T00:00:00+09:00</updated><entry><title>Django のメモ</title><link href="https://32imuf.com/django/note/" rel="alternate"></link><published>2018-10-28T00:00:00+09:00</published><updated>2018-10-28T00:00:00+09:00</updated><id>tag:32imuf.com,2018-10-28:/django/note/</id><summary type="html">&lt;div class="section" id="django-admin-manage-py"&gt;
+&lt;div class="header_target" id="h_django_note_index_2erst_1"&gt;&lt;/div&gt;&lt;h1&gt;django-admin と manage.py&lt;/h1&gt;
+&lt;div class="section" id="id1"&gt;
+&lt;div class="header_target" id="h_django_note_index_2erst_2"&gt;&lt;/div&gt;&lt;h2&gt;リファレンス&lt;/h2&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://docs.djangoproject.com/ja/2.1/ref/django-admin/#cmdoption-shell-command"&gt;https://docs.djangoproject.com/ja/2.1/ref/django-admin/#cmdoption-shell-command&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id2"&gt;
+&lt;div class="header_target" id="h_django_note_index_2erst_3"&gt;&lt;/div&gt;&lt;h2&gt;Django をインタラクティブモードで実行する&lt;/h2&gt;
+&lt;div class="section" id="id3"&gt;
+&lt;div class="header_target" id="h_django_note_index_2erst_4"&gt;&lt;/div&gt;&lt;h3&gt;使い方&lt;/h3&gt;
+&lt;div class="code-block"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; こうとか
+&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nv"&gt;DJANGO_SETTINGS_MODULE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;settings._ python manage.py shell
+&lt;span class="gp"&gt;#&lt;/span&gt; こう
+&lt;span class="gp"&gt;$&lt;/span&gt; python manage.py shell --settings&lt;span class="o"&gt;=&lt;/span&gt;settings._
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id4"&gt;
+&lt;div class="header_target" id="h_django_note_index_2erst_5"&gt;&lt;/div&gt;&lt;h3&gt;使用例&lt;/h3&gt;
+&lt;div class="code-block"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;(venv) [vagrant@localhost apps]$ python manage.py shell --settings=settings._&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</summary></entry><entry><title>git merge</title><link href="https://32imuf.com/git/command/merge/" rel="alternate"></link><published>2018-10-26T00:00:00+09:00</published><updated>2018-10-26T00:00:00+09:00</updated><id>tag:32imuf.com,2018-10-26:/git/command/merge/</id><summary type="html">&lt;div class="section" id="id1"&gt;
 &lt;div class="header_target" id="h_git_command_merge_index_2erst_1"&gt;&lt;/div&gt;&lt;h1&gt;マージする&lt;/h1&gt;
 &lt;p&gt;topic ブランチを acceptance ブランチへマージする。&lt;/p&gt;
 &lt;ol class="arabic"&gt;
@@ -191,29 +212,4 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Python の公式バイナリパッケージは wheel 形式 (PEP491)&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;pip コマンドは、 wheel 形式を優先して利用する&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</summary></entry><entry><title>git rebase -i</title><link href="https://32imuf.com/git/command/rebase-i/" rel="alternate"></link><published>2018-09-30T00:00:00+09:00</published><updated>2018-09-30T00:00:00+09:00</updated><id>tag:32imuf.com,2018-09-30:/git/command/rebase-i/</id><summary type="html">&lt;div class="section" id="rebase-i"&gt;
-&lt;div class="header_target" id="h_git_command_rebase_2di_index_2erst_1"&gt;&lt;/div&gt;&lt;h1&gt;rebase -i&lt;/h1&gt;
-&lt;div class="section" id="squash"&gt;
-&lt;div class="header_target" id="h_git_command_rebase_2di_index_2erst_2"&gt;&lt;/div&gt;&lt;h2&gt;squash : 離れたふたつのコミットをまとめる&lt;/h2&gt;
-&lt;ol class="arabic"&gt;
-&lt;li&gt;&lt;p&gt;くっつけ先のコミット番号を確かめる&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;div class="code-block"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git log --oneline
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;コミットが一覧表示されるので、くっつけ先のコミット番号を控え、 &lt;span class="docutils literal"&gt;:q&lt;/span&gt; で閉じる&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;rebase を開始する。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;div class="code-block"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git rebase -i &amp;lt;くっつけ先のコミット番号&amp;gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;エディターが開き、 3 で指定したコミット番号より後のコミット一覧が表示されるので、くっつけたいほうの pick を一番上に移動する。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;span class="docutils literal"&gt;pick&lt;/span&gt; を &lt;span class="docutils literal"&gt;squash&lt;/span&gt; に書き換える。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;span class="docutils literal"&gt;:wq&lt;/span&gt; で保存して閉じる&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;コミットメッセージを書く用？のエディタが開くので、&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;&lt;/div&gt;</summary></entry></feed>
+&lt;li&gt;&lt;p&gt;pip コマンドは、 wheel 形式を優先して利用する&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</summary></entry></feed>
