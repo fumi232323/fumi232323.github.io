@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>32imuf.com</title><link href="https://32imuf.com/" rel="alternate"></link><link href="https://32imuf.com/atom.xml" rel="self"></link><id>https://32imuf.com/</id><updated>2018-10-28T00:00:00+09:00</updated><entry><title>Django のメモ</title><link href="https://32imuf.com/django/note/" rel="alternate"></link><published>2018-10-28T00:00:00+09:00</published><updated>2018-10-28T00:00:00+09:00</updated><id>tag:32imuf.com,2018-10-28:/django/note/</id><summary type="html">&lt;div class="section" id="django-admin-manage-py"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>32imuf.com</title><link href="https://32imuf.com/" rel="alternate"></link><link href="https://32imuf.com/atom.xml" rel="self"></link><id>https://32imuf.com/</id><updated>2018-10-29T00:00:00+09:00</updated><entry><title>CSS のメモ</title><link href="https://32imuf.com/html-css/css/note/" rel="alternate"></link><published>2018-10-29T00:00:00+09:00</published><updated>2018-10-29T00:00:00+09:00</updated><id>tag:32imuf.com,2018-10-29:/html-css/css/note/</id><summary type="html">&lt;div class="section" id="id1"&gt;
+&lt;div class="header_target" id="h_html_2dcss_css_note_index_2erst_1"&gt;&lt;/div&gt;&lt;h1&gt;CSSの優先順位 がわかりやすい&lt;/h1&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://www.slideshare.net/yumi-uniq-ishizaki/css-13918388?ref=https://nelog.jp/specificity-calculator"&gt;https://www.slideshare.net/yumi-uniq-ishizaki/css-13918388?ref=https://nelog.jp/specificity-calculator&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="flexbox"&gt;
+&lt;div class="header_target" id="h_html_2dcss_css_note_index_2erst_2"&gt;&lt;/div&gt;&lt;h1&gt;Flexbox がわかりやすい&lt;/h1&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://www.webcreatorbox.com/tech/css-flexbox-cheat-sheet"&gt;https://www.webcreatorbox.com/tech/css-flexbox-cheat-sheet&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id2"&gt;
+&lt;div class="header_target" id="h_html_2dcss_css_note_index_2erst_3"&gt;&lt;/div&gt;&lt;h1&gt;生の CSS 書くのだるいとき&lt;/h1&gt;
+&lt;p&gt;これを導入すると良さそうとのこと&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;stylus&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;sass&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class="section" id="css3-3"&gt;
+&lt;div class="header_target" id="h_html_2dcss_css_note_index_2erst_4"&gt;&lt;/div&gt;&lt;h1&gt;CSS3 ベスト3&lt;/h1&gt;
+&lt;p&gt;flex しか使ったことがない...&lt;/p&gt;&lt;/div&gt;</summary></entry><entry><title>Django のメモ</title><link href="https://32imuf.com/django/note/" rel="alternate"></link><published>2018-10-28T00:00:00+09:00</published><updated>2018-10-28T00:00:00+09:00</updated><id>tag:32imuf.com,2018-10-28:/django/note/</id><summary type="html">&lt;div class="section" id="django-admin-manage-py"&gt;
 &lt;div class="header_target" id="h_django_note_index_2erst_1"&gt;&lt;/div&gt;&lt;h1&gt;django-admin と manage.py&lt;/h1&gt;
 &lt;div class="section" id="id1"&gt;
 &lt;div class="header_target" id="h_django_note_index_2erst_2"&gt;&lt;/div&gt;&lt;h2&gt;リファレンス&lt;/h2&gt;
@@ -202,14 +222,4 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;大抵は、いくつかの属性だけを提供し、例外が発生したときにハンドラがエラーに関する情報を取り出せるようにする程度にとどめる&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;</summary></entry><entry><title>Python いろいろメモ</title><link href="https://32imuf.com/python/etc/" rel="alternate"></link><published>2018-10-11T00:00:00+09:00</published><updated>2018-10-11T00:00:00+09:00</updated><id>tag:32imuf.com,2018-10-11:/python/etc/</id><summary type="html">&lt;div class="section" id="wheel"&gt;
-&lt;div class="header_target" id="h_python_etc_index_2erst_1"&gt;&lt;/div&gt;&lt;h1&gt;wheel&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;ビルド済みの C 拡張や Python パッケージのみを含み、ファイルを展開するだけでインストールが完了する&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;sdist : パッケージのソース、メタデータ、ビルド方法などをアーカイブしたソース配布形式&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;インストールのたびに各環境でアーカイブに同梱される setup スクリプトを読み込み、 C 拡張があればビルドし、必要は Python パッケージを確認して、 site-packages へコピーする&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Python の公式バイナリパッケージは wheel 形式 (PEP491)&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;pip コマンドは、 wheel 形式を優先して利用する&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</summary></entry></feed>
+&lt;li&gt;&lt;p&gt;大抵は、いくつかの属性だけを提供し、例外が発生したときにハンドラがエラーに関する情報を取り出せるようにする程度にとどめる&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;</summary></entry></feed>
