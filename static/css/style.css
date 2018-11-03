@@ -8,7 +8,7 @@ html {
 }
 body {
   padding: 30px;
-  background-color: #eaf4fc;
+  background-color: #f0f8ff;
   color: #333;
   font-size: 1.2rem;
   font-family: Griffy, "Sawarabi Mincho", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
@@ -18,7 +18,7 @@ body {
     padding: 15px;
   }
 }
-/*
+/*f0f8ff eaf4fc
   - 擬似要素を存在させるには、 CSS で擬似要素の中身を指定する content プロパティの指定。P.103を見よ。
   - ::before, ::after 擬似要素の display プロパティの初期値は inline なので、デフォルトではインラインレベルの要素として表示される。
   - 高さや幅を指定したい場合には、 display プロパティに block や inline-block の指定が必要。
@@ -497,6 +497,25 @@ http://www.hp-stylelink.com/news/2013/07/20130708.php
 }
 .article-content .text .figure img {
   max-width: 100%;
+}
+.article-content .field-list {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid #bbb;
+  border-top: none;
+}
+.article-content dt {
+  padding: 2px 5px;
+  width: 30%;
+  border-top: 1px solid #bbb;
+  font-weight: bold;
+  background-color: #f0f8ff /*cce7ff*/ /*3498db*/ /*#3db1ff*/;
+}
+.article-content dd {
+  padding: 2px 5px;
+  width: 70%;
+  border-left: 1px solid #bbb;
+  border-top: 1px solid #bbb;
 }
 .article-content .highlight .hll {
   background-color: #49483e;
