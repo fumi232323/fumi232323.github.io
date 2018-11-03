@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>SQL のメモ/32imuf.com</title>
+    <title>PyCharm の File Watcher で、 Stylus の CSS ファイル生成先ディレクトリを指定する。/32imuf.com</title>
     <link rel="shortcut icon" href="/static/icons/favicon.ico">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Griffy">
     <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css"/>
@@ -55,19 +55,19 @@
           <ul>
             
               <li class="nav-article">
-                <a href="../../html-css/configure-stylus-output-directory/">PyCharm の File Watcher で、 Stylus の CSS ファイル生成先ディレクトリを指定する。</a>
+                <a href="./">PyCharm の File Watcher で、 Stylus の CSS ファイル生成先ディレクトリを指定する。</a>
               </li>
             
               <li class="nav-article">
-                <a href="../../html-css/css/note/">CSS のメモ</a>
+                <a href="../css/note/">CSS のメモ</a>
               </li>
             
               <li class="nav-article">
-                <a href="../../html-css/stylus/">stylus を使う</a>
+                <a href="../stylus/">stylus を使う</a>
               </li>
             
               <li class="nav-article">
-                <a href="../../html-css/html5-css3-modern-coding/">『HTML5/CSS3モダンコーディング フロントエンドエンジニアが教える3つの本格レイアウト スタンダード・グリッド・シングルページレイアウトの作り方』を読んで気になったことメモ</a>
+                <a href="../html5-css3-modern-coding/">『HTML5/CSS3モダンコーディング フロントエンドエンジニアが教える3つの本格レイアウト スタンダード・グリッド・シングルページレイアウトの作り方』を読んで気になったことメモ</a>
               </li>
             
           </ul>
@@ -247,7 +247,7 @@
           <ul>
             
               <li class="nav-article">
-                <a href="./">SQL のメモ</a>
+                <a href="../../sql/note/">SQL のメモ</a>
               </li>
             
           </ul>
@@ -314,24 +314,43 @@
 </header></div>
       <div class="main">
 <div class="article-content">
-  <main class="item item-article item-sql">
-    <time class="date" datetime="2018-09-02 00:00:00+09:00">
-      2018-09-02 Sun
+  <main class="item item-article item-css">
+    <time class="date" datetime="2018-11-03 00:00:00+09:00">
+      2018-11-03 Sat
     </time>
-    <div class="title">SQL のメモ</div>
+    <div class="title">PyCharm の File Watcher で、 Stylus の CSS ファイル生成先ディレクトリを指定する。</div>
     <div class="category">
-      <a href="/index_category_category_sql.html">
-          sql
+      <a href="/index_category_category_css.html">
+          css
       </a>
     </div>
     <div class="text">
-      <div class="section" id="select">
-<div class="header_target" id="h_sql_note_index_2erst_1"></div><h1>SELECT文の評価順序</h1>
+      <div class="section" id="id1">
+<div class="header_target" id="h_html_2dcss_configure_2dstylus_2doutput_2ddirectory_index_2erst_1"></div><h1>リファレンス</h1>
+<ul class="simple">
+<li><p>PyCharm: <a class="reference external" href="https://www.jetbrains.com/help/pycharm/using-file-watchers.html#ws_filewatcher_examples">https://www.jetbrains.com/help/pycharm/using-file-watchers.html#ws_filewatcher_examples</a></p></li>
+<li><p>Stylus: <a class="reference external" href="http://stylus-lang.com/docs/executable.html">http://stylus-lang.com/docs/executable.html</a></p></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<div class="header_target" id="h_html_2dcss_configure_2dstylus_2doutput_2ddirectory_index_2erst_2"></div><h1>手順</h1>
+<ol class="arabic">
+<li><p>PyCharm -&gt; Preferences -&gt; Tools -&gt; File Watchers -&gt; Stylus -&gt; 編集ボタン (えんぴつみたいなマーク) 押下</p></li>
+<li><p>Edit Watcher ダイアログで、</p>
 <ul>
-<li><p>これがわかりやすい (いつも見せていただいています、ありがとうございます)</p>
-<p><a class="reference external" href="https://qiita.com/suzukito/items/edcd00e680186f2930a8">https://qiita.com/suzukito/items/edcd00e680186f2930a8</a></p>
+<li><p>Arguments: <span class="docutils literal"><span class="pre">--out</span> <span class="pre">$FileParentDir$/files/static/css/</span> $FileName$</span></p>
+<div class="figure">
+<img alt="edit-watcher.png" src="edit-watcher.png"/>
+</div>
+<ul class="simple">
+<li><p><span class="docutils literal">Insert <span class="pre">Macro...</span></span> ボタンを押下すると、指定できるマクロのプレビューが見られるので、好きなものを選ぶと良い。</p></li>
+<li><p><span class="docutils literal"><span class="pre">--out</span> <span class="pre">$FileParentDir$/files/static/css/</span></span> の指定は、 Stylus の Options 指定形式に従うこと。</p></li>
+<li><p><span class="docutils literal">$FileName$</span> は、どうも PyCharm の File Watcher 側で必要らしく、指定しないと動かなくなるので、削除しないこと。</p></li>
+</ul>
 </li>
 </ul>
+</li>
+</ol>
 </div>
     </div>
   </main>

@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>32imuf.com</title><link href="https://32imuf.com/" rel="alternate"></link><link href="https://32imuf.com/atom.xml" rel="self"></link><id>https://32imuf.com/</id><updated>2018-10-29T00:00:00+09:00</updated><entry><title>Python いろいろメモ</title><link href="https://32imuf.com/python/etc/" rel="alternate"></link><published>2018-10-29T00:00:00+09:00</published><updated>2018-10-29T00:00:00+09:00</updated><id>tag:32imuf.com,2018-10-29:/python/etc/</id><summary type="html">&lt;div class="section" id="flake8-3-6"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>32imuf.com</title><link href="https://32imuf.com/" rel="alternate"></link><link href="https://32imuf.com/atom.xml" rel="self"></link><id>https://32imuf.com/</id><updated>2018-11-03T00:00:00+09:00</updated><entry><title>PyCharm の File Watcher で、 Stylus の CSS ファイル生成先ディレクトリを指定する。</title><link href="https://32imuf.com/html-css/configure-stylus-output-directory/" rel="alternate"></link><published>2018-11-03T00:00:00+09:00</published><updated>2018-11-03T00:00:00+09:00</updated><id>tag:32imuf.com,2018-11-03:/html-css/configure-stylus-output-directory/</id><summary type="html">&lt;div class="section" id="id1"&gt;
+&lt;div class="header_target" id="h_html_2dcss_configure_2dstylus_2doutput_2ddirectory_index_2erst_1"&gt;&lt;/div&gt;&lt;h1&gt;リファレンス&lt;/h1&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;PyCharm: &lt;a class="reference external" href="https://www.jetbrains.com/help/pycharm/using-file-watchers.html#ws_filewatcher_examples"&gt;https://www.jetbrains.com/help/pycharm/using-file-watchers.html#ws_filewatcher_examples&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Stylus: &lt;a class="reference external" href="http://stylus-lang.com/docs/executable.html"&gt;http://stylus-lang.com/docs/executable.html&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id2"&gt;
+&lt;div class="header_target" id="h_html_2dcss_configure_2dstylus_2doutput_2ddirectory_index_2erst_2"&gt;&lt;/div&gt;&lt;h1&gt;手順&lt;/h1&gt;
+&lt;ol class="arabic"&gt;
+&lt;li&gt;&lt;p&gt;PyCharm -&amp;gt; Preferences -&amp;gt; Tools -&amp;gt; File Watchers -&amp;gt; Stylus -&amp;gt; 編集ボタン (えんぴつみたいなマーク) 押下&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Edit Watcher ダイアログで、&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;</summary></entry><entry><title>Python いろいろメモ</title><link href="https://32imuf.com/python/etc/" rel="alternate"></link><published>2018-10-29T00:00:00+09:00</published><updated>2018-10-29T00:00:00+09:00</updated><id>tag:32imuf.com,2018-10-29:/python/etc/</id><summary type="html">&lt;div class="section" id="flake8-3-6"&gt;
 &lt;div class="header_target" id="h_python_etc_index_2erst_1"&gt;&lt;/div&gt;&lt;h1&gt;flake8 3.6 対応がわかりやすい&lt;/h1&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://scrapbox.io/shimizukawa/flake8-3.6.0_%E3%81%AB%E6%9B%B4%E6%96%B0%E3%81%97%E3%81%9F%E3%82%89%E8%AD%A6%E5%91%8A%E3%81%9F%E3%81%8F%E3%81%95%E3%82%93%E5%87%BA%E3%81%A6%E3%81%8D%E3%81%9F"&gt;https://scrapbox.io/shimizukawa/flake8-3.6.0_%E3%81%AB%E6%9B%B4%E6%96%B0%E3%81%97%E3%81%9F%E3%82%89%E8%AD%A6%E5%91%8A%E3%81%9F%E3%81%8F%E3%81%95%E3%82%93%E5%87%BA%E3%81%A6%E3%81%8D%E3%81%9F&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
@@ -201,14 +212,4 @@
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;&lt;span class="docutils literal"&gt;&lt;span class="pre"&gt;-i&lt;/span&gt; &amp;lt;identity_file&amp;gt;&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;</summary></entry><entry><title>Python テストのメモ</title><link href="https://32imuf.com/python-test/note/" rel="alternate"></link><published>2018-10-11T00:00:00+09:00</published><updated>2018-10-11T00:00:00+09:00</updated><id>tag:32imuf.com,2018-10-11:/python-test/note/</id><summary type="html">&lt;div class="section" id="id1"&gt;
-&lt;div class="header_target" id="h_python_2dtest_note_index_2erst_1"&gt;&lt;/div&gt;&lt;h1&gt;Python テストのメモ&lt;/h1&gt;
-&lt;div class="section" id="id2"&gt;
-&lt;div class="header_target" id="h_python_2dtest_note_index_2erst_2"&gt;&lt;/div&gt;&lt;h2&gt;例外のテストはこれ&lt;/h2&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://docs.pytest.org/en/latest/reference.html#pytest-raises"&gt;https://docs.pytest.org/en/latest/reference.html#pytest-raises&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;span class="docutils literal"&gt;with pytest.raises(RuntimeError) as excinfo:&lt;/span&gt; の &lt;span class="docutils literal"&gt;excinfo&lt;/span&gt; には、 &lt;a class="reference external" href="https://docs.pytest.org/en/latest/reference.html#exceptioninfo"&gt;ExceptionInfo&lt;/a&gt; が入ってくる&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;例外のインスタンスは、 &lt;span class="docutils literal"&gt;value&lt;/span&gt; フィールドに入っている&lt;/p&gt;
-&lt;div class="code-block"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;pytest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;raises&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ListFileError&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;list_file&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'201803'&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;</summary></entry></feed>
+&lt;li&gt;&lt;p&gt;&lt;span class="docutils literal"&gt;&lt;span class="pre"&gt;-i&lt;/span&gt; &amp;lt;identity_file&amp;gt;&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;</summary></entry></feed>
