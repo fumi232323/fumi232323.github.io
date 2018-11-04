@@ -95,28 +95,27 @@
 &lt;/div&gt;
 &lt;div class="section" id="css3-3"&gt;
 &lt;div class="header_target" id="h_html_2dcss_css_note_index_2erst_4"&gt;&lt;/div&gt;&lt;h1&gt;CSS3 ベスト3&lt;/h1&gt;
-&lt;p&gt;flex しか使ったことがない...&lt;/p&gt;&lt;/div&gt;</summary></entry><entry><title>Django のメモ</title><link href="https://32imuf.com/django/note/" rel="alternate"></link><published>2018-10-28T00:00:00+09:00</published><updated>2018-10-28T00:00:00+09:00</updated><id>tag:32imuf.com,2018-10-28:/django/note/</id><summary type="html">&lt;div class="section" id="django-admin-manage-py"&gt;
-&lt;div class="header_target" id="h_django_note_index_2erst_1"&gt;&lt;/div&gt;&lt;h1&gt;django-admin と manage.py&lt;/h1&gt;
-&lt;div class="section" id="id1"&gt;
-&lt;div class="header_target" id="h_django_note_index_2erst_2"&gt;&lt;/div&gt;&lt;h2&gt;リファレンス&lt;/h2&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://docs.djangoproject.com/ja/2.1/ref/django-admin/#cmdoption-shell-command"&gt;https://docs.djangoproject.com/ja/2.1/ref/django-admin/#cmdoption-shell-command&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="id2"&gt;
-&lt;div class="header_target" id="h_django_note_index_2erst_3"&gt;&lt;/div&gt;&lt;h2&gt;Django をインタラクティブモードで実行する&lt;/h2&gt;
-&lt;div class="section" id="id3"&gt;
-&lt;div class="header_target" id="h_django_note_index_2erst_4"&gt;&lt;/div&gt;&lt;h3&gt;使い方&lt;/h3&gt;
+&lt;p&gt;flex しか使ったことがない...&lt;/p&gt;&lt;/div&gt;</summary></entry><entry><title>Django のメモ</title><link href="https://32imuf.com/django/note/" rel="alternate"></link><published>2018-10-28T00:00:00+09:00</published><updated>2018-10-28T00:00:00+09:00</updated><id>tag:32imuf.com,2018-10-28:/django/note/</id><summary type="html">&lt;div class="section" id="id1"&gt;
+&lt;div class="header_target" id="h_django_note_index_2erst_1"&gt;&lt;/div&gt;&lt;h1&gt;マイグレーションを間違えたときのリカバリ方法&lt;/h1&gt;
+&lt;ol class="arabic"&gt;
+&lt;li&gt;&lt;p&gt;DjangoのDBシェルでローカルのポスグレにつなぐ&lt;/p&gt;
+&lt;blockquote&gt;
 &lt;div class="code-block"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; こうとか
-&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nv"&gt;DJANGO_SETTINGS_MODULE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;settings._ python manage.py shell
-&lt;span class="gp"&gt;#&lt;/span&gt; こう
-&lt;span class="gp"&gt;$&lt;/span&gt; python manage.py shell --settings&lt;span class="o"&gt;=&lt;/span&gt;settings._
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; python manage.py dbshell --settings&lt;span class="o"&gt;=&lt;/span&gt;settings.local
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="section" id="id4"&gt;
-&lt;div class="header_target" id="h_django_note_index_2erst_5"&gt;&lt;/div&gt;&lt;h3&gt;使用例&lt;/h3&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;django_migrations テーブルから該当アプリのレコードを削除する&lt;/p&gt;
+&lt;blockquote&gt;
 &lt;div class="code-block"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;(venv) [vagrant@localhost apps]$ python manage.py shell --settings=settings._&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</summary></entry><entry><title>git merge</title><link href="https://32imuf.com/git/command/merge/" rel="alternate"></link><published>2018-10-26T00:00:00+09:00</published><updated>2018-10-26T00:00:00+09:00</updated><id>tag:32imuf.com,2018-10-26:/git/command/merge/</id><summary type="html">&lt;div class="section" id="id1"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;django_migrations&lt;/span&gt; &lt;span class="k"&gt;WHERE&lt;/span&gt; &lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="k"&gt;like&lt;/span&gt; &lt;span class="s1"&gt;'%{application_name}%'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;DELETE&lt;/span&gt; &lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;django_migrations&lt;/span&gt; &lt;span class="k"&gt;WHERE&lt;/span&gt; &lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="err"&gt;{該当の&lt;/span&gt;&lt;span class="n"&gt;ID&lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;該当テーブルやカラムも DROP する&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;</summary></entry><entry><title>git merge</title><link href="https://32imuf.com/git/command/merge/" rel="alternate"></link><published>2018-10-26T00:00:00+09:00</published><updated>2018-10-26T00:00:00+09:00</updated><id>tag:32imuf.com,2018-10-26:/git/command/merge/</id><summary type="html">&lt;div class="section" id="id1"&gt;
 &lt;div class="header_target" id="h_git_command_merge_index_2erst_1"&gt;&lt;/div&gt;&lt;h1&gt;マージする&lt;/h1&gt;
 &lt;p&gt;topic ブランチを acceptance ブランチへマージする。&lt;/p&gt;
 &lt;ol class="arabic"&gt;
