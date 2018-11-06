@@ -56,11 +56,11 @@
           <ul>
             
               <li class="nav-article">
-                <a href="../../html-css/configure-stylus-output-directory/">PyCharm の File Watcher で、 Stylus の CSS ファイル生成先ディレクトリを指定する。</a>
+                <a href="../../html-css/css/note/">CSS のメモ</a>
               </li>
             
               <li class="nav-article">
-                <a href="../../html-css/css/note/">CSS のメモ</a>
+                <a href="../../html-css/configure-stylus-output-directory/">PyCharm の File Watcher で、 Stylus の CSS ファイル生成先ディレクトリを指定する。</a>
               </li>
             
               <li class="nav-article">
@@ -455,32 +455,43 @@
 <div class="header_target" id="h_django_note_index_2erst_13"></div><h1>Class-based views</h1>
 <pre class="literal-block">関数形式の view はコンテキスト、テンプレート、フォーム、全部変えしてあげないといけなかった。つまり全部関数内に書く必要があった。
 必要なものを切り離して属性として定義できるようにしたのが genericview (class based view)。</pre>
+<div class="section" id="id10">
+<div class="header_target" id="h_django_note_index_2erst_14"></div><h2>リファレンス</h2>
+<p><a class="reference external" href="https://docs.djangoproject.com/ja/2.1/topics/class-based-views/">https://docs.djangoproject.com/ja/2.1/topics/class-based-views/</a></p>
+</div>
 <div class="section" id="formview">
-<div class="header_target" id="h_django_note_index_2erst_14"></div><h2>FormView</h2>
+<div class="header_target" id="h_django_note_index_2erst_15"></div><h2>FormView</h2>
 <ul class="simple">
 <li><p><span class="docutils literal">genericview</span> はたくさん種類がある。</p></li>
 <li><p>何らかの登録・更新処理で <span class="docutils literal">form</span> を使ったバリデーションが必要なら 大体 <span class="docutils literal">FormView</span> を使う</p></li>
 </ul>
 </div>
 <div class="section" id="as-view">
-<div class="header_target" id="h_django_note_index_2erst_15"></div><h2>as_view</h2>
+<div class="header_target" id="h_django_note_index_2erst_16"></div><h2>as_view</h2>
+<p><a class="reference external" href="https://github.com/django/django/blob/master/django/views/generic/base.py#L49">https://github.com/django/django/blob/master/django/views/generic/base.py#L49</a></p>
 <ul class="simple">
-<li><p>as_view は view関数を生成して返している</p></li>
+<li><p>as_view は view 関数を生成して返している</p></li>
 <li><p>実際の処理は self.dispatch で クラスベースビューに処理を委譲してるんだと思います</p></li>
-<li><p>ソースコード URL: <a class="reference external" href="https://github.com/django/django/blob/master/django/views/generic/base.py#L49">https://github.com/django/django/blob/master/django/views/generic/base.py#L49</a></p></li>
+<li><p>urls.py で as_view せずに、 views.py で as_view した Class-based view をグローバル変数に代入するのは、</p>
+<ul>
+<li><p>同じ view を複数のurlに設定したいとき</p></li>
+<li><p>モジュールの import が1回しか発生しないのはモジュール毎の話じゃなくプロセス全体 ( Django で言うと <span class="docutils literal"><span class="pre">runserver...</span></span> した単位) の話</p></li>
+<li><p>url ごとに同じ View を何回も生成するんだったら、同じでよいでしょう (シングルトン) 、ということ</p></li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="section" id="get-context-data">
-<div class="header_target" id="h_django_note_index_2erst_16"></div><h2>get_context_data</h2>
+<div class="header_target" id="h_django_note_index_2erst_17"></div><h2>get_context_data</h2>
 <ul class="simple">
 <li><p>大抵の場合、ビューというのはレンダリングに必要なコンテキストを組み立てるものなので 大体の処理は <span class="docutils literal">get_context_data</span> というメソッドに書く。</p></li>
 </ul>
 </div>
 </div>
-<div class="section" id="id10">
-<div class="header_target" id="h_django_note_index_2erst_17"></div><h1>こんなのある</h1>
 <div class="section" id="id11">
-<div class="header_target" id="h_django_note_index_2erst_18"></div><h2>インラインフォームセット</h2>
+<div class="header_target" id="h_django_note_index_2erst_18"></div><h1>こんなのある</h1>
+<div class="section" id="id12">
+<div class="header_target" id="h_django_note_index_2erst_19"></div><h2>インラインフォームセット</h2>
 <p>使い方はよくわかっていない</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://docs.djangoproject.com/ja/1.11/topics/forms/modelforms/#inline-formsets">https://docs.djangoproject.com/ja/1.11/topics/forms/modelforms/#inline-formsets</a></p></li>
@@ -488,7 +499,7 @@
 </ul>
 </div>
 <div class="section" id="multivaluedict">
-<div class="header_target" id="h_django_note_index_2erst_19"></div><h2>MultiValueDict</h2>
+<div class="header_target" id="h_django_note_index_2erst_20"></div><h2>MultiValueDict</h2>
 <p>なにがうれしいのかさっぱりわからない =&gt; <cite>MultiValueDict を継承してる QueryDict とか見るとユースケースはなんとなく想像つくと思います</cite> と教えて頂いた。</p>
 <ul>
 <li><p><a class="reference external" href="https://docs.djangoproject.com/ja/2.1/_modules/django/utils/datastructures/">https://docs.djangoproject.com/ja/2.1/_modules/django/utils/datastructures/</a></p>
@@ -511,7 +522,7 @@
 </ul>
 </div>
 <div class="section" id="querydict">
-<div class="header_target" id="h_django_note_index_2erst_20"></div><h2>QueryDict オブジェクト</h2>
+<div class="header_target" id="h_django_note_index_2erst_21"></div><h2>QueryDict オブジェクト</h2>
 <p><cite>In an HttpRequest object, the GET and POST attributes are instances of django.http.QueryDict</cite> だそうです。</p>
 <blockquote>
 <ul>
@@ -522,10 +533,10 @@
 </blockquote>
 </div>
 <div class="section" id="usermanager">
-<div class="header_target" id="h_django_note_index_2erst_21"></div><h2>UserManager</h2>
+<div class="header_target" id="h_django_note_index_2erst_22"></div><h2>UserManager</h2>
 <p><a class="reference external" href="https://docs.djangoproject.com/ja/1.11/ref/contrib/auth/#manager-methods">マネージャメソッド</a></p>
 <div class="section" id="url">
-<div class="header_target" id="h_django_note_index_2erst_22"></div><h3>参考 URL</h3>
+<div class="header_target" id="h_django_note_index_2erst_23"></div><h3>参考 URL</h3>
 <ul>
 <li><p><a class="reference external" href="https://github.com/django/django/blob/master/django/contrib/auth/models.py#L131">https://github.com/django/django/blob/master/django/contrib/auth/models.py#L131</a></p></li>
 <li><p><a class="reference external" href="https://docs.djangoproject.com/ja/1.11/topics/auth/customizing/#a-full-example">https://docs.djangoproject.com/ja/1.11/topics/auth/customizing/#a-full-example</a></p>
@@ -542,14 +553,14 @@
 </div>
 </div>
 <div class="section" id="requestfactory">
-<div class="header_target" id="h_django_note_index_2erst_23"></div><h2>RequestFactory</h2>
+<div class="header_target" id="h_django_note_index_2erst_24"></div><h2>RequestFactory</h2>
 <p><a class="reference external" href="https://docs.djangoproject.com/en/2.1/topics/testing/advanced/#django.test.RequestFactory">https://docs.djangoproject.com/en/2.1/topics/testing/advanced/#django.test.RequestFactory</a></p>
 </div>
 </div>
-<div class="section" id="id14">
-<div class="header_target" id="h_django_note_index_2erst_24"></div><h1>便利さん</h1>
 <div class="section" id="id15">
-<div class="header_target" id="h_django_note_index_2erst_25"></div><h2>django に便利コマンド追加してくれるさん</h2>
+<div class="header_target" id="h_django_note_index_2erst_25"></div><h1>便利さん</h1>
+<div class="section" id="id16">
+<div class="header_target" id="h_django_note_index_2erst_26"></div><h2>django に便利コマンド追加してくれるさん</h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://django-extensions.readthedocs.io/en/latest/">django-extensions</a></p></li>
 </ul>

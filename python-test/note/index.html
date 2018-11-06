@@ -56,11 +56,11 @@
           <ul>
             
               <li class="nav-article">
-                <a href="../../html-css/configure-stylus-output-directory/">PyCharm の File Watcher で、 Stylus の CSS ファイル生成先ディレクトリを指定する。</a>
+                <a href="../../html-css/css/note/">CSS のメモ</a>
               </li>
             
               <li class="nav-article">
-                <a href="../../html-css/css/note/">CSS のメモ</a>
+                <a href="../../html-css/configure-stylus-output-directory/">PyCharm の File Watcher で、 Stylus の CSS ファイル生成先ディレクトリを指定する。</a>
               </li>
             
               <li class="nav-article">
@@ -320,8 +320,8 @@
       <div class="main">
 <div class="article-content">
   <main class="item item-article item-test">
-    <time class="date" datetime="2018-10-11 00:00:00+09:00">
-      2018-10-11 Thu
+    <time class="date" datetime="2018-11-06 00:00:00+09:00">
+      2018-11-06 Tue
     </time>
     <div class="title">Python テストのメモ</div>
     <div class="category">
@@ -330,10 +330,66 @@
       </a>
     </div>
     <div class="text">
-      <div class="section" id="id1">
-<div class="header_target" id="h_python_2dtest_note_index_2erst_1"></div><h1>Python テストのメモ</h1>
+      <div class="section" id="mypy">
+<div class="header_target" id="h_python_2dtest_note_index_2erst_1"></div><h1>mypy</h1>
+<div class="section" id="id1">
+<div class="header_target" id="h_python_2dtest_note_index_2erst_2"></div><h2>リファレンス</h2>
+<p><a class="reference external" href="https://mypy.readthedocs.io/en/latest/index.html">https://mypy.readthedocs.io/en/latest/index.html</a></p>
+</div>
+<div class="section" id="type-hints">
+<div class="header_target" id="h_python_2dtest_note_index_2erst_3"></div><h2>Type hints 覚書き</h2>
+<dl class="field-list simple">
+<dt>Union[int, str]</dt>
+<dd><p><span class="docutils literal">int</span> or <span class="docutils literal">str</span> の意。とり得る型が全部わかっているなら、 <span class="docutils literal">Any</span> と書くより列記したほうがよい。</p>
+</dd>
+<dt>Optional[str]</dt>
+<dd><p><span class="docutils literal">str</span> or <span class="docutils literal">None</span> の意</p>
+</dd>
+<dt>Any</dt>
+<dd><p>なんでもいい</p>
+</dd>
+<dt>ignore</dt>
+<dd><p>mypy エラーを抑止</p>
+</dd>
+</dl>
+<ul class="simple">
+<li><p>Any は型チェックの敗北</p></li>
+<li><p>ignore は敗北その2</p></li>
+</ul>
+</div>
 <div class="section" id="id2">
-<div class="header_target" id="h_python_2dtest_note_index_2erst_2"></div><h2>例外のテストはこれ</h2>
+<div class="header_target" id="h_python_2dtest_note_index_2erst_4"></div><h2>いろいろ</h2>
+<ul class="simple">
+<li><p><span class="docutils literal">実行時にわかること</span> は mypy にはわからない</p></li>
+<li><p>mypy が解釈できないなら人間にも読みにくい</p></li>
+</ul>
+</div>
+<div class="section" id="id3">
+<div class="header_target" id="h_python_2dtest_note_index_2erst_5"></div><h2>役に立つ情報</h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.slideshare.net/t2y/python-typechecker-20180519">Python と型チェッカー</a></p></li>
+<li><p><a class="reference external" href="http://mypy-lang.blogspot.com/2018/05/">Mypy 0.600 Released</a></p></li>
+</ul>
+</div>
+<div class="section" id="todo">
+<div class="header_target" id="h_python_2dtest_note_index_2erst_6"></div><h2>TODO</h2>
+<ul class="simple">
+<li><p>Type hints はどこに必要か、どこに書くべきか</p>
+<ul>
+<li><p>引数と戻り値だけ書いておくのかと思っていたけれど、違っていた</p></li>
+<li><p>定数の宣言 &amp; 初期化時 (空の場合のみ) は書く</p></li>
+<li><p>変数でも書くときがある</p></li>
+<li><p>たぶん、型を (強制はできないけど) 規制したいときは全部書けば良いんじゃないかと思う</p></li>
+<li><p>「typecheck エラーが出るから書く」んじゃなくて、まわりのひとに、こうしてほしい (この型にしてほしい) って知らせたいときに。</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="pytest">
+<div class="header_target" id="h_python_2dtest_note_index_2erst_7"></div><h1>pytest</h1>
+<div class="section" id="id5">
+<div class="header_target" id="h_python_2dtest_note_index_2erst_8"></div><h2>例外のテストはこれ</h2>
 <p><a class="reference external" href="https://docs.pytest.org/en/latest/reference.html#pytest-raises">https://docs.pytest.org/en/latest/reference.html#pytest-raises</a></p>
 <ul>
 <li><p><span class="docutils literal">with pytest.raises(RuntimeError) as excinfo:</span> の <span class="docutils literal">excinfo</span> には、 <a class="reference external" href="https://docs.pytest.org/en/latest/reference.html#exceptioninfo">ExceptionInfo</a> が入ってくる</p></li>
@@ -350,20 +406,23 @@
 </ul>
 </div>
 <div class="section" id="parametrize">
-<div class="header_target" id="h_python_2dtest_note_index_2erst_3"></div><h2>parametrize</h2>
+<div class="header_target" id="h_python_2dtest_note_index_2erst_9"></div><h2>parametrize</h2>
 <p><span class="docutils literal">unittest.TestCase</span> を継承したテストクラス内では、 <span class="docutils literal">@pytest.mark.parametrize</span> を使えない。</p>
 </div>
-<div class="section" id="tox">
-<div class="header_target" id="h_python_2dtest_note_index_2erst_4"></div><h2>tox</h2>
-<p>これをテストに使いたいとは限らないのでもうテスト用に環境分けちゃおうぜ的なツール</p>
-</div>
 <div class="section" id="pytest-fixture">
-<div class="header_target" id="h_python_2dtest_note_index_2erst_5"></div><h2>pytest.fixture</h2>
+<div class="header_target" id="h_python_2dtest_note_index_2erst_10"></div><h2>pytest.fixture</h2>
 <p><a class="reference external" href="https://docs.pytest.org/en/latest/fixture.html">https://docs.pytest.org/en/latest/fixture.html</a></p>
 <pre class="literal-block">Test functions can receive fixture objects by naming them as an input argument. For each argument name, a fixture function with that name provides the fixture object. Fixture functions are registered by marking them with @pytest.fixture.</pre>
 </div>
+</div>
+<div class="section" id="id6">
+<div class="header_target" id="h_python_2dtest_note_index_2erst_11"></div><h1>あれこれ</h1>
+<div class="section" id="tox">
+<div class="header_target" id="h_python_2dtest_note_index_2erst_12"></div><h2>tox</h2>
+<p>これをテストに使いたいとは限らないのでもうテスト用に環境分けちゃおうぜ的なツール</p>
+</div>
 <div class="section" id="a">
-<div class="header_target" id="h_python_2dtest_note_index_2erst_6"></div><h2>3a スタイル</h2>
+<div class="header_target" id="h_python_2dtest_note_index_2erst_13"></div><h2>3a スタイル</h2>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="c1"># arrange</span>
 <span class="c1"># act</span>
@@ -373,14 +432,14 @@
 <p><a class="reference external" href="http://wiki.c2.com/?arrangeactassert">http://wiki.c2.com/?arrangeactassert</a> (つながらない)</p>
 </div>
 <div class="section" id="testpyramid">
-<div class="header_target" id="h_python_2dtest_note_index_2erst_7"></div><h2>TestPyramid</h2>
+<div class="header_target" id="h_python_2dtest_note_index_2erst_14"></div><h2>TestPyramid</h2>
 <p>UI 寄りのテストは、コストと実行時間が長くなってしまうので、いきなり書かない方がいい</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://martinfowler.com/bliki/TestPyramid.html">https://martinfowler.com/bliki/TestPyramid.html</a></p></li>
 </ul>
 </div>
-<div class="section" id="id3">
-<div class="header_target" id="h_python_2dtest_note_index_2erst_8"></div><h2>テストターゲットの取得方法</h2>
+<div class="section" id="id7">
+<div class="header_target" id="h_python_2dtest_note_index_2erst_15"></div><h2>テストターゲットの取得方法</h2>
 <p><a class="reference external" href="http://pelican.aodag.jp/xiao-guo-de-naunittest-mataha-callfutnomi-mi.html">http://pelican.aodag.jp/xiao-guo-de-naunittest-mataha-callfutnomi-mi.html</a></p>
 </div>
 </div>
