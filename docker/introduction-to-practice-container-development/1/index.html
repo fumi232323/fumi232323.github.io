@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Vollkorn:400,700">
     <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-    <link rel="stylesheet" href="/static/css/style.css?20181103">
+    <link rel="stylesheet" href="/static/css/style.css?20181105">
   </head>
 
   <body>
@@ -627,62 +627,70 @@
 </div>
 <div class="section" id="id16">
 <div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_1_index_2erst_18"></div><h2>1.3.3 Docker for Mac の基本設定</h2>
+<p>設定画面の出し方:</p>
 <ul class="simple">
-<li><p>設定画面の出し方</p>
-<ul>
 <li><p>ステータスバーの Docker アイコンをクリック -&gt; Settings... -&gt; Preference</p></li>
 </ul>
-</li>
-<li><p>Docker の自動起動</p>
-<ul>
-<li><p>General -&gt; Start docker when you log in: ON</p></li>
-<li><p>OS ログイン時 Docker を起動する</p></li>
-</ul>
-</li>
-<li><p>自動更新のチェック</p>
-<ul>
-<li><p>General -&gt; Automatically check for updates: ON</p></li>
-</ul>
-</li>
-<li><p>ホスト OS 側のディレクトリマウント</p>
-<ul>
-<li><p>File Sharing タブ</p></li>
+<table class="colwidths-auto">
+<caption>設定画面</caption>
+<thead>
+<tr><th class="head"><p>項目</p></th>
+<th class="head"><p>タブ</p></th>
+<th class="head"><p>説明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr><td><p>Docker の自動起動</p></td>
+<td><p>General -&gt; Start docker when you log in: ON</p></td>
+<td><p>OS ログイン時 Docker を起動する</p></td>
+</tr>
+<tr><td><p>自動更新のチェック</p></td>
+<td><p>General -&gt; Automatically check for updates: ON</p></td>
+<td></td>
+</tr>
+<tr><td><p>ホスト OS 側のディレクトリマウント</p></td>
+<td><p>File Sharing</p></td>
+<td><ul class="simple">
 <li><p>Docker コンテナにマウントを許可するホスト側のディレクトリを設定できる</p></li>
 <li><p>Docker はホストとゲスト (コンテナ) 間でファイルをやり取りするためにディレクトリをマウントして共有する状態を作る</p></li>
 </ul>
-</li>
-<li><p>仮想ディスクサイズの設定</p>
-<ul>
-<li><p>Disk タブ</p></li>
+</td>
+</tr>
+<tr><td><p>仮想ディスクサイズの設定</p></td>
+<td><p>Disk</p></td>
+<td><ul class="simple">
 <li><p>Docker for Mac を実行している仮想ディスクのサイズを調整できる</p></li>
 <li><p>macOS の場合、仮想ディスクのパスは、 ~/Library/Containers/com.docker.docker/Data/vms/0/Docker.qcow2</p></li>
 </ul>
-</li>
-<li><p>CPU/メモリの割り当て</p>
-<ul>
-<li><p>Advanced タブ</p></li>
-<li><p>ホスト OS のどれだけの CPU・メモリリソースを割り当てるか設定できる</p></li>
-</ul>
-</li>
-<li><p>プロキシ</p>
-<ul>
-<li><p>Proxies タブ</p></li>
-<li><p>Docker イメージをリモートの Docker レジストリから pull してくる際に、 HTTP/HTTPS プロキシを利用するかどうかを設定できる</p></li>
-</ul>
-</li>
-<li><p>Daemon タブ</p>
-<ul>
-<li><p>Advanced</p></li>
+</td>
+</tr>
+<tr><td><p>CPU/メモリの割り当て</p></td>
+<td><p>Advanced</p></td>
+<td><p>ホスト OS のどれだけの CPU・メモリリソースを割り当てるか設定できる</p></td>
+</tr>
+<tr><td><p>プロキシ</p></td>
+<td><p>Proxies</p></td>
+<td><p>Docker イメージをリモートの Docker レジストリから pull してくる際に、 HTTP/HTTPS プロキシを利用するかどうかを設定できる</p></td>
+</tr>
+<tr><td><p>Docker の設定ファイル</p></td>
+<td><p>Daemon -&gt; Advanced</p></td>
+<td><ul class="simple">
 <li><p>Docker の設定ファイルを JSON 形式で設定できる</p></li>
 <li><p>設定画面にない設定値を変更したい場合はこの JSON 文字列を更新する</p></li>
 </ul>
-</li>
-<li><p>Kubernetes タブ</p>
-<ul>
+</td>
+</tr>
+<tr><td><p>Kubernetes の設定</p></td>
+<td><p>Kubernetes</p></td>
+<td><ul class="simple">
 <li><p>実行する Kubernetes の設定ができる</p></li>
 <li><p>Enable Kubernetes をチェックすると、 Kubernetes が有効になる</p></li>
 </ul>
-</li>
+</td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
 <li><p>Docker EE</p>
 <ul>
 <li><p>有償</p></li>

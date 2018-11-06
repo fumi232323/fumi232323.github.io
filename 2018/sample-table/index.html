@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Vollkorn:400,700">
     <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-    <link rel="stylesheet" href="/static/css/style.css?20181103">
+    <link rel="stylesheet" href="/static/css/style.css?20181105">
   </head>
 
   <body>
@@ -435,6 +435,27 @@
 <ul class="simple">
 <li><p>このレシピが好き: <a class="reference external" href="https://www.kyounoryouri.jp/recipe/3633_%E3%82%A2%E3%83%83%E3%83%97%E3%83%AB%E3%83%91%E3%82%A4.html">https://www.kyounoryouri.jp/recipe/3633_%E3%82%A2%E3%83%83%E3%83%97%E3%83%AB%E3%83%91%E3%82%A4.html</a></p></li>
 </ul>
+</div>
+<div class="section" id="id1">
+<div class="header_target" id="h_2018_sample_2dtable_index_2erst_3"></div><h1>list-table のサンプルそのに</h1>
+<table class="colwidths-auto">
+<tbody>
+<tr><th class="stub"><p>実行中</p></th>
+<td><p><span class="docutils literal">$ docker container run</span> で起動した状態。</p></td>
+</tr>
+<tr><th class="stub"><p>停止</p></th>
+<td><p>停止しても、ディスクにコンテナ終了時の状態は保持される。停止したコンテナは再実行可能。</p></td>
+</tr>
+<tr><th class="stub"><p>破棄</p></th>
+<td><ul class="simple">
+<li><p>停止したコンテナは明示的に破棄しない限りディスクに残り続ける。どんどんたまる。</p></li>
+<li><p>完全に不要なコンテナは破棄するほうが望ましい。</p></li>
+<li><p>一度破棄したコンテナを再び開始することはできない。</p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 </div>
     </div>
   </main>

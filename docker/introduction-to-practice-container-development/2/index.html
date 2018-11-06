@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Vollkorn:400,700">
     <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-    <link rel="stylesheet" href="/static/css/style.css?20181103">
+    <link rel="stylesheet" href="/static/css/style.css?20181105">
   </head>
 
   <body>
@@ -320,8 +320,8 @@
       <div class="main">
 <div class="article-content">
   <main class="item item-article item-docker">
-    <time class="date" datetime="2018-10-01 00:00:00+09:00">
-      2018-10-01 Mon
+    <time class="date" datetime="2018-11-04 00:00:00+09:00">
+      2018-11-04 Sun
     </time>
     <div class="title">Docker/Kubernetes 実践コンテナ開発入門 - 2. Docker コンテナのデプロイ</div>
     <div class="category">
@@ -332,25 +332,40 @@
     <div class="text">
       <div class="section" id="id1">
 <div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_2_index_2erst_1"></div><h1>2.1 コンテナでアプリケーションを実行する</h1>
-<ul class="simple">
-<li><p>Docker イメージ</p>
-<ul>
+<table class="colwidths-auto">
+<caption>Docker イメージと Docker コンテナの関係性</caption>
+<thead>
+<tr><th class="head"><p>名称</p></th>
+<th class="head"><p>役割</p></th>
+</tr>
+</thead>
+<tbody>
+<tr><td><p>Docker イメージ</p></td>
+<td><ul class="simple">
 <li><p>Docker コンテナを構成するファイルシステムや、実行するアプリケーションや設定をまとめたもの</p></li>
 <li><p>コンテナを作成するために利用されるテンプレートとなるもの</p></li>
 </ul>
-</li>
-<li><p>Docker コンテナ</p>
-<ul>
+</td>
+</tr>
+<tr><td><p>Docker コンテナ</p></td>
+<td><ul class="simple">
 <li><p>Docker イメージを基に作成され、具現化されたファイルシステムとアプリケーションが実行されている状態</p></li>
-</ul>
-</li>
 <li><p>ひとつの Docker イメージから複数のコンテナを生成できる</p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
 <li><p>まずは、イメージから作成する</p></li>
 </ul>
 <div class="section" id="docker-docker">
 <div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_2_index_2erst_2"></div><h2>2.1.1 Docker イメージと Docker コンテナの基本</h2>
-<ul>
+<div class="section" id="id2">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_2_index_2erst_3"></div><h3>基本の流れ</h3>
+<ol class="arabic">
 <li><p>Docker イメージをダウンロード</p>
+<blockquote>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="gp">FumienoMacBook-Pro:docker-work fumi23$</span> docker image pull gihyodocker/echo:latest
 <span class="go">latest: Pulling from gihyodocker/echo</span>
@@ -368,8 +383,10 @@
 <span class="go">Status: Downloaded newer image for gihyodocker/echo:latest</span>
 </pre></div>
 </div>
+</blockquote>
 </li>
 <li><p>Docker イメージを実行</p>
+<blockquote>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="gp">FumienoMacBook-Pro:docker-work fumi23$</span> docker container run -t -p <span class="m">9000</span>:8080 gihyodocker/echo:latest
 <span class="go">2018/10/01 13:53:03 start server</span>
@@ -382,8 +399,10 @@
 </ul>
 </li>
 </ul>
+</blockquote>
 </li>
 <li><p>別のターミナルからアクセスしてみる</p>
+<blockquote>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="gp">FumienoMacBook-Pro:~ fumi23$</span> curl http://localhost:9000
 <span class="go">Hello Docker!!</span>
@@ -395,9 +414,614 @@
 <span class="go">2018/10/01 13:56:44 received request</span>
 </pre></div>
 </div>
+</blockquote>
 </li>
-<li><p>停止する</p></li>
+<li><p>停止する</p>
+<blockquote>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker stop <span class="k">$(</span>docker container ls -q<span class="k">)</span>
+</pre></div>
+</div>
+</blockquote>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="id3">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_2_index_2erst_4"></div><h2>2.1.2 簡単なアプリケーションと Docker イメージをつくる</h2>
+<p>Docker コンテナがどのように作られ、実行されているかのイメージをつかむ。
+Go 言語で簡単な Web サーバーを書き、 Docker コンテナ嬢で動作させてみましょう。</p>
+<div class="section" id="id4">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_2_index_2erst_5"></div><h3>用意するもの</h3>
+<ul class="simple">
+<li><p>main.go</p></li>
+<li><p>Dockerfile</p></li>
 </ul>
+</div>
+<div class="section" id="dockerfile">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_2_index_2erst_6"></div><h3>Dockerfileの説明</h3>
+<ul>
+<li><p>Dockerfile には、 Docker 独自の DSL (ドメイン固有言語) を使ってイメージの構成を定義する。</p></li>
+<li><p><span class="docutils literal">FROM</span> や <span class="docutils literal">RUN</span> といったキーワードは「インストラクション (命令) 」と呼ばれている。</p>
+<table class="colwidths-auto">
+<caption>Dockerfile のインストラクション</caption>
+<thead>
+<tr><th class="head"><p>インストラクション名</p></th>
+<th class="head"><p>説明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr><td><p>FROM</p></td>
+<td><ul class="simple">
+<li><p>作成する Docker イメージのベースとなるイメージを指定する。</p></li>
+<li><p>Dockerfile でイメージをビルドする際、まず最初に <span class="docutils literal">FROM</span> で指定されたイメージをダウンロードしてから実行される。</p></li>
+<li><p>Docker は、デフォルトで <span class="docutils literal">FROM</span> の取得先として <span class="docutils literal">Docker Hub</span> のレジストリを参照する。</p></li>
+</ul>
+</td>
+</tr>
+<tr><td><p>RUN</p></td>
+<td><ul class="simple">
+<li><p>Docker イメージビルド時に、 Docker コンテナで実行するコマンドを定義します。</p></li>
+<li><p><span class="docutils literal">RUN</span> の引数には Docker コンテナ内で実行するコマンドをそのまま指定する。</p></li>
+</ul>
+</td>
+</tr>
+<tr><td><p>COPY</p></td>
+<td><p>Docker を動作させているホストマシン上のファイルやディレクトリを Docker コンテナ内にコピーするためのインストラクション。</p></td>
+</tr>
+<tr><td><p>CMD</p></td>
+<td><ul class="simple">
+<li><p>Docker コンテナとして実行する際に、コンテナ内で実行するプロセスを指定する。</p></li>
+<li><p><span class="docutils literal">CMD</span> はコンテナ起動時に１度実行される。</p></li>
+<li><p><span class="docutils literal">CMD</span> で指定した命令は、 docker container run の指定で実行時に上書きできる。</p></li>
+</ul>
+</td>
+</tr>
+<tr><td><p>LABEL</p></td>
+<td><p>イメージの作者名記入などに使う。</p></td>
+</tr>
+<tr><td><p>ENV</p></td>
+<td><p>Dockerfile をもとに生成した Docker コンテナ内で使える環境変数を指定する。</p></td>
+</tr>
+<tr><td><p>ARG</p></td>
+<td><p>ビルド時に情報を埋め込むために使う。イメージビルドのときだけ使用できる一時的な環境変数。</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</div>
+<div class="section" id="id5">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_2_index_2erst_7"></div><h3>Docker イメージをビルドする</h3>
+<p>Docker イメージを作成するためのコマンド</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker image build -t 名前空間/イメージ名<span class="o">[</span>:タグ名<span class="o">]</span> Dockerfile配置ディレクトリのパス
+</pre></div>
+</div>
+<p>実行すると、</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker image build -t example/echo:latest .
+<span class="go">Sending build context to Docker daemon  3.072kB</span>
+<span class="go">Step 1/4 : FROM golang:1.9</span>
+<span class="go">1.9: Pulling from library/golang</span>
+<span class="go">55cbf04beb70: Pull complete</span>
+<span class="go">1607093a898c: Pull complete</span>
+<span class="go">9a8ea045c926: Pull complete</span>
+<span class="go">d4eee24d4dac: Pull complete</span>
+<span class="go">9c35c9787a2f: Pull complete</span>
+<span class="go">8b376bbb244f: Pull complete</span>
+<span class="go">0d4eafcc732a: Pull complete</span>
+<span class="go">186b06a99029: Pull complete</span>
+<span class="go">Digest: sha256:8b5968585131604a92af02f5690713efadf029cc8dad53f79280b87a80eb1354</span>
+<span class="go">Status: Downloaded newer image for golang:1.9</span>
+<span class="go"> ---&gt; ef89ef5c42a9</span>
+<span class="go">Step 2/4 : RUN mkdir /echo</span>
+<span class="go"> ---&gt; Running in 4da08e7c5693</span>
+<span class="go">Removing intermediate container 4da08e7c5693</span>
+<span class="go"> ---&gt; 7caf124fb4d3</span>
+<span class="go">Step 3/4 : COPY main.go /echo</span>
+<span class="go"> ---&gt; 73db87b05d43</span>
+<span class="go">Step 4/4 : CMD ["go", "run", "/echo/main.go"]</span>
+<span class="go"> ---&gt; Running in 3db24ec2a7c7</span>
+<span class="go">Removing intermediate container 3db24ec2a7c7</span>
+<span class="go"> ---&gt; 294c33d2b845</span>
+<span class="go">Successfully built 294c33d2b845</span>
+<span class="go">Successfully tagged example/echo:latest</span>
+<span class="gp">$</span> docker image ls
+<span class="go">REPOSITORY                       TAG                 IMAGE ID            CREATED             SIZE</span>
+<span class="go">example/echo                     latest              294c33d2b845        37 seconds ago      750MB</span>
+<span class="go">golang                           1.9                 ef89ef5c42a9        3 months ago        750MB</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><span class="docutils literal">ENTRYPOINT</span> というものを使うと、コマンド実行が便利になるらしい</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id6">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_2_index_2erst_8"></div><h2>2.1.3 Docker コンテナを実行する</h2>
+<ul>
+<li><p>コンテナを実行する</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker container run example/echo:latest
+<span class="go">2018/11/04 10:05:45 start server</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>終了は、 <span class="docutils literal">Ctrl + C</span> (やってみたけど終わらないな...)</p></li>
+</ul>
+</li>
+<li><p>バックグランドでコンテナを実行させる</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker container run -d example/echo:latest
+<span class="go">449ccdc8c99e72ecd791b036417632ec3e7944f1e7ab14c5b96d7e4caec0e58b</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>ハッシュ値のような文字列は、 Docker コンテナのID</p></li>
+<li><p>コンテナのID は、コンテナ実行時に付与される一意な ID</p></li>
+</ul>
+</li>
+<li><p>停止する</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker container stop <span class="k">$(</span>docker container ls --filter <span class="s2">"ancestor=example/echo"</span> -q<span class="k">)</span>
+<span class="go">449ccdc8c99e</span>
+</pre></div>
+</div>
+</li>
+<li><p>現在実行中のコンテナの一覧を表示する</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker container ls
+<span class="go">CONTAINER ID        IMAGE                 COMMAND                  CREATED             STATUS              PORTS               NAMES</span>
+<span class="go">449ccdc8c99e        example/echo:latest   "go run /echo/main.go"   2 minutes ago       Up 2 minutes                            determined_zhukovsky</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<div class="section" id="id7">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_2_index_2erst_9"></div><h3>ポートフォワーディング</h3>
+<p>ホストマシンのポートをコンテナポートに紐づける。
+コンテナの外から来た通信をコンテナポートに転送することができる。</p>
+<ul>
+<li><p>ホスト側の 9000 番ポートをコンテナ側の 8080 番ポートにポートフォワーディングする。</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker container run -d -p <span class="m">9000</span>:8080 example/echo:latest
+<span class="go">b113261a42b8fb110cd1984904dccfe859067abd078637ff37804ad5f00c3ff5</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><span class="docutils literal"><span class="pre">-p</span> <span class="pre">{ホスト側ポート}:{コンテナポート}</span></span></p></li>
+<li><p>ホスト側のポートは省略できる。省略すると空いているポートが自動的に割り当てられる。</p></li>
+</ul>
+</li>
+<li><p>ホスト側のポートに curl で GET リクエストしてみる</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> curl http://localhost:9000/
+<span class="go">Hello Docker!!</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="id8">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_2_index_2erst_10"></div><h1>2.2 Docker イメージの操作</h1>
+<dl class="field-list simple">
+<dt>Docker イメージ</dt>
+<dd><p>Docker コンテナを作成するためのテンプレート</p>
+</dd>
+<dt>Dockerfile</dt>
+<dd><p>イメージを構築するための手順を記述したファイル</p>
+</dd>
+<dt>Docker イメージをビルドする</dt>
+<dd><p>イメージを構築する</p>
+</dd>
+</dl>
+<ul>
+<li><p>Docker のヘルプを表示する</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker <span class="nb">help</span>
+</pre></div>
+</div>
+</li>
+<li><p>Docker のイメージ操作に関するコマンドのヘルプを表示する</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker image --help
+</pre></div>
+</div>
+</li>
+</ul>
+<div class="section" id="docker-image-build">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_2_index_2erst_11"></div><h2>2.2.1 docker image build --- イメージのビルド</h2>
+<ul>
+<li><p>Dockerfile をもとに Docker イメージを作成する</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker image build -t イメージ名<span class="o">[</span>:タグ名<span class="o">]</span> Dockerfile配置ディレクトリのパス
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><span class="docutils literal"><span class="pre">-t</span> <span class="pre">イメージ名[:タグ名]</span></span> : Docker を利用する上でほぼ必須。</p></li>
+</ul>
+</li>
+<li><p>Dockerfile という名前ではない Dockerfile を指定して Docker イメージを作成する</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker image build -f <span class="o">{</span>Dockerfile名<span class="o">}</span> -t イメージ名<span class="o">[</span>:タグ名<span class="o">]</span> Dockerfile配置ディレクトリのパス
+</pre></div>
+</div>
+</li>
+<li><p>イメージをビルド時に、 <span class="docutils literal">FROM</span> で指定したベースイメージを強制的に再取得させる。</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker image build --pull<span class="o">=</span><span class="nb">true</span> -t example/echo:latest
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>実際の運用では、 <span class="docutils literal">latest</span> ではなく、タグ付けされたイメージを利用することがほとんど</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="docker-search">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_2_index_2erst_12"></div><h2>2.2.2 docker search --- イメージの検索</h2>
+<div class="section" id="docker-hub">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_2_index_2erst_13"></div><h3>Docker Hub</h3>
+<ul class="simple">
+<li><p>Docker イメージのレジストリ</p></li>
+<li><p>ユーザーや組織が GitHub と同様にリポジトリを持つことができる</p></li>
+<li><p>リポジトリでそれぞれの Docker イメージを管理していく</p></li>
+<li><p>全てのイメージのベースとなるような OS (CentOS や Ubuntu) のリポジトリ、言語のランタイムや著名なミドルウェアのイメージのリポジトリなどたくさんある</p></li>
+<li><p>全ての Docker イメージを自前で用意する必要はない、ほかの人が作ったものを活用していく</p></li>
+</ul>
+</div>
+<div class="section" id="id9">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_2_index_2erst_14"></div><h3>検索する</h3>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker search <span class="o">[</span>options<span class="o">]</span> 検索キーワード
+</pre></div>
+</div>
+<ul>
+<li><p>mysql を検索する</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker search --limit <span class="m">5</span> mysql
+<span class="go">NAME                         DESCRIPTION                                     STARS               OFFICIAL            AUTOMATED</span>
+<span class="go">mysql                        MySQL is a widely used, open-source relation…   7249                [OK]</span>
+<span class="go">mysql/mysql-server           Optimized MySQL Server Docker images. Create…   535                                     [OK]</span>
+<span class="go">zabbix/zabbix-server-mysql   Zabbix Server with MySQL database support       136                                     [OK]</span>
+<span class="go">mysql/mysql-cluster          Experimental MySQL Cluster Docker images. Cr…   33</span>
+<span class="go">circleci/mysql               MySQL is a widely used, open-source relation…   7</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>スターの降順で表示される</p></li>
+<li><p><span class="docutils literal"><span class="pre">--limit</span> 5</span> : 表示件数を5件に制限する</p></li>
+<li><p>名前空間はオーナー名</p></li>
+<li><p>公式リポジトリは、名前空間が表示されない</p></li>
+<li><p>公式リポジトリの名前空間には一律で <span class="docutils literal">library</span> がついているので、正式名称は <span class="docutils literal">library/mysql</span></p></li>
+</ul>
+</li>
+<li><p>リリースされているタグの一覧を表示する</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> curl -s <span class="s1">'https://hub.docker.com/v2/repositories/library/golang/tags/?page_size=10'</span> <span class="p">|</span> jq -r <span class="s1">'.results[].name'</span>
+<span class="go">1.10</span>
+<span class="go">1.10.5</span>
+<span class="go">latest</span>
+<span class="go">1</span>
+<span class="go">1.11</span>
+<span class="go">1.11.2</span>
+<span class="go">1.10-alpine3.7</span>
+<span class="go">1.10.5-alpine3.7</span>
+<span class="go">1.10-alpine</span>
+<span class="go">1.10.5-alpine</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="docker-image-pull">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_2_index_2erst_15"></div><h2>2.2.3 docker image pull --- イメージの取得</h2>
+<p>Docker レジストリから Docker イメージをダウンロードする</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker image pull <span class="o">[</span>options<span class="o">]</span> リポジトリ名<span class="o">[</span>:タグ名<span class="o">]</span>
+</pre></div>
+</div>
+<ul>
+<li><p>指定するリポジトリ名とタグ名は Docker Hub に存在するものを指定する</p></li>
+<li><p>jenkins の Docker イメージをダウンロードする</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker image pull jenkins:latest
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>タグ名を省略した場合は、デフォルトタグ (多くは latest) が利用される</p></li>
+<li><p>ダウンロードしてきたイメージは、そのまま Docker コンテナとして利用できる</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="docker-image-ls">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_2_index_2erst_16"></div><h2>2.2.4 docker image ls --- イメージの一覧</h2>
+<p>Docker ホストに保持されているイメージの一覧を表示する</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker image ls <span class="o">[</span>options<span class="o">]</span> <span class="o">[</span>リポジトリ名<span class="o">[</span>:タグ名<span class="o">]]</span>
+</pre></div>
+</div>
+<ul>
+<li><p>Docker ホスト: Docker デーモンを実行しているホスト環境のこと</p></li>
+<li><p>リモートから pull してきたイメージも、自分でビルドしたイメージも両方表示される</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker image ls
+<span class="go">REPOSITORY                       TAG                 IMAGE ID            CREATED             SIZE</span>
+<span class="go">example/echo                     latest              ed899b24590f        3 hours ago         750MB</span>
+<span class="go">jenkins                          latest              cd14cecfdb3a        3 months ago        696MB</span>
+<span class="go">golang                           1.9                 ef89ef5c42a9        3 months ago        750MB</span>
+<span class="go">gihyodocker/echo                 latest              3dbbae6eb30d        10 months ago       733MB</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><span class="docutils literal">IMAGE ID</span> : イメージのID。コンテナのIDとは違うものなので、混同しないこと。</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="docker-image-tag">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_2_index_2erst_17"></div><h2>2.2.5 docker image tag --- イメージのタグ付け</h2>
+<div class="section" id="id10">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_2_index_2erst_18"></div><h3>Docker イメージのバージョン</h3>
+<p>イメージのバージョンとは、正確にはイメージIDのこと</p>
+<ul>
+<li><p>イメージのビルドの度に、別の <span class="docutils literal">IMAGE ID</span> が割り振られる。</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker image ls
+<span class="go">REPOSITORY                       TAG                 IMAGE ID            CREATED             SIZE</span>
+<span class="go">example/echo                     latest              ed899b24590f        3 hours ago         750MB</span>
+<span class="go">&lt;none&gt;                           &lt;none&gt;              294c33d2b845        3 hours ago         750MB</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>ひとつのタグに紐づけられるイメージはひとつまで (上の例だと <span class="docutils literal">latest</span> )</p></li>
+<li><p>古いイメージはタグとの紐づけが解除されて <span class="docutils literal">&lt;none&gt;</span> になる</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_2_index_2erst_19"></div><h3>イメージIDへのタグ付け</h3>
+<p>イメージID にタグ名という形で別名をつけることができる</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker image tag 元イメージ名<span class="o">[</span>:タグ<span class="o">]</span> 新イメージ名<span class="o">[</span>:タグ<span class="o">]</span>
+</pre></div>
+</div>
+<ul>
+<li><p>ある特定のイメージIDを持つ Docker イメージを識別しやすくするために使う。</p></li>
+<li><p><span class="docutils literal">latest</span> は Git で言うところの master ブランチのようなもの。常に最新のイメージ。</p></li>
+<li><p><span class="docutils literal">example/echo</span> の <span class="docutils literal">latest</span> に 0.1.0 のタグをつける</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker image tag example/echo:latest example/echo:0.1.0
+<span class="go">REPOSITORY                       TAG                 IMAGE ID            CREATED             SIZE</span>
+<span class="go">example/echo                     0.1.0               ed899b24590f        3 hours ago         750MB</span>
+<span class="go">example/echo                     latest              ed899b24590f        3 hours ago         750MB</span>
+<span class="go">&lt;none&gt;                           &lt;none&gt;              294c33d2b845        3 hours ago         750MB</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="docker-image-push">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_2_index_2erst_20"></div><h2>2.2.6 docker image push --- イメージの公開</h2>
+<p>Docker イメージを Docker Hub などのレジストリに登録する</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker image push <span class="o">[</span>options<span class="o">]</span> リポジトリ名<span class="o">[</span>:タグ<span class="o">]</span>
+</pre></div>
+</div>
+<div class="section" id="docker-hub-push">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_2_index_2erst_21"></div><h3>Docker Hub にイメージを push する</h3>
+<ol class="arabic">
+<li><p>Docker Hub にログインする</p>
+<blockquote>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker login -u your_docker_id -p your_docker_pw
+</pre></div>
+</div>
+</blockquote>
+</li>
+<li><p>名前空間を自分のリポジトリ名にする</p>
+<blockquote>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker image tag example/echo:latest fumi23/echo:latest
+<span class="gp">$</span> docker image ls
+<span class="go">REPOSITORY                       TAG                 IMAGE ID            CREATED             SIZE</span>
+<span class="go">example/echo                     0.1.0               ed899b24590f        4 hours ago         750MB</span>
+<span class="go">example/echo                     latest              ed899b24590f        4 hours ago         750MB</span>
+<span class="go">fumi23/echo                      latest              ed899b24590f        4 hours ago         750MB</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Docker Hub は、自分が所有している、または、所属している organization のリポジトリにしか push できない</p></li>
+</ul>
+</blockquote>
+</li>
+<li><p>Docker Hub に push する</p>
+<blockquote>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker image push fumi23/echo:latest
+<span class="go">The push refers to repository [docker.io/fumi23/echo]</span>
+<span class="go">b2aff6d696c0: Preparing</span>
+<span class="go">f18abb5d7b45: Preparing</span>
+<span class="go">f18abb5d7b45: Pushed</span>
+<span class="go">latest: digest: sha256:834be6348517746b53f3d44c56b580a0cea74161b86426cc006b1c066c48e047 size: 2417</span>
+</pre></div>
+</div>
+</blockquote>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="section" id="id11">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_2_index_2erst_22"></div><h1>2.3 Docker コンテナの操作</h1>
+<p>Docker コンテナは外から見ると仮想環境、ファイルシステムとアプリケーションが同梱されている箱のようなもの。</p>
+<div class="section" id="id12">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_2_index_2erst_23"></div><h2>2.3.1 Docker コンテナのライフサイクル</h2>
+<p>Docker コンテナは、以下の3つの状態のいずれかに分類される。</p>
+<table class="colwidths-auto">
+<tbody>
+<tr><th class="stub"><p>実行中</p></th>
+<td><p><span class="docutils literal">$ docker container run</span> で起動した状態。</p></td>
+</tr>
+<tr><th class="stub"><p>停止</p></th>
+<td><p>停止しても、ディスクにコンテナ終了時の状態は保持される。停止したコンテナは再実行可能。</p></td>
+</tr>
+<tr><th class="stub"><p>破棄</p></th>
+<td><ul class="simple">
+<li><p>停止したコンテナは明示的に破棄しない限りディスクに残り続ける。どんどんたまる。</p></li>
+<li><p>完全に不要なコンテナは破棄するほうが望ましい。</p></li>
+<li><p>一度破棄したコンテナを再び開始することはできない。</p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="docker-container-run">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_2_index_2erst_24"></div><h2>2.3.2 docker container run --- コンテナの作成と実行</h2>
+<p>Docker イメージからコンテナを作成、実行するコマンド。</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker container run <span class="o">[</span>options<span class="o">]</span> イメージ名<span class="o">[</span>:タグ名<span class="o">]</span> <span class="o">[</span>コマンド<span class="o">]</span> <span class="o">[</span>コマンド引数...<span class="o">]</span>
+</pre></div>
+</div>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker container run <span class="o">[</span>options<span class="o">]</span> イメージID <span class="o">[</span>コマンド<span class="o">]</span> <span class="o">[</span>コマンド引数...<span class="o">]</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>コンテナをバックグラウンドで実行 → HTTP リクエストしてみる → 停める</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker container run -d -p <span class="m">9001</span>:8080 example/echo:latest
+<span class="gp">$</span> curl http://localhost:9001/
+<span class="gp">$</span> docker container stop <span class="k">$(</span>docker container ls --filter <span class="s2">"ancestor=example/echo"</span> -q<span class="k">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id13">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_2_index_2erst_25"></div><h3>docker container run 時に引数を与える</h3>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker image pull alpine:3.7
+<span class="gp">#</span> docker container run -it alpine:3.7  <span class="c1"># シェルに入る</span>
+<span class="gp">$</span> docker container run -it alpine:3.7 uname -a
+</pre></div>
+</div>
+</div>
+<div class="section" id="id14">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_2_index_2erst_26"></div><h3>名前付きコンテナ</h3>
+<p><span class="docutils literal">NAMES</span> は適当な単語で作られた名前が自動でつけられる。</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker container ls
+<span class="go">CONTAINER ID        IMAGE                 COMMAND                  CREATED             STATUS              PORTS                    NAMES</span>
+<span class="go">77699bc8d7cd        example/echo:latest   "go run /echo/main.go"   4 seconds ago       Up 2 seconds        0.0.0.0:9001-&gt;8080/tcp   modest_saha</span>
+</pre></div>
+</div>
+<p>コンテナに好きな名前をつけられる。</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker container run --name <span class="o">[</span>好きなコンテナ名<span class="o">]</span> <span class="o">[</span>イメージ名<span class="o">]</span>:<span class="o">[</span>タグ<span class="o">]</span>
+</pre></div>
+</div>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker container run -t -d --name gihyo-echo example/echo:latest
+<span class="go">4864fcaf10802340449f50364891cc48b99e90538f04d8e601c5c0397ff11917</span>
+<span class="gp">$</span> docker container ls
+<span class="go">CONTAINER ID        IMAGE                 COMMAND                  CREATED             STATUS              PORTS                    NAMES</span>
+<span class="go">4864fcaf1080        example/echo:latest   "go run /echo/main.go"   3 seconds ago       Up 2 seconds                                 gihyo-echo</span>
+<span class="go">77699bc8d7cd        example/echo:latest   "go run /echo/main.go"   4 minutes ago       Up 4 minutes        0.0.0.0:9001-&gt;8080/tcp   modest_saha</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>開発時は便利だが、本番環境ではあまり使わない</p></li>
+<li><p>同名のコンテナを新たに実行するには既存の同名コンテナを削除する必要があるため</p></li>
+</ul>
+</div>
+<div class="section" id="id15">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_2_index_2erst_27"></div><h3>コマンド実行時の頻出オプション</h3>
+<dl class="field-list simple">
+<dt>-i</dt>
+<dd><p>docker 起動後にコンテナ側の標準入力をつなぎっぱなしにする。シェルに入ってコマンド実行ができる。</p>
+</dd>
+<dt>-t</dt>
+<dd><p>擬似端末を有効にする。</p>
+</dd>
+<dt>-it</dt>
+<dd><p>-i と -t はセットで使うことが多い。</p>
+</dd>
+<dt>--rm</dt>
+<dd><p>コンテナ終了時にコンテナを破棄する。</p>
+</dd>
+<dt>-v</dt>
+<dd><p>ホストとコンテナ間でディレクトリ、ファイルを共有する</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="docker-container-ls">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_2_index_2erst_28"></div><h2>2.3.3 docker container ls --- コンテナの一覧</h2>
+<p>実行中及び終了したコンテナの一覧を表示するコマンド</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker container ls <span class="o">[</span>options<span class="o">]</span>
+</pre></div>
+</div>
+<p>オプションなしで実行すると、実行中のコンテナ一覧が表示される</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker container run -t -d -p <span class="m">8080</span> --name fumi23 example/echo:latest
+<span class="go">81e3a724ae7c730eea14b86edf354c9aad4bced96e272d1fce238760080a23b6</span>
+<span class="gp">$</span> docker container run -t -d -p <span class="m">8080</span> --name fumi45 example/echo:latest
+<span class="go">db029554bc5fc2e23a724892bef867c613ae5dba861e50de48914bcde23ebaf1</span>
+<span class="gp">$</span> docker container ls
+<span class="go">CONTAINER ID        IMAGE                 COMMAND                  CREATED             STATUS              PORTS                     NAMES</span>
+<span class="go">db029554bc5f        example/echo:latest   "go run /echo/main.go"   21 seconds ago      Up 21 seconds       0.0.0.0:32769-&gt;8080/tcp   fumi45</span>
+<span class="go">81e3a724ae7c        example/echo:latest   "go run /echo/main.go"   44 seconds ago      Up 43 seconds       0.0.0.0:32768-&gt;8080/tcp   fumi23</span>
+</pre></div>
+</div>
+<table class="colwidths-auto">
+<caption>一覧の表示項目</caption>
+<thead>
+<tr><th class="head"><p>項目</p></th>
+<th class="head"><p>内容</p></th>
+</tr>
+</thead>
+<tbody>
+<tr><td><p>CONTAINER ID</p></td>
+<td><p>コンテナに付与される一意の ID</p></td>
+</tr>
+<tr><td><p>IMAGE</p></td>
+<td><p>コンテナ作成に使用された Docker イメージ</p></td>
+</tr>
+<tr><td><p>COMMAND</p></td>
+<td><p>コンテナで実行されているアプリケーションのプロセス</p></td>
+</tr>
+<tr><td><p>CREATED</p></td>
+<td><p>コンテナが作成されてから経過した時間</p></td>
+</tr>
+<tr><td><p>STATUS</p></td>
+<td><p>Up (実行中), Exited(終了) といったコンテナの実行状態</p></td>
+</tr>
+<tr><td><p>PORTS</p></td>
+<td><p>ホストのポートとコンテナポートの紐づけ (ポートフォワーディング)</p></td>
+</tr>
+<tr><td><p>NAMES</p></td>
+<td><p>コンテナにつけられた名前</p></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id16">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_2_index_2erst_29"></div><h3>コンテナIDだけを抽出する</h3>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker container ls -q
+<span class="go">db029554bc5f</span>
+<span class="go">81e3a724ae7c</span>
+</pre></div>
+</div>
+</div>
 </div>
 </div>
     </div>
