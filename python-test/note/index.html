@@ -320,8 +320,8 @@
       <div class="main">
 <div class="article-content">
   <main class="item item-article item-test">
-    <time class="date" datetime="2018-11-06 00:00:00+09:00">
-      2018-11-06 Tue
+    <time class="date" datetime="2018-11-08 00:00:00+09:00">
+      2018-11-08 Thu
     </time>
     <div class="title">Python テストのメモ</div>
     <div class="category">
@@ -330,14 +330,202 @@
       </a>
     </div>
     <div class="text">
-      <div class="section" id="mypy">
-<div class="header_target" id="h_python_2dtest_note_index_2erst_1"></div><h1>mypy</h1>
+      <div class="section" id="tox">
+<div class="header_target" id="h_python_2dtest_note_index_2erst_1"></div><h1>tox</h1>
+<p><cite>これをテストに使いたいとは限らないのでもうテスト用に環境分けちゃおうぜ的なツール</cite></p>
+<ul class="simple">
+<li><p>別々の virtualenv にそれぞれテスト環境を構築してくれる</p></li>
+<li><p>構築した virtualenv の中でテストを実行して、結果を表示してくれる</p></li>
+<li><p>テストツールや環境変数などをまとめておける</p></li>
+<li><p><span class="docutils literal">tox</span> コマンドを実行するだけで、必要なテストを簡単に、まとめて実行できるようになる</p></li>
+<li><p>それぞれのテストは virtualenv によって分離されているため、他のテスト用設定が別のテストに影響を与えない</p></li>
+</ul>
 <div class="section" id="id1">
 <div class="header_target" id="h_python_2dtest_note_index_2erst_2"></div><h2>リファレンス</h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://tox.readthedocs.io/en/latest/config.html">https://tox.readthedocs.io/en/latest/config.html</a></p></li>
+<li><p><a class="reference external" href="https://docs.pytest.org/en/latest/reference.html#configuration-options">https://docs.pytest.org/en/latest/reference.html#configuration-options</a></p></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<div class="header_target" id="h_python_2dtest_note_index_2erst_3"></div><h2>インストール</h2>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> pip install tox
+</pre></div>
+</div>
+</div>
+<div class="section" id="tox-ini">
+<div class="header_target" id="h_python_2dtest_note_index_2erst_4"></div><h2>tox.ini</h2>
+<p>テスト実行環境の設定を記述するファイル</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="k">[tox]</span>
+<span class="c1"># envlist: テスト環境の一覧。それぞれ別々の環境が用意される。</span>
+<span class="c1"># py27: インストールされている python2.7 コマンドを探し出して、 Python2.7 の virtualenv を作成してくれる。</span>
+<span class="na">envlist</span> <span class="o">=</span> <span class="s">flake8,typecheck,py27</span>
+
+<span class="c1"># setup.py がなくても実行可能にする。 setup.py がない場合は、 requirements.txt などで依存ライブラリを管理する。</span>
+<span class="na">skipsdist</span> <span class="o">=</span> <span class="s">True</span>
+
+<span class="k">[pytest]</span>
+<span class="na">addopts</span> <span class="o">=</span> <span class="s">--durations=10</span>
+
+<span class="c1"># 実行対象を指定する。この場合は、 tests ディレクトリ配下。</span>
+<span class="na">testpaths</span> <span class="o">=</span> <span class="s">tests</span>
+
+<span class="c1"># pytest-pythonpath の項を参照のこと。</span>
+<span class="na">python_paths</span> <span class="o">=</span> <span class="s">apps tests</span>
+
+<span class="na">django_find_project</span> <span class="o">=</span> <span class="s">false</span>
+<span class="na">DJANGO_SETTINGS_MODULE</span> <span class="o">=</span> <span class="s">settings.test</span>
+
+<span class="c1"># [testenv]: テスト環境の設定。</span>
+<span class="c1"># `[testenv:flake8]` のように環境の名前が指定されている場合は、そちらの指定が優先される。</span>
+<span class="c1"># 環境の名前に合う設定がない場合は、 `[testenv]` セクションの汎用的な設定が利用される。</span>
+<span class="k">[testenv]</span>
+
+<span class="c1"># 環境にインストールするライブラリを指定する。</span>
+<span class="c1"># この部分は pip に直接渡されるため、ライブラリではなく requirements.txt の指定も可能。</span>
+<span class="c1"># `-r` と `requirements_dev.txt` の間にスペースを入れるとエラーになるので注意。</span>
+<span class="na">deps</span> <span class="o">=</span> <span class="s">-rrequirements_dev.txt</span>
+
+<span class="c1"># 環境変数を固定したい場合はここに書く</span>
+<span class="na">setenv</span> <span class="o">=</span><span class="s"></span>
+<span class="s">    PYTHONDONTWRITEBYTECODE = 1</span>
+
+<span class="c1"># 実行するコマンド: py.test, 実行対象: tox コマンド実行時に引数として渡されたディレクトリ配下</span>
+<span class="c1"># `{posargs}` と書くと、 tox コマンド実行時に引数を渡すことができる</span>
+<span class="na">commands</span> <span class="o">=</span> <span class="s">py.test {posargs}</span>
+
+<span class="c1"># typecheck はこちらのテスト環境設定が優先される</span>
+<span class="k">[testenv:typecheck]</span>
+<span class="c1"># typecheck 用の環境にインストールするライブラリを指定する。</span>
+<span class="na">deps</span> <span class="o">=</span><span class="s"></span>
+<span class="s">    mypy</span>
+<span class="s">    mypy-extensions</span>
+
+<span class="c1"># typecheck 用の virtualenv は python3 で作る</span>
+<span class="c1"># https://tox.readthedocs.io/en/latest/config.html#conf-basepython</span>
+<span class="na">basepython</span> <span class="o">=</span> <span class="s">python3</span>
+
+<span class="c1"># 実行するコマンド: mypy, 実行対象: app ディレクトリ配下</span>
+<span class="na">commands</span> <span class="o">=</span> <span class="s">mypy apps</span>
+
+<span class="c1"># flake8 はこちらのテスト環境設定が優先される</span>
+<span class="k">[testenv:flake8]</span>
+<span class="na">deps</span> <span class="o">=</span><span class="s"></span>
+<span class="s">    flake8&gt;=3.6.0</span>
+<span class="s">    flake8-blind-except</span>
+<span class="s">    flake8-docstrings&lt;1.1.0</span>
+<span class="s">    flake8-import-order</span>
+<span class="s">    pydocstyle&lt;2.0.0</span>
+<span class="s">    mccabe</span>
+<span class="s">    radon</span>
+
+<span class="c1"># https://docs.python.org/ja/3/using/cmdline.html#envvar-PYTHONDONTWRITEBYTECODE (よくわからない)</span>
+<span class="na">setenv</span> <span class="o">=</span><span class="s"></span>
+<span class="s">    PYTHONDONTWRITEBYTECODE = 1</span>
+
+<span class="c1"># 実行するコマンド: flake8, 実行対象: app ディレクトリ配下</span>
+<span class="na">commands</span> <span class="o">=</span> <span class="s">flake8 apps</span>
+
+<span class="k">[flake8]</span>
+<span class="c1"># 実行対象外リスト。除外するディレクトリを列記する。</span>
+<span class="c1"># `[testenv:flake8]` セクションに `app` 配下を実行対象とする、と書いてあるので、 `app` の中の `migrations,urls.py,manage.py,settings` 配下は対象外、の意。</span>
+<span class="na">exclude</span> <span class="o">=</span> <span class="s">migrations,urls.py,manage.py,settings</span>
+
+<span class="na">max-line-length</span> <span class="o">=</span> <span class="s">120</span>
+<span class="na">max-complexity</span> <span class="o">=</span> <span class="s">10</span>
+<span class="na">radon-max-cc</span> <span class="o">=</span> <span class="s">10</span>
+<span class="na">import-order-style</span> <span class="o">=</span> <span class="s">google</span>
+
+<span class="c1"># flake8 警告を抑止するリスト。詳しくは shihmizukawa さんの scrapbox ↓ を参照のこと。</span>
+<span class="na">extend-ignore</span> <span class="o">=</span> <span class="s">C901,D100,D101,D102,D103,D104,D105,D200,D202,D203,D204,D205,D208,D209,D210,D300,D301,D302,D400,D401,D402,D403,E741,I100,I101,R701</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<div class="header_target" id="h_python_2dtest_note_index_2erst_5"></div><h2>実行</h2>
+<p>全部実行する。 tox.ini ファイルのあるディレクトリで実行する!!</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> tox
+</pre></div>
+</div>
+<p><span class="docutils literal"><span class="pre">-e</span></span> オプションを指定すると、指定した環境のテストのみが実行できる。</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="c1"># pytest だけ</span>
+$ tox -e py27
+<span class="c1"># pytest だけ, tests/test_target 配下だけ</span>
+$ tox -e py27 tests/test_target
+<span class="c1"># flake8 だけ</span>
+$ tox -e flake8
+<span class="c1"># flake8 と typecheck</span>
+$ tox -e flake8, typecheck
+</pre></div>
+</div>
+<p>tox ではなく、テストコマンドにオプションを渡したい場合は、 <span class="docutils literal"><span class="pre">--</span></span> のあとにオプションを指定する。</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> tox -e py27 -- -vv tests/test_target
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<div class="header_target" id="h_python_2dtest_note_index_2erst_6"></div><h2>テスト用仮想環境の再作成</h2>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> tox -r
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>tox.ini から参照している requirements.txt の中身を変更したあとは、明示的にテスト用仮想環境を再作成する必要がある。</p>
+<ul>
+<li><p>tox は、 テスト用の仮想環境を作成するときに、 <span class="docutils literal"><span class="pre">-rrequirements_dev.txt</span></span> 引数を内部で pip コマンドに渡して実行する。</p>
+<ul>
+<li><p>tox.ini の <span class="docutils literal">deps</span> の記述が更新された場合は、テスト用の仮想環境を再作成してくれる。</p></li>
+<li><p><span class="docutils literal">requirements_dev.txt</span> の中身だけ更新されて、<span class="docutils literal">deps</span> 自体の更新がない場合は、 仮想環境の再作成も pip コマンドの再実行も行わない。</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="pytest-pythonpath">
+<div class="header_target" id="h_python_2dtest_note_index_2erst_7"></div><h2>pytest-pythonpath</h2>
+<p>テスト実行の前に、 pytests.ini に指定した検索パスを <span class="docutils literal">PYTHONPATH</span> に追加してくれるプラグイン</p>
+<blockquote>
+<ul class="simple">
+<li><p>使い方はこちら: <a class="reference external" href="https://pypi.org/project/pytest-pythonpath/">https://pypi.org/project/pytest-pythonpath/</a></p></li>
+<li><p><span class="docutils literal">PYTHONPATH</span> はこちら: <a class="reference external" href="https://docs.python.org/ja/3/using/cmdline.html#envvar-PYTHONPATH">https://docs.python.org/ja/3/using/cmdline.html#envvar-PYTHONPATH</a></p></li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="id5">
+<div class="header_target" id="h_python_2dtest_note_index_2erst_8"></div><h2>参考書籍, サイト</h2>
+<ul class="simple">
+<li><p>Python プロフェッショナル プログラミング 第3版: P.249, 274</p></li>
+<li><p><a class="reference external" href="http://note.crohaco.net/2016/python-tox/">http://note.crohaco.net/2016/python-tox/</a></p></li>
+<li><p><a class="reference external" href="http://note.crohaco.net/2016/python-pytest/">http://note.crohaco.net/2016/python-pytest/</a></p></li>
+<li><p><a class="reference external" href="https://tox.readthedocs.io/en/latest/config.html#conf-basepython">https://tox.readthedocs.io/en/latest/config.html#conf-basepython</a></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/ja/3/using/cmdline.html#envvar-PYTHONDONTWRITEBYTECODE">https://docs.python.org/ja/3/using/cmdline.html#envvar-PYTHONDONTWRITEBYTECODE</a></p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/pytest-pythonpath/">https://pypi.org/project/pytest-pythonpath/</a></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/ja/3/using/cmdline.html#envvar-PYTHONPATH">https://docs.python.org/ja/3/using/cmdline.html#envvar-PYTHONPATH</a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="flake8-3-6">
+<div class="header_target" id="h_python_2dtest_note_index_2erst_9"></div><h1>flake8 3.6 対応がわかりやすい</h1>
+<p><a class="reference external" href="https://scrapbox.io/shimizukawa/flake8-3.6.0_%E3%81%AB%E6%9B%B4%E6%96%B0%E3%81%97%E3%81%9F%E3%82%89%E8%AD%A6%E5%91%8A%E3%81%9F%E3%81%8F%E3%81%95%E3%82%93%E5%87%BA%E3%81%A6%E3%81%8D%E3%81%9F">https://scrapbox.io/shimizukawa/flake8-3.6.0_%E3%81%AB%E6%9B%B4%E6%96%B0%E3%81%97%E3%81%9F%E3%82%89%E8%AD%A6%E5%91%8A%E3%81%9F%E3%81%8F%E3%81%95%E3%82%93%E5%87%BA%E3%81%A6%E3%81%8D%E3%81%9F</a></p>
+</div>
+<div class="section" id="mypy">
+<div class="header_target" id="h_python_2dtest_note_index_2erst_10"></div><h1>mypy</h1>
+<div class="section" id="id6">
+<div class="header_target" id="h_python_2dtest_note_index_2erst_11"></div><h2>リファレンス</h2>
 <p><a class="reference external" href="https://mypy.readthedocs.io/en/latest/index.html">https://mypy.readthedocs.io/en/latest/index.html</a></p>
 </div>
 <div class="section" id="type-hints">
-<div class="header_target" id="h_python_2dtest_note_index_2erst_3"></div><h2>Type hints 覚書き</h2>
+<div class="header_target" id="h_python_2dtest_note_index_2erst_12"></div><h2>Type hints 覚書き</h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html">Type hints cheat sheet (Python 3)</a></p></li>
+<li><p><a class="reference external" href="https://mypy.readthedocs.io/en/latest/cheat_sheet.html">Type hints cheat sheet (Python 2)</a></p></li>
+</ul>
 <dl class="field-list simple">
 <dt>Union[int, str]</dt>
 <dd><p><span class="docutils literal">int</span> or <span class="docutils literal">str</span> の意。とり得る型が全部わかっているなら、 <span class="docutils literal">Any</span> と書くより列記したほうがよい。</p>
@@ -352,44 +540,75 @@
 <dd><p>mypy エラーを抑止</p>
 </dd>
 </dl>
-<ul class="simple">
-<li><p>Any は型チェックの敗北</p></li>
-<li><p>ignore は敗北その2</p></li>
-</ul>
 </div>
-<div class="section" id="id2">
-<div class="header_target" id="h_python_2dtest_note_index_2erst_4"></div><h2>いろいろ</h2>
+<div class="section" id="id7">
+<div class="header_target" id="h_python_2dtest_note_index_2erst_13"></div><h2>これ</h2>
 <ul class="simple">
+<li><p><cite>Any は型チェックの敗北</cite></p></li>
+<li><p><cite>ignore は敗北その2</cite></p></li>
 <li><p><span class="docutils literal">実行時にわかること</span> は mypy にはわからない</p></li>
-<li><p>mypy が解釈できないなら人間にも読みにくい</p></li>
+<li><p><cite>mypy が解釈できないなら人間にも読みにくい</cite></p></li>
 </ul>
 </div>
-<div class="section" id="id3">
-<div class="header_target" id="h_python_2dtest_note_index_2erst_5"></div><h2>役に立つ情報</h2>
+<div class="section" id="id8">
+<div class="header_target" id="h_python_2dtest_note_index_2erst_14"></div><h2>Type hints はどこに必要か、どこに書くべきか</h2>
 <ul class="simple">
-<li><p><a class="reference external" href="https://www.slideshare.net/t2y/python-typechecker-20180519">Python と型チェッカー</a></p></li>
-<li><p><a class="reference external" href="http://mypy-lang.blogspot.com/2018/05/">Mypy 0.600 Released</a></p></li>
+<li><p>引数と戻り値</p></li>
+<li><p>定数の初期化時 (空の場合のみ)</p></li>
+<li><p>変数の初期化時</p></li>
+<li><p>まわりのひとに、こうしてほしい (この型にしてほしい) って知らせたいとき</p></li>
+<li><p>ついていたらありがたいと (自分が) 思うところ</p></li>
+<li><p>どこという決まりはどうもないらしい (調べていて今のところ見つかっていない)</p></li>
+<li><p>とりあえずのところ、 mypy に怒られるところにつけていけば、そのうちわかるようになると思う</p></li>
 </ul>
 </div>
-<div class="section" id="todo">
-<div class="header_target" id="h_python_2dtest_note_index_2erst_6"></div><h2>TODO</h2>
+<div class="section" id="python3">
+<div class="header_target" id="h_python_2dtest_note_index_2erst_15"></div><h2>python3 ではこういうふうに書ける</h2>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="c1"># https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html</span>
+
+<span class="n">age</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">x</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">num1</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">my_float</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">3.5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+  <span class="k">return</span> <span class="n">num1</span> <span class="o">+</span> <span class="n">my_float</span>
+</pre></div>
+</div>
 <ul class="simple">
-<li><p>Type hints はどこに必要か、どこに書くべきか</p>
+<li><p><a class="reference external" href="https://docs.python.org/ja/3/library/typing.html">typing --- 型ヒントのサポート</a> ( <cite>バージョン 3.5 で追加</cite> と言っている)</p></li>
+<li><p>python3 でも、type hints を書いたからと言って、言語側でチェックしてくれるわけではない。 <cite>static type checker</cite> と言っているのが、 <span class="docutils literal">mypy</span> とかのこと。</p></li>
+</ul>
+</div>
+<div class="section" id="tips">
+<div class="header_target" id="h_python_2dtest_note_index_2erst_16"></div><h2>Tips</h2>
+<ul class="simple">
+<li><p>PyCharm で、 <span class="docutils literal">関数名やら定数やら変数やらを範囲選択</span> -&gt; <span class="docutils literal">Option + Enter</span> で type hints を自動追加できる</p>
 <ul>
-<li><p>引数と戻り値だけ書いておくのかと思っていたけれど、違っていた</p></li>
-<li><p>定数の宣言 &amp; 初期化時 (空の場合のみ) は書く</p></li>
-<li><p>変数でも書くときがある</p></li>
-<li><p>たぶん、型を (強制はできないけど) 規制したいときは全部書けば良いんじゃないかと思う</p></li>
-<li><p>「typecheck エラーが出るから書く」んじゃなくて、まわりのひとに、こうしてほしい (この型にしてほしい) って知らせたいときに。</p></li>
+<li><p>ガイド: <a class="reference external" href="https://pleiades.io/help/pycharm/type-hinting-in-product.html">PyCharmのヒント</a></p></li>
+<li><p>いくつか試してみたけど、半々くらいの確率でちゃんとなる (期待どおりの type hints が追加できる)</p></li>
 </ul>
 </li>
 </ul>
 </div>
+<div class="section" id="id9">
+<div class="header_target" id="h_python_2dtest_note_index_2erst_17"></div><h2>情報</h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.slideshare.net/t2y/python-typechecker-20180519">Python と型チェッカー</a></p></li>
+<li><p><a class="reference external" href="http://mypy-lang.blogspot.com/2018/05/">Mypy 0.600 Released</a></p></li>
+<li><p><a class="reference external" href="https://mypy.readthedocs.io/en/latest/getting_started.html">Mypy: Getting started</a></p>
+<ul>
+<li><p><a class="reference external" href="https://blog.zulip.org/2016/10/13/static-types-in-python-oh-mypy/">Static types in Python, oh my(py)!</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=pMgmKJyWKn8">Carl Meyer - Type-checked Python in the real world - PyCon 2018</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://www.python.org/dev/peps/pep-0484/">PEP 484 -- Type Hints</a></p></li>
+</ul>
+</div>
 </div>
 <div class="section" id="pytest">
-<div class="header_target" id="h_python_2dtest_note_index_2erst_7"></div><h1>pytest</h1>
-<div class="section" id="id5">
-<div class="header_target" id="h_python_2dtest_note_index_2erst_8"></div><h2>例外のテストはこれ</h2>
+<div class="header_target" id="h_python_2dtest_note_index_2erst_18"></div><h1>pytest</h1>
+<div class="section" id="id11">
+<div class="header_target" id="h_python_2dtest_note_index_2erst_19"></div><h2>例外のテストはこれ</h2>
 <p><a class="reference external" href="https://docs.pytest.org/en/latest/reference.html#pytest-raises">https://docs.pytest.org/en/latest/reference.html#pytest-raises</a></p>
 <ul>
 <li><p><span class="docutils literal">with pytest.raises(RuntimeError) as excinfo:</span> の <span class="docutils literal">excinfo</span> には、 <a class="reference external" href="https://docs.pytest.org/en/latest/reference.html#exceptioninfo">ExceptionInfo</a> が入ってくる</p></li>
@@ -406,23 +625,19 @@
 </ul>
 </div>
 <div class="section" id="parametrize">
-<div class="header_target" id="h_python_2dtest_note_index_2erst_9"></div><h2>parametrize</h2>
+<div class="header_target" id="h_python_2dtest_note_index_2erst_20"></div><h2>parametrize</h2>
 <p><span class="docutils literal">unittest.TestCase</span> を継承したテストクラス内では、 <span class="docutils literal">@pytest.mark.parametrize</span> を使えない。</p>
 </div>
 <div class="section" id="pytest-fixture">
-<div class="header_target" id="h_python_2dtest_note_index_2erst_10"></div><h2>pytest.fixture</h2>
+<div class="header_target" id="h_python_2dtest_note_index_2erst_21"></div><h2>pytest.fixture</h2>
 <p><a class="reference external" href="https://docs.pytest.org/en/latest/fixture.html">https://docs.pytest.org/en/latest/fixture.html</a></p>
 <pre class="literal-block">Test functions can receive fixture objects by naming them as an input argument. For each argument name, a fixture function with that name provides the fixture object. Fixture functions are registered by marking them with @pytest.fixture.</pre>
 </div>
 </div>
-<div class="section" id="id6">
-<div class="header_target" id="h_python_2dtest_note_index_2erst_11"></div><h1>あれこれ</h1>
-<div class="section" id="tox">
-<div class="header_target" id="h_python_2dtest_note_index_2erst_12"></div><h2>tox</h2>
-<p>これをテストに使いたいとは限らないのでもうテスト用に環境分けちゃおうぜ的なツール</p>
-</div>
+<div class="section" id="id12">
+<div class="header_target" id="h_python_2dtest_note_index_2erst_22"></div><h1>あれこれ</h1>
 <div class="section" id="a">
-<div class="header_target" id="h_python_2dtest_note_index_2erst_13"></div><h2>3a スタイル</h2>
+<div class="header_target" id="h_python_2dtest_note_index_2erst_23"></div><h2>3a スタイル</h2>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="c1"># arrange</span>
 <span class="c1"># act</span>
@@ -432,14 +647,14 @@
 <p><a class="reference external" href="http://wiki.c2.com/?arrangeactassert">http://wiki.c2.com/?arrangeactassert</a> (つながらない)</p>
 </div>
 <div class="section" id="testpyramid">
-<div class="header_target" id="h_python_2dtest_note_index_2erst_14"></div><h2>TestPyramid</h2>
+<div class="header_target" id="h_python_2dtest_note_index_2erst_24"></div><h2>TestPyramid</h2>
 <p>UI 寄りのテストは、コストと実行時間が長くなってしまうので、いきなり書かない方がいい</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://martinfowler.com/bliki/TestPyramid.html">https://martinfowler.com/bliki/TestPyramid.html</a></p></li>
 </ul>
 </div>
-<div class="section" id="id7">
-<div class="header_target" id="h_python_2dtest_note_index_2erst_15"></div><h2>テストターゲットの取得方法</h2>
+<div class="section" id="id13">
+<div class="header_target" id="h_python_2dtest_note_index_2erst_25"></div><h2>テストターゲットの取得方法</h2>
 <p><a class="reference external" href="http://pelican.aodag.jp/xiao-guo-de-naunittest-mataha-callfutnomi-mi.html">http://pelican.aodag.jp/xiao-guo-de-naunittest-mataha-callfutnomi-mi.html</a></p>
 </div>
 </div>
