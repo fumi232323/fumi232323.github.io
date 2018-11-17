@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Vollkorn:400,700">
     <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-    <link rel="stylesheet" href="/static/css/style.css?20181105">
+    <link rel="stylesheet" href="/static/css/style.css?201811010">
   </head>
 
   <body>
@@ -284,6 +284,14 @@
           <ul>
             
               <li class="nav-article">
+                <a href="../../python-test/tox/">tox</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../python-test/mypy/">mypy</a>
+              </li>
+            
+              <li class="nav-article">
                 <a href="../../python-test/note/">Python テストのメモ</a>
               </li>
             
@@ -330,9 +338,9 @@
       </a>
     </div>
     <div class="text">
-      <p>TODO: ssh-keygen は分離したので、残りを整理する。</p>
+      <p>TODO: 残りを整理する。</p>
 <div class="section" id="id1">
-<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_1"></div><h1>何が起こったか</h1>
+<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_1"></div><h1>事象</h1>
 <p>サーバーに ssh 接続しようとしたら、こんなエラーが出た。</p>
 <blockquote>
 <ul>
@@ -358,15 +366,18 @@ ssh_exchange_identification: Connection closed by remote host
 </li>
 </ul>
 </blockquote>
-<p>よく鍵を間違えるので、また間違えたのかと思ったら・・・</p>
 </div>
 <div class="section" id="id2">
-<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_2"></div><h1>違ってた！</h1>
-<p>チームの方が教えてくれました。</p>
+<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_2"></div><h1>原因</h1>
+<p>チームの方が教えてくれました。 (ありがとうございました。)</p>
 <ul class="simple">
-<li><p>接続先サーバーの RSA 公開鍵のフィンガープリントが変わってますよ、というエラー。</p></li>
-<li><p>サーバー入れ替えとかすると、RSA 公開鍵のフィンガープリントは変わる。</p></li>
+<li><p>接続先サーバーの RSA 公開鍵のフィンガープリントが変わっていたため。</p>
+<ul>
+<li><p>上記のエラーは、接続先サーバーの RSA 公開鍵のフィンガープリントが変わってますよ、というエラー。</p></li>
+<li><p>サーバーの入れ替えなどすると、 RSA 公開鍵のフィンガープリントは変わる。</p></li>
 <li><p><cite>エラーメッセージちゃんと読むと、MITM攻撃ありえるから、気を利かしてエラーにしてる感じ</cite> なのだそうです。</p></li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="section" id="id3">
@@ -384,7 +395,7 @@ Original contents retained as /Users/fumi23/.ssh/known_hosts.old
 </blockquote>
 </li>
 <li><p>ssh でアクセスし直す。</p></li>
-<li><p>汝が接続しようとしているサーバーの fingerprint はこちらか？と尋ねられるので、 <span class="docutils literal">yes</span> と答える。</p>
+<li><p>「あなたが接続しようとしているサーバーの fingerprint はこれか？」と尋ねられるので、 <span class="docutils literal">yes</span> と答える。</p>
 <blockquote>
 <div class="code-block">
 <div class="highlight"><pre><span></span>$ ssh <span class="o">{</span>接続先サーバー<span class="o">}</span>
@@ -445,7 +456,8 @@ Last login: Fri Jul <span class="m">13</span> <span class="m">15</span>:43:09 <s
 <li><p>公開鍵 ( +α ) から生成されるんだろう</p></li>
 <li><p>送り主のサーバーは公開鍵しか持ってないしな</p></li>
 <li><p>でも変えられちゃったら、念のため手元にとっておいた公開鍵に対応するフィンガープリントなのかわからなくなっちゃう・・</p></li>
-<li><p>いやたぶん、一番最初、サーバーに公開鍵を置いたばかりのタイミングでは、<cite>$ ssh-keygen -l -f id_rsa_test1.pub</cite> したやつと同じフィンガープリントを送りつけてくるんだろう</p></li>
+<li><p>いやたぶん、一番最初、サーバーに公開鍵を置いたばかりのタイミングでは、<cite>$ ssh-keygen -l -f id_rsa_test1.pub</cite> したやつと同じフィンガープリントを
+送りつけてくるんだろう</p></li>
 <li><p>試したい・・・</p></li>
 </ul>
 <p>あ、わかった
@@ -453,7 +465,16 @@ Last login: Fri Jul <span class="m">13</span> <span class="m">15</span>:43:09 <s
 <p><a class="reference external" href="http://www.unixuser.org/~euske/doc/openssh/book/chap3.html">http://www.unixuser.org/~euske/doc/openssh/book/chap3.html</a>
 3.2.3. なりすましを防ぐしくみ</p>
 <p>公開鍵、って言ってるやつは、ふたつに分かれていたんだ、ホスト公開鍵とホスト秘密鍵</p>
-<p>通常はこのようなことが起こらないよう、 クライアントはサーバに接続した瞬間に、まず暗号化された通信を介して そのサーバのホスト鍵 (host key) を確認し、 それが本当に自分のログインしたいサーバであるかどうか確かめます。 ホスト鍵はホスト公開鍵とホスト秘密鍵に分かれており、 クライアント上には通常 known_hosts と呼ばれるファイルがあり、 ここには特定の IPアドレス (とホスト名) をもつサーバのホスト公開鍵が登録されています。 ホスト秘密鍵はサーバマシン内のディスクに格納されており、 ネットワーク上に持ち出されることはありません。 クライアントは、まずこの known_hosts ファイル内に登録されているホスト公開鍵と、 サーバから送られてくるホスト公開鍵を照合し (図 what-is-host-authentication)、 サーバが実際にこのホスト公開鍵に対応するホスト秘密鍵をもっているかどうか確認します。 この確認には公開鍵暗号技術が使われており、 サーバは実際のホスト秘密鍵をネットワーク上に送信することなく、ホスト秘密鍵の所有を クライアント側に証明できるようになっています (コラム - 公開鍵をつかった認証のしくみ 参照)。</p>
+<p>通常はこのようなことが起こらないよう、 クライアントはサーバに接続した瞬間に、まず暗号化された通信を介して そのサーバのホスト鍵 (host key) を確認し、
+それが本当に自分のログインしたいサーバであるかどうか確かめます。
+ホスト鍵は <span class="docutils literal">ホスト公開鍵</span> と <span class="docutils literal">ホスト秘密鍵</span> に分かれており、 クライアント上には通常 known_hosts と呼ばれるファイルがあり、
+ここには特定の IPアドレス (とホスト名) をもつサーバの <span class="docutils literal">ホスト公開鍵</span> が登録されています。
+ホスト秘密鍵はサーバマシン内のディスクに格納されており、 ネットワーク上に持ち出されることはありません。
+クライアントは、まずこの known_hosts ファイル内に登録されているホスト公開鍵と、
+サーバから送られてくるホスト公開鍵を照合し (図 what-is-host-authentication)、
+サーバが実際にこのホスト公開鍵に対応するホスト秘密鍵をもっているかどうか確認します。
+この確認には公開鍵暗号技術が使われており、 サーバは実際のホスト秘密鍵をネットワーク上に送信することなく、
+ホスト秘密鍵の所有を クライアント側に証明できるようになっています (コラム - 公開鍵をつかった認証のしくみ 参照)。</p>
 <p>TODO: あした、↑たしかめよう</p>
 </div>
 </div>
@@ -464,7 +485,7 @@ Last login: Fri Jul <span class="m">13</span> <span class="m">15</span>:43:09 <s
 </ul>
 </div>
 <div class="section" id="id5">
-<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_6"></div><h1>参考にしたサイト</h1>
+<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_6"></div><h1>参考サイト</h1>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.freebsd.org/cgi/man.cgi?query=ssh-keygen&amp;apropos=0&amp;sektion=1&amp;manpath=CentOS+6.5&amp;arch=default&amp;format=html">SSH-KEYGEN(1)</a></p></li>
 <li><p><a class="reference external" href="http://note.crohaco.net/2014/public-key-basic-config/">秘密鍵/公開鍵の基本的な設定</a></p></li>

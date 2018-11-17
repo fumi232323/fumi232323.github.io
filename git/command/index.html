@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Vollkorn:400,700">
     <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-    <link rel="stylesheet" href="/static/css/style.css?20181105">
+    <link rel="stylesheet" href="/static/css/style.css?201811010">
   </head>
 
   <body>
@@ -284,6 +284,14 @@
           <ul>
             
               <li class="nav-article">
+                <a href="../../python-test/tox/">tox</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../python-test/mypy/">mypy</a>
+              </li>
+            
+              <li class="nav-article">
                 <a href="../../python-test/note/">Python テストのメモ</a>
               </li>
             
@@ -381,7 +389,7 @@
 <ul>
 <li><p>リモートブランチをチェックアウト</p>
 <div class="code-block">
-<div class="highlight"><pre><span></span><span class="gp">$</span> git checkout -b &lt;branch-you-want-to-checkout&gt; origin/&lt;branch-you-want-to-checkout&gt;
+<div class="highlight"><pre><span></span>$ git checkout -b &lt;branch-you-want-to-checkout&gt; origin/&lt;branch-you-want-to-checkout&gt;
 </pre></div>
 </div>
 </li>
@@ -484,10 +492,10 @@
 <li><p>force push する</p>
 <blockquote>
 <div class="code-block">
-<div class="highlight"><pre><span></span><span class="gp">$</span> git add *
-<span class="gp">$</span> git commit -m <span class="err">'</span>initialize
-<span class="gp">$</span> git remote add origin <span class="o">{</span>URL<span class="o">}</span>
-<span class="gp">$</span> git push origin master --force
+<div class="highlight"><pre><span></span>$ git add *
+$ git commit -m <span class="err">'</span>initialize
+$ git remote add origin <span class="o">{</span>URL<span class="o">}</span>
+$ git push origin master --force
 </pre></div>
 </div>
 </blockquote>

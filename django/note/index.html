@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Vollkorn:400,700">
     <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-    <link rel="stylesheet" href="/static/css/style.css?20181105">
+    <link rel="stylesheet" href="/static/css/style.css?201811010">
   </head>
 
   <body>
@@ -284,6 +284,14 @@
           <ul>
             
               <li class="nav-article">
+                <a href="../../python-test/tox/">tox</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../python-test/mypy/">mypy</a>
+              </li>
+            
+              <li class="nav-article">
                 <a href="../../python-test/note/">Python テストのメモ</a>
               </li>
             
@@ -382,28 +390,28 @@
 <div class="section" id="id4">
 <div class="header_target" id="h_django_note_index_2erst_5"></div><h3>使い方</h3>
 <div class="code-block">
-<div class="highlight"><pre><span></span><span class="gp">#</span> こうとか
-<span class="gp">$</span> <span class="nv">DJANGO_SETTINGS_MODULE</span><span class="o">=</span>settings._ python manage.py shell
-<span class="gp">#</span> こう
-<span class="gp">$</span> python manage.py shell --settings<span class="o">=</span>settings._
+<div class="highlight"><pre><span></span><span class="c1"># こうとか</span>
+$ <span class="nv">DJANGO_SETTINGS_MODULE</span><span class="o">=</span>settings._ python manage.py shell
+<span class="c1"># こう</span>
+$ python manage.py shell --settings<span class="o">=</span>settings._
 </pre></div>
 </div>
 </div>
 <div class="section" id="id5">
 <div class="header_target" id="h_django_note_index_2erst_6"></div><h3>使用例</h3>
 <div class="code-block">
-<div class="highlight"><pre><span></span><span class="go">(venv) [vagrant@localhost apps]$ python manage.py shell --settings=settings._</span>
-<span class="go">Python 2.7.7 (default, Dec 11 2017, 18:45:38)</span>
-<span class="go">[GCC 4.4.7 20120313 (Red Hat 4.4.7-18)] on linux2</span>
-<span class="go">Type "help", "copyright", "credits" or "license" for more information.</span>
-<span class="go">(InteractiveConsole)</span>
-<span class="gp">&gt;</span>&gt;&gt; from myapp.models import Entry
-<span class="gp">&gt;</span>&gt;&gt; from django.db.models import Q
-<span class="gp">&gt;</span>&gt;&gt; <span class="nv">target_entry_id</span> <span class="o">=</span> None
-<span class="gp">&gt;</span>&gt;&gt; Entry.objects.filter<span class="o">(</span>
-<span class="go">...     Q(expiration_year_month__gte=target_entry_id) |</span>
-<span class="go">...     Q(expiration_year_month__isnull=True)</span>
-<span class="go">... )</span>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="n">venv</span><span class="p">)</span> <span class="p">[</span><span class="n">vagrant</span><span class="nd">@localhost</span> <span class="n">apps</span><span class="p">]</span><span class="err">$</span> <span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">shell</span> <span class="o">--</span><span class="n">settings</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">_</span>
+<span class="n">Python</span> <span class="mf">2.7</span><span class="o">.</span><span class="mi">7</span> <span class="p">(</span><span class="n">default</span><span class="p">,</span> <span class="n">Dec</span> <span class="mi">11</span> <span class="mi">2017</span><span class="p">,</span> <span class="mi">18</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mi">38</span><span class="p">)</span>
+<span class="p">[</span><span class="n">GCC</span> <span class="mf">4.4</span><span class="o">.</span><span class="mi">7</span> <span class="mi">20120313</span> <span class="p">(</span><span class="n">Red</span> <span class="n">Hat</span> <span class="mf">4.4</span><span class="o">.</span><span class="mi">7</span><span class="o">-</span><span class="mi">18</span><span class="p">)]</span> <span class="n">on</span> <span class="n">linux2</span>
+<span class="n">Type</span> <span class="s2">"help"</span><span class="p">,</span> <span class="s2">"copyright"</span><span class="p">,</span> <span class="s2">"credits"</span> <span class="ow">or</span> <span class="s2">"license"</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
+<span class="p">(</span><span class="n">InteractiveConsole</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">myapp.models</span> <span class="kn">import</span> <span class="n">Entry</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">django.db.models</span> <span class="kn">import</span> <span class="n">Q</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">target_entry_id</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">Entry</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+<span class="o">...</span>     <span class="n">Q</span><span class="p">(</span><span class="n">expiration_year_month__gte</span><span class="o">=</span><span class="n">target_entry_id</span><span class="p">)</span> <span class="o">|</span>
+<span class="o">...</span>     <span class="n">Q</span><span class="p">(</span><span class="n">expiration_year_month__isnull</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="o">...</span> <span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -429,7 +437,7 @@
 <ul>
 <li><p>使い方 (python2)</p>
 <div class="code-block">
-<div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">DJANGO_SETTINGS_MODULE</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">local</span> <span class="n">python</span> <span class="o">-</span><span class="n">Wd</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">check</span>
+<div class="highlight"><pre><span></span>$ <span class="nv">DJANGO_SETTINGS_MODULE</span><span class="o">=</span>settings.local python -Wd manage.py check
 </pre></div>
 </div>
 <ul>
