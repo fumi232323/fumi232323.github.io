@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Vollkorn:400,700">
     <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-    <link rel="stylesheet" href="/static/css/style.css?201811010">
+    <link rel="stylesheet" href="/static/css/style.css?20181114">
   </head>
 
   <body>
@@ -328,8 +328,8 @@
       <div class="main">
 <div class="article-content">
   <main class="item item-article item-mac">
-    <time class="date" datetime="2018-09-02 00:00:00+09:00">
-      2018-09-02 Sun
+    <time class="date" datetime="2018-11-19 00:00:00+09:00">
+      2018-11-19 Mon
     </time>
     <div class="title">Mac のメモ</div>
     <div class="category">
@@ -339,30 +339,40 @@
     </div>
     <div class="text">
       <div class="section" id="id1">
-<div class="header_target" id="h_mac_note_index_2erst_1"></div><h1>環境変数</h1>
+<div class="header_target" id="h_mac_note_index_2erst_1"></div><h1>ファイル操作</h1>
 <div class="section" id="id2">
-<div class="header_target" id="h_mac_note_index_2erst_2"></div><h2>環境変数の一覧を表示する</h2>
+<div class="header_target" id="h_mac_note_index_2erst_2"></div><h2>文字コードを変換</h2>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> iconv -f Shift-JIS -t UTF-8 &lt;変換前のファイル名&gt; &lt;変換後のファイル名&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="gz">
+<div class="header_target" id="h_mac_note_index_2erst_3"></div><h2>.gz に圧縮</h2>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> gzip &lt;ファイル名&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<div class="header_target" id="h_mac_note_index_2erst_4"></div><h1>環境変数</h1>
+<div class="section" id="id4">
+<div class="header_target" id="h_mac_note_index_2erst_5"></div><h2>環境変数の一覧を表示する</h2>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="gp">$</span> printenv
 </pre></div>
 </div>
 </div>
-<div class="section" id="id3">
-<div class="header_target" id="h_mac_note_index_2erst_3"></div><h2>環境変数を追加する</h2>
+<div class="section" id="id5">
+<div class="header_target" id="h_mac_note_index_2erst_6"></div><h2>環境変数を追加する</h2>
 <p>やりかたがわからない</p>
 </div>
 </div>
-<div class="section" id="id4">
-<div class="header_target" id="h_mac_note_index_2erst_4"></div><h1>本体がどこに行ったかわからなくなったとき</h1>
+<div class="section" id="id6">
+<div class="header_target" id="h_mac_note_index_2erst_7"></div><h1>本体がどこに行ったかわからなくなったとき</h1>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="gp">$</span> which python
-</pre></div>
-</div>
-</div>
-<div class="section" id="id5">
-<div class="header_target" id="h_mac_note_index_2erst_5"></div><h1>ファイルの文字コードを変換</h1>
-<div class="code-block">
-<div class="highlight"><pre><span></span><span class="gp">$</span> iconv -f Shift-JIS -t UTF-8 &lt;変換前のファイル名&gt; &gt; &lt;変換後のファイル名&gt;
 </pre></div>
 </div>
 </div>

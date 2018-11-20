@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Vollkorn:400,700">
     <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-    <link rel="stylesheet" href="/static/css/style.css?201811010">
+    <link rel="stylesheet" href="/static/css/style.css?20181114">
   </head>
 
   <body>
@@ -338,10 +338,32 @@
       </a>
     </div>
     <div class="text">
-      <div class="section" id="id1">
-<div class="header_target" id="h_git_command_rebase_index_2erst_1"></div><h1>リベース</h1>
+      <details>
+<summary>目次</summary><div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#id1" id="id5">リベース</a></p>
+<ul>
+<li><p><a class="reference internal" href="#master" id="id6">master ブランチにリベースする</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id7">間違えてリベースして元に戻したい</a></p>
+<ul>
+<li><p><a class="reference internal" href="#push" id="id8">push しちゃった場合</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id9">push してない場合</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#preserve-merges" id="id10">preserve-merges オプション</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id4" id="id11">リファレンス</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</details><div class="section" id="id1">
+<div class="header_target" id="h_git_command_rebase_index_2erst_1"></div><h1><a class="toc-backref" href="#id5">リベース</a></h1>
 <div class="section" id="master">
-<div class="header_target" id="h_git_command_rebase_index_2erst_2"></div><h2>master ブランチにリベースする</h2>
+<div class="header_target" id="h_git_command_rebase_index_2erst_2"></div><h2><a class="toc-backref" href="#id6">master ブランチにリベースする</a></h2>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="gp">$</span> git rebase master
 </pre></div>
@@ -359,9 +381,9 @@
 </div>
 </div>
 <div class="section" id="id2">
-<div class="header_target" id="h_git_command_rebase_index_2erst_3"></div><h2>間違えてリベースして元に戻したい</h2>
+<div class="header_target" id="h_git_command_rebase_index_2erst_3"></div><h2><a class="toc-backref" href="#id7">間違えてリベースして元に戻したい</a></h2>
 <div class="section" id="push">
-<div class="header_target" id="h_git_command_rebase_index_2erst_4"></div><h3>push しちゃった場合</h3>
+<div class="header_target" id="h_git_command_rebase_index_2erst_4"></div><h3><a class="toc-backref" href="#id8">push しちゃった場合</a></h3>
 <blockquote>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="gp">$</span> git reflog
@@ -372,7 +394,7 @@
 </blockquote>
 </div>
 <div class="section" id="id3">
-<div class="header_target" id="h_git_command_rebase_index_2erst_5"></div><h3>push してない場合</h3>
+<div class="header_target" id="h_git_command_rebase_index_2erst_5"></div><h3><a class="toc-backref" href="#id9">push してない場合</a></h3>
 <blockquote>
 <p>間違えてリベースしたブランチを origin に戻す</p>
 <blockquote>
@@ -385,14 +407,14 @@
 </div>
 </div>
 <div class="section" id="preserve-merges">
-<div class="header_target" id="h_git_command_rebase_index_2erst_6"></div><h2>preserve-merges オプション</h2>
+<div class="header_target" id="h_git_command_rebase_index_2erst_6"></div><h2><a class="toc-backref" href="#id10">preserve-merges オプション</a></h2>
 <p>分岐してマージしたよ、という履歴みたいなのを保ったまま、リベースしてくれる</p>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="gp">$</span> git rebase --preserve-merges master
 </pre></div>
 </div>
 <div class="section" id="id4">
-<div class="header_target" id="h_git_command_rebase_index_2erst_7"></div><h3>リファレンス</h3>
+<div class="header_target" id="h_git_command_rebase_index_2erst_7"></div><h3><a class="toc-backref" href="#id11">リファレンス</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://git-scm.com/docs/git-rebase">https://git-scm.com/docs/git-rebase</a></p></li>
 <li><p><a class="reference external" href="https://git-scm.com/book/ja/v2/Git-%E3%81%AE%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E6%A9%9F%E8%83%BD-%E3%83%AA%E3%83%99%E3%83%BC%E3%82%B9">3.6 Git のブランチ機能 - リベース</a></p></li>

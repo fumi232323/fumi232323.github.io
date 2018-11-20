@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Docker/Kubernetes 実践コンテナ開発入門 --- 3. 実用的なコンテナの構築とデプロイ/32imuf.com</title>
+    <link rel="shortcut icon" href="/static/icons/favicon.ico">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Griffy">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Vollkorn:400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/style.css?20181114">
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="header"><header class="item item-header">
+  <h1>
+    <a href="/">
+      <img class="logo" src="/static/images/inuu.png" alt="犬">
+    </a>
+  </h1>
+  <nav class="nav">
+    <ul>
+      <li class="nav-category"><a href="/">HOME</a></li>
+      
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_aws.html">aws</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../../aws/s3-response-error/">S3ResponseError の原因はなんと時刻ずれだった</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_blog.html">blog</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../../blog/rules/">ブログを書くときの注意点</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_css.html">css</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../../html-css/css/note/">CSS のメモ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../html-css/configure-stylus-output-directory/">PyCharm の File Watcher で、 Stylus の CSS ファイル生成先ディレクトリを指定する。</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../html-css/stylus/">Stylus を使う</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../html-css/html5-css3-modern-coding/">『HTML5/CSS3モダンコーディング フロントエンドエンジニアが教える3つの本格レイアウト スタンダード・グリッド・シングルページレイアウトの作り方』を読んで気になったことメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_django.html">django</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../../django/note/">Django のメモ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../django/django_orm/">Django ORM のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_git.html">git</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../../git/command/merge/">git merge</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../git/command/rebase-i/">git rebase -i</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../git/command/rebase/">git rebase</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../git/note/">Git のメモ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../git/configuration/">Git の設定まとめ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../git/command/">Git のコマンドまとめ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_github.html">github</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../../github/how-to-create-new-repository/">GitHub に新しいリポジトリを作成して、pushする</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../github/github-pages-custom-domain-setting/">GitHub Pages にカスタムドメインを設定する</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_mac.html">mac</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../../mac/note/">Mac のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_miyadaiku.html">miyadaiku</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../../miyadaiku/build/">Miyadaiku ビルドするときのコマンド</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../miyadaiku/article-directory-structure/">article の置きかた</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_pycharm.html">pycharm</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../../pycharm/django-support/">Pycharm の Django support を使う</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../pycharm/add-psql-var-to-user-params-for-db-console/">PyCharm の Database Console で PostgreSQL のプレースホルダー (インタポレーション) を SQL パラメーターとして使えるようにする</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../pycharm/connect-db-using-ssh-tunnel/">PyCharm で SSH tunnel して Amazon Redshift につなぐ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../pycharm/useful-menu-and-shortcuts/">PyCharm ショートカットと便利メニュー</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../pycharm/configuration/">PyCharm の設定</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_python.html">python</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../../python/etc/">Python いろいろメモ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../python/note/">Python のメモ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../python/pyconjp2018/">PyConJP 2018 で聞いた講演</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_redshift.html">redshift</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../../redshift/note/">Redshift のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_sample.html">sample</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../../2018/sample-table/">table の sample</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../2018/sample-h1-h2-h3-li/">h1, h2, h3, リストの sample</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../2018/sample-code-block/">code-block, 引用の sample</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_sql.html">sql</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../../sql/note/">SQL のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_ssh.html">ssh</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../../ssh/command/ssh-keygen/">ssh-keygen</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../ssh/command/ssh-add/">ssh-add</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../ssh/command/ssh/">ssh のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_test.html">test</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../../python-test/tox/">tox</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../python-test/mypy/">mypy</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../python-test/note/">Python テストのメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_vagrant.html">vagrant</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../../vagrant/note/">Vagrant のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_vim.html">vim</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../../vim/command/">Vim のコマンド</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+    </ul>
+  </nav>
+</header></div>
+      <div class="main">
+<div class="article-content">
+  <main class="item item-article item-docker">
+    <time class="date" datetime="2018-11-18 00:00:00+09:00">
+      2018-11-18 Sun
+    </time>
+    <div class="title">Docker/Kubernetes 実践コンテナ開発入門 --- 3. 実用的なコンテナの構築とデプロイ</div>
+    <div class="category">
+      <a href="/index_category_category_docker.html">
+          docker
+      </a>
+    </div>
+    <div class="text">
+      <details>
+<summary>目次</summary><div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#id2" id="id14">3.1 アプリケーションとコンテナの粒度</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id3" id="id15">3.1.1 1コンテナ = 1プロセス?</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id4" id="id16">定期的にジョブを実行するアプリケーション</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id5" id="id17">参考にしたサイト</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id6" id="id18">3.1.2 1コンテナに1つの関心事</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id7" id="id19">3.2 コンテナのポータビリティ</a></p>
+<ul>
+<li><p><a class="reference internal" href="#kernel" id="id20">3.2.1 Kernel・アーキテクチャの違い</a></p></li>
+<li><p><a class="reference internal" href="#id8" id="id21">3.2.2 ライブラリ・ダイナミックリンクの課題</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#docker" id="id22">3.3 Docker フレンドリなアプリケーション</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id9" id="id23">3.3.1 環境変数を活用する</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id10" id="id24">3.4 永続化データをどう扱うか</a></p>
+<ul>
+<li><p><a class="reference internal" href="#data-volume" id="id25">3.4.1 Data Volume</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id11" id="id26">Data Volume の作成</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id12" id="id27">3.4.2 Data Volume コンテナ</a></p>
+<ul>
+<li><p><a class="reference internal" href="#mysql-data-volume" id="id28">MySQL のデータを Data Volume コンテナに保持する</a></p></li>
+<li><p><a class="reference internal" href="#id13" id="id29">データのエクスポートとリストア</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</details><div class="section" id="id2">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_1"></div><h1><a class="toc-backref" href="#id14">3.1 アプリケーションとコンテナの粒度</a></h1>
+<p>アプリケーションをコンテナの中にどのように配置するかを意識することが重要</p>
+<div class="section" id="id3">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_2"></div><h2><a class="toc-backref" href="#id15">3.1.1 1コンテナ = 1プロセス?</a></h2>
+<ul class="simple">
+<li><p>1コンテナ = 1プロセス を絶対条件とはしない</p></li>
+<li><p>子プロセスまで意識するのは本末転倒</p></li>
+</ul>
+<div class="section" id="id4">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_3"></div><h3><a class="toc-backref" href="#id16">定期的にジョブを実行するアプリケーション</a></h3>
+<ol class="arabic">
+<li><p>ジョブ <span class="docutils literal">task.sh</span> を作る</p>
+<blockquote>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
+<span class="nb">echo</span> <span class="s2">"[`date`] Hello!"</span> &gt;&gt; /var/log/cron.log
+</pre></div>
+</div>
+</blockquote>
+</li>
+<li><p>cron の定義ファイル <span class="docutils literal"><span class="pre">cron-example</span></span> を作る</p>
+<blockquote>
+<div class="code-block">
+<div class="highlight"><pre><span></span>* * * * *       root sh /usr/local/bin/task.sh
+</pre></div>
+</div>
+</blockquote>
+</li>
+<li><p>Dockerfile を作る</p>
+<blockquote>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="c"># ubuntu:16.04 イメージをベースにイメージをビルドする</span>
+<span class="k">FROM</span><span class="s"> ubuntu:16.04</span>
+
+<span class="c"># apt で cron をインストールする</span>
+<span class="k">RUN</span> apt update
+<span class="k">RUN</span> apt install -y cron
+
+<span class="c"># task.sh と cron-example を追加する</span>
+COPY task.sh /usr/local/bin/
+COPY cron-example /etc/cron.d/
+<span class="c"># cron-example に 644 パーミッションを設定する</span>
+<span class="k">RUN</span> chmod <span class="m">0644</span> /etc/cron.d/cron-example
+
+<span class="c"># cron を実行</span>
+<span class="k">CMD</span><span class="s"> ["cron", "-f"]</span>
+</pre></div>
+</div>
+</blockquote>
+</li>
+<li><p>Docker イメージをビルドする</p>
+<blockquote>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker image build -t example/cronjob:latest .
+<span class="go">Sending build context to Docker daemon  4.096kB</span>
+<span class="go">Step 1/7 : FROM ubuntu:16.04</span>
+<span class="go">16.04: Pulling from library/ubuntu</span>
+<span class="go">18d680d61657: Pull complete</span>
+<span class="go">0addb6fece63: Pull complete</span>
+<span class="go">78e58219b215: Pull complete</span>
+<span class="go">eb6959a66df2: Pull complete</span>
+<span class="go">Digest: sha256:76702ec53c5e7771ba3f2c4f6152c3796c142af2b3cb1a02fce66c697db24f12</span>
+<span class="go">Status: Downloaded newer image for ubuntu:16.04</span>
+<span class="go"> ---&gt; 4a689991aa24</span>
+<span class="go">Step 2/7 : RUN apt update</span>
+<span class="go"> ---&gt; Running in f1a3582eabce</span>
+
+<span class="go">WARNING: apt does not have a stable CLI interface. Use with caution in scripts.</span>
+
+<span class="go">Get:1 http://security.ubuntu.com/ubuntu xenial-security InRelease [107 kB]</span>
+<span class="go">Get:2 http://archive.ubuntu.com/ubuntu xenial InRelease [247 kB]</span>
+<span class="go">Get:3 http://security.ubuntu.com/ubuntu xenial-security/main amd64 Packages [745 kB]</span>
+<span class="go">Get:4 http://archive.ubuntu.com/ubuntu xenial-updates InRelease [109 kB]</span>
+<span class="go">Get:5 http://archive.ubuntu.com/ubuntu xenial-backports InRelease [107 kB]</span>
+<span class="go">Get:6 http://archive.ubuntu.com/ubuntu xenial/main amd64 Packages [1558 kB]</span>
+<span class="go">Get:7 http://security.ubuntu.com/ubuntu xenial-security/restricted amd64 Packages [12.7 kB]</span>
+<span class="go">Get:8 http://security.ubuntu.com/ubuntu xenial-security/universe amd64 Packages [507 kB]</span>
+<span class="go">Get:9 http://security.ubuntu.com/ubuntu xenial-security/multiverse amd64 Packages [4027 B]</span>
+<span class="go">Get:10 http://archive.ubuntu.com/ubuntu xenial/restricted amd64 Packages [14.1 kB]</span>
+<span class="go">Get:11 http://archive.ubuntu.com/ubuntu xenial/universe amd64 Packages [9827 kB]</span>
+<span class="go">Get:12 http://archive.ubuntu.com/ubuntu xenial/multiverse amd64 Packages [176 kB]</span>
+<span class="go">Get:13 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 Packages [1139 kB]</span>
+<span class="go">Get:14 http://archive.ubuntu.com/ubuntu xenial-updates/restricted amd64 Packages [13.1 kB]</span>
+<span class="go">Get:15 http://archive.ubuntu.com/ubuntu xenial-updates/universe amd64 Packages [906 kB]</span>
+<span class="go">Get:16 http://archive.ubuntu.com/ubuntu xenial-updates/multiverse amd64 Packages [19.0 kB]</span>
+<span class="go">Get:17 http://archive.ubuntu.com/ubuntu xenial-backports/main amd64 Packages [7959 B]</span>
+<span class="go">Get:18 http://archive.ubuntu.com/ubuntu xenial-backports/universe amd64 Packages [8532 B]</span>
+<span class="go">Fetched 15.5 MB in 7s (2058 kB/s)</span>
+<span class="go">Reading package lists...</span>
+<span class="go">Building dependency tree...</span>
+<span class="go">Reading state information...</span>
+<span class="go">8 packages can be upgraded. Run 'apt list --upgradable' to see them.</span>
+<span class="go">Removing intermediate container f1a3582eabce</span>
+<span class="go"> ---&gt; 830dd5ddc59f</span>
+<span class="go">Step 3/7 : RUN apt install -y cron</span>
+<span class="go"> ---&gt; Running in 422f3c36a217</span>
+
+<span class="go">WARNING: apt does not have a stable CLI interface. Use with caution in scripts.</span>
+
+<span class="go">Reading package lists...</span>
+<span class="go">Building dependency tree...</span>
+<span class="go">Reading state information...</span>
+<span class="go">Suggested packages:</span>
+<span class="go">  anacron logrotate checksecurity exim4 | postfix | mail-transport-agent</span>
+<span class="go">The following NEW packages will be installed:</span>
+<span class="go">  cron</span>
+<span class="go">0 upgraded, 1 newly installed, 0 to remove and 8 not upgraded.</span>
+<span class="go">Need to get 68.4 kB of archives.</span>
+<span class="go">After this operation, 249 kB of additional disk space will be used.</span>
+<span class="go">Get:1 http://archive.ubuntu.com/ubuntu xenial/main amd64 cron amd64 3.0pl1-128ubuntu2 [68.4 kB]</span>
+<span class="go">debconf: delaying package configuration, since apt-utils is not installed</span>
+<span class="go">Fetched 68.4 kB in 1s (46.3 kB/s)</span>
+<span class="go">Selecting previously unselected package cron.</span>
+<span class="go">(Reading database ... 4768 files and directories currently installed.)</span>
+<span class="go">Preparing to unpack .../cron_3.0pl1-128ubuntu2_amd64.deb ...</span>
+<span class="go">Unpacking cron (3.0pl1-128ubuntu2) ...</span>
+<span class="go">Processing triggers for systemd (229-4ubuntu21.4) ...</span>
+<span class="go">Setting up cron (3.0pl1-128ubuntu2) ...</span>
+<span class="go">Adding group `crontab' (GID 106) ...</span>
+<span class="go">Done.</span>
+<span class="go">update-rc.d: warning: start and stop actions are no longer supported; falling back to defaults</span>
+<span class="go">update-rc.d: warning: stop runlevel arguments (1) do not match cron Default-Stop values (none)</span>
+<span class="go">invoke-rc.d: could not determine current runlevel</span>
+<span class="go">invoke-rc.d: policy-rc.d denied execution of start.</span>
+<span class="go">Processing triggers for systemd (229-4ubuntu21.4) ...</span>
+<span class="go">Removing intermediate container 422f3c36a217</span>
+<span class="go"> ---&gt; 26f4442bdb46</span>
+<span class="go">Step 4/7 : COPY task.sh /usr/local/bin/</span>
+<span class="go"> ---&gt; 19ffed305de1</span>
+<span class="go">Step 5/7 : COPY cron-example /etc/cron.d/</span>
+<span class="go"> ---&gt; 5c668e8b7598</span>
+<span class="go">Step 6/7 : RUN chmod 0644 /etc/cron.d/cron-example</span>
+<span class="go"> ---&gt; Running in 359ef325d9f4</span>
+<span class="go">Removing intermediate container 359ef325d9f4</span>
+<span class="go"> ---&gt; 50c072151bea</span>
+<span class="go">Step 7/7 : CMD ["cron", "-f"]</span>
+<span class="go"> ---&gt; Running in b459df083f79</span>
+<span class="go">Removing intermediate container b459df083f79</span>
+<span class="go"> ---&gt; 83bf96fc9d27</span>
+<span class="go">Successfully built 83bf96fc9d27</span>
+<span class="go">Successfully tagged example/cronjob:latest</span>
+</pre></div>
+</div>
+</blockquote>
+</li>
+</ol>
+<ol class="arabic" start="4">
+<li><p>Docker イメージを実行する</p>
+<blockquote>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker container run -d --rm --name cronjob example/cronjob:latest
+<span class="go">05bb3788a766a415b3d888480faf7854351f1c39317deaeeff6aef8ce9f4c9c9</span>
+</pre></div>
+</div>
+</blockquote>
+</li>
+<li><p>ジョブが実行されているところを見てみる</p>
+<blockquote>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker container <span class="nb">exec</span> -it cronjob tail -f /var/log/cron.log
+<span class="go">tail: cannot open '/var/log/cron.log' for reading: No such file or directory</span>
+<span class="go">tail: no files remaining</span>
+</pre></div>
+</div>
+</blockquote>
+</li>
+<li><p>実行されていなかった。。</p>
+<blockquote>
+<p>cron 自体は動いていて、</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker container <span class="nb">exec</span> -it cronjob sh
+<span class="gp">#</span> /etc/init.d/cron status
+<span class="go"> * cron is running</span>
+</pre></div>
+</div>
+<p><span class="docutils literal">task.sh</span> 単体では正常動作するので、</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">#</span> sh /usr/local/bin/task.sh
+<span class="gp">#</span> cat /var/log/cron.log
+<span class="go">[Sun Nov 18 10:20:18 UTC 2018] Hello</span>
+<span class="go">[Sun Nov 18 10:30:22 UTC 2018] Hello</span>
+</pre></div>
+</div>
+<p>たぶん、 cron の設定がよくないんだと思う。</p>
+<p><span class="docutils literal">/etc/crontab</span> と同じ書式で書けば良い、とのことなので、</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">#</span> cat /etc/crontab
+<span class="gp">#</span> /etc/crontab: system-wide crontab
+<span class="gp">#</span> Unlike any other crontab you don<span class="s1">'t have to run the `crontab'</span>
+<span class="gp">#</span> <span class="nb">command</span> to install the new version when you edit this file
+<span class="gp">#</span> and files in /etc/cron.d. These files also have username fields,
+<span class="gp">#</span> that none of the other crontabs <span class="k">do</span>.
+
+<span class="go">SHELL=/bin/sh</span>
+<span class="go">PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin</span>
+
+<span class="gp">#</span> m h dom mon dow user  <span class="nb">command</span>
+<span class="go">17 *    * * *   root    cd / &amp;&amp; run-parts --report /etc/cron.hourly</span>
+<span class="go">25 6    * * *   root    test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --report /etc/cron.daily )</span>
+<span class="go">...</span>
+</pre></div>
+</div>
+<p>まねをして、 <span class="docutils literal"><span class="pre">cron-example</span></span> を更新した</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="nv">SHELL</span><span class="o">=</span>/bin/sh                                                      <span class="c1"># これと</span>
+<span class="nv">PATH</span><span class="o">=</span>/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin  <span class="c1"># これを追記</span>
+
+* *    * * *   root    sh /usr/local/bin/task.sh                   <span class="c1"># ここのスペースの空け方もそっくり同じに変えた</span>
+</pre></div>
+</div>
+<p><span class="docutils literal">docker container stop</span> -&gt; 再度 <span class="docutils literal">docker image build</span> -&gt; <span class="docutils literal">docker container run</span></p>
+<p>動いた.......</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker container <span class="nb">exec</span> -it cronjob tail -f /var/log/cron.log
+<span class="go">[Sun Nov 18 11:24:01 UTC 2018] Hello</span>
+<span class="go">[Sun Nov 18 11:25:01 UTC 2018] Hello</span>
+<span class="go">[Sun Nov 18 11:26:01 UTC 2018] Hello</span>
+</pre></div>
+</div>
+<p>本の見本はきっと、「そんなのわかってるよね」で省略したんだな...</p>
+</blockquote>
+</li>
+</ol>
+<div class="section" id="id5">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_4"></div><h4><a class="toc-backref" href="#id17">参考にしたサイト</a></h4>
+<p>ありがとうございました!!!</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://teratail.com/questions/62291">ubuntuでcrontabに設定した反映が実行されない</a></p></li>
+<li><p><a class="reference external" href="https://www.server-memo.net/tips/etc-crontab.html">/etc/crontabと/etc/cron.d設定ファイルの書き方</a></p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="id6">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_5"></div><h2><a class="toc-backref" href="#id18">3.1.2 1コンテナに1つの関心事</a></h2>
+<p><cite>Each container should have only one concern</cite></p>
+<p>コンテナは一つの関心事だけに集中すべきだ ( <a class="reference external" href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">https://docs.docker.com/develop/develop-images/dockerfile_best-practices/</a> )</p>
+<ul class="simple">
+<li><p>1つのコンテナはある1つの役割 (ロール) や問題領域 (ドメイン) のみにフォーカスされるべきである</p></li>
+<li><p>それぞれのコンテナが担うべき役割を適切に見定め、かつそれがレプリカとして複製された場合でも副作用なくスタックとして正しく動作できる状態になるか？ という考え方に基づいて設計すると良い</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id7">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_6"></div><h1><a class="toc-backref" href="#id19">3.2 コンテナのポータビリティ</a></h1>
+<p>Docker の大きな利点はポータビリティ (可搬性) にある。</p>
+<ul class="simple">
+<li><p>アプリケーションとインフラをコンテナという単位で分離できる</p></li>
+<li><p>Docker がインストールされているホストであればアプリケーションとして同じ挙動が期待できる再現性がある</p></li>
+<li><p>Docker が動作する環境でさえあればホストOSも問わない</p></li>
+<li><p>実行するプラットフォームが、オンプレミス環境でもクラウド環境でも関係なく動く</p></li>
+<li><p>Docker のポータビリティは完璧なものではなく、いくつかの例外が存在する</p></li>
+</ul>
+<div class="section" id="kernel">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_7"></div><h2><a class="toc-backref" href="#id20">3.2.1 Kernel・アーキテクチャの違い</a></h2>
+<ul class="simple">
+<li><p>ホスト型仮想技術のようにハードウェアを演算によって再現する方式とは違い、Docker のコンテナ型貸そうか技術ではホストOSとカーネルのリソースを共有している</p></li>
+<li><p>ある特定のCPUアーキテクチャやOSの前提の上に成立している</p></li>
+</ul>
+</div>
+<div class="section" id="id8">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_8"></div><h2><a class="toc-backref" href="#id21">3.2.2 ライブラリ・ダイナミックリンクの課題</a></h2>
+<ul class="simple">
+<li><p>アプリケーションが利用しているライブラリによっても、ポータビリティが損なわれるケースが存在する</p></li>
+<li><p>ネイティブライブラリをダイナミックリンクするようなケース</p></li>
+<li><p>Docker コンテナ上での実行を想定したアプリケーションを作るには、ネイティブライブラリを極力スタティックリンクしてビルドすることを第一に考えるべき</p></li>
+<li><p>Docker において <strong>ポータビリティ</strong> という言葉はしばしば独り歩きしがちですが、これが絶対的なものではない、ということを理解しておかなければならない</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="docker">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_9"></div><h1><a class="toc-backref" href="#id22">3.3 Docker フレンドリなアプリケーション</a></h1>
+<p>コンテナ化の恩恵を最大限受けるには。</p>
+<div class="section" id="id9">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_10"></div><h2><a class="toc-backref" href="#id23">3.3.1 環境変数を活用する</a></h2>
+<p>アプリケーションの挙動を環境変数で制御するのがおすすめ。</p>
+<ul class="simple">
+<li><p>環境変数は、アプリケーションとは別のリポジトリで管理するのが一般的</p></li>
+<li><p>docker-compose であれば <span class="docutils literal">env</span> 属性に列挙する</p></li>
+<li><p>Kubernetes や Amazon ECS にも同様の仕組みがある</p></li>
+<li><p>各環境で利用する環境変数を定義したファイルを集約したリポジトリを作って管理するのが良いでしょう</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id10">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_11"></div><h1><a class="toc-backref" href="#id24">3.4 永続化データをどう扱うか</a></h1>
+<p>Docker コンテナを実行中に書き込まれたファイルは、ホスト側にファイル・ディレクトリをマウントしない限りコンテナを廃棄したタイミングでディスクから消去される。</p>
+<ul class="simple">
+<li><p>Data Volume で各コンテナとホストで永続化データを共有するほかに、 Data Volume コンテナという永続化データ用のコンテナを起動する手法もある。</p></li>
+</ul>
+<div class="section" id="data-volume">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_12"></div><h2><a class="toc-backref" href="#id25">3.4.1 Data Volume</a></h2>
+<p>Docker コンテナ内のディレクトリをディスクに永続化するための仕組み</p>
+<ul class="simple">
+<li><p>ホスト・コンテナ間のディレクトリの共有・再利用が可能になる</p></li>
+<li><p>イメージを更新して新しくコンテナを作成しても、同じ Data Volume を利用し続けることができる</p></li>
+<li><p>コンテナを破棄してもディスクに保持される</p></li>
+<li><p>コンテナでステートフルなアプリケーションを実行する用途に向いている</p></li>
+</ul>
+<div class="section" id="id11">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_13"></div><h3><a class="toc-backref" href="#id26">Data Volume の作成</a></h3>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker container run <span class="o">[</span>options<span class="o">]</span> -v ホスト側ディレクトリ:コンテナ側ディレクトリ リポジトリ名<span class="o">[</span>:タグ<span class="o">]</span> <span class="o">[</span>コマンド<span class="o">]</span> <span class="o">[</span>コマンド引数<span class="o">]</span>
+</pre></div>
+</div>
+<ul>
+<li><p>コンテナの中で画像ファイルを作成する。</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker container run -v <span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>:/workspace gihyodocker/imagemagick:latest convert -size 100x100 xc:#000000 /workspace/gihyo.jpg
+<span class="go">Unable to find image 'gihyodocker/imagemagick:latest' locally</span>
+<span class="go">latest: Pulling from gihyodocker/imagemagick</span>
+<span class="go">ff3a5c916c92: Pull complete</span>
+<span class="go">9a79e6da4633: Pull complete</span>
+<span class="go">d46751c713a4: Pull complete</span>
+<span class="go">Digest: sha256:883299973ff2e6183ddc7e042d5b44e5c0bbe24b746ab382fba558a42284cb02</span>
+<span class="go">Status: Downloaded newer image for gihyodocker/imagemagick:latest</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Data Volume を通じて、イメージを更新することなく、ホスト側で編集したファイルをコンテナに共有できる</p></li>
+<li><p>Data Volume を設定していると、初回のコンテナ作成時にホスト側の指定したパスで共有されて、コンテナ停止・廃棄後も残る</p></li>
+<li><p>ホストの特定のパスに依存しているし、ホスト側の Data Volume への誤操作によってアプリケーションに副作用が起きることもあるので、ポータビリティの面では課題のある手法であることも覚えておきましょう</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id12">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_14"></div><h2><a class="toc-backref" href="#id27">3.4.2 Data Volume コンテナ</a></h2>
+<ul class="simple">
+<li><p>コンテナのデータ永続化手法として推奨されている</p></li>
+<li><p>Data Volume コンテナによって Data Volume への操作がカプセル化されるため、ホストをあまり意識せずに Data Volume を利用できる</p></li>
+<li><p>コンテナ内のアプリケーションとデータの密結合が緩和される</p></li>
+<li><p>アプリケーションコンテナと Data Valume コンテナの付け替えや移行をスムーズに行うことができる</p>
+<ul>
+<li><p>コンテナ間でディレクトリを共有する</p></li>
+<li><p>データだけを持つコンテナ</p></li>
+<li><p>Data Volume コンテナの Volume は Docker の管理領域であるホスト側の <span class="docutils literal">/var/lib/docker/valumes/</span> 以下に配置されている</p></li>
+<li><p>Docker の管理下にあるディレクトリのみに影響する</p></li>
+<li><p>コンテナに与える影響を最小限に抑えられる</p></li>
+<li><p>Data Volume コンテナは Volume への仲介役としての役割を持つ</p></li>
+<li><p>Volume を必要とするコンテナは、ホスト側のその場所を知る必要はなく、ディレクトリを提供してくれる Data Volume コンテナのみ知っていればよい</p></li>
+</ul>
+</li>
+</ul>
+<div class="section" id="mysql-data-volume">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_15"></div><h3><a class="toc-backref" href="#id28">MySQL のデータを Data Volume コンテナに保持する</a></h3>
+<ol class="arabic">
+<li><p>Data Volume コンテナの Dockerfile を用意する</p>
+<blockquote>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="c"># 最小限のOSの機能を備えた非常に軽量なOS。しばしばベースのDockerイメージとして利用される</span>
+<span class="k">FROM</span><span class="s"> busybox</span>
+
+<span class="k">VOLUME</span><span class="s"> /var/lib/mysql</span>
+
+<span class="k">CMD</span><span class="s"> ["bin/true"]</span>
+</pre></div>
+</div>
+</blockquote>
+</li>
+<li><p>Data Volume コンテナのイメージをビルドする</p>
+<blockquote>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="c1"># Dockerfile のあるディレクトリで実行する</span>
+$ docker image build -t example/mysql-data:latest .
+Sending build context to Docker daemon  <span class="m">2</span>.048kB
+Step <span class="m">1</span>/3 : FROM busybox
+latest: Pulling from library/busybox
+90e01955edcd: Pull <span class="nb">complete</span>
+Digest: sha256:2a03a6059f21e150ae84b0973863609494aad70f0a80eaeb64bddd8d92465812
+Status: Downloaded newer image <span class="k">for</span> busybox:latest
+ ---&gt; 59788edf1f3e
+Step <span class="m">2</span>/3 : VOLUME /var/lib/mysql
+ ---&gt; Running in 1ab0898c94a2
+Removing intermediate container 1ab0898c94a2
+ ---&gt; 1f5d663c0ce1
+Step <span class="m">3</span>/3 : CMD <span class="o">[</span><span class="s2">"bin/true"</span><span class="o">]</span>
+ ---&gt; Running in 1fddf68af7c2
+Removing intermediate container 1fddf68af7c2
+ ---&gt; e4bdb5df5b5d
+Successfully built e4bdb5df5b5d
+Successfully tagged example/mysql-data:latest
+</pre></div>
+</div>
+</blockquote>
+</li>
+<li><p>Data Volume コンテナを実行する (コンテナは廃棄されない限りディスクに保持される)</p>
+<blockquote>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker container run -d --name mysql-data example/mysql-data:latest
+<span class="go">edaab85b9b7e3505c93d8d8947ef2b868cd620765a439bbb77a93c92cfa96373</span>
+</pre></div>
+</div>
+</blockquote>
+</li>
+<li><p>MySQL コンテナを実行する</p>
+<blockquote>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker container run -d --rm --name mysql <span class="se">\</span>
+  -e <span class="s2">"MYSQL_ALLOW_EMPTY_PASSWORD=yes"</span> <span class="se">\</span>
+  -e <span class="s2">"MYSQL_DATABASE=volume_test"</span> <span class="se">\</span>
+  -e <span class="s2">"MYSQL_USER=example"</span> <span class="se">\</span>
+  -e <span class="s2">"MYSQL_PASSWORD=example"</span> <span class="se">\</span>
+  --volumes-from mysql-data <span class="se">\</span>
+  mysql:5.7
+
+<span class="go">Unable to find image 'mysql:5.7' locally</span>
+<span class="go">5.7: Pulling from library/mysql</span>
+<span class="go">a5a6f2f73cd8: Pulling fs layer</span>
+<span class="go">936836019e67: Pulling fs layer</span>
+<span class="go">283fa4c95fb4: Pull complete</span>
+<span class="go">1f212fb371f9: Pull complete</span>
+<span class="go">e2ae0d063e89: Pull complete</span>
+<span class="go">5ed0ae805b65: Pull complete</span>
+<span class="go">0283dc49ef4e: Pull complete</span>
+<span class="go">a7905d9fbbea: Pull complete</span>
+<span class="go">cd2a65837235: Pull complete</span>
+<span class="go">5f906b8da5fe: Pull complete</span>
+<span class="go">e81e51815567: Pull complete</span>
+<span class="go">Digest: sha256:c23e9bfe66eeffc990cf6bce4bb0e9c5c85eb908170f3b3dde3e9a12c5a91689</span>
+<span class="go">Status: Downloaded newer image for mysql:5.7</span>
+<span class="go">f702db74f9156b20595fe04d3df09b2f0008bf707bb9b2c32db593fd33941342</span>
+</pre></div>
+</div>
+</blockquote>
+</li>
+<li><p>実行中の mysql コンテナに root アカウントでログイン (パスワードは空)</p>
+<blockquote>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker container <span class="nb">exec</span> -it mysql mysql -u root -p volume_test
+
+<span class="go">Enter password:</span>
+<span class="go">Welcome to the MySQL monitor.  Commands end with ; or \g.</span>
+<span class="go">Your MySQL connection id is 2</span>
+<span class="go">Server version: 5.7.24 MySQL Community Server (GPL)</span>
+
+<span class="go">Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.</span>
+
+<span class="go">Oracle is a registered trademark of Oracle Corporation and/or its</span>
+<span class="go">affiliates. Other names may be trademarks of their respective</span>
+<span class="go">owners.</span>
+
+<span class="go">Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.</span>
+
+<span class="go">mysql&gt; CREATE TABLE user(</span>
+<span class="go">    -&gt;   id int PRIMARY KEY AUTO_INCREMENT,</span>
+<span class="go">    -&gt;   name VARCHAR(255)</span>
+<span class="go">    -&gt; ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_unicode_ci;</span>
+<span class="go">Query OK, 0 rows affected (0.01 sec)</span>
+
+<span class="go">mysql&gt; INSERT INTO user (name) VALUES ('gihyo'), ('docker'), ('Solomon Hykes');</span>
+<span class="go">Query OK, 3 rows affected (0.01 sec)</span>
+<span class="go">Records: 3  Duplicates: 0  Warnings: 0</span>
+</pre></div>
+</div>
+</blockquote>
+</li>
+<li><p>mysql コンテナを停止する ( --rm オプションをつけて実行したため、停止すると廃棄される)</p>
+<blockquote>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker container stop mysql
+<span class="go">mysql</span>
+</pre></div>
+</div>
+</blockquote>
+</li>
+<li><p>再度、新しい mysql コンテナを実行する。</p>
+<blockquote>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker container run -d --rm --name mysql <span class="se">\</span>
+  -e <span class="s2">"MYSQL_ALLOW_EMPTY_PASSWORD=yes"</span> <span class="se">\</span>
+  -e <span class="s2">"MYSQL_DATABASE=volume_test"</span> <span class="se">\</span>
+  -e <span class="s2">"MYSQL_USER=example"</span> <span class="se">\</span>
+  -e <span class="s2">"MYSQL_PASSWORD=example"</span> <span class="se">\</span>
+  --volumes-from mysql-data <span class="se">\</span>
+  mysql:5.7
+
+<span class="go">f180d4063914b43b7d522324eb5abf5640b67d6342cb353b04ea77f85d347dcb</span>
+</pre></div>
+</div>
+</blockquote>
+</li>
+<li><p>実行中の mysql コンテナに root アカウントでログイン (パスワードは空) すると、先ほどのデータが残っている!!</p>
+<blockquote>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker container <span class="nb">exec</span> -it mysql mysql -u root -p volume_test
+
+<span class="go">Enter password:</span>
+<span class="go">Reading table information for completion of table and column names</span>
+<span class="go">You can turn off this feature to get a quicker startup with -A</span>
+
+<span class="go">Welcome to the MySQL monitor.  Commands end with ; or \g.</span>
+<span class="go">Your MySQL connection id is 2</span>
+<span class="go">Server version: 5.7.24 MySQL Community Server (GPL)</span>
+
+<span class="go">Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.</span>
+
+<span class="go">Oracle is a registered trademark of Oracle Corporation and/or its</span>
+<span class="go">affiliates. Other names may be trademarks of their respective</span>
+<span class="go">owners.</span>
+
+<span class="go">Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.</span>
+
+<span class="go">mysql&gt; SELECT * FROM user;</span>
+<span class="go">+----+---------------+</span>
+<span class="go">| id | name          |</span>
+<span class="go">+----+---------------+</span>
+<span class="go">|  1 | gihyo         |</span>
+<span class="go">|  2 | docker        |</span>
+<span class="go">|  3 | Solomon Hykes |</span>
+<span class="go">+----+---------------+</span>
+<span class="go">3 rows in set (0.00 sec)</span>
+</pre></div>
+</div>
+</blockquote>
+</li>
+</ol>
+</div>
+<div class="section" id="id13">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_16"></div><h3><a class="toc-backref" href="#id29">データのエクスポートとリストア</a></h3>
+<ul>
+<li><p>Data Volume は同一 Docker ホスト内でのみ有効</p></li>
+<li><p>他の Docker ホストで使いたいときは、 Data Volume コンテナからデータをファイルとしてホストにエクスポートする</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker container run -v <span class="sb">`</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span><span class="sb">`</span>:/tmp <span class="se">\</span>
+  --volumes-from mysql-data <span class="se">\</span>
+  busybox <span class="se">\</span>
+  tar cvzf /tmp/mysql-backup.tar.gz /var/lib/mysql
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>これ (できなかったけど) はちょっと不便なので、Volume Plugins がいろいろある</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+    </div>
+  </main>
+</div>
+</div>
+    </div>
+  </body>
+
+</html>
