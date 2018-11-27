@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Docker/Kubernetes 実践コンテナ開発入門 --- 4. Swarm による実践的なアプリケーションの構築/32imuf.com</title>
+    <link rel="shortcut icon" href="/static/icons/favicon.ico">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Griffy">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Vollkorn:400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/style.css?20181114">
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="header"><header class="item item-header">
+  <h1>
+    <a href="/">
+      <img class="logo" src="/static/images/inuu.png" alt="犬">
+    </a>
+  </h1>
+  <nav class="nav">
+    <ul>
+      <li class="nav-category"><a href="/">HOME</a></li>
+      
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_aws.html">aws</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../../aws/s3-response-error/">S3ResponseError の原因はなんと時刻ずれだった</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_blog.html">blog</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../../blog/rules/">ブログを書くときの注意点</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_css.html">css</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../../html-css/css/note/">CSS のメモ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../html-css/configure-stylus-output-directory/">PyCharm の File Watcher で、 Stylus の CSS ファイル生成先ディレクトリを指定する。</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../html-css/stylus/">Stylus を使う</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../html-css/html5-css3-modern-coding/">『HTML5/CSS3モダンコーディング フロントエンドエンジニアが教える3つの本格レイアウト スタンダード・グリッド・シングルページレイアウトの作り方』を読んで気になったことメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_django.html">django</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../../django/note/">Django のメモ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../django/django_orm/">Django ORM のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_docker.html">docker</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../create-django-env-with-docker-compose/">Docker Compose で Django 環境をつくる</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_git.html">git</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../../git/command/merge/">git merge</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../git/command/rebase-i/">git rebase -i</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../git/command/rebase/">git rebase</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../git/note/">Git のメモ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../git/configuration/">Git の設定まとめ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../git/command/">Git のコマンドまとめ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_github.html">github</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../../github/how-to-create-new-repository/">GitHub に新しいリポジトリを作成して、pushする</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../github/github-pages-custom-domain-setting/">GitHub Pages にカスタムドメインを設定する</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_mac.html">mac</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../../mac/note/">Mac のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_miyadaiku.html">miyadaiku</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../../miyadaiku/build/">Miyadaiku ビルドするときのコマンド</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../miyadaiku/article-directory-structure/">article の置きかた</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_pycharm.html">pycharm</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../../pycharm/django-support/">Pycharm の Django support を使う</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../pycharm/add-psql-var-to-user-params-for-db-console/">PyCharm の Database Console で PostgreSQL のプレースホルダー (インタポレーション) を SQL パラメーターとして使えるようにする</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../pycharm/connect-db-using-ssh-tunnel/">PyCharm で SSH tunnel して Amazon Redshift につなぐ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../pycharm/useful-menu-and-shortcuts/">PyCharm ショートカットと便利メニュー</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../pycharm/configuration/">PyCharm の設定</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_python.html">python</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../../python/etc/">Python いろいろメモ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../python/note/">Python のメモ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../python/pyconjp2018/">PyConJP 2018 で聞いた講演</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_redshift.html">redshift</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../../redshift/note/">Redshift のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_sample.html">sample</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../../2018/sample-table/">table の sample</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../2018/sample-h1-h2-h3-li/">h1, h2, h3, リストの sample</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../2018/sample-code-block/">code-block, 引用の sample</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_sql.html">sql</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../../sql/note/">SQL のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_ssh.html">ssh</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../../ssh/command/ssh-keygen/">ssh-keygen</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../ssh/command/ssh-add/">ssh-add</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../ssh/command/ssh/">ssh のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_test.html">test</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../../python-test/tox/">tox</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../python-test/mypy/">mypy</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../../python-test/note/">Python テストのメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_vagrant.html">vagrant</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../../vagrant/note/">Vagrant のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_vim.html">vim</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../../vim/command/">Vim のコマンド</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+    </ul>
+  </nav>
+</header></div>
+      <div class="main">
+<div class="article-content">
+  <main class="item item-article item-docker">
+    <time class="date" datetime="2018-11-25 00:00:00+09:00">
+      2018-11-25 Sun
+    </time>
+    <div class="title">Docker/Kubernetes 実践コンテナ開発入門 --- 4. Swarm による実践的なアプリケーションの構築</div>
+    <div class="category">
+      <a href="/index_category_category_docker.html">
+          docker
+      </a>
+    </div>
+    <div class="text">
+      <details>
+<summary>目次</summary><div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#web" id="id5">4.1 Web アプリケーションの構成</a></p>
+<ul>
+<li><p><a class="reference internal" href="#todo" id="id6">4.1.3 TODO アプリケーション構築の全体像</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#mysql-service" id="id7">4.2 MySQL Service の構築</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id1" id="id8">4.2.1 データベースコンテナ構成</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id9">4.2.2 認証情報</a></p></li>
+<li><p><a class="reference internal" href="#mysql-dockerfile" id="id10">4.2.5 MySQL の Dockerfile</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id3" id="id11">ビルドと Swarm クラスタとしての利用</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#swarm-master-slave" id="id12">4.2.6 Swarm 上で Master/Slave サービスを実行する</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id4" id="id13">Swarm によるデプロイ</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#mysql" id="id14">4.2.7 MySQL コンテナを確認し、初期データを投入する</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#api-service" id="id15">4.3 API Service の構築</a></p></li>
+</ul>
+</div>
+</details><div class="section" id="web">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_4_index_2erst_1"></div><h1><a class="toc-backref" href="#id5">4.1 Web アプリケーションの構成</a></h1>
+<p>つくるもの: TODO アプリ</p>
+<table class="colwidths-auto">
+<caption>アーキテクチャの構成要素</caption>
+<thead>
+<tr><th class="head"><p>イメージ名</p></th>
+<th class="head"><p>用途</p></th>
+<th class="head"><p>Service 名</p></th>
+<th class="head"><p>Stack 名</p></th>
+</tr>
+</thead>
+<tbody>
+<tr><td><p>MySQL</p></td>
+<td><p>データストア</p></td>
+<td><p>mysql_master, mysql_slave</p></td>
+<td><p>MySQL</p></td>
+</tr>
+<tr><td><p>API</p></td>
+<td><p>データストアを操作するAPIサーバー</p></td>
+<td><p>app_api</p></td>
+<td><p>Application</p></td>
+</tr>
+<tr><td><p>Web</p></td>
+<td><p>ビューを生成するアプリケーションサーバー</p></td>
+<td><p>frontend_web</p></td>
+<td><p>Frontend</p></td>
+</tr>
+<tr><td><p>Nginx</p></td>
+<td><p>プロキシサーバー</p></td>
+<td><p>app_nginx, frontend_nginx</p></td>
+<td><p>Application Frontend</p></td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic">
+<li><p>第３章で作成した Swarm 環境を利用する。</p>
+<blockquote>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="c1"># 4つのノードで Swarm クラスタが実行されていることを確認しておく。</span>
+$ docker container <span class="nb">exec</span> -it manager docker node ls
+ID                            HOSTNAME            STATUS              AVAILABILITY        MANAGER STATUS      ENGINE VERSION
+u8crbubyz85jmnpou9zgnc1wf     272227e51007        Ready               Active                                  <span class="m">18</span>.05.0-ce
+ww80hcmlzbga1cprtz0cmmuu2     7190447651de        Ready               Active                                  <span class="m">18</span>.05.0-ce
+7f20ikf4s04lp9abasnvm8euz *   a7e4b99c1ee7        Ready               Active              Leader              <span class="m">18</span>.05.0-ce
+j91gerxg4um0r05wukdfoqwo1     cfffba103c8c        Ready               Active                                  <span class="m">18</span>.05.0-ce
+</pre></div>
+</div>
+</blockquote>
+</li>
+<li><p>専用の overlay ネットワークを構築する。</p>
+<blockquote>
+<div class="code-block">
+<div class="highlight"><pre><span></span>$ docker container <span class="nb">exec</span> -it manager <span class="se">\</span>
+  docker network create --driver<span class="o">=</span>overlay --attachable todoapp
+  306ohjb606wx9atd7kxh0lf3a
+</pre></div>
+</div>
+</blockquote>
+</li>
+</ol>
+<div class="section" id="todo">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_4_index_2erst_2"></div><h2><a class="toc-backref" href="#id6">4.1.3 TODO アプリケーション構築の全体像</a></h2>
+<ol class="arabic simple">
+<li><p>データストアとなる Master/Slave 構成の MySQL Service の構築</p></li>
+<li><p>MySQL とデータのやり取りをするための API 実装</p></li>
+<li><p>ウェブアプリケーションと API 間にリバースプロキシとなる Nginx を通じてアクセスできるように設定</p></li>
+<li><p>APIを利用してサーバーサイドレンダリングをする Web アプリケーションを実装</p></li>
+<li><p>フロント側にリバースプロキシ (Nginx) を置く</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="mysql-service">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_4_index_2erst_3"></div><h1><a class="toc-backref" href="#id7">4.2 MySQL Service の構築</a></h1>
+<p><a class="reference external" href="https://github.com/gihyodocker/tododb">https://github.com/gihyodocker/tododb</a> からクローン</p>
+<div class="section" id="id1">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_4_index_2erst_4"></div><h2><a class="toc-backref" href="#id8">4.2.1 データベースコンテナ構成</a></h2>
+</div>
+<div class="section" id="id2">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_4_index_2erst_5"></div><h2><a class="toc-backref" href="#id9">4.2.2 認証情報</a></h2>
+</div>
+<div class="section" id="mysql-dockerfile">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_4_index_2erst_6"></div><h2><a class="toc-backref" href="#id10">4.2.5 MySQL の Dockerfile</a></h2>
+<div class="section" id="id3">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_4_index_2erst_7"></div><h3><a class="toc-backref" href="#id11">ビルドと Swarm クラスタとしての利用</a></h3>
+<p>Docker イメージを <span class="docutils literal">ch04/tododb:latest</span> という名前でビルドする。</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="c1"># tododb ディレクトリで実行する</span>
+$ docker image build -t ch04/tododb:latest .
+Sending build context to Docker daemon  <span class="m">111</span>.6kB
+Step <span class="m">1</span>/16 : FROM mysql:5.7
+ ---&gt; ae6b78bedf88
+Step <span class="m">2</span>/16 : RUN apt-get update
+ ---&gt; Running in 7ac5673dbad1
+Get:1 http://repo.mysql.com/apt/debian stretch InRelease <span class="o">[</span><span class="m">19</span>.2 kB<span class="o">]</span>
+Get:2 http://security-cdn.debian.org/debian-security stretch/updates InRelease <span class="o">[</span><span class="m">94</span>.3 kB<span class="o">]</span>
+Get:5 http://repo.mysql.com/apt/debian stretch/mysql-5.7 amd64 Packages <span class="o">[</span><span class="m">5675</span> B<span class="o">]</span>
+Ign:3 http://cdn-fastly.deb.debian.org/debian stretch InRelease
+Get:4 http://cdn-fastly.deb.debian.org/debian stretch-updates InRelease <span class="o">[</span><span class="m">91</span>.0 kB<span class="o">]</span>
+Get:7 http://security-cdn.debian.org/debian-security stretch/updates/main amd64 Packages <span class="o">[</span><span class="m">460</span> kB<span class="o">]</span>
+Get:6 http://cdn-fastly.deb.debian.org/debian stretch Release <span class="o">[</span><span class="m">118</span> kB<span class="o">]</span>
+Get:8 http://cdn-fastly.deb.debian.org/debian stretch-updates/main amd64 Packages <span class="o">[</span><span class="m">5152</span> B<span class="o">]</span>
+Get:9 http://cdn-fastly.deb.debian.org/debian stretch Release.gpg <span class="o">[</span><span class="m">2434</span> B<span class="o">]</span>
+Get:10 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 Packages <span class="o">[</span><span class="m">7089</span> kB<span class="o">]</span>
+Fetched <span class="m">7885</span> kB in 6s <span class="o">(</span><span class="m">1146</span> kB/s<span class="o">)</span>
+Reading package lists...
+Removing intermediate container 7ac5673dbad1
+ ---&gt; d6b3838b06ce
+Step <span class="m">3</span>/16 : RUN apt-get install -y wget
+ ---&gt; Running in 2879665e7c48
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  ca-certificates libidn2-0 libpsl5 libunistring0 publicsuffix
+The following NEW packages will be installed:
+  ca-certificates libidn2-0 libpsl5 libunistring0 publicsuffix wget
+<span class="m">0</span> upgraded, <span class="m">6</span> newly installed, <span class="m">0</span> to remove and <span class="m">0</span> not upgraded.
+Need to get <span class="m">1466</span> kB of archives.
+After this operation, <span class="m">4977</span> kB of additional disk space will be used.
+Get:1 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 libunistring0 amd64 <span class="m">0</span>.9.6+really0.9.3-0.1 <span class="o">[</span><span class="m">279</span> kB<span class="o">]</span>
+Get:2 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 libidn2-0 amd64 <span class="m">0</span>.16-1+deb9u1 <span class="o">[</span><span class="m">60</span>.7 kB<span class="o">]</span>
+Get:3 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 libpsl5 amd64 <span class="m">0</span>.17.0-3 <span class="o">[</span><span class="m">41</span>.8 kB<span class="o">]</span>
+Get:4 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 wget amd64 <span class="m">1</span>.18-5+deb9u2 <span class="o">[</span><span class="m">799</span> kB<span class="o">]</span>
+Get:5 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 ca-certificates all <span class="m">20161130</span>+nmu1+deb9u1 <span class="o">[</span><span class="m">182</span> kB<span class="o">]</span>
+Get:6 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 publicsuffix all <span class="m">20181003</span>.1334-0+deb9u1 <span class="o">[</span><span class="m">104</span> kB<span class="o">]</span>
+debconf: delaying package configuration, since apt-utils is not installed
+Fetched <span class="m">1466</span> kB in 2s <span class="o">(</span><span class="m">608</span> kB/s<span class="o">)</span>
+Selecting previously unselected package libunistring0:amd64.
+<span class="o">(</span>Reading database ... <span class="m">8857</span> files and directories currently installed.<span class="o">)</span>
+Preparing to unpack .../0-libunistring0_0.9.6+really0.9.3-0.1_amd64.deb ...
+Unpacking libunistring0:amd64 <span class="o">(</span><span class="m">0</span>.9.6+really0.9.3-0.1<span class="o">)</span> ...
+Selecting previously unselected package libidn2-0:amd64.
+Preparing to unpack .../1-libidn2-0_0.16-1+deb9u1_amd64.deb ...
+Unpacking libidn2-0:amd64 <span class="o">(</span><span class="m">0</span>.16-1+deb9u1<span class="o">)</span> ...
+Selecting previously unselected package libpsl5:amd64.
+Preparing to unpack .../2-libpsl5_0.17.0-3_amd64.deb ...
+Unpacking libpsl5:amd64 <span class="o">(</span><span class="m">0</span>.17.0-3<span class="o">)</span> ...
+Selecting previously unselected package wget.
+Preparing to unpack .../3-wget_1.18-5+deb9u2_amd64.deb ...
+Unpacking wget <span class="o">(</span><span class="m">1</span>.18-5+deb9u2<span class="o">)</span> ...
+Selecting previously unselected package ca-certificates.
+Preparing to unpack .../4-ca-certificates_20161130+nmu1+deb9u1_all.deb ...
+Unpacking ca-certificates <span class="o">(</span><span class="m">20161130</span>+nmu1+deb9u1<span class="o">)</span> ...
+Selecting previously unselected package publicsuffix.
+Preparing to unpack .../5-publicsuffix_20181003.1334-0+deb9u1_all.deb ...
+Unpacking publicsuffix <span class="o">(</span><span class="m">20181003</span>.1334-0+deb9u1<span class="o">)</span> ...
+Processing triggers <span class="k">for</span> libc-bin <span class="o">(</span><span class="m">2</span>.24-11+deb9u3<span class="o">)</span> ...
+Setting up publicsuffix <span class="o">(</span><span class="m">20181003</span>.1334-0+deb9u1<span class="o">)</span> ...
+Setting up libunistring0:amd64 <span class="o">(</span><span class="m">0</span>.9.6+really0.9.3-0.1<span class="o">)</span> ...
+Setting up ca-certificates <span class="o">(</span><span class="m">20161130</span>+nmu1+deb9u1<span class="o">)</span> ...
+debconf: unable to initialize frontend: Dialog
+debconf: <span class="o">(</span>TERM is not set, so the dialog frontend is not usable.<span class="o">)</span>
+debconf: falling back to frontend: Readline
+Updating certificates in /etc/ssl/certs...
+<span class="m">151</span> added, <span class="m">0</span> removed<span class="p">;</span> <span class="k">done</span>.
+Setting up libidn2-0:amd64 <span class="o">(</span><span class="m">0</span>.16-1+deb9u1<span class="o">)</span> ...
+Setting up libpsl5:amd64 <span class="o">(</span><span class="m">0</span>.17.0-3<span class="o">)</span> ...
+Setting up wget <span class="o">(</span><span class="m">1</span>.18-5+deb9u2<span class="o">)</span> ...
+Processing triggers <span class="k">for</span> libc-bin <span class="o">(</span><span class="m">2</span>.24-11+deb9u3<span class="o">)</span> ...
+Processing triggers <span class="k">for</span> ca-certificates <span class="o">(</span><span class="m">20161130</span>+nmu1+deb9u1<span class="o">)</span> ...
+Updating certificates in /etc/ssl/certs...
+<span class="m">0</span> added, <span class="m">0</span> removed<span class="p">;</span> <span class="k">done</span>.
+Running hooks in /etc/ca-certificates/update.d...
+<span class="k">done</span>.
+Removing intermediate container 2879665e7c48
+ ---&gt; 740ce65c1344
+Step <span class="m">4</span>/16 : RUN wget https://github.com/progrium/entrykit/releases/download/v0.4.0/entrykit_0.4.0_linux_x86_64.tgz
+ ---&gt; Running in dea73313bc77
+--2018-11-25 <span class="m">10</span>:38:18--  https://github.com/progrium/entrykit/releases/download/v0.4.0/entrykit_0.4.0_linux_x86_64.tgz
+Resolving github.com <span class="o">(</span>github.com<span class="o">)</span>... <span class="m">192</span>.30.255.113, <span class="m">192</span>.30.255.112
+Connecting to github.com <span class="o">(</span>github.com<span class="o">)</span><span class="p">|</span><span class="m">192</span>.30.255.113<span class="p">|</span>:443... connected.
+HTTP request sent, awaiting response... <span class="m">302</span> Found
+Location: https://github-production-release-asset-2e65be.s3.amazonaws.com/33640915/e0224de0-c059-11e5-9b10-fbf7cc7e9fe2?X-Amz-Algorithm<span class="o">=</span>AWS4-HMAC-SHA256<span class="p">&amp;</span>X-Amz-Credential<span class="o">=</span>AKIAIWNJYAX4CSVEH53A%2F20181125%2Fus-east-1%2Fs3%2Faws4_request<span class="p">&amp;</span>X-Amz-Date<span class="o">=</span>20181125T103818Z<span class="p">&amp;</span>X-Amz-Expires<span class="o">=</span><span class="m">300</span><span class="p">&amp;</span>X-Amz-Signature<span class="o">=</span>3c4428bc3152d45efa3580ef6cfed18acadafa072d2bb49101f7fc86e1f7561f<span class="p">&amp;</span>X-Amz-SignedHeaders<span class="o">=</span>host<span class="p">&amp;</span><span class="nv">actor_id</span><span class="o">=</span><span class="m">0</span><span class="p">&amp;</span>response-content-disposition<span class="o">=</span>attachment%3B%20filename%3Dentrykit_0.4.0_Linux_x86_64.tgz<span class="p">&amp;</span>response-content-type<span class="o">=</span>application%2Foctet-stream <span class="o">[</span>following<span class="o">]</span>
+--2018-11-25 <span class="m">10</span>:38:18--  https://github-production-release-asset-2e65be.s3.amazonaws.com/33640915/e0224de0-c059-11e5-9b10-fbf7cc7e9fe2?X-Amz-Algorithm<span class="o">=</span>AWS4-HMAC-SHA256<span class="p">&amp;</span>X-Amz-Credential<span class="o">=</span>AKIAIWNJYAX4CSVEH53A%2F20181125%2Fus-east-1%2Fs3%2Faws4_request<span class="p">&amp;</span>X-Amz-Date<span class="o">=</span>20181125T103818Z<span class="p">&amp;</span>X-Amz-Expires<span class="o">=</span><span class="m">300</span><span class="p">&amp;</span>X-Amz-Signature<span class="o">=</span>3c4428bc3152d45efa3580ef6cfed18acadafa072d2bb49101f7fc86e1f7561f<span class="p">&amp;</span>X-Amz-SignedHeaders<span class="o">=</span>host<span class="p">&amp;</span><span class="nv">actor_id</span><span class="o">=</span><span class="m">0</span><span class="p">&amp;</span>response-content-disposition<span class="o">=</span>attachment%3B%20filename%3Dentrykit_0.4.0_Linux_x86_64.tgz<span class="p">&amp;</span>response-content-type<span class="o">=</span>application%2Foctet-stream
+Resolving github-production-release-asset-2e65be.s3.amazonaws.com <span class="o">(</span>github-production-release-asset-2e65be.s3.amazonaws.com<span class="o">)</span>... <span class="m">54</span>.231.82.178
+Connecting to github-production-release-asset-2e65be.s3.amazonaws.com <span class="o">(</span>github-production-release-asset-2e65be.s3.amazonaws.com<span class="o">)</span><span class="p">|</span><span class="m">54</span>.231.82.178<span class="p">|</span>:443... connected.
+HTTP request sent, awaiting response... <span class="m">200</span> OK
+Length: <span class="m">2708228</span> <span class="o">(</span><span class="m">2</span>.6M<span class="o">)</span> <span class="o">[</span>application/octet-stream<span class="o">]</span>
+Saving to: <span class="s1">'entrykit_0.4.0_linux_x86_64.tgz'</span>
+
+     0K .......... .......... .......... .......... ..........  <span class="m">1</span>%  130K 20s
+    50K .......... .......... .......... .......... ..........  <span class="m">3</span>%  258K 15s
+   100K .......... .......... .......... .......... ..........  <span class="m">5</span>% <span class="m">5</span>.08M 10s
+   150K .......... .......... .......... .......... ..........  <span class="m">7</span>% <span class="m">9</span>.96M 7s
+   200K .......... .......... .......... .......... ..........  <span class="m">9</span>%  263K 8s
+   250K .......... .......... .......... .......... .......... <span class="m">11</span>% <span class="m">16</span>.9M 6s
+   300K .......... .......... .......... .......... .......... <span class="m">13</span>% <span class="m">3</span>.89M 5s
+   350K .......... .......... .......... .......... .......... <span class="m">15</span>% <span class="m">18</span>.3M 4s
+   400K .......... .......... .......... .......... .......... <span class="m">17</span>%  289K 5s
+   450K .......... .......... .......... .......... .......... <span class="m">18</span>% <span class="m">4</span>.30M 4s
+   500K .......... .......... .......... .......... .......... <span class="m">20</span>% <span class="m">15</span>.1M 4s
+   550K .......... .......... .......... .......... .......... <span class="m">22</span>% <span class="m">6</span>.33M 3s
+   600K .......... .......... .......... .......... .......... <span class="m">24</span>% <span class="m">12</span>.3M 3s
+   650K .......... .......... .......... .......... .......... <span class="m">26</span>%  302K 3s
+   700K .......... .......... .......... .......... .......... <span class="m">28</span>% <span class="m">13</span>.0M 3s
+   750K .......... .......... .......... .......... .......... <span class="m">30</span>% <span class="m">8</span>.68M 3s
+   800K .......... .......... .......... .......... .......... <span class="m">32</span>% <span class="m">8</span>.68M 2s
+   850K .......... .......... .......... .......... .......... <span class="m">34</span>% <span class="m">6</span>.06M 2s
+   900K .......... .......... .......... .......... .......... <span class="m">35</span>% <span class="m">17</span>.0M 2s
+   950K .......... .......... .......... .......... .......... <span class="m">37</span>% <span class="m">13</span>.8M 2s
+  1000K .......... .......... .......... .......... .......... <span class="m">39</span>% <span class="m">7</span>.66M 2s
+  1050K .......... .......... .......... .......... .......... <span class="m">41</span>% <span class="m">9</span>.07M 2s
+  1100K .......... .......... .......... .......... .......... <span class="m">43</span>% <span class="m">8</span>.67M 2s
+  1150K .......... .......... .......... .......... .......... <span class="m">45</span>% <span class="m">5</span>.36M 1s
+  1200K .......... .......... .......... .......... .......... <span class="m">47</span>% <span class="m">13</span>.5M 1s
+  1250K .......... .......... .......... .......... .......... <span class="m">49</span>% <span class="m">13</span>.4M 1s
+  1300K .......... .......... .......... .......... .......... <span class="m">51</span>% <span class="m">8</span>.32M 1s
+  1350K .......... .......... .......... .......... .......... <span class="m">52</span>%  376K 1s
+  1400K .......... .......... .......... .......... .......... <span class="m">54</span>% <span class="m">22</span>.0M 1s
+  1450K .......... .......... .......... .......... .......... <span class="m">56</span>% <span class="m">24</span>.1M 1s
+  1500K .......... .......... .......... .......... .......... <span class="m">58</span>% <span class="m">11</span>.8M 1s
+  1550K .......... .......... .......... .......... .......... <span class="m">60</span>% <span class="m">8</span>.20M 1s
+  1600K .......... .......... .......... .......... .......... <span class="m">62</span>% <span class="m">12</span>.2M 1s
+  1650K .......... .......... .......... .......... .......... <span class="m">64</span>% <span class="m">5</span>.29M 1s
+  1700K .......... .......... .......... .......... .......... <span class="m">66</span>% <span class="m">14</span>.0M 1s
+  1750K .......... .......... .......... .......... .......... <span class="m">68</span>% <span class="m">9</span>.22M 1s
+  1800K .......... .......... .......... .......... .......... <span class="m">69</span>% <span class="m">13</span>.6M 1s
+  1850K .......... .......... .......... .......... .......... <span class="m">71</span>% <span class="m">7</span>.55M 1s
+  1900K .......... .......... .......... .......... .......... <span class="m">73</span>% <span class="m">7</span>.35M 1s
+  1950K .......... .......... .......... .......... .......... <span class="m">75</span>% <span class="m">9</span>.59M 0s
+  2000K .......... .......... .......... .......... .......... <span class="m">77</span>% <span class="m">8</span>.86M 0s
+  2050K .......... .......... .......... .......... .......... <span class="m">79</span>% <span class="m">10</span>.8M 0s
+  2100K .......... .......... .......... .......... .......... <span class="m">81</span>% <span class="m">7</span>.26M 0s
+  2150K .......... .......... .......... .......... .......... <span class="m">83</span>% <span class="m">10</span>.7M 0s
+  2200K .......... .......... .......... .......... .......... <span class="m">85</span>% <span class="m">11</span>.6M 0s
+  2250K .......... .......... .......... .......... .......... <span class="m">86</span>% <span class="m">6</span>.88M 0s
+  2300K .......... .......... .......... .......... .......... <span class="m">88</span>% <span class="m">12</span>.3M 0s
+  2350K .......... .......... .......... .......... .......... <span class="m">90</span>%  480K 0s
+  2400K .......... .......... .......... .......... .......... <span class="m">92</span>% <span class="m">8</span>.43M 0s
+  2450K .......... .......... .......... .......... .......... <span class="m">94</span>% <span class="m">6</span>.35M 0s
+  2500K .......... .......... .......... .......... .......... <span class="m">96</span>% <span class="m">11</span>.6M 0s
+  2550K .......... .......... .......... .......... .......... <span class="m">98</span>% <span class="m">6</span>.34M 0s
+  2600K .......... .......... .......... .......... ....      <span class="m">100</span>% <span class="m">15</span>.2M<span class="o">=</span><span class="m">1</span>.6s
+
+<span class="m">2018</span>-11-25 <span class="m">10</span>:38:21 <span class="o">(</span><span class="m">1</span>.62 MB/s<span class="o">)</span> - <span class="s1">'entrykit_0.4.0_linux_x86_64.tgz'</span> saved <span class="o">[</span><span class="m">2708228</span>/2708228<span class="o">]</span>
+
+Removing intermediate container dea73313bc77
+ ---&gt; 2c98967c1774
+Step <span class="m">5</span>/16 : RUN tar -xvzf entrykit_0.4.0_linux_x86_64.tgz
+ ---&gt; Running in ff7abe00309c
+entrykit
+Removing intermediate container ff7abe00309c
+ ---&gt; addb23c07603
+Step <span class="m">6</span>/16 : RUN rm entrykit_0.4.0_linux_x86_64.tgz
+ ---&gt; Running in 22f15256cab4
+Removing intermediate container 22f15256cab4
+ ---&gt; 3e734f4463ea
+Step <span class="m">7</span>/16 : RUN mv entrykit /usr/local/bin/
+ ---&gt; Running in 8282d8355551
+Removing intermediate container 8282d8355551
+ ---&gt; 15c3a13a9dbf
+Step <span class="m">8</span>/16 : RUN entrykit --symlink
+ ---&gt; Running in ce5b7cf07987
+Creating symlink /usr/local/bin/entrykit ...
+Creating symlink /usr/local/bin/codep ...
+Creating symlink /usr/local/bin/prehook ...
+Creating symlink /usr/local/bin/render ...
+Creating symlink /usr/local/bin/switch ...
+Removing intermediate container ce5b7cf07987
+ ---&gt; 4db462ea1227
+Step <span class="m">9</span>/16 : COPY add-server-id.sh /usr/local/bin/
+ ---&gt; 2302bd5ce059
+Step <span class="m">10</span>/16 : COPY etc/mysql/mysql.conf.d/mysqld.cnf /etc/mysql/mysql.conf.d/
+ ---&gt; 22546372bdd1
+Step <span class="m">11</span>/16 : COPY etc/mysql/conf.d/mysql.cnf /etc/mysql/conf.d/
+ ---&gt; cefe14b8ebd9
+Step <span class="m">12</span>/16 : COPY prepare.sh /docker-entrypoint-initdb.d
+ ---&gt; 1c5e3d21135f
+Step <span class="m">13</span>/16 : COPY init-data.sh /usr/local/bin/
+ ---&gt; 9063c3add476
+Step <span class="m">14</span>/16 : COPY sql /sql
+ ---&gt; bc4b49fcff4a
+Step <span class="m">15</span>/16 : ENTRYPOINT <span class="o">[</span>   <span class="s2">"prehook"</span>,     <span class="s2">"add-server-id.sh"</span>,     <span class="s2">"--"</span>,   <span class="s2">"docker-entrypoint.sh"</span> <span class="o">]</span>
+ ---&gt; Running in a719ec77bf52
+Removing intermediate container a719ec77bf52
+ ---&gt; 81427966d5ba
+Step <span class="m">16</span>/16 : CMD <span class="o">[</span><span class="s2">"mysqld"</span><span class="o">]</span>
+ ---&gt; Running in f7e703b2ecee
+Removing intermediate container f7e703b2ecee
+ ---&gt; e8a9a539cdd7
+Successfully built e8a9a539cdd7
+Successfully tagged ch04/tododb:latest
+</pre></div>
+</div>
+<p>タグ名をつける。</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span>$ docker image tag ch04/tododb:latest localhost:5000/ch04/tododb:latest
+</pre></div>
+</div>
+<p>Swarm クラスタの worker ノードで利用できるように、 <span class="docutils literal">localhost:5000/ch04/tododb:latest</span> という名前で registry に push しておく。</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span>$ docker image push localhost:5000/ch04/tododb:latest
+The push refers to repository <span class="o">[</span>localhost:5000/ch04/tododb<span class="o">]</span>
+7145c9f07816: Preparing
+f31f10668bad: Preparing
+18b21f6c50ce: Preparing
+2ad5fd0a3131: Preparing
+1f22bafd4a4b: Preparing
+f208eba8785e: Preparing
+eb3efcf4de85: Preparing
+77cc7b793ed5: Preparing
+09c90391a311: Preparing
+e9651980f89e: Preparing
+1e9b0de5a957: Preparing
+9adbc7c066aa: Preparing
+e618193140e0: Preparing
+0d954c604c76: Preparing
+ceb15396dc26: Preparing
+347571a8da20: Pushed
+ea66b8e6103f: Pushed
+3d4164460bf0: Pushed
+783b13a988e3: Pushed
+2566141f200b: Pushed
+0ad177796f33: Pushed
+0f1205f1cd43: Pushed
+a588c986cf97: Pushed
+ef68f6734aa4: Pushed
+latest: digest: sha256:d2108914ffdc5e80d08fa4e07067c7872dc427c6f0ef7df208de05e3f5fecd91 size: <span class="m">5334</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="swarm-master-slave">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_4_index_2erst_8"></div><h2><a class="toc-backref" href="#id12">4.2.6 Swarm 上で Master/Slave サービスを実行する</a></h2>
+<p><span class="docutils literal"><span class="pre">todo-mysql.yml</span></span> を作成する。</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span> <span class="s">"3"</span>
+
+<span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">master</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">registry:5000/ch04/tododb:latest</span>
+    <span class="l l-Scalar l-Scalar-Plain">deploy</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">replicas</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+      <span class="l l-Scalar l-Scalar-Plain">placement</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">constraints</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">node.role != manager</span><span class="p p-Indicator">]</span>  <span class="c1"># manager ノード以外に配置する</span>
+    <span class="l l-Scalar l-Scalar-Plain">environment</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">MYSQL_ROOT_PASSWORD</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">gihyo</span>
+      <span class="l l-Scalar l-Scalar-Plain">MYSQL_DATABASE</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">tododb</span>
+      <span class="l l-Scalar l-Scalar-Plain">MYSQL_USER</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">gihyo</span>
+      <span class="l l-Scalar l-Scalar-Plain">MYSQL_PASSWORD</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">gihyo</span>
+      <span class="l l-Scalar l-Scalar-Plain">MYSQL_MASTER</span><span class="p p-Indicator">:</span> <span class="s">"true"</span>
+    <span class="l l-Scalar l-Scalar-Plain">networks</span><span class="p p-Indicator">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">todoapp</span>
+
+  <span class="l l-Scalar l-Scalar-Plain">slave</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">registry:5000/ch04/tododb:latest</span>
+    <span class="l l-Scalar l-Scalar-Plain">deploy</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">replicas</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
+      <span class="l l-Scalar l-Scalar-Plain">placement</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">constraints</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">node.role != manager</span><span class="p p-Indicator">]</span>  <span class="c1"># manager ノード以外に配置する</span>
+    <span class="l l-Scalar l-Scalar-Plain">depends_on</span><span class="p p-Indicator">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">master</span>
+    <span class="l l-Scalar l-Scalar-Plain">environment</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">MYSQL_MASTER_HOST</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">master</span>
+      <span class="l l-Scalar l-Scalar-Plain">MYSQL_ROOT_PASSWORD</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">gihyo</span>
+      <span class="l l-Scalar l-Scalar-Plain">MYSQL_DATABASE</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">tododb</span>
+      <span class="l l-Scalar l-Scalar-Plain">MYSQL_USER</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">gihyo</span>
+      <span class="l l-Scalar l-Scalar-Plain">MYSQL_PASSWORD</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">gihyo</span>
+      <span class="l l-Scalar l-Scalar-Plain">MYSQL_REPL_USER</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">repl</span>
+      <span class="l l-Scalar l-Scalar-Plain">MYSQL_REPL_PASSWORD</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">gihyo</span>
+    <span class="l l-Scalar l-Scalar-Plain">networks</span><span class="p p-Indicator">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">todoapp</span>
+
+<span class="l l-Scalar l-Scalar-Plain">networks</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">todoapp</span><span class="p p-Indicator">:</span>            <span class="c1"># overlay ネットワーク</span>
+    <span class="l l-Scalar l-Scalar-Plain">external</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>    <span class="c1"># 各 Service をこのネットワークに所属させる</span>
+</pre></div>
+</div>
+<div class="section" id="id4">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_4_index_2erst_9"></div><h3><a class="toc-backref" href="#id13">Swarm によるデプロイ</a></h3>
+<p>manager コンテナに、 <span class="docutils literal"><span class="pre">todo-mysql.yml</span></span> を <span class="docutils literal">todo_mysql</span> スタックとしてデプロイする。</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span>$ docker container <span class="nb">exec</span> -it manager docker stack deploy -c /stack/todo-mysql.yml todo-mysql
+Creating service todo-mysql_master
+Creating service todo-mysql_slave
+
+<span class="c1"># デプロイされているサービス一覧を確認する。</span>
+$ docker container <span class="nb">exec</span> -it manager docker service ls
+ID                  NAME                MODE                REPLICAS            IMAGE                              PORTS
+wx74zcnjz77k        todo-mysql_master   replicated          <span class="m">1</span>/1                 registry:5000/ch04/tododb:latest
+3r61ptmsixr5        todo-mysql_slave    replicated          <span class="m">2</span>/2                 registry:5000/ch04/tododb:latest
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="mysql">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_4_index_2erst_10"></div><h2><a class="toc-backref" href="#id14">4.2.7 MySQL コンテナを確認し、初期データを投入する</a></h2>
+<p>Master コンテナが Swarm のどのノードに配置されたか調べる。</p>
+<ul class="simple">
+<li><p>ノードの ID と Task ID がわかれば <span class="docutils literal">docker container exec</span> を多段で実行することで目的のコンテナの中にはいることができる。</p></li>
+</ul>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker container <span class="nb">exec</span> -it manager docker service ps todo-mysql_master --no-trunc --filter <span class="s2">"desired-state=running"</span>
+<span class="go">ID                          NAME                  IMAGE                                                                                                      NODE                DESIRED STATE       CURRENT STATE           ERROR               PORTS</span>
+<span class="go">pitobepehy19jm3v7pfe2cavo   todo-mysql_master.1   registry:5000/ch04/tododb:latest@sha256:d2108914ffdc5e80d08fa4e07067c7872dc427c6f0ef7df208de05e3f5fecd91   7190447651de        Running             Running 9 minutes ago</span>
+</pre></div>
+</div>
+<p>ノードの ID と Task ID を調べるのと同時に、 <span class="docutils literal"><span class="pre">--format</span></span> を使って多段用のコマンドも作っちゃう。</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker container <span class="nb">exec</span> -it manager <span class="se">\</span>
+  docker service ps todo-mysql_master <span class="se">\</span>
+  --no-trunc <span class="se">\</span>
+  --filter <span class="s2">"desired-state=running"</span> <span class="se">\</span>
+  --format <span class="s2">"docker container exec -it {{.Node}} docker container exec -it {{.Name}}.{{.ID}} bash"</span>
+</pre></div>
+</div>
+<p>master コンテナで <span class="docutils literal"><span class="pre">init-data.sh</span></span> を実行してテーブルとデータを作成します。</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="c1"># 初期データ投入スクリプトを実行する</span>
+$ docker container <span class="nb">exec</span> -it 7190447651de docker container <span class="nb">exec</span> -it todo-mysql_master.1.pitobepehy19jm3v7pfe2cavo init-data.sh
+
+<span class="c1"># データが正常に投入できたか確認する</span>
+$ docker container <span class="nb">exec</span> -it 7190447651de docker container <span class="nb">exec</span> -it todo-mysql_master.1.pitobepehy19jm3v7pfe2cavo <span class="se">\</span>
+&gt;   mysql -u gihyo -pgihyo tododb
+mysql: <span class="o">[</span>Warning<span class="o">]</span> Using a password on the <span class="nb">command</span> line interface can be insecure.
+Reading table information <span class="k">for</span> completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Welcome to the MySQL monitor.  Commands end with <span class="p">;</span> or <span class="se">\g</span>.
+Your MySQL connection id is <span class="m">16</span>
+Server version: <span class="m">5</span>.7.24-log MySQL Community Server <span class="o">(</span>GPL<span class="o">)</span>
+
+Copyright <span class="o">(</span>c<span class="o">)</span> <span class="m">2000</span>, <span class="m">2018</span>, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type <span class="s1">'help;'</span> or <span class="s1">'\h'</span> <span class="k">for</span> help. Type <span class="s1">'\c'</span> to clear the current input statement.
+
+mysql&gt; SELECT * FROM todo LIMIT <span class="m">1</span><span class="se">\G</span>
+*************************** <span class="m">1</span>. row ***************************
+     id: <span class="m">1</span>
+  title: MySQLのDockerイメージを作成する
+content: MySQLのMaster、Slaveそれぞれで利用できるように、環境変数で役割を制御できるMySQLイメージを作成する
+ status: DONE
+created: <span class="m">2018</span>-11-25 <span class="m">11</span>:34:16
+updated: <span class="m">2018</span>-11-25 <span class="m">11</span>:34:16
+<span class="m">1</span> row in <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</pre></div>
+</div>
+<p>Master に登録したデータが Slave にも反映されていることを確認する。</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="c1"># ノードの ID と Task ID を調べる</span>
+$ docker container <span class="nb">exec</span> -it manager <span class="se">\</span>
+  docker service ps todo-mysql_slave <span class="se">\</span>
+  --no-trunc <span class="se">\</span>
+  --filter <span class="s2">"desired-state=running"</span> <span class="se">\</span>
+  --format <span class="s2">"docker container exec -it {{.Node}} docker container exec -it {{.Name}}.{{.ID}} bash"</span>
+  docker container <span class="nb">exec</span> -it 272227e51007 docker container <span class="nb">exec</span> -it todo-mysql_slave.1.xd9oxztk61ogea9duail6yhv0 bash
+  docker container <span class="nb">exec</span> -it cfffba103c8c docker container <span class="nb">exec</span> -it todo-mysql_slave.2.rk8cm47671v1ah04s9teajft1 bash
+
+<span class="c1"># データが反映できたことを確認する (slave1)</span>
+$ docker container <span class="nb">exec</span> -it 272227e51007 docker container <span class="nb">exec</span> -it todo-mysql_slave.1.xd9oxztk61ogea9duail6yhv0 mysql -u gihyo -pgihyo tododb
+mysql: <span class="o">[</span>Warning<span class="o">]</span> Using a password on the <span class="nb">command</span> line interface can be insecure.
+Reading table information <span class="k">for</span> completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Welcome to the MySQL monitor.  Commands end with <span class="p">;</span> or <span class="se">\g</span>.
+Your MySQL connection id is <span class="m">4</span>
+Server version: <span class="m">5</span>.7.24-log MySQL Community Server <span class="o">(</span>GPL<span class="o">)</span>
+
+Copyright <span class="o">(</span>c<span class="o">)</span> <span class="m">2000</span>, <span class="m">2018</span>, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type <span class="s1">'help;'</span> or <span class="s1">'\h'</span> <span class="k">for</span> help. Type <span class="s1">'\c'</span> to clear the current input statement.
+
+mysql&gt; SELECT * FROM todo LIMIT <span class="m">1</span><span class="se">\G</span>
+*************************** <span class="m">1</span>. row ***************************
+     id: <span class="m">1</span>
+  title: MySQLのDockerイメージを作成する
+content: MySQLのMaster、Slaveそれぞれで利用できるように、環境変数で役割を制御できるMySQLイメージを作成する
+ status: DONE
+created: <span class="m">2018</span>-11-25 <span class="m">11</span>:34:16
+updated: <span class="m">2018</span>-11-25 <span class="m">11</span>:34:16
+<span class="m">1</span> row in <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+
+mysql&gt; <span class="nb">exit</span>
+Bye
+
+<span class="c1"># データが反映できたことを確認する (slave2)</span>
+$ docker container <span class="nb">exec</span> -it cfffba103c8c docker container <span class="nb">exec</span> -it todo-mysql_slave.2.rk8cm47671v1ah04s9teajft1 mysql -u gihyo -pgihyo tododb
+mysql: <span class="o">[</span>Warning<span class="o">]</span> Using a password on the <span class="nb">command</span> line interface can be insecure.
+Reading table information <span class="k">for</span> completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Welcome to the MySQL monitor.  Commands end with <span class="p">;</span> or <span class="se">\g</span>.
+Your MySQL connection id is <span class="m">4</span>
+Server version: <span class="m">5</span>.7.24-log MySQL Community Server <span class="o">(</span>GPL<span class="o">)</span>
+
+Copyright <span class="o">(</span>c<span class="o">)</span> <span class="m">2000</span>, <span class="m">2018</span>, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type <span class="s1">'help;'</span> or <span class="s1">'\h'</span> <span class="k">for</span> help. Type <span class="s1">'\c'</span> to clear the current input statement.
+
+mysql&gt; SELECT * FROM todo LIMIT <span class="m">1</span><span class="se">\G</span>
+*************************** <span class="m">1</span>. row ***************************
+     id: <span class="m">1</span>
+  title: MySQLのDockerイメージを作成する
+content: MySQLのMaster、Slaveそれぞれで利用できるように、環境変数で役割を制御できるMySQLイメージを作成する
+ status: DONE
+created: <span class="m">2018</span>-11-25 <span class="m">11</span>:34:16
+updated: <span class="m">2018</span>-11-25 <span class="m">11</span>:34:16
+<span class="m">1</span> row in <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.01 sec<span class="o">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="api-service">
+<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_4_index_2erst_11"></div><h1><a class="toc-backref" href="#id15">4.3 API Service の構築</a></h1>
+</div>
+    </div>
+  </main>
+</div>
+</div>
+    </div>
+  </body>
+
+</html>
