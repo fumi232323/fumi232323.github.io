@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>32imuf.com</title><link href="https://32imuf.com/" rel="alternate"></link><link href="https://32imuf.com/atom.xml" rel="self"></link><id>https://32imuf.com/</id><updated>2018-12-02T00:00:00+09:00</updated><entry><title>Docker Compose で Volumes をつかう</title><link href="https://32imuf.com/docker/use-volumes-with-docker-compose/" rel="alternate"></link><published>2018-12-02T00:00:00+09:00</published><updated>2018-12-02T00:00:00+09:00</updated><id>tag:32imuf.com,2018-12-02:/docker/use-volumes-with-docker-compose/</id><summary type="html">&lt;details&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>32imuf.com</title><link href="https://32imuf.com/" rel="alternate"></link><link href="https://32imuf.com/atom.xml" rel="self"></link><id>https://32imuf.com/</id><updated>2018-12-09T00:00:00+09:00</updated><entry><title>Amazon Aurora とはなんですか？</title><link href="https://32imuf.com/aws/what-is-amazon-aurora/" rel="alternate"></link><published>2018-12-09T00:00:00+09:00</published><updated>2018-12-09T00:00:00+09:00</updated><id>tag:32imuf.com,2018-12-09:/aws/what-is-amazon-aurora/</id><summary type="html">&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://aws.amazon.com/jp/rds/aurora/"&gt;Amazon Aurora&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://aws.amazon.com/jp/rds/aurora/details/mysql-details/"&gt;Amazon Aurora 製品の詳細: MySQL 互換エディション&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html"&gt;Aurora のユーザーガイド&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/AuroraUserGuide/Aurora.AuroraMySQL.html"&gt;Amazon Aurora MySQL の操作&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.slideshare.net/AmazonWebServicesJapan/amazon-aurora-aurora"&gt;Amazon Aurora - Auroraの止まらない進化とその中身&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary></entry><entry><title>Docker Compose で Volumes をつかう</title><link href="https://32imuf.com/docker/use-volumes-with-docker-compose/" rel="alternate"></link><published>2018-12-02T00:00:00+09:00</published><updated>2018-12-02T00:00:00+09:00</updated><id>tag:32imuf.com,2018-12-02:/docker/use-volumes-with-docker-compose/</id><summary type="html">&lt;details&gt;
 &lt;summary&gt;目次&lt;/summary&gt;&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
@@ -264,15 +270,4 @@
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;&lt;p&gt;グラニュー糖&lt;/p&gt;&lt;/td&gt;
 &lt;td&gt;&lt;p&gt;80～90g&lt;/p&gt;&lt;/td&gt;
-&lt;td&gt;&lt;p&gt;らかんとでも大丈夫。すこしざくざくする。&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;</summary></entry><entry><title>PyCharm の File Watcher で、 Stylus の CSS ファイル生成先ディレクトリを指定する。</title><link href="https://32imuf.com/html-css/configure-stylus-output-directory/" rel="alternate"></link><published>2018-11-03T00:00:00+09:00</published><updated>2018-11-03T00:00:00+09:00</updated><id>tag:32imuf.com,2018-11-03:/html-css/configure-stylus-output-directory/</id><summary type="html">&lt;div class="section" id="id1"&gt;
-&lt;div class="header_target" id="h_html_2dcss_configure_2dstylus_2doutput_2ddirectory_index_2erst_1"&gt;&lt;/div&gt;&lt;h1&gt;リファレンス&lt;/h1&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;PyCharm: &lt;a class="reference external" href="https://www.jetbrains.com/help/pycharm/using-file-watchers.html#ws_filewatcher_examples"&gt;https://www.jetbrains.com/help/pycharm/using-file-watchers.html#ws_filewatcher_examples&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Stylus: &lt;a class="reference external" href="http://stylus-lang.com/docs/executable.html"&gt;http://stylus-lang.com/docs/executable.html&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="id2"&gt;
-&lt;div class="header_target" id="h_html_2dcss_configure_2dstylus_2doutput_2ddirectory_index_2erst_2"&gt;&lt;/div&gt;&lt;h1&gt;手順&lt;/h1&gt;
-&lt;ol class="arabic"&gt;
-&lt;li&gt;&lt;p&gt;PyCharm -&amp;gt; Preferences -&amp;gt; Tools -&amp;gt; File Watchers -&amp;gt; Stylus -&amp;gt; 編集ボタン (えんぴつみたいなマーク) 押下&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Edit Watcher ダイアログで、&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;</summary></entry></feed>
+&lt;td&gt;&lt;p&gt;らかんとでも大丈夫。すこしざくざくする。&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;</summary></entry></feed>
