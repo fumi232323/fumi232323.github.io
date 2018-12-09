@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Docker Compose で Volumes をつかう/32imuf.com</title>
+    <link rel="shortcut icon" href="/static/icons/favicon.ico">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Griffy">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Vollkorn:400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/style.css?20181123">
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="header"><header class="item item-header">
+  <h1>
+    <a href="/">
+      <img class="logo" src="/static/images/inuu.png" alt="犬">
+    </a>
+  </h1>
+  <nav class="nav">
+    <ul>
+      <li class="nav-category"><a href="/">HOME</a></li>
+      
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_aws.html">aws</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../aws/s3-response-error/">S3ResponseError の原因はなんと時刻ずれだった</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_blog.html">blog</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../blog/rules/">ブログを書くときの注意点</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_css.html">css</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../html-css/css/note/">CSS のメモ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../html-css/configure-stylus-output-directory/">PyCharm の File Watcher で、 Stylus の CSS ファイル生成先ディレクトリを指定する。</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../html-css/stylus/">Stylus を使う</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../html-css/html5-css3-modern-coding/">『HTML5/CSS3モダンコーディング フロントエンドエンジニアが教える3つの本格レイアウト スタンダード・グリッド・シングルページレイアウトの作り方』を読んで気になったことメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_django.html">django</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../django/note/">Django のメモ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../django/django_orm/">Django ORM のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_docker.html">docker</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="./">Docker Compose で Volumes をつかう</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../create-django-env-with-docker-compose/">Docker Compose で Django 環境をつくる</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_git.html">git</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../git/command/merge/">git merge</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../git/command/rebase-i/">git rebase -i</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../git/command/rebase/">git rebase</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../git/note/">Git のメモ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../git/configuration/">Git の設定まとめ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../git/command/">Git のコマンドまとめ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_github.html">github</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../github/how-to-create-new-repository/">GitHub に新しいリポジトリを作成して、pushする</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../github/github-pages-custom-domain-setting/">GitHub Pages にカスタムドメインを設定する</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_mac.html">mac</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../mac/note/">Mac のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_miyadaiku.html">miyadaiku</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../miyadaiku/build/">Miyadaiku ビルドするときのコマンド</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../miyadaiku/article-directory-structure/">article の置きかた</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_pycharm.html">pycharm</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../pycharm/django-support/">Pycharm の Django support を使う</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../pycharm/add-psql-var-to-user-params-for-db-console/">PyCharm の Database Console で PostgreSQL のプレースホルダー (インタポレーション) を SQL パラメーターとして使えるようにする</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../pycharm/connect-db-using-ssh-tunnel/">PyCharm で SSH tunnel して Amazon Redshift につなぐ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../pycharm/useful-menu-and-shortcuts/">PyCharm ショートカットと便利メニュー</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../pycharm/configuration/">PyCharm の設定</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_python.html">python</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../python/etc/">Python いろいろメモ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../python/note/">Python のメモ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../python/pyconjp2018/">PyConJP 2018 で聞いた講演</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_redshift.html">redshift</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../redshift/note/">Redshift のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_sample.html">sample</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../2018/sample-table/">table の sample</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../2018/sample-h1-h2-h3-li/">h1, h2, h3, リストの sample</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../2018/sample-code-block/">code-block, 引用の sample</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_sql.html">sql</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../sql/note/">SQL のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_ssh.html">ssh</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../ssh/command/ssh-keygen/">ssh-keygen</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../ssh/command/ssh-add/">ssh-add</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../ssh/command/ssh/">ssh のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_test.html">test</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../python-test/tox/">tox</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../python-test/mypy/">mypy</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../python-test/note/">Python テストのメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_vagrant.html">vagrant</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../vagrant/note/">Vagrant のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_vim.html">vim</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../vim/command/">Vim のコマンド</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+    </ul>
+  </nav>
+</header></div>
+      <div class="main">
+<div class="article-content">
+  <main class="item item-article item-docker">
+    <time class="date" datetime="2018-12-02 00:00:00+09:00">
+      2018-12-02 Sun
+    </time>
+    <div class="title">Docker Compose で Volumes をつかう</div>
+    <div class="category">
+      <a href="/index_category_category_docker.html">
+          docker
+      </a>
+    </div>
+    <div class="text">
+      <details>
+<summary>目次</summary><div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#id1" id="id3">リファレンス</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id4">手順</a></p>
+<ul>
+<li><p><a class="reference internal" href="#volume" id="id5">1. volume を作成する</a></p></li>
+<li><p><a class="reference internal" href="#docker-compose-yml-volume" id="id6">2. <span class="docutils literal"><span class="pre">docker-compose.yml</span></span> に作成した volume を指定する</a></p></li>
+<li><p><a class="reference internal" href="#settings-py-database" id="id7">3. <span class="docutils literal">settings.py</span> に DATABASE を定義する</a></p></li>
+<li><p><a class="reference internal" href="#docker" id="id8">4. Docker コンテナを実行する</a></p></li>
+<li><p><a class="reference internal" href="#db" id="id9">5. DB コンテナのなかに入って、テーブルを作成 &amp; データを挿入する</a></p></li>
+<li><p><a class="reference internal" href="#shutdown" id="id10">6. 安全に shutdown する</a></p></li>
+<li><p><a class="reference internal" href="#docker-compose-up" id="id11">7. 再度 <span class="docutils literal"><span class="pre">docker-compose</span> up</span> して、先ほど登録したテーブル &amp; データを見てみる</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+</details><div class="section" id="id1">
+<div class="header_target" id="h_docker_use_2dvolumes_2dwith_2ddocker_2dcompose_index_2erst_1"></div><h1><a class="toc-backref" href="#id3">リファレンス</a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.docker.com/storage/volumes/">Use volumes</a></p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/storage/volumes/#create-and-manage-volumes">Create and manage volumes</a></p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/compose/compose-file/#external">https://docs.docker.com/compose/compose-file/#external</a></p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/compose/compose-file/#environment">https://docs.docker.com/compose/compose-file/#environment</a></p></li>
+<li><p><a class="reference external" href="http://www.postgresqltutorial.com/psql-commands/">http://www.postgresqltutorial.com/psql-commands/</a></p></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<div class="header_target" id="h_docker_use_2dvolumes_2dwith_2ddocker_2dcompose_index_2erst_2"></div><h1><a class="toc-backref" href="#id4">手順</a></h1>
+<p><span class="docutils literal">web</span> のイメージをビルド...するところは、
+<a href="../create-django-env-with-docker-compose/">Docker Compose で Django 環境をつくる</a>
+を参照のこと。</p>
+<div class="section" id="volume">
+<div class="header_target" id="h_docker_use_2dvolumes_2dwith_2ddocker_2dcompose_index_2erst_3"></div><h2><a class="toc-backref" href="#id5">1. volume を作成する</a></h2>
+<p><span class="docutils literal"><span class="pre">db-data</span></span> という名前の volume を作成する。</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span>$ docker volume create db-data
+db-data
+</pre></div>
+</div>
+<ul>
+<li><p>volumes を一覧表示する。</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span>$ docker volume ls
+DRIVER              VOLUME NAME
+<span class="nb">local</span>               db-data
+</pre></div>
+</div>
+</li>
+<li><p>volume を調べる。</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span>$ docker volume inspect db-data
+<span class="o">[</span>
+    <span class="o">{</span>
+        <span class="s2">"CreatedAt"</span>: <span class="s2">"2018-12-02T13:09:48Z"</span>,
+        <span class="s2">"Driver"</span>: <span class="s2">"local"</span>,
+        <span class="s2">"Labels"</span>: <span class="o">{}</span>,
+        <span class="s2">"Mountpoint"</span>: <span class="s2">"/var/lib/docker/volumes/db-data/_data"</span>,
+        <span class="s2">"Name"</span>: <span class="s2">"db-data"</span>,
+        <span class="s2">"Options"</span>: <span class="o">{}</span>,
+        <span class="s2">"Scope"</span>: <span class="s2">"local"</span>
+    <span class="o">}</span>
+<span class="o">]</span>
+</pre></div>
+</div>
+</li>
+<li><p>今作った <span class="docutils literal">volume</span> はこの絵↓の真ん中のものである。</p>
+<div class="figure">
+<img alt="use-volumes.png" src="use-volumes.png"/>
+</div>
+<p><a class="reference external" href="https://docs.docker.com/storage/volumes/">https://docs.docker.com/storage/volumes/</a></p>
+</li>
+</ul>
+</div>
+<div class="section" id="docker-compose-yml-volume">
+<div class="header_target" id="h_docker_use_2dvolumes_2dwith_2ddocker_2dcompose_index_2erst_4"></div><h2><a class="toc-backref" href="#id6">2. <span class="docutils literal"><span class="pre">docker-compose.yml</span></span> に作成した volume を指定する</a></h2>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span> <span class="s">'3'</span>
+
+<span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">db</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">postgres:latest</span>
+    <span class="l l-Scalar l-Scalar-Plain">volumes</span><span class="p p-Indicator">:</span>
+      <span class="c1"># コンテナの `/var/lib/postgresql/data` を、volume `db-data` にマウントする。</span>
+      <span class="p p-Indicator">-</span> <span class="s">"db-data:/var/lib/postgresql/data"</span>
+    <span class="c1"># 環境変数を追加する</span>
+    <span class="l l-Scalar l-Scalar-Plain">environment</span><span class="p p-Indicator">:</span>
+      <span class="c1"># postgres のパスワードを設定する</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">POSTGRES_PASSWORD=postgres</span>
+  <span class="l l-Scalar l-Scalar-Plain">web</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">build</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">context</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">.</span>
+      <span class="l l-Scalar l-Scalar-Plain">dockerfile</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Dockerfile-web</span>
+    <span class="l l-Scalar l-Scalar-Plain">command</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">python3 manage.py runserver 0.0.0.0:8000</span>
+    <span class="l l-Scalar l-Scalar-Plain">volumes</span><span class="p p-Indicator">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">.:/code</span>
+    <span class="l l-Scalar l-Scalar-Plain">ports</span><span class="p p-Indicator">:</span>
+      <span class="p p-Indicator">-</span> <span class="s">"3236:8000"</span>
+    <span class="l l-Scalar l-Scalar-Plain">depends_on</span><span class="p p-Indicator">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">db</span>
+
+<span class="c1"># volumes を定義する</span>
+<span class="l l-Scalar l-Scalar-Plain">volumes</span><span class="p p-Indicator">:</span>
+  <span class="c1"># volume の名前を指定</span>
+  <span class="l l-Scalar l-Scalar-Plain">db-data</span><span class="p p-Indicator">:</span>
+    <span class="c1"># Compose の外ですでに作成済みの volume を指定する場合は ture を設定する。</span>
+    <span class="c1"># そうすると、 docker-compose up 時に Compose は volume を作成しようとしません。</span>
+    <span class="c1"># かつ、指定した volume が存在しないとエラーを raise します。</span>
+    <span class="l l-Scalar l-Scalar-Plain">external</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><span class="docutils literal">external: true</span> を書かないと、 <span class="docutils literal">$ <span class="pre">docker-compose</span> up</span> 時に 1. で作った <span class="docutils literal"><span class="pre">db-data</span></span> とは別に
+<span class="docutils literal"><span class="pre">{プロジェクト名}_db-data</span></span> という感じの名前の volume が作られて、そちらが使われる。</p></li>
+<li><p>それでもまあかまわないけれど。今のところは。</p></li>
+</ul>
+</div>
+<div class="section" id="settings-py-database">
+<div class="header_target" id="h_docker_use_2dvolumes_2dwith_2ddocker_2dcompose_index_2erst_5"></div><h2><a class="toc-backref" href="#id7">3. <span class="docutils literal">settings.py</span> に DATABASE を定義する</a></h2>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'default'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">'ENGINE'</span><span class="p">:</span> <span class="s1">'django.db.backends.postgresql'</span><span class="p">,</span>
+        <span class="s1">'NAME'</span><span class="p">:</span> <span class="s1">'postgres'</span><span class="p">,</span>
+        <span class="s1">'USER'</span><span class="p">:</span> <span class="s1">'postgres'</span><span class="p">,</span>
+        <span class="s1">'PASSWORD'</span><span class="p">:</span> <span class="s1">'postgres'</span><span class="p">,</span>  <span class="c1"># パスワードを追加した</span>
+        <span class="s1">'HOST'</span><span class="p">:</span> <span class="s1">'db'</span><span class="p">,</span>
+        <span class="s1">'PORT'</span><span class="p">:</span> <span class="mi">5432</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="docker">
+<div class="header_target" id="h_docker_use_2dvolumes_2dwith_2ddocker_2dcompose_index_2erst_6"></div><h2><a class="toc-backref" href="#id8">4. Docker コンテナを実行する</a></h2>
+<div class="code-block">
+<div class="highlight"><pre><span></span>$ docker-compose up
+</pre></div>
+</div>
+</div>
+<div class="section" id="db">
+<div class="header_target" id="h_docker_use_2dvolumes_2dwith_2ddocker_2dcompose_index_2erst_7"></div><h2><a class="toc-backref" href="#id9">5. DB コンテナのなかに入って、テーブルを作成 &amp; データを挿入する</a></h2>
+<p>1). <span class="docutils literal">db</span> コンテナのなかに入る</p>
+<blockquote>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="c1"># コンテナをシェル経由で操作する</span>
+$ docker container <span class="nb">exec</span> -it fffff_db_1 sh
+</pre></div>
+</div>
+</blockquote>
+<p>2). postgres に接続する</p>
+<blockquote>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="c1">-- postgres に接続するその１</span>
+<span class="o">#</span> <span class="n">psql</span> <span class="o">-</span><span class="n">U</span> <span class="n">postgres</span> <span class="o">-</span><span class="n">h</span> <span class="mf">127.0.0.1</span> <span class="o">-</span><span class="n">p</span> <span class="mf">5432</span> <span class="n">postgres</span>
+<span class="n">psql</span> <span class="p">(</span><span class="mf">11.1</span> <span class="p">(</span><span class="n">Debian</span> <span class="mf">11.1</span><span class="o">-</span><span class="mf">1.</span><span class="n">pgdg90</span><span class="o">+</span><span class="mf">1</span><span class="p">))</span>
+<span class="k">Type</span> <span class="s s-Name">"help"</span> <span class="k">for</span> <span class="n">help</span><span class="mf">.</span>
+
+<span class="n">postgres</span><span class="o">=#</span>
+
+<span class="c1">-- postgres に接続するその２</span>
+<span class="o">#</span> <span class="n">psql</span> <span class="o">-</span><span class="n">d</span> <span class="n">postgres</span> <span class="o">-</span><span class="n">U</span>  <span class="n">postgres</span> <span class="o">-</span><span class="n">W</span>
+<span class="k">Password</span><span class="p">:</span>
+<span class="n">psql</span> <span class="p">(</span><span class="mf">11.1</span> <span class="p">(</span><span class="n">Debian</span> <span class="mf">11.1</span><span class="o">-</span><span class="mf">1.</span><span class="n">pgdg90</span><span class="o">+</span><span class="mf">1</span><span class="p">))</span>
+<span class="k">Type</span> <span class="s s-Name">"help"</span> <span class="k">for</span> <span class="n">help</span><span class="mf">.</span>
+
+<span class="n">postgres</span><span class="o">=#</span>
+</pre></div>
+</div>
+</blockquote>
+<p>3). テーブルを作成し、データを挿入する</p>
+<blockquote>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">fruits</span><span class="p">(</span>
+   <span class="n">id</span> <span class="nb">SERIAL</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+   <span class="k">name</span> <span class="nb">VARCHAR</span> <span class="k">NOT</span> <span class="k">NULL</span>
+<span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">fruits</span><span class="p">(</span><span class="k">name</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'orange'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">fruits</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="k">name</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="k">DEFAULT</span><span class="p">,</span><span class="s1">'apple'</span><span class="p">);</span>
+
+<span class="n">postgres</span><span class="o">=#</span> <span class="err">\</span><span class="n">q</span>
+</pre></div>
+</div>
+</blockquote>
+</div>
+<div class="section" id="shutdown">
+<div class="header_target" id="h_docker_use_2dvolumes_2dwith_2ddocker_2dcompose_index_2erst_8"></div><h2><a class="toc-backref" href="#id10">6. 安全に shutdown する</a></h2>
+<p>コンテナは停止・削除される。</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span>$ docker-compose down
+</pre></div>
+</div>
+</div>
+<div class="section" id="docker-compose-up">
+<div class="header_target" id="h_docker_use_2dvolumes_2dwith_2ddocker_2dcompose_index_2erst_9"></div><h2><a class="toc-backref" href="#id11">7. 再度 <span class="docutils literal"><span class="pre">docker-compose</span> up</span> して、先ほど登録したテーブル &amp; データを見てみる</a></h2>
+<p>先ほど作成したテーブルとデータがありました。</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="gp">$</span> docker-compose up
+<span class="gp">$</span> docker container <span class="nb">exec</span> -it fffff_db_1 sh
+</pre></div>
+</div>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="o">#</span> <span class="n">psql</span> <span class="o">-</span><span class="n">U</span> <span class="n">postgres</span> <span class="o">-</span><span class="n">h</span> <span class="mf">127.0.0.1</span> <span class="o">-</span><span class="n">p</span> <span class="mf">5432</span> <span class="n">postgres</span>
+<span class="n">psql</span> <span class="p">(</span><span class="mf">11.1</span> <span class="p">(</span><span class="n">Debian</span> <span class="mf">11.1</span><span class="o">-</span><span class="mf">1.</span><span class="n">pgdg90</span><span class="o">+</span><span class="mf">1</span><span class="p">))</span><span class="n">b</span>
+<span class="k">Type</span> <span class="s s-Name">"help"</span> <span class="k">for</span> <span class="n">help</span><span class="mf">.</span>
+
+<span class="n">postgres</span><span class="o">=#</span> <span class="err">\</span><span class="n">dt</span>
+         <span class="n">List</span> <span class="k">of</span> <span class="n">relations</span>
+ <span class="k">Schema</span> <span class="o">|</span>  <span class="k">Name</span>  <span class="o">|</span> <span class="k">Type</span>  <span class="o">|</span>  <span class="k">Owner</span>
+<span class="c1">--------+--------+-------+----------</span>
+ <span class="n">public</span> <span class="o">|</span> <span class="n">fruits</span> <span class="o">|</span> <span class="k">table</span> <span class="o">|</span> <span class="n">postgres</span>
+<span class="p">(</span><span class="mf">1</span> <span class="k">row</span><span class="p">)</span>
+
+<span class="n">postgres</span><span class="o">=#</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">fruits</span><span class="p">;</span>
+ <span class="n">id</span> <span class="o">|</span>  <span class="k">name</span>
+<span class="c1">----+--------</span>
+  <span class="mf">1</span> <span class="o">|</span> <span class="n">orange</span>
+  <span class="mf">2</span> <span class="o">|</span> <span class="n">apple</span>
+<span class="p">(</span><span class="mf">2</span> <span class="k">rows</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+    </div>
+  </main>
+</div>
+</div>
+    </div>
+  </body>
+
+</html>
