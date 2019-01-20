@@ -100,6 +100,10 @@
           <ul>
             
               <li class="nav-article">
+                <a href="../create-django-env-with-docker-compose-mysql-2/">Docker Compose で Django/MySQL 環境をつくる その2</a>
+              </li>
+            
+              <li class="nav-article">
                 <a href="./">Docker Compose で Django/MySQL 環境をつくる</a>
               </li>
             
@@ -366,29 +370,30 @@
 <summary>目次</summary><div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#id1" id="id10">リファレンス・ガイド</a></p></li>
-<li><p><a class="reference internal" href="#id2" id="id11">環境構築</a></p>
+<li><p><a class="reference internal" href="#id1" id="id11">リファレンス・ガイド</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id12">環境構築</a></p>
 <ul>
-<li><p><a class="reference internal" href="#id3" id="id12">最初の1回だけ実行</a></p></li>
-<li><p><a class="reference internal" href="#id4" id="id13">2回目以降</a></p></li>
-<li><p><a class="reference internal" href="#id5" id="id14">設定ファイル</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id13">最初の1回だけ実行</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id14">2回目以降</a></p></li>
+<li><p><a class="reference internal" href="#id5" id="id15">設定ファイル</a></p></li>
+<li><p><a class="reference internal" href="#id6" id="id16">ディレクトリ構成</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#id6" id="id15">使い方メモ</a></p>
+<li><p><a class="reference internal" href="#id7" id="id17">使い方メモ</a></p>
 <ul>
-<li><p><a class="reference internal" href="#id7" id="id16">イメージビルドからやり直したい</a></p></li>
-<li><p><a class="reference internal" href="#volume" id="id17">volume は消さない限り再利用される</a></p></li>
-<li><p><a class="reference internal" href="#web" id="id18">web のほうのコンテナだけ再起動したいとき</a></p></li>
-<li><p><a class="reference internal" href="#id8" id="id19">web のほうのコンテナに入る</a></p></li>
-<li><p><a class="reference internal" href="#mysql" id="id20">mysql のほうのコンテナに入る</a></p></li>
-<li><p><a class="reference internal" href="#id9" id="id21">mysql に入る</a></p></li>
+<li><p><a class="reference internal" href="#id8" id="id18">イメージビルドからやり直したい</a></p></li>
+<li><p><a class="reference internal" href="#volume" id="id19">volume は消さない限り再利用される</a></p></li>
+<li><p><a class="reference internal" href="#web" id="id20">web のほうのコンテナだけ再起動したいとき</a></p></li>
+<li><p><a class="reference internal" href="#id9" id="id21">web のほうのコンテナに入る</a></p></li>
+<li><p><a class="reference internal" href="#mysql" id="id22">mysql のほうのコンテナに入る</a></p></li>
+<li><p><a class="reference internal" href="#id10" id="id23">mysql に入る</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#todo" id="id22">TODO</a></p></li>
+<li><p><a class="reference internal" href="#todo" id="id24">TODO</a></p></li>
 </ul>
 </div>
 </details><div class="section" id="id1">
-<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_index_2erst_1"></div><h1><a class="toc-backref" href="#id10">リファレンス・ガイド</a></h1>
+<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_index_2erst_1"></div><h1><a class="toc-backref" href="#id11">リファレンス・ガイド</a></h1>
 <ul class="simple">
 <li><p><a class="reference external" href="https://docs.docker.com/compose/compose-file/">Compose file version 3 reference</a></p></li>
 <li><p><a class="reference external" href="https://hub.docker.com/_/mysql/">Docker Hub の MySQL 公式イメージぺージ</a></p>
@@ -427,11 +432,11 @@
 </ul>
 </div>
 <div class="section" id="id2">
-<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_index_2erst_2"></div><h1><a class="toc-backref" href="#id11">環境構築</a></h1>
+<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_index_2erst_2"></div><h1><a class="toc-backref" href="#id12">環境構築</a></h1>
 <div class="section" id="id3">
-<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_index_2erst_3"></div><h2><a class="toc-backref" href="#id12">最初の1回だけ実行</a></h2>
+<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_index_2erst_3"></div><h2><a class="toc-backref" href="#id13">最初の1回だけ実行</a></h2>
 <ol class="arabic">
-<li><p>web のほうの docker image をビルドして、 startproject する。</p>
+<li><p>web・db の docker image をビルド -&gt; web で startproject する。</p>
 <blockquote>
 <div class="code-block">
 <div class="highlight"><pre><span></span>$ docker-compose --pull<span class="o">=</span><span class="nb">true</span> run web django-admin.py startproject fu .
@@ -439,6 +444,7 @@
 </div>
 <ul class="simple">
 <li><p><span class="docutils literal"><span class="pre">--pull=true</span></span> : FROM に指定したベースイメージがローカルにすでに存在していても、改めて Docker Hub に取得しにいく</p></li>
+<li><p>↑今やったら使えなかった。最新イメージを再取得するには、どうすればいいんだろう。</p></li>
 </ul>
 </blockquote>
 </li>
@@ -459,7 +465,7 @@
 </div>
 </blockquote>
 </li>
-<li><p>docker-compose up して mysql コンテナ用のイメージをビルド、 mysql・web コンテナを起動する</p>
+<li><p>docker-compose up して、 web・db コンテナを起動する</p>
 <blockquote>
 <div class="code-block">
 <div class="highlight"><pre><span></span>$ docker-compose up
@@ -470,7 +476,7 @@
 </ol>
 </div>
 <div class="section" id="id4">
-<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_index_2erst_4"></div><h2><a class="toc-backref" href="#id13">2回目以降</a></h2>
+<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_index_2erst_4"></div><h2><a class="toc-backref" href="#id14">2回目以降</a></h2>
 <ol class="arabic">
 <li><p>docker-compose up して mysql・web コンテナを起動する。</p>
 <blockquote>
@@ -491,7 +497,7 @@
 </ol>
 </div>
 <div class="section" id="id5">
-<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_index_2erst_5"></div><h2><a class="toc-backref" href="#id14">設定ファイル</a></h2>
+<span id="config-files"></span><div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_index_2erst_5"></div><h2><a class="toc-backref" href="#id15">設定ファイル</a></h2>
 <ul>
 <li><p>fu/docker-compose.yml</p>
 <div class="code-block">
@@ -598,11 +604,34 @@
 </li>
 </ul>
 </div>
-</div>
 <div class="section" id="id6">
-<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_index_2erst_6"></div><h1><a class="toc-backref" href="#id15">使い方メモ</a></h1>
+<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_index_2erst_6"></div><h2><a class="toc-backref" href="#id16">ディレクトリ構成</a></h2>
+<div class="code-block">
+<div class="highlight"><pre><span></span>$ tree fu
+
+fu
+├── Dockerfile-mysql
+├── Dockerfile-web
+├── docker-compose.yml
+├── fu
+│   ├── __init__.py
+│   ├── urls.py
+│   └── wsgi.py
+├── manage.py
+├── mysql
+│   └── conf.d
+│       └── mysql.cnf
+├── requirements.txt
+└── settings
+    └── _.py
+</pre></div>
+</div>
+</div>
+</div>
 <div class="section" id="id7">
-<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_index_2erst_7"></div><h2><a class="toc-backref" href="#id16">イメージビルドからやり直したい</a></h2>
+<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_index_2erst_7"></div><h1><a class="toc-backref" href="#id17">使い方メモ</a></h1>
+<div class="section" id="id8">
+<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_index_2erst_8"></div><h2><a class="toc-backref" href="#id18">イメージビルドからやり直したい</a></h2>
 <p>こんなときは...</p>
 <ul class="simple">
 <li><p>requirements.txt にライブラリを書き足したとき</p></li>
@@ -620,7 +649,7 @@ $ docker-compose up
 </div>
 </div>
 <div class="section" id="volume">
-<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_index_2erst_8"></div><h2><a class="toc-backref" href="#id17">volume は消さない限り再利用される</a></h2>
+<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_index_2erst_9"></div><h2><a class="toc-backref" href="#id19">volume は消さない限り再利用される</a></h2>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="c1"># fu/docker-compose.yml</span>
 
@@ -636,14 +665,14 @@ DRIVER              VOLUME NAME
 </div>
 </div>
 <div class="section" id="web">
-<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_index_2erst_9"></div><h2><a class="toc-backref" href="#id18">web のほうのコンテナだけ再起動したいとき</a></h2>
+<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_index_2erst_10"></div><h2><a class="toc-backref" href="#id20">web のほうのコンテナだけ再起動したいとき</a></h2>
 <div class="code-block">
 <div class="highlight"><pre><span></span>$ docker container restart fu_web
 </pre></div>
 </div>
 </div>
-<div class="section" id="id8">
-<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_index_2erst_10"></div><h2><a class="toc-backref" href="#id19">web のほうのコンテナに入る</a></h2>
+<div class="section" id="id9">
+<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_index_2erst_11"></div><h2><a class="toc-backref" href="#id21">web のほうのコンテナに入る</a></h2>
 <p>VM の中に入るのと同じような気持ち。</p>
 <div class="code-block">
 <div class="highlight"><pre><span></span>$ docker container <span class="nb">exec</span> -it fu_web bash
@@ -670,7 +699,7 @@ root@eb1ab9a6dbdb:/code# locale
 </div>
 </div>
 <div class="section" id="mysql">
-<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_index_2erst_11"></div><h2><a class="toc-backref" href="#id20">mysql のほうのコンテナに入る</a></h2>
+<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_index_2erst_12"></div><h2><a class="toc-backref" href="#id22">mysql のほうのコンテナに入る</a></h2>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="c1"># mysql のコンテナに入る</span>
 $ docker container <span class="nb">exec</span> -it fu_db bash
@@ -695,8 +724,8 @@ root@dcc8b4d2cd21:/# locale
 </pre></div>
 </div>
 </div>
-<div class="section" id="id9">
-<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_index_2erst_12"></div><h2><a class="toc-backref" href="#id21">mysql に入る</a></h2>
+<div class="section" id="id10">
+<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_index_2erst_13"></div><h2><a class="toc-backref" href="#id23">mysql に入る</a></h2>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="c1"># mysql のコンテナに入る</span>
 $ docker container <span class="nb">exec</span> -it fu_db bash
@@ -761,7 +790,7 @@ Threads: <span class="m">3</span>  Questions: <span class="m">40</span>  Slow qu
 </div>
 </div>
 <div class="section" id="todo">
-<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_index_2erst_13"></div><h1><a class="toc-backref" href="#id22">TODO</a></h1>
+<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_index_2erst_14"></div><h1><a class="toc-backref" href="#id24">TODO</a></h1>
 <p>web コンテナのほうの locale と タイムゾーンは db コンテナと合わせなくて大丈夫なんだろうか...</p>
 </div>
     </div>

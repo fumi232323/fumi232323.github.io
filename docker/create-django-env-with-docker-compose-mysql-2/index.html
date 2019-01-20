@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Docker Compose で Django/MySQL 環境をつくる その2/32imuf.com</title>
+    <link rel="shortcut icon" href="/static/icons/favicon.ico">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Griffy">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Vollkorn:400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/style.css?20181123">
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="header"><header class="item item-header">
+  <h1>
+    <a href="/">
+      <img class="logo" src="/static/images/inuu.png" alt="犬">
+    </a>
+  </h1>
+  <nav class="nav">
+    <ul>
+      <li class="nav-category"><a href="/">HOME</a></li>
+      
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_aws.html">aws</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../aws/what-is-amazon-aurora/">Amazon Aurora とはなんですか？</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../aws/s3-response-error/">S3ResponseError の原因はなんと時刻ずれだった</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_blog.html">blog</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../blog/rules/">ブログを書くときの注意点</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_css.html">css</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../html-css/css/note/">CSS のメモ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../html-css/configure-stylus-output-directory/">PyCharm の File Watcher で、 Stylus の CSS ファイル生成先ディレクトリを指定する。</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../html-css/stylus/">Stylus を使う</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../html-css/html5-css3-modern-coding/">『HTML5/CSS3モダンコーディング フロントエンドエンジニアが教える3つの本格レイアウト スタンダード・グリッド・シングルページレイアウトの作り方』を読んで気になったことメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_django.html">django</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../django/note/">Django のメモ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../django/django_orm/">Django ORM のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_docker.html">docker</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="./">Docker Compose で Django/MySQL 環境をつくる その2</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../create-django-env-with-docker-compose-mysql/">Docker Compose で Django/MySQL 環境をつくる</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../use-volumes-with-docker-compose/">Docker Compose で Volumes をつかう</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../create-django-env-with-docker-compose/">Docker Compose で Django/PostgreSQL 環境をつくる</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_git.html">git</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../git/command/merge/">git merge</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../git/command/rebase-i/">git rebase -i</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../git/command/rebase/">git rebase</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../git/note/">Git のメモ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../git/configuration/">Git の設定まとめ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../git/command/">Git のコマンドまとめ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_github.html">github</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../github/how-to-create-new-repository/">GitHub に新しいリポジトリを作成して、pushする</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../github/github-pages-custom-domain-setting/">GitHub Pages にカスタムドメインを設定する</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_mac.html">mac</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../mac/note/">Mac のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_miyadaiku.html">miyadaiku</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../miyadaiku/build/">Miyadaiku ビルドするときのコマンド</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../miyadaiku/article-directory-structure/">article の置きかた</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_pycharm.html">pycharm</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../pycharm/django-support/">Pycharm の Django support を使う</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../pycharm/add-psql-var-to-user-params-for-db-console/">PyCharm の Database Console で PostgreSQL のプレースホルダー (インタポレーション) を SQL パラメーターとして使えるようにする</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../pycharm/connect-db-using-ssh-tunnel/">PyCharm で SSH tunnel して Amazon Redshift につなぐ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../pycharm/useful-menu-and-shortcuts/">PyCharm ショートカットと便利メニュー</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../pycharm/configuration/">PyCharm の設定</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_python.html">python</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../python/etc/">Python いろいろメモ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../python/note/">Python のメモ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../python/pyconjp2018/">PyConJP 2018 で聞いた講演</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_redshift.html">redshift</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../redshift/note/">Redshift のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_sample.html">sample</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../2018/sample-table/">table の sample</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../2018/sample-h1-h2-h3-li/">h1, h2, h3, リストの sample</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../2018/sample-code-block/">code-block, 引用の sample</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_sql.html">sql</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../sql/note/">SQL のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_ssh.html">ssh</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../ssh/command/ssh-keygen/">ssh-keygen</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../ssh/command/ssh-add/">ssh-add</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../ssh/command/ssh/">ssh のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_test.html">test</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../python-test/tox/">tox</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../python-test/mypy/">mypy</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../python-test/note/">Python テストのメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_vagrant.html">vagrant</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../vagrant/note/">Vagrant のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_vim.html">vim</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../vim/command/">Vim のコマンド</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+    </ul>
+  </nav>
+</header></div>
+      <div class="main">
+<div class="article-content">
+  <main class="item item-article item-docker">
+    <time class="date" datetime="2019-01-20 00:00:00+09:00">
+      2019-01-20 Sun
+    </time>
+    <div class="title">Docker Compose で Django/MySQL 環境をつくる その2</div>
+    <div class="category">
+      <a href="/index_category_category_docker.html">
+          docker
+      </a>
+    </div>
+    <div class="text">
+      <details>
+<summary>目次</summary><div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#id1" id="id10">リファレンス・ガイド・参考書籍</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id11">環境構築</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id3" id="id12">1. 準備</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id4" id="id13">ディレクトリ構成</a></p></li>
+<li><p><a class="reference internal" href="#id5" id="id14">設定ファイル</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id6" id="id15">2. 最初の1回だけ実行</a></p></li>
+<li><p><a class="reference internal" href="#id7" id="id16">3. 実行後の状態</a></p></li>
+<li><p><a class="reference internal" href="#settings-mysql" id="id17">4. settings に mysql の定義を追記する</a></p></li>
+<li><p><a class="reference internal" href="#webdb" id="id18">5. web・db コンテナを起動する</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id8" id="id19">環境構築メモ</a></p>
+<ul>
+<li><p><a class="reference internal" href="#default-authentication-plugin-mysql-native-password" id="id20"><strong>※1</strong>: default-authentication-plugin=mysql_native_password について</a></p></li>
+<li><p><a class="reference internal" href="#skip-host-cache-skip-name-resolve" id="id21"><strong>※2</strong>: skip-host-cache, skip-name-resolve について</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id9" id="id22">使い方メモ</a></p>
+<ul>
+<li><p><a class="reference internal" href="#image" id="id23">再び image ビルドしたくなったら</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+</details><div class="section" id="id1">
+<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_2d2_index_2erst_1"></div><h1><a class="toc-backref" href="#id10">リファレンス・ガイド・参考書籍</a></h1>
+<ul class="simple">
+<li><p><a href="../create-django-env-with-docker-compose-mysql/">Docker Compose で Django/MySQL 環境をつくる</a> と同じ</p></li>
+<li><p>現場で使える Django の教科書《基礎編》</p></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_2d2_index_2erst_2"></div><h1><a class="toc-backref" href="#id11">環境構築</a></h1>
+<div class="section" id="id3">
+<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_2d2_index_2erst_3"></div><h2><a class="toc-backref" href="#id12">1. 準備</a></h2>
+<div class="section" id="id4">
+<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_2d2_index_2erst_4"></div><h3><a class="toc-backref" href="#id13">ディレクトリ構成</a></h3>
+<div class="code-block">
+<div class="highlight"><pre><span></span>$ tree fufu
+fufu
+├── Dockerfile-mysql
+├── Dockerfile-web
+├── docker-compose.yml
+├── mysql
+│   └── conf.d
+│       └── mysql.cnf
+└── requirements.txt
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_2d2_index_2erst_5"></div><h3><a class="toc-backref" href="#id14">設定ファイル</a></h3>
+<ul>
+<li><p>Dockerfile-web</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="k">FROM</span><span class="s"> python:3</span>
+<span class="k">ENV</span><span class="s"> PYTHONUNBUFFERED 1</span>
+<span class="k">RUN</span> mkdir /code
+<span class="k">WORKDIR</span><span class="s"> /code</span>
+<span class="k">ADD</span><span class="s"> requirements.txt /code/</span>
+<span class="k">RUN</span> pip install -r requirements.txt
+<span class="k">ADD</span><span class="s"> . /code/</span>
+<span class="k">RUN</span> mkdir apps  # アプリケーションは <span class="sb">`</span>apps<span class="sb">`</span> ディレクトリ配下に作りたかったので、追加
+<span class="k">WORKDIR</span><span class="s"> apps  # 同上</span>
+</pre></div>
+</div>
+</li>
+<li><p>docker-compose.yml</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">db</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">container_name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">fufu_db</span>
+    <span class="l l-Scalar l-Scalar-Plain">build</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">context</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">.</span>
+      <span class="l l-Scalar l-Scalar-Plain">dockerfile</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Dockerfile-mysql</span>
+    <span class="l l-Scalar l-Scalar-Plain">restart</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
+    <span class="l l-Scalar l-Scalar-Plain">volumes</span><span class="p p-Indicator">:</span>
+      <span class="p p-Indicator">-</span> <span class="s">"db-data:/var/lib/mysql"</span>
+      <span class="p p-Indicator">-</span> <span class="s">"./mysql/conf.d:/etc/mysql/conf.d"</span>
+    <span class="l l-Scalar l-Scalar-Plain">environment</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">MYSQL_ROOT_PASSWORD</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">fufu</span>
+      <span class="l l-Scalar l-Scalar-Plain">MYSQL_DATABASE</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">fufu</span>
+      <span class="l l-Scalar l-Scalar-Plain">MYSQL_USER</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">fufu</span>
+      <span class="l l-Scalar l-Scalar-Plain">MYSQL_PASSWORD</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">fufu</span>
+
+  <span class="l l-Scalar l-Scalar-Plain">web</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">container_name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">fufu_web</span>
+    <span class="l l-Scalar l-Scalar-Plain">build</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">context</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">.</span>
+      <span class="l l-Scalar l-Scalar-Plain">dockerfile</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Dockerfile-web</span>
+    <span class="l l-Scalar l-Scalar-Plain">command</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">python3 manage.py runserver 0.0.0.0:8000 --settings=settings._</span>
+    <span class="l l-Scalar l-Scalar-Plain">volumes</span><span class="p p-Indicator">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">.:/code</span>
+    <span class="l l-Scalar l-Scalar-Plain">ports</span><span class="p p-Indicator">:</span>
+      <span class="p p-Indicator">-</span> <span class="s">"3236:8000"</span>
+    <span class="l l-Scalar l-Scalar-Plain">depends_on</span><span class="p p-Indicator">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">db</span>
+
+<span class="l l-Scalar l-Scalar-Plain">volumes</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">db-data</span><span class="p p-Indicator">:</span>
+</pre></div>
+</div>
+</li>
+<li><p>mysql.cnf</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="na">[mysqld]  # *** mysqlサーバーの設定 ***************</span>
+<span class="c1"># https://dev.mysql.com/doc/refman/8.0/en/upgrading-from-previous-series.html#upgrade-caching-sha2-password</span>
+<span class="c1"># https://dev.mysql.com/doc/refman/8.0/en/upgrading-from-previous-series.html#upgrade-caching-sha2-password-compatible-connectors</span>
+<span class="c1"># https://dev.mysql.com/doc/mysqld-version-reference/en/optvar-changes-8-0.html</span>
+<span class="c1"># [環境構築メモ ※1 参照のこと]</span>
+<span class="na">default-authentication-plugin</span><span class="o">=</span><span class="s">mysql_native_password</span>
+
+<span class="c1"># デフォルト状態で /etc/mysql/conf.d/docker.cnf に定義されているやつをコピーしておく</span>
+<span class="c1"># [環境構築メモ ※2 参照のこと]</span>
+<span class="na">skip-host-cache</span>
+<span class="na">skip-name-resolve</span>
+
+<span class="c1"># https://mysqlserverteam.com/mysql-8-0-kana-sensitive-collation-for-japanese-ja_jp/</span>
+<span class="na">collation-server</span><span class="o">=</span><span class="s">utf8mb4_ja_0900_as_cs_ks</span>
+<span class="na">character-set-server</span><span class="o">=</span><span class="s">utf8mb4</span>
+<span class="c1"># https://dev.mysql.com/doc/refman/8.0/en/server-options.html#option_mysqld_default-time-zone</span>
+<span class="na">default-time-zone</span><span class="o">=</span><span class="s">'Asia/Tokyo'</span>
+
+<span class="na">[client]  # *** mysqlクライアントの設定 ************</span>
+<span class="na">default-character-set</span><span class="o">=</span><span class="s">utf8mb4</span>
+</pre></div>
+</div>
+</li>
+<li><p>あとの設定ファイルは <a href="../create-django-env-with-docker-compose-mysql/#config-files">Docker Compose で Django/MySQL 環境をつくる</a> と同じ</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id6">
+<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_2d2_index_2erst_6"></div><h2><a class="toc-backref" href="#id15">2. 最初の1回だけ実行</a></h2>
+<p>web, db の docker image をビルド -&gt; web で startproject する。 (ログを良く見ると、たぶん db コンテナの起動もしている。)</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="c1"># fufu 直下で実行する</span>
+$ docker-compose run web django-admin.py startproject config .
+Building db
+Step <span class="m">1</span>/7 : FROM mysql:latest
+latest: Pulling from library/mysql
+177e7ef0df69: Pulling fs layer
+cac25352c4c8: Pull <span class="nb">complete</span>
+8585afabb40a: Pull <span class="nb">complete</span>
+1e4af4996053: Pull <span class="nb">complete</span>
+c326522894da: Pull <span class="nb">complete</span>
+9020d6b6b171: Pull <span class="nb">complete</span>
+55eb37ec6e5f: Pull <span class="nb">complete</span>
+37f3f3d72fbd: Pull <span class="nb">complete</span>
+03f098d64268: Pull <span class="nb">complete</span>
+46a52a54cfe9: Pull <span class="nb">complete</span>
+202bc662895d: Pull <span class="nb">complete</span>
+46014f07b258: Pull <span class="nb">complete</span>
+Digest: sha256:196c04e1944c5e4ea3ab86ae5f78f697cf18ee43865f25e334a6ffb1dbea81e6
+Status: Downloaded newer image <span class="k">for</span> mysql:latest
+ ---&gt; 102816b1ee7d
+Step <span class="m">2</span>/7 : RUN apt-get clean <span class="o">&amp;&amp;</span> apt-get update <span class="o">&amp;&amp;</span> apt-get install -y locales locales-all
+ ---&gt; Running in 976810f0d320
+Get:1 http://repo.mysql.com/apt/debian stretch InRelease <span class="o">[</span><span class="m">19</span>.2 kB<span class="o">]</span>
+Get:5 http://repo.mysql.com/apt/debian stretch/mysql-8.0 amd64 Packages <span class="o">[</span><span class="m">7186</span> B<span class="o">]</span>
+Ign:2 http://cdn-fastly.deb.debian.org/debian stretch InRelease
+Get:3 http://security-cdn.debian.org/debian-security stretch/updates InRelease <span class="o">[</span><span class="m">94</span>.3 kB<span class="o">]</span>
+Get:4 http://cdn-fastly.deb.debian.org/debian stretch-updates InRelease <span class="o">[</span><span class="m">91</span>.0 kB<span class="o">]</span>
+Get:7 http://security-cdn.debian.org/debian-security stretch/updates/main amd64 Packages <span class="o">[</span><span class="m">464</span> kB<span class="o">]</span>
+Get:6 http://cdn-fastly.deb.debian.org/debian stretch Release <span class="o">[</span><span class="m">118</span> kB<span class="o">]</span>
+Get:8 http://cdn-fastly.deb.debian.org/debian stretch-updates/main amd64 Packages <span class="o">[</span><span class="m">5152</span> B<span class="o">]</span>
+Get:9 http://cdn-fastly.deb.debian.org/debian stretch Release.gpg <span class="o">[</span><span class="m">2434</span> B<span class="o">]</span>
+Get:10 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 Packages <span class="o">[</span><span class="m">7089</span> kB<span class="o">]</span>
+Fetched <span class="m">7890</span> kB in 5s <span class="o">(</span><span class="m">1505</span> kB/s<span class="o">)</span>
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  libc-l10n
+The following NEW packages will be installed:
+  libc-l10n locales locales-all
+<span class="m">0</span> upgraded, <span class="m">3</span> newly installed, <span class="m">0</span> to remove and <span class="m">1</span> not upgraded.
+Need to get <span class="m">7732</span> kB of archives.
+After this operation, <span class="m">144</span> MB of additional disk space will be used.
+Get:1 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 libc-l10n all <span class="m">2</span>.24-11+deb9u3 <span class="o">[</span><span class="m">820</span> kB<span class="o">]</span>
+Get:2 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 locales all <span class="m">2</span>.24-11+deb9u3 <span class="o">[</span><span class="m">3287</span> kB<span class="o">]</span>
+Get:3 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 locales-all amd64 <span class="m">2</span>.24-11+deb9u3 <span class="o">[</span><span class="m">3624</span> kB<span class="o">]</span>
+debconf: delaying package configuration, since apt-utils is not installed
+Fetched <span class="m">7732</span> kB in 3s <span class="o">(</span><span class="m">2190</span> kB/s<span class="o">)</span>
+Selecting previously unselected package libc-l10n.
+<span class="o">(</span>Reading database ... <span class="m">8866</span> files and directories currently installed.<span class="o">)</span>
+Preparing to unpack .../libc-l10n_2.24-11+deb9u3_all.deb ...
+Unpacking libc-l10n <span class="o">(</span><span class="m">2</span>.24-11+deb9u3<span class="o">)</span> ...
+Selecting previously unselected package locales.
+Preparing to unpack .../locales_2.24-11+deb9u3_all.deb ...
+Unpacking locales <span class="o">(</span><span class="m">2</span>.24-11+deb9u3<span class="o">)</span> ...
+Selecting previously unselected package locales-all.
+Preparing to unpack .../locales-all_2.24-11+deb9u3_amd64.deb ...
+Unpacking locales-all <span class="o">(</span><span class="m">2</span>.24-11+deb9u3<span class="o">)</span> ...
+Setting up libc-l10n <span class="o">(</span><span class="m">2</span>.24-11+deb9u3<span class="o">)</span> ...
+Setting up locales <span class="o">(</span><span class="m">2</span>.24-11+deb9u3<span class="o">)</span> ...
+debconf: unable to initialize frontend: Dialog
+debconf: <span class="o">(</span>TERM is not set, so the dialog frontend is not usable.<span class="o">)</span>
+debconf: falling back to frontend: Readline
+Generating locales <span class="o">(</span>this might take a <span class="k">while</span><span class="o">)</span>...
+Generation complete.
+Setting up locales-all <span class="o">(</span><span class="m">2</span>.24-11+deb9u3<span class="o">)</span> ...
+Removing intermediate container 976810f0d320
+ ---&gt; a38ea7bd8cf5
+Step <span class="m">3</span>/7 : RUN locale-gen ja_JP.UTF-8
+ ---&gt; Running in 45929bff7253
+Generating locales <span class="o">(</span>this might take a <span class="k">while</span><span class="o">)</span>...
+Generation complete.
+Removing intermediate container 45929bff7253
+ ---&gt; 61f34eeb1373
+Step <span class="m">4</span>/7 : ENV LANG ja_JP.UTF-8
+ ---&gt; Running in 0edd321d2039
+Removing intermediate container 0edd321d2039
+ ---&gt; 9d081db59b9d
+Step <span class="m">5</span>/7 : ENV LANGUAGE ja_JP:en
+ ---&gt; Running in 3770c59b22a2
+Removing intermediate container 3770c59b22a2
+ ---&gt; d1c0b275dfa6
+Step <span class="m">6</span>/7 : ENV LC_ALL ja_JP.UTF-8
+ ---&gt; Running in 751e7ba46d23
+Removing intermediate container 751e7ba46d23
+ ---&gt; 8b58a86198fe
+Step <span class="m">7</span>/7 : RUN ln -sf /usr/share/zoneinfo/Japan /etc/localtime
+ ---&gt; Running in 4ee911d35ca8
+Removing intermediate container 4ee911d35ca8
+ ---&gt; ae9e35a54368
+Successfully built ae9e35a54368
+Successfully tagged fufu_db:latest
+WARNING: Image <span class="k">for</span> service db was built because it did not already exist. To rebuild this image you must use <span class="sb">`</span>docker-compose build<span class="sb">`</span> or <span class="sb">`</span>docker-compose up --build<span class="sb">`</span>.
+Starting fufu_db ... <span class="k">done</span>
+Building web
+Step <span class="m">1</span>/9 : FROM python:3
+ ---&gt; 7c5fd2af3815
+Step <span class="m">2</span>/9 : ENV PYTHONUNBUFFERED <span class="m">1</span>
+ ---&gt; Running in 1e7af8a959ba
+Removing intermediate container 1e7af8a959ba
+ ---&gt; 145e89eeda68
+Step <span class="m">3</span>/9 : RUN mkdir /code
+ ---&gt; Running in 8d0cf8c1af79
+Removing intermediate container 8d0cf8c1af79
+ ---&gt; 50ee8eeb1e91
+Step <span class="m">4</span>/9 : WORKDIR /code
+ ---&gt; Running in 170815b8e495
+Removing intermediate container 170815b8e495
+ ---&gt; 2bb29d2d6a2d
+Step <span class="m">5</span>/9 : ADD requirements.txt /code/
+ ---&gt; e7d415a86747
+Step <span class="m">6</span>/9 : RUN pip install -r requirements.txt
+ ---&gt; Running in aca007d771ea
+Collecting Django&gt;<span class="o">=</span><span class="m">1</span>.11 <span class="o">(</span>from -r requirements.txt <span class="o">(</span>line <span class="m">1</span><span class="o">))</span>
+  Downloading https://files.pythonhosted.org/packages/36/50/078a42b4e9bedb94efd3e0278c0eb71650ed9672cdc91bd5542953bec17f/Django-2.1.5-py3-none-any.whl <span class="o">(</span><span class="m">7</span>.3MB<span class="o">)</span>
+Collecting mysqlclient&gt;<span class="o">=</span><span class="m">1</span>.3.7 <span class="o">(</span>from -r requirements.txt <span class="o">(</span>line <span class="m">2</span><span class="o">))</span>
+  Downloading https://files.pythonhosted.org/packages/f7/a2/1230ebbb4b91f42ad6b646e59eb8855559817ad5505d81c1ca2b5a216040/mysqlclient-1.3.14.tar.gz <span class="o">(</span>91kB<span class="o">)</span>
+Collecting mysql-connector-python <span class="o">(</span>from -r requirements.txt <span class="o">(</span>line <span class="m">3</span><span class="o">))</span>
+  Downloading https://files.pythonhosted.org/packages/83/e3/a8782597a548cbaab0e4a24060ecd44da7058a376c0d62182b1aa9797a13/mysql_connector_python-8.0.13-cp37-cp37m-manylinux1_x86_64.whl <span class="o">(</span><span class="m">8</span>.2MB<span class="o">)</span>
+Collecting pytz <span class="o">(</span>from Django&gt;<span class="o">=</span><span class="m">1</span>.11-&gt;-r requirements.txt <span class="o">(</span>line <span class="m">1</span><span class="o">))</span>
+  Downloading https://files.pythonhosted.org/packages/61/28/1d3920e4d1d50b19bc5d24398a7cd85cc7b9a75a490570d5a30c57622d34/pytz-2018.9-py2.py3-none-any.whl <span class="o">(</span>510kB<span class="o">)</span>
+Collecting protobuf&gt;<span class="o">=</span><span class="m">3</span>.0.0 <span class="o">(</span>from mysql-connector-python-&gt;-r requirements.txt <span class="o">(</span>line <span class="m">3</span><span class="o">))</span>
+  Downloading https://files.pythonhosted.org/packages/3a/30/289ead101f94998d88e8961a3548aea29417ae0057be23972483cddebf4f/protobuf-3.6.1-cp37-cp37m-manylinux1_x86_64.whl <span class="o">(</span><span class="m">1</span>.1MB<span class="o">)</span>
+Requirement already satisfied: setuptools in /usr/local/lib/python3.7/site-packages <span class="o">(</span>from protobuf&gt;<span class="o">=</span><span class="m">3</span>.0.0-&gt;mysql-connector-python-&gt;-r requirements.txt <span class="o">(</span>line <span class="m">3</span><span class="o">))</span> <span class="o">(</span><span class="m">40</span>.6.3<span class="o">)</span>
+Collecting six&gt;<span class="o">=</span><span class="m">1</span>.9 <span class="o">(</span>from protobuf&gt;<span class="o">=</span><span class="m">3</span>.0.0-&gt;mysql-connector-python-&gt;-r requirements.txt <span class="o">(</span>line <span class="m">3</span><span class="o">))</span>
+  Downloading https://files.pythonhosted.org/packages/73/fb/00a976f728d0d1fecfe898238ce23f502a721c0ac0ecfedb80e0d88c64e9/six-1.12.0-py2.py3-none-any.whl
+Building wheels <span class="k">for</span> collected packages: mysqlclient
+  Running setup.py bdist_wheel <span class="k">for</span> mysqlclient: started
+  Running setup.py bdist_wheel <span class="k">for</span> mysqlclient: finished with status <span class="s1">'done'</span>
+  Stored in directory: /root/.cache/pip/wheels/6d/7d/cb/181963137c414938d4faac9a57c966fb3a6ef675c25641c41a
+Successfully built mysqlclient
+Installing collected packages: pytz, Django, mysqlclient, six, protobuf, mysql-connector-python
+Successfully installed Django-2.1.5 mysql-connector-python-8.0.13 mysqlclient-1.3.14 protobuf-3.6.1 pytz-2018.9 six-1.12.0
+Removing intermediate container aca007d771ea
+ ---&gt; 950aa5581bf7
+Step <span class="m">7</span>/9 : ADD . /code/
+ ---&gt; 8d7f1f5cc717
+Step <span class="m">8</span>/9 : RUN mkdir apps
+ ---&gt; c46748e3db9b
+Step <span class="m">9</span>/9 : WORKDIR apps
+ ---&gt; c642446504e2
+Successfully built c642446504e2
+Successfully tagged fufu_web:latest
+WARNING: Image <span class="k">for</span> service web was built because it did not already exist. To rebuild this image you must use <span class="sb">`</span>docker-compose build<span class="sb">`</span> or <span class="sb">`</span>docker-compose up --build<span class="sb">`</span>.
+</pre></div>
+</div>
+</div>
+<div class="section" id="id7">
+<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_2d2_index_2erst_7"></div><h2><a class="toc-backref" href="#id16">3. 実行後の状態</a></h2>
+<div class="code-block">
+<div class="highlight"><pre><span></span>$ tree fufu
+fufu
+├── Dockerfile-mysql
+├── Dockerfile-web
+├── apps
+│   ├── config
+│   │   ├── __init__.py
+│   │   ├── settings.py
+│   │   ├── urls.py
+│   │   └── wsgi.py
+│   └── manage.py
+├── docker-compose.yml
+├── mysql
+│   └── conf.d
+│       └── mysql.cnf
+└── requirements.txt
+</pre></div>
+</div>
+</div>
+<div class="section" id="settings-mysql">
+<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_2d2_index_2erst_8"></div><h2><a class="toc-backref" href="#id17">4. settings に mysql の定義を追記する</a></h2>
+<p>settings は環境ごとに分けたいので、 <span class="docutils literal">apps</span> 配下に settings ディレクトリを作ってそこ移動する</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span>$ tree apps
+apps
+├── config
+│   ├── __init__.py
+│   ├── urls.py
+│   └── wsgi.py
+├── manage.py
+└── settings
+    └── local.py  <span class="c1"># ← ローカル環境用</span>
+</pre></div>
+</div>
+<ul>
+<li><p>settings/local.py</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'default'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">'ENGINE'</span><span class="p">:</span> <span class="s1">'django.db.backends.mysql'</span><span class="p">,</span>
+        <span class="s1">'NAME'</span><span class="p">:</span> <span class="s1">'fufu'</span><span class="p">,</span>
+        <span class="s1">'USER'</span><span class="p">:</span> <span class="s1">'fufu'</span><span class="p">,</span>
+        <span class="s1">'PASSWORD'</span><span class="p">:</span> <span class="s1">'fufu'</span><span class="p">,</span>
+        <span class="s1">'HOST'</span><span class="p">:</span> <span class="s1">'db'</span><span class="p">,</span>  <span class="c1"># ここは docker-compose ファイルに指定したサービス名でないといけないらしい</span>
+        <span class="s1">'PORT'</span><span class="p">:</span> <span class="mi">3306</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="webdb">
+<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_2d2_index_2erst_9"></div><h2><a class="toc-backref" href="#id18">5. web・db コンテナを起動する</a></h2>
+<div class="code-block">
+<div class="highlight"><pre><span></span>$ docker-compose up
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id8">
+<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_2d2_index_2erst_10"></div><h1><a class="toc-backref" href="#id19">環境構築メモ</a></h1>
+<div class="section" id="default-authentication-plugin-mysql-native-password">
+<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_2d2_index_2erst_11"></div><h2><a class="toc-backref" href="#id20"><strong>※1</strong>: default-authentication-plugin=mysql_native_password について</a></h2>
+<ul>
+<li><p>MySQL 8.0.4 からデフォルトの認証 plugin のデフォルト値が <span class="docutils literal">mysql_native_password</span> から <span class="docutils literal">caching_sha2_password</span> へ変更になった</p></li>
+<li><p>そのため、 <span class="docutils literal"><span class="pre">default-authentication-plugin</span></span> を指定していない状態で <span class="docutils literal">caching_sha2_password</span> に対応していないクライアント (今回の場合は <span class="docutils literal">web</span> ) から接続しようとすると、</p></li>
+<li><p>こんなエラー↓が出て接続できない ( <span class="docutils literal"><span class="pre">docker-compose</span> up</span> 時にこうなる)</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span>web_1  <span class="p">|</span> Performing system checks...
+web_1  <span class="p">|</span>
+web_1  <span class="p">|</span> System check identified no issues <span class="o">(</span><span class="m">0</span> silenced<span class="o">)</span>.
+web_1  <span class="p">|</span> Unhandled exception in thread started by &lt;<span class="k">function</span> check_errors.&lt;locals&gt;.wrapper at 0x7fe293c032f0&gt;
+web_1  <span class="p">|</span> Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+web_1  <span class="p">|</span>   File <span class="s2">"/usr/local/lib/python3.7/site-packages/django/db/backends/base/base.py"</span>, line <span class="m">216</span>, in ensure_connection
+web_1  <span class="p">|</span>     self.connect<span class="o">()</span>
+web_1  <span class="p">|</span>   File <span class="s2">"/usr/local/lib/python3.7/site-packages/django/db/backends/base/base.py"</span>, line <span class="m">194</span>, in connect
+web_1  <span class="p">|</span>     self.connection <span class="o">=</span> self.get_new_connection<span class="o">(</span>conn_params<span class="o">)</span>
+web_1  <span class="p">|</span>   File <span class="s2">"/usr/local/lib/python3.7/site-packages/django/db/backends/mysql/base.py"</span>, line <span class="m">227</span>, in get_new_connection
+web_1  <span class="p">|</span>     <span class="k">return</span> Database.connect<span class="o">(</span>**conn_params<span class="o">)</span>
+web_1  <span class="p">|</span>   File <span class="s2">"/usr/local/lib/python3.7/site-packages/MySQLdb/__init__.py"</span>, line <span class="m">85</span>, in Connect
+web_1  <span class="p">|</span>     <span class="k">return</span> Connection<span class="o">(</span>*args, **kwargs<span class="o">)</span>
+web_1  <span class="p">|</span>   File <span class="s2">"/usr/local/lib/python3.7/site-packages/MySQLdb/connections.py"</span>, line <span class="m">208</span>, in __init__
+web_1  <span class="p">|</span>     super<span class="o">(</span>Connection, self<span class="o">)</span>.__init__<span class="o">(</span>*args, **kwargs2<span class="o">)</span>
+web_1  <span class="p">|</span> _mysql_exceptions.OperationalError: <span class="o">(</span><span class="m">2006</span>, <span class="s2">"Authentication plugin 'caching_sha2_password' cannot be loaded: /usr/lib/x86_64-linux-gnu/mariadb18/plugin/caching_sha2_password.so: cannot open shared object file: No such file or directory"</span><span class="o">)</span>
+web_1  <span class="p">|</span>
+web_1  <span class="p">|</span> The above exception was the direct cause of the following exception:
+web_1  <span class="p">|</span>
+web_1  <span class="p">|</span> Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+web_1  <span class="p">|</span>   File <span class="s2">"/usr/local/lib/python3.7/site-packages/django/utils/autoreload.py"</span>, line <span class="m">225</span>, in wrapper
+web_1  <span class="p">|</span>     fn<span class="o">(</span>*args, **kwargs<span class="o">)</span>
+web_1  <span class="p">|</span>   File <span class="s2">"/usr/local/lib/python3.7/site-packages/django/core/management/commands/runserver.py"</span>, line <span class="m">120</span>, in inner_run
+web_1  <span class="p">|</span>     self.check_migrations<span class="o">()</span>
+web_1  <span class="p">|</span>   File <span class="s2">"/usr/local/lib/python3.7/site-packages/django/core/management/base.py"</span>, line <span class="m">442</span>, in check_migrations
+web_1  <span class="p">|</span>     <span class="nv">executor</span> <span class="o">=</span> MigrationExecutor<span class="o">(</span>connections<span class="o">[</span>DEFAULT_DB_ALIAS<span class="o">])</span>
+web_1  <span class="p">|</span>   File <span class="s2">"/usr/local/lib/python3.7/site-packages/django/db/migrations/executor.py"</span>, line <span class="m">18</span>, in __init__
+web_1  <span class="p">|</span>     self.loader <span class="o">=</span> MigrationLoader<span class="o">(</span>self.connection<span class="o">)</span>
+web_1  <span class="p">|</span>   File <span class="s2">"/usr/local/lib/python3.7/site-packages/django/db/migrations/loader.py"</span>, line <span class="m">49</span>, in __init__
+web_1  <span class="p">|</span>     self.build_graph<span class="o">()</span>
+web_1  <span class="p">|</span>   File <span class="s2">"/usr/local/lib/python3.7/site-packages/django/db/migrations/loader.py"</span>, line <span class="m">212</span>, in build_graph
+web_1  <span class="p">|</span>     self.applied_migrations <span class="o">=</span> recorder.applied_migrations<span class="o">()</span>
+web_1  <span class="p">|</span>   File <span class="s2">"/usr/local/lib/python3.7/site-packages/django/db/migrations/recorder.py"</span>, line <span class="m">61</span>, in applied_migrations
+web_1  <span class="p">|</span>     <span class="k">if</span> self.has_table<span class="o">()</span>:
+web_1  <span class="p">|</span>   File <span class="s2">"/usr/local/lib/python3.7/site-packages/django/db/migrations/recorder.py"</span>, line <span class="m">44</span>, in has_table
+web_1  <span class="p">|</span>     <span class="k">return</span> self.Migration._meta.db_table in self.connection.introspection.table_names<span class="o">(</span>self.connection.cursor<span class="o">())</span>
+web_1  <span class="p">|</span>   File <span class="s2">"/usr/local/lib/python3.7/site-packages/django/db/backends/base/base.py"</span>, line <span class="m">255</span>, in cursor
+web_1  <span class="p">|</span>     <span class="k">return</span> self._cursor<span class="o">()</span>
+web_1  <span class="p">|</span>   File <span class="s2">"/usr/local/lib/python3.7/site-packages/django/db/backends/base/base.py"</span>, line <span class="m">232</span>, in _cursor
+web_1  <span class="p">|</span>     self.ensure_connection<span class="o">()</span>
+web_1  <span class="p">|</span>   File <span class="s2">"/usr/local/lib/python3.7/site-packages/django/db/backends/base/base.py"</span>, line <span class="m">216</span>, in ensure_connection
+web_1  <span class="p">|</span>     self.connect<span class="o">()</span>
+web_1  <span class="p">|</span>   File <span class="s2">"/usr/local/lib/python3.7/site-packages/django/db/utils.py"</span>, line <span class="m">89</span>, in __exit__
+web_1  <span class="p">|</span>     raise dj_exc_value.with_traceback<span class="o">(</span>traceback<span class="o">)</span> from exc_value
+web_1  <span class="p">|</span>   File <span class="s2">"/usr/local/lib/python3.7/site-packages/django/db/backends/base/base.py"</span>, line <span class="m">216</span>, in ensure_connection
+web_1  <span class="p">|</span>     self.connect<span class="o">()</span>
+web_1  <span class="p">|</span>   File <span class="s2">"/usr/local/lib/python3.7/site-packages/django/db/backends/base/base.py"</span>, line <span class="m">194</span>, in connect
+web_1  <span class="p">|</span>     self.connection <span class="o">=</span> self.get_new_connection<span class="o">(</span>conn_params<span class="o">)</span>
+web_1  <span class="p">|</span>   File <span class="s2">"/usr/local/lib/python3.7/site-packages/django/db/backends/mysql/base.py"</span>, line <span class="m">227</span>, in get_new_connection
+web_1  <span class="p">|</span>     <span class="k">return</span> Database.connect<span class="o">(</span>**conn_params<span class="o">)</span>
+web_1  <span class="p">|</span>   File <span class="s2">"/usr/local/lib/python3.7/site-packages/MySQLdb/__init__.py"</span>, line <span class="m">85</span>, in Connect
+web_1  <span class="p">|</span>     <span class="k">return</span> Connection<span class="o">(</span>*args, **kwargs<span class="o">)</span>
+web_1  <span class="p">|</span>   File <span class="s2">"/usr/local/lib/python3.7/site-packages/MySQLdb/connections.py"</span>, line <span class="m">208</span>, in __init__
+web_1  <span class="p">|</span>     super<span class="o">(</span>Connection, self<span class="o">)</span>.__init__<span class="o">(</span>*args, **kwargs2<span class="o">)</span>
+web_1  <span class="p">|</span> django.db.utils.OperationalError: <span class="o">(</span><span class="m">2006</span>, <span class="s2">"Authentication plugin 'caching_sha2_password' cannot be loaded: /usr/lib/x86_64-linux-gnu/mariadb18/plugin/caching_sha2_password.so: cannot open shared object file: No such file or directory"</span><span class="o">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Django から MySQL に接続する際は、 <span class="docutils literal">caching_sha2_password</span> に対応していない <span class="docutils literal">mysqlclient</span> を使っているようなので、それでも接続できるように、</p></li>
+<li><p><span class="docutils literal"><span class="pre">default-authentication-plugin=mysql_native_password</span></span> の指定が必要 (なんだと思う)</p></li>
+</ul>
+</div>
+<div class="section" id="skip-host-cache-skip-name-resolve">
+<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_2d2_index_2erst_12"></div><h2><a class="toc-backref" href="#id21"><strong>※2</strong>: skip-host-cache, skip-name-resolve について</a></h2>
+<ul>
+<li><p>Docker Hub の MySQL 公式イメージ <span class="docutils literal">mysql:latest</span> からコンテナをそのまま起動すると、</p></li>
+<li><p>デフォルト状態で <span class="docutils literal">/etc/mysql/conf.d/docker.cnf</span> の <span class="docutils literal">[mysqld]</span> セクションにこのふたつが定義されている</p>
+<ul class="simple">
+<li><p>2018/12/29 の Update で追加されたように (?) 見える</p></li>
+</ul>
+</li>
+<li><p>このふたつがないと、こんな感じ↓で延々とエラーになり、 db コンテナが起動できない</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span>$ docker-compose up
+Creating network <span class="s2">"fufu_default"</span> with the default driver
+Creating volume <span class="s2">"fufu_db-data"</span> with default driver
+Creating fufu_db ... <span class="k">done</span>
+Creating fufu_web ... <span class="k">done</span>
+Attaching to fufu_db, fufu_web
+db_1   <span class="p">|</span> Initializing database
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:51.840057Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011070<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> <span class="s1">'Disabling symbolic links using --skip-symbolic-links (or equivalent) is the default. Consider not using this option as it'</span> is deprecated and will be removed in a future release.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:51.840160Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-013169<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span> initializing of server in progress as process <span class="m">31</span>
+
+<span class="o">(</span>中略<span class="o">)</span>
+
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:53.441764Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010361<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Fatal error: Illegal or unknown default <span class="nb">time</span> zone <span class="s1">'Asia/Tokyo'</span>
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:53.441886Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-013236<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Newly created data directory /var/lib/mysql/ is unusable. You can safely remove it.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:53.441926Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010119<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Aborting
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:55.045197Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010910<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld: Shutdown <span class="nb">complete</span> <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span>  MySQL Community Server - GPL.
+fufu_db exited with code <span class="m">1</span>
+db_1   <span class="p">|</span> Initializing database
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:51.840057Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011070<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> <span class="s1">'Disabling symbolic links using --skip-symbolic-links (or equivalent) is the default. Consider not using this option as it'</span> is deprecated and will be removed in a future release.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:51.840160Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-013169<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span> initializing of server in progress as process <span class="m">31</span>
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:53.441764Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010361<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Fatal error: Illegal or unknown default <span class="nb">time</span> zone <span class="s1">'Asia/Tokyo'</span>
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:53.441886Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-013236<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Newly created data directory /var/lib/mysql/ is unusable. You can safely remove it.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:53.441926Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010119<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Aborting
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:55.045197Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010910<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld: Shutdown <span class="nb">complete</span> <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span>  MySQL Community Server - GPL.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:57.680035Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011070<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> <span class="s1">'Disabling symbolic links using --skip-symbolic-links (or equivalent) is the default. Consider not using this option as it'</span> is deprecated and will be removed in a future release.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:57.680129Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010116<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span> starting as process <span class="m">1</span>
+db_1   <span class="p">|</span> mysqld: Table <span class="s1">'mysql.plugin'</span> doesn<span class="s1">'t exist</span>
+<span class="s1">db_1   | 2019-01-20T11:55:57.942301Z 0 [ERROR] [MY-010735] [Server] Can'</span>t open the mysql.plugin table. Please run mysql_upgrade to create it.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:58.026899Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010015<span class="o">]</span> <span class="o">[</span>Repl<span class="o">]</span> Gtid table is not ready to be used. Table <span class="s1">'mysql.gtid_executed'</span> cannot be opened.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:58.029078Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010068<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> CA certificate ca.pem is self signed.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:58.031090Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011810<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Insecure configuration <span class="k">for</span> --pid-file: Location <span class="s1">'/var/run/mysqld'</span> in the path is accessible to all OS users. Consider choosing a different directory.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:58.031510Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010441<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Failed to open optimizer cost constant tables
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:58.031827Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-013129<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> A message intended <span class="k">for</span> a client cannot be sent there as no client-session is attached. Therefore, we<span class="s1">'re sending the information to the error-log instead: MY-001146 - Table '</span>mysql.component<span class="s1">' doesn'</span>t exist
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:58.031895Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-013129<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> A message intended <span class="k">for</span> a client cannot be sent there as no client-session is attached. Therefore, we<span class="s1">'re sending the information to the error-log instead: MY-003543 - The mysql.component table is missing or has an incorrect definition.</span>
+<span class="s1">db_1   | 2019-01-20T11:55:58.032460Z 0 [ERROR] [MY-010326] [Server] Fatal error: Can'</span>t open and lock privilege tables: Table <span class="s1">'mysql.user'</span> doesn<span class="s1">'t exist</span>
+<span class="s1">db_1   | 2019-01-20T11:55:58.032548Z 0 [Warning] [MY-010952] [Server] The privilege system failed to initialize correctly. If you have upgraded your server, make sure you'</span>re executing mysql_upgrade to correct the issue.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:58.032782Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010357<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Can<span class="s1">'t open and lock time zone table: Table '</span>mysql.time_zone_leap_second<span class="s1">' doesn'</span>t exist trying to live without them
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:58.032832Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010361<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Fatal error: Illegal or unknown default <span class="nb">time</span> zone <span class="s1">'Asia/Tokyo'</span>
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:58.032975Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010119<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Aborting
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:59.851741Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010910<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld: Shutdown <span class="nb">complete</span> <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span>  MySQL Community Server - GPL.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.499663Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011070<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> <span class="s1">'Disabling symbolic links using --skip-symbolic-links (or equivalent) is the default. Consider not using this option as it'</span> is deprecated and will be removed in a future release.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.499753Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010116<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span> starting as process <span class="m">1</span>
+db_1   <span class="p">|</span> mysqld: Table <span class="s1">'mysql.plugin'</span> doesn<span class="s1">'t exist</span>
+<span class="s1">db_1   | 2019-01-20T11:56:02.758687Z 0 [ERROR] [MY-010735] [Server] Can'</span>t open the mysql.plugin table. Please run mysql_upgrade to create it.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.841674Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010015<span class="o">]</span> <span class="o">[</span>Repl<span class="o">]</span> Gtid table is not ready to be used. Table <span class="s1">'mysql.gtid_executed'</span> cannot be opened.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.844213Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010068<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> CA certificate ca.pem is self signed.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.846178Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011810<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Insecure configuration <span class="k">for</span> --pid-file: Location <span class="s1">'/var/run/mysqld'</span> in the path is accessible to all OS users. Consider choosing a different directory.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.846616Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010441<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Failed to open optimizer cost constant tables
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.846911Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-013129<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> A message intended <span class="k">for</span> a client cannot be sent there as no client-session is attached. Therefore, we<span class="s1">'re sending the information to the error-log instead: MY-001146 - Table '</span>mysql.component<span class="s1">' doesn'</span>t exist
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.846948Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-013129<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> A message intended <span class="k">for</span> a client cannot be sent there as no client-session is attached. Therefore, we<span class="s1">'re sending the information to the error-log instead: MY-003543 - The mysql.component table is missing or has an incorrect definition.</span>
+<span class="s1">db_1   | 2019-01-20T11:56:02.847441Z 0 [ERROR] [MY-010326] [Server] Fatal error: Can'</span>t open and lock privilege tables: Table <span class="s1">'mysql.user'</span> doesn<span class="s1">'t exist</span>
+<span class="s1">db_1   | 2019-01-20T11:56:02.847506Z 0 [Warning] [MY-010952] [Server] The privilege system failed to initialize correctly. If you have upgraded your server, make sure you'</span>re executing mysql_upgrade to correct the issue.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.847644Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010357<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Can<span class="s1">'t open and lock time zone table: Table '</span>mysql.time_zone_leap_second<span class="s1">' doesn'</span>t exist trying to live without them
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.847671Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010361<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Fatal error: Illegal or unknown default <span class="nb">time</span> zone <span class="s1">'Asia/Tokyo'</span>
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.847769Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010119<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Aborting
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:04.258157Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010910<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld: Shutdown <span class="nb">complete</span> <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span>  MySQL Community Server - GPL.
+fufu_db exited with code <span class="m">1</span>
+db_1   <span class="p">|</span> Initializing database
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:51.840057Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011070<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> <span class="s1">'Disabling symbolic links using --skip-symbolic-links (or equivalent) is the default. Consider not using this option as it'</span> is deprecated and will be removed in a future release.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:51.840160Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-013169<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span> initializing of server in progress as process <span class="m">31</span>
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:53.441764Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010361<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Fatal error: Illegal or unknown default <span class="nb">time</span> zone <span class="s1">'Asia/Tokyo'</span>
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:53.441886Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-013236<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Newly created data directory /var/lib/mysql/ is unusable. You can safely remove it.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:53.441926Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010119<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Aborting
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:55.045197Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010910<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld: Shutdown <span class="nb">complete</span> <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span>  MySQL Community Server - GPL.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:57.680035Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011070<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> <span class="s1">'Disabling symbolic links using --skip-symbolic-links (or equivalent) is the default. Consider not using this option as it'</span> is deprecated and will be removed in a future release.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:57.680129Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010116<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span> starting as process <span class="m">1</span>
+db_1   <span class="p">|</span> mysqld: Table <span class="s1">'mysql.plugin'</span> doesn<span class="s1">'t exist</span>
+<span class="s1">db_1   | 2019-01-20T11:55:57.942301Z 0 [ERROR] [MY-010735] [Server] Can'</span>t open the mysql.plugin table. Please run mysql_upgrade to create it.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:58.026899Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010015<span class="o">]</span> <span class="o">[</span>Repl<span class="o">]</span> Gtid table is not ready to be used. Table <span class="s1">'mysql.gtid_executed'</span> cannot be opened.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:58.029078Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010068<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> CA certificate ca.pem is self signed.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:58.031090Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011810<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Insecure configuration <span class="k">for</span> --pid-file: Location <span class="s1">'/var/run/mysqld'</span> in the path is accessible to all OS users. Consider choosing a different directory.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:58.031510Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010441<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Failed to open optimizer cost constant tables
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:58.031827Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-013129<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> A message intended <span class="k">for</span> a client cannot be sent there as no client-session is attached. Therefore, we<span class="s1">'re sending the information to the error-log instead: MY-001146 - Table '</span>mysql.component<span class="s1">' doesn'</span>t exist
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:58.031895Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-013129<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> A message intended <span class="k">for</span> a client cannot be sent there as no client-session is attached. Therefore, we<span class="s1">'re sending the information to the error-log instead: MY-003543 - The mysql.component table is missing or has an incorrect definition.</span>
+<span class="s1">db_1   | 2019-01-20T11:55:58.032460Z 0 [ERROR] [MY-010326] [Server] Fatal error: Can'</span>t open and lock privilege tables: Table <span class="s1">'mysql.user'</span> doesn<span class="s1">'t exist</span>
+<span class="s1">db_1   | 2019-01-20T11:55:58.032548Z 0 [Warning] [MY-010952] [Server] The privilege system failed to initialize correctly. If you have upgraded your server, make sure you'</span>re executing mysql_upgrade to correct the issue.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:58.032782Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010357<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Can<span class="s1">'t open and lock time zone table: Table '</span>mysql.time_zone_leap_second<span class="s1">' doesn'</span>t exist trying to live without them
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:58.032832Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010361<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Fatal error: Illegal or unknown default <span class="nb">time</span> zone <span class="s1">'Asia/Tokyo'</span>
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:58.032975Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010119<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Aborting
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:59.851741Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010910<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld: Shutdown <span class="nb">complete</span> <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span>  MySQL Community Server - GPL.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.499663Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011070<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> <span class="s1">'Disabling symbolic links using --skip-symbolic-links (or equivalent) is the default. Consider not using this option as it'</span> is deprecated and will be removed in a future release.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.499753Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010116<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span> starting as process <span class="m">1</span>
+db_1   <span class="p">|</span> mysqld: Table <span class="s1">'mysql.plugin'</span> doesn<span class="s1">'t exist</span>
+<span class="s1">db_1   | 2019-01-20T11:56:02.758687Z 0 [ERROR] [MY-010735] [Server] Can'</span>t open the mysql.plugin table. Please run mysql_upgrade to create it.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.841674Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010015<span class="o">]</span> <span class="o">[</span>Repl<span class="o">]</span> Gtid table is not ready to be used. Table <span class="s1">'mysql.gtid_executed'</span> cannot be opened.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.844213Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010068<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> CA certificate ca.pem is self signed.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.846178Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011810<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Insecure configuration <span class="k">for</span> --pid-file: Location <span class="s1">'/var/run/mysqld'</span> in the path is accessible to all OS users. Consider choosing a different directory.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.846616Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010441<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Failed to open optimizer cost constant tables
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.846911Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-013129<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> A message intended <span class="k">for</span> a client cannot be sent there as no client-session is attached. Therefore, we<span class="s1">'re sending the information to the error-log instead: MY-001146 - Table '</span>mysql.component<span class="s1">' doesn'</span>t exist
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.846948Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-013129<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> A message intended <span class="k">for</span> a client cannot be sent there as no client-session is attached. Therefore, we<span class="s1">'re sending the information to the error-log instead: MY-003543 - The mysql.component table is missing or has an incorrect definition.</span>
+<span class="s1">db_1   | 2019-01-20T11:56:02.847441Z 0 [ERROR] [MY-010326] [Server] Fatal error: Can'</span>t open and lock privilege tables: Table <span class="s1">'mysql.user'</span> doesn<span class="s1">'t exist</span>
+<span class="s1">db_1   | 2019-01-20T11:56:02.847506Z 0 [Warning] [MY-010952] [Server] The privilege system failed to initialize correctly. If you have upgraded your server, make sure you'</span>re executing mysql_upgrade to correct the issue.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.847644Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010357<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Can<span class="s1">'t open and lock time zone table: Table '</span>mysql.time_zone_leap_second<span class="s1">' doesn'</span>t exist trying to live without them
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.847671Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010361<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Fatal error: Illegal or unknown default <span class="nb">time</span> zone <span class="s1">'Asia/Tokyo'</span>
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.847769Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010119<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Aborting
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:04.258157Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010910<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld: Shutdown <span class="nb">complete</span> <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span>  MySQL Community Server - GPL.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:06.885337Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011070<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> <span class="s1">'Disabling symbolic links using --skip-symbolic-links (or equivalent) is the default. Consider not using this option as it'</span> is deprecated and will be removed in a future release.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:06.885434Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010116<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span> starting as process <span class="m">1</span>
+db_1   <span class="p">|</span> mysqld: Table <span class="s1">'mysql.plugin'</span> doesn<span class="s1">'t exist</span>
+<span class="s1">db_1   | 2019-01-20T11:56:07.153069Z 0 [ERROR] [MY-010735] [Server] Can'</span>t open the mysql.plugin table. Please run mysql_upgrade to create it.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:07.236161Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010015<span class="o">]</span> <span class="o">[</span>Repl<span class="o">]</span> Gtid table is not ready to be used. Table <span class="s1">'mysql.gtid_executed'</span> cannot be opened.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:07.238540Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010068<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> CA certificate ca.pem is self signed.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:07.240561Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011810<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Insecure configuration <span class="k">for</span> --pid-file: Location <span class="s1">'/var/run/mysqld'</span> in the path is accessible to all OS users. Consider choosing a different directory.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:07.240967Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010441<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Failed to open optimizer cost constant tables
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:07.241151Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-013129<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> A message intended <span class="k">for</span> a client cannot be sent there as no client-session is attached. Therefore, we<span class="s1">'re sending the information to the error-log instead: MY-001146 - Table '</span>mysql.component<span class="s1">' doesn'</span>t exist
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:07.241186Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-013129<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> A message intended <span class="k">for</span> a client cannot be sent there as no client-session is attached. Therefore, we<span class="s1">'re sending the information to the error-log instead: MY-003543 - The mysql.component table is missing or has an incorrect definition.</span>
+<span class="s1">db_1   | 2019-01-20T11:56:07.241673Z 0 [ERROR] [MY-010326] [Server] Fatal error: Can'</span>t open and lock privilege tables: Table <span class="s1">'mysql.user'</span> doesn<span class="s1">'t exist</span>
+<span class="s1">db_1   | 2019-01-20T11:56:07.241732Z 0 [Warning] [MY-010952] [Server] The privilege system failed to initialize correctly. If you have upgraded your server, make sure you'</span>re executing mysql_upgrade to correct the issue.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:07.241871Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010357<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Can<span class="s1">'t open and lock time zone table: Table '</span>mysql.time_zone_leap_second<span class="s1">' doesn'</span>t exist trying to live without them
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:07.241902Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010361<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Fatal error: Illegal or unknown default <span class="nb">time</span> zone <span class="s1">'Asia/Tokyo'</span>
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:07.241995Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010119<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Aborting
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:09.048029Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010910<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld: Shutdown <span class="nb">complete</span> <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span>  MySQL Community Server - GPL.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:11.651915Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011070<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> <span class="s1">'Disabling symbolic links using --skip-symbolic-links (or equivalent) is the default. Consider not using this option as it'</span> is deprecated and will be removed in a future release.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:11.652007Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010116<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span> starting as process <span class="m">1</span>
+db_1   <span class="p">|</span> mysqld: Table <span class="s1">'mysql.plugin'</span> doesn<span class="s1">'t exist</span>
+<span class="s1">db_1   | 2019-01-20T11:56:11.912327Z 0 [ERROR] [MY-010735] [Server] Can'</span>t open the mysql.plugin table. Please run mysql_upgrade to create it.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:11.994607Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010015<span class="o">]</span> <span class="o">[</span>Repl<span class="o">]</span> Gtid table is not ready to be used. Table <span class="s1">'mysql.gtid_executed'</span> cannot be opened.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:11.996767Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010068<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> CA certificate ca.pem is self signed.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:11.998486Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011810<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Insecure configuration <span class="k">for</span> --pid-file: Location <span class="s1">'/var/run/mysqld'</span> in the path is accessible to all OS users. Consider choosing a different directory.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:11.998844Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010441<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Failed to open optimizer cost constant tables
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:11.999016Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-013129<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> A message intended <span class="k">for</span> a client cannot be sent there as no client-session is attached. Therefore, we<span class="s1">'re sending the information to the error-log instead: MY-001146 - Table '</span>mysql.component<span class="s1">' doesn'</span>t exist
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:11.999047Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-013129<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> A message intended <span class="k">for</span> a client cannot be sent there as no client-session is attached. Therefore, we<span class="s1">'re sending the information to the error-log instead: MY-003543 - The mysql.component table is missing or has an incorrect definition.</span>
+<span class="s1">db_1   | 2019-01-20T11:56:11.999541Z 0 [ERROR] [MY-010326] [Server] Fatal error: Can'</span>t open and lock privilege tables: Table <span class="s1">'mysql.user'</span> doesn<span class="s1">'t exist</span>
+<span class="s1">db_1   | 2019-01-20T11:56:11.999601Z 0 [Warning] [MY-010952] [Server] The privilege system failed to initialize correctly. If you have upgraded your server, make sure you'</span>re executing mysql_upgrade to correct the issue.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:11.999753Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010357<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Can<span class="s1">'t open and lock time zone table: Table '</span>mysql.time_zone_leap_second<span class="s1">' doesn'</span>t exist trying to live without them
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:11.999778Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010361<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Fatal error: Illegal or unknown default <span class="nb">time</span> zone <span class="s1">'Asia/Tokyo'</span>
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:11.999874Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010119<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Aborting
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:13.815771Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010910<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld: Shutdown <span class="nb">complete</span> <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span>  MySQL Community Server - GPL.
+fufu_db exited with code <span class="m">1</span>
+db_1   <span class="p">|</span> Initializing database
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:51.840057Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011070<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> <span class="s1">'Disabling symbolic links using --skip-symbolic-links (or equivalent) is the default. Consider not using this option as it'</span> is deprecated and will be removed in a future release.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:51.840160Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-013169<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span> initializing of server in progress as process <span class="m">31</span>
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:53.441764Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010361<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Fatal error: Illegal or unknown default <span class="nb">time</span> zone <span class="s1">'Asia/Tokyo'</span>
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:53.441886Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-013236<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Newly created data directory /var/lib/mysql/ is unusable. You can safely remove it.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:53.441926Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010119<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Aborting
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:55.045197Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010910<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld: Shutdown <span class="nb">complete</span> <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span>  MySQL Community Server - GPL.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:57.680035Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011070<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> <span class="s1">'Disabling symbolic links using --skip-symbolic-links (or equivalent) is the default. Consider not using this option as it'</span> is deprecated and will be removed in a future release.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:57.680129Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010116<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span> starting as process <span class="m">1</span>
+db_1   <span class="p">|</span> mysqld: Table <span class="s1">'mysql.plugin'</span> doesn<span class="s1">'t exist</span>
+<span class="s1">db_1   | 2019-01-20T11:55:57.942301Z 0 [ERROR] [MY-010735] [Server] Can'</span>t open the mysql.plugin table. Please run mysql_upgrade to create it.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:58.026899Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010015<span class="o">]</span> <span class="o">[</span>Repl<span class="o">]</span> Gtid table is not ready to be used. Table <span class="s1">'mysql.gtid_executed'</span> cannot be opened.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:58.029078Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010068<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> CA certificate ca.pem is self signed.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:58.031090Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011810<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Insecure configuration <span class="k">for</span> --pid-file: Location <span class="s1">'/var/run/mysqld'</span> in the path is accessible to all OS users. Consider choosing a different directory.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:58.031510Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010441<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Failed to open optimizer cost constant tables
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:58.031827Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-013129<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> A message intended <span class="k">for</span> a client cannot be sent there as no client-session is attached. Therefore, we<span class="s1">'re sending the information to the error-log instead: MY-001146 - Table '</span>mysql.component<span class="s1">' doesn'</span>t exist
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:58.031895Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-013129<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> A message intended <span class="k">for</span> a client cannot be sent there as no client-session is attached. Therefore, we<span class="s1">'re sending the information to the error-log instead: MY-003543 - The mysql.component table is missing or has an incorrect definition.</span>
+<span class="s1">db_1   | 2019-01-20T11:55:58.032460Z 0 [ERROR] [MY-010326] [Server] Fatal error: Can'</span>t open and lock privilege tables: Table <span class="s1">'mysql.user'</span> doesn<span class="s1">'t exist</span>
+<span class="s1">db_1   | 2019-01-20T11:55:58.032548Z 0 [Warning] [MY-010952] [Server] The privilege system failed to initialize correctly. If you have upgraded your server, make sure you'</span>re executing mysql_upgrade to correct the issue.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:58.032782Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010357<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Can<span class="s1">'t open and lock time zone table: Table '</span>mysql.time_zone_leap_second<span class="s1">' doesn'</span>t exist trying to live without them
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:58.032832Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010361<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Fatal error: Illegal or unknown default <span class="nb">time</span> zone <span class="s1">'Asia/Tokyo'</span>
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:58.032975Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010119<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Aborting
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:59.851741Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010910<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld: Shutdown <span class="nb">complete</span> <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span>  MySQL Community Server - GPL.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.499663Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011070<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> <span class="s1">'Disabling symbolic links using --skip-symbolic-links (or equivalent) is the default. Consider not using this option as it'</span> is deprecated and will be removed in a future release.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.499753Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010116<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span> starting as process <span class="m">1</span>
+db_1   <span class="p">|</span> mysqld: Table <span class="s1">'mysql.plugin'</span> doesn<span class="s1">'t exist</span>
+<span class="s1">db_1   | 2019-01-20T11:56:02.758687Z 0 [ERROR] [MY-010735] [Server] Can'</span>t open the mysql.plugin table. Please run mysql_upgrade to create it.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.841674Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010015<span class="o">]</span> <span class="o">[</span>Repl<span class="o">]</span> Gtid table is not ready to be used. Table <span class="s1">'mysql.gtid_executed'</span> cannot be opened.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.844213Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010068<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> CA certificate ca.pem is self signed.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.846178Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011810<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Insecure configuration <span class="k">for</span> --pid-file: Location <span class="s1">'/var/run/mysqld'</span> in the path is accessible to all OS users. Consider choosing a different directory.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.846616Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010441<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Failed to open optimizer cost constant tables
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.846911Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-013129<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> A message intended <span class="k">for</span> a client cannot be sent there as no client-session is attached. Therefore, we<span class="s1">'re sending the information to the error-log instead: MY-001146 - Table '</span>mysql.component<span class="s1">' doesn'</span>t exist
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.846948Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-013129<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> A message intended <span class="k">for</span> a client cannot be sent there as no client-session is attached. Therefore, we<span class="s1">'re sending the information to the error-log instead: MY-003543 - The mysql.component table is missing or has an incorrect definition.</span>
+<span class="s1">db_1   | 2019-01-20T11:56:02.847441Z 0 [ERROR] [MY-010326] [Server] Fatal error: Can'</span>t open and lock privilege tables: Table <span class="s1">'mysql.user'</span> doesn<span class="s1">'t exist</span>
+<span class="s1">db_1   | 2019-01-20T11:56:02.847506Z 0 [Warning] [MY-010952] [Server] The privilege system failed to initialize correctly. If you have upgraded your server, make sure you'</span>re executing mysql_upgrade to correct the issue.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.847644Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010357<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Can<span class="s1">'t open and lock time zone table: Table '</span>mysql.time_zone_leap_second<span class="s1">' doesn'</span>t exist trying to live without them
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.847671Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010361<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Fatal error: Illegal or unknown default <span class="nb">time</span> zone <span class="s1">'Asia/Tokyo'</span>
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.847769Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010119<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Aborting
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:04.258157Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010910<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld: Shutdown <span class="nb">complete</span> <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span>  MySQL Community Server - GPL.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:06.885337Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011070<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> <span class="s1">'Disabling symbolic links using --skip-symbolic-links (or equivalent) is the default. Consider not using this option as it'</span> is deprecated and will be removed in a future release.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:06.885434Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010116<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span> starting as process <span class="m">1</span>
+db_1   <span class="p">|</span> mysqld: Table <span class="s1">'mysql.plugin'</span> doesn<span class="s1">'t exist</span>
+<span class="s1">db_1   | 2019-01-20T11:56:07.153069Z 0 [ERROR] [MY-010735] [Server] Can'</span>t open the mysql.plugin table. Please run mysql_upgrade to create it.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:07.236161Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010015<span class="o">]</span> <span class="o">[</span>Repl<span class="o">]</span> Gtid table is not ready to be used. Table <span class="s1">'mysql.gtid_executed'</span> cannot be opened.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:07.238540Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010068<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> CA certificate ca.pem is self signed.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:07.240561Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011810<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Insecure configuration <span class="k">for</span> --pid-file: Location <span class="s1">'/var/run/mysqld'</span> in the path is accessible to all OS users. Consider choosing a different directory.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:07.240967Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010441<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Failed to open optimizer cost constant tables
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:07.241151Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-013129<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> A message intended <span class="k">for</span> a client cannot be sent there as no client-session is attached. Therefore, we<span class="s1">'re sending the information to the error-log instead: MY-001146 - Table '</span>mysql.component<span class="s1">' doesn'</span>t exist
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:07.241186Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-013129<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> A message intended <span class="k">for</span> a client cannot be sent there as no client-session is attached. Therefore, we<span class="s1">'re sending the information to the error-log instead: MY-003543 - The mysql.component table is missing or has an incorrect definition.</span>
+<span class="s1">db_1   | 2019-01-20T11:56:07.241673Z 0 [ERROR] [MY-010326] [Server] Fatal error: Can'</span>t open and lock privilege tables: Table <span class="s1">'mysql.user'</span> doesn<span class="s1">'t exist</span>
+<span class="s1">db_1   | 2019-01-20T11:56:07.241732Z 0 [Warning] [MY-010952] [Server] The privilege system failed to initialize correctly. If you have upgraded your server, make sure you'</span>re executing mysql_upgrade to correct the issue.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:07.241871Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010357<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Can<span class="s1">'t open and lock time zone table: Table '</span>mysql.time_zone_leap_second<span class="s1">' doesn'</span>t exist trying to live without them
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:07.241902Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010361<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Fatal error: Illegal or unknown default <span class="nb">time</span> zone <span class="s1">'Asia/Tokyo'</span>
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:07.241995Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010119<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Aborting
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:09.048029Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010910<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld: Shutdown <span class="nb">complete</span> <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span>  MySQL Community Server - GPL.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:11.651915Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011070<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> <span class="s1">'Disabling symbolic links using --skip-symbolic-links (or equivalent) is the default. Consider not using this option as it'</span> is deprecated and will be removed in a future release.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:11.652007Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010116<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span> starting as process <span class="m">1</span>
+db_1   <span class="p">|</span> mysqld: Table <span class="s1">'mysql.plugin'</span> doesn<span class="s1">'t exist</span>
+<span class="s1">db_1   | 2019-01-20T11:56:11.912327Z 0 [ERROR] [MY-010735] [Server] Can'</span>t open the mysql.plugin table. Please run mysql_upgrade to create it.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:11.994607Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010015<span class="o">]</span> <span class="o">[</span>Repl<span class="o">]</span> Gtid table is not ready to be used. Table <span class="s1">'mysql.gtid_executed'</span> cannot be opened.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:11.996767Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010068<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> CA certificate ca.pem is self signed.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:11.998486Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011810<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Insecure configuration <span class="k">for</span> --pid-file: Location <span class="s1">'/var/run/mysqld'</span> in the path is accessible to all OS users. Consider choosing a different directory.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:11.998844Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010441<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Failed to open optimizer cost constant tables
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:11.999016Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-013129<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> A message intended <span class="k">for</span> a client cannot be sent there as no client-session is attached. Therefore, we<span class="s1">'re sending the information to the error-log instead: MY-001146 - Table '</span>mysql.component<span class="s1">' doesn'</span>t exist
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:11.999047Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-013129<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> A message intended <span class="k">for</span> a client cannot be sent there as no client-session is attached. Therefore, we<span class="s1">'re sending the information to the error-log instead: MY-003543 - The mysql.component table is missing or has an incorrect definition.</span>
+<span class="s1">db_1   | 2019-01-20T11:56:11.999541Z 0 [ERROR] [MY-010326] [Server] Fatal error: Can'</span>t open and lock privilege tables: Table <span class="s1">'mysql.user'</span> doesn<span class="s1">'t exist</span>
+<span class="s1">db_1   | 2019-01-20T11:56:11.999601Z 0 [Warning] [MY-010952] [Server] The privilege system failed to initialize correctly. If you have upgraded your server, make sure you'</span>re executing mysql_upgrade to correct the issue.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:11.999753Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010357<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Can<span class="s1">'t open and lock time zone table: Table '</span>mysql.time_zone_leap_second<span class="s1">' doesn'</span>t exist trying to live without them
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:11.999778Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010361<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Fatal error: Illegal or unknown default <span class="nb">time</span> zone <span class="s1">'Asia/Tokyo'</span>
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:11.999874Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010119<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Aborting
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:13.815771Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010910<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld: Shutdown <span class="nb">complete</span> <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span>  MySQL Community Server - GPL.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:16.554707Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011070<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> <span class="s1">'Disabling symbolic links using --skip-symbolic-links (or equivalent) is the default. Consider not using this option as it'</span> is deprecated and will be removed in a future release.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:16.554806Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010116<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span> starting as process <span class="m">1</span>
+db_1   <span class="p">|</span> mysqld: Table <span class="s1">'mysql.plugin'</span> doesn<span class="s1">'t exist</span>
+<span class="s1">db_1   | 2019-01-20T11:56:16.812075Z 0 [ERROR] [MY-010735] [Server] Can'</span>t open the mysql.plugin table. Please run mysql_upgrade to create it.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:16.895053Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010015<span class="o">]</span> <span class="o">[</span>Repl<span class="o">]</span> Gtid table is not ready to be used. Table <span class="s1">'mysql.gtid_executed'</span> cannot be opened.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:16.897313Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010068<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> CA certificate ca.pem is self signed.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:16.899059Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011810<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Insecure configuration <span class="k">for</span> --pid-file: Location <span class="s1">'/var/run/mysqld'</span> in the path is accessible to all OS users. Consider choosing a different directory.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:16.899390Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010441<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Failed to open optimizer cost constant tables
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:16.899657Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-013129<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> A message intended <span class="k">for</span> a client cannot be sent there as no client-session is attached. Therefore, we<span class="s1">'re sending the information to the error-log instead: MY-001146 - Table '</span>mysql.component<span class="s1">' doesn'</span>t exist
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:16.899694Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-013129<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> A message intended <span class="k">for</span> a client cannot be sent there as no client-session is attached. Therefore, we<span class="s1">'re sending the information to the error-log instead: MY-003543 - The mysql.component table is missing or has an incorrect definition.</span>
+<span class="s1">db_1   | 2019-01-20T11:56:16.900291Z 0 [ERROR] [MY-010326] [Server] Fatal error: Can'</span>t open and lock privilege tables: Table <span class="s1">'mysql.user'</span> doesn<span class="s1">'t exist</span>
+<span class="s1">db_1   | 2019-01-20T11:56:16.900354Z 0 [Warning] [MY-010952] [Server] The privilege system failed to initialize correctly. If you have upgraded your server, make sure you'</span>re executing mysql_upgrade to correct the issue.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:16.900626Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010357<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Can<span class="s1">'t open and lock time zone table: Table '</span>mysql.time_zone_leap_second<span class="s1">' doesn'</span>t exist trying to live without them
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:16.900654Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010361<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Fatal error: Illegal or unknown default <span class="nb">time</span> zone <span class="s1">'Asia/Tokyo'</span>
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:16.900826Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010119<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Aborting
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:18.720970Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010910<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld: Shutdown <span class="nb">complete</span> <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span>  MySQL Community Server - GPL.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:23.019641Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011070<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> <span class="s1">'Disabling symbolic links using --skip-symbolic-links (or equivalent) is the default. Consider not using this option as it'</span> is deprecated and will be removed in a future release.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:23.019736Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010116<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span> starting as process <span class="m">1</span>
+db_1   <span class="p">|</span> mysqld: Table <span class="s1">'mysql.plugin'</span> doesn<span class="s1">'t exist</span>
+<span class="s1">db_1   | 2019-01-20T11:56:23.282147Z 0 [ERROR] [MY-010735] [Server] Can'</span>t open the mysql.plugin table. Please run mysql_upgrade to create it.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:23.310746Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010015<span class="o">]</span> <span class="o">[</span>Repl<span class="o">]</span> Gtid table is not ready to be used. Table <span class="s1">'mysql.gtid_executed'</span> cannot be opened.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:23.317461Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010068<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> CA certificate ca.pem is self signed.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:23.319319Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011810<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Insecure configuration <span class="k">for</span> --pid-file: Location <span class="s1">'/var/run/mysqld'</span> in the path is accessible to all OS users. Consider choosing a different directory.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:23.320932Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010441<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Failed to open optimizer cost constant tables
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:23.321207Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-013129<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> A message intended <span class="k">for</span> a client cannot be sent there as no client-session is attached. Therefore, we<span class="s1">'re sending the information to the error-log instead: MY-001146 - Table '</span>mysql.component<span class="s1">' doesn'</span>t exist
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:23.321237Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-013129<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> A message intended <span class="k">for</span> a client cannot be sent there as no client-session is attached. Therefore, we<span class="s1">'re sending the information to the error-log instead: MY-003543 - The mysql.component table is missing or has an incorrect definition.</span>
+<span class="s1">db_1   | 2019-01-20T11:56:23.321817Z 0 [ERROR] [MY-010326] [Server] Fatal error: Can'</span>t open and lock privilege tables: Table <span class="s1">'mysql.user'</span> doesn<span class="s1">'t exist</span>
+<span class="s1">db_1   | 2019-01-20T11:56:23.321890Z 0 [Warning] [MY-010952] [Server] The privilege system failed to initialize correctly. If you have upgraded your server, make sure you'</span>re executing mysql_upgrade to correct the issue.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:23.322074Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010357<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Can<span class="s1">'t open and lock time zone table: Table '</span>mysql.time_zone_leap_second<span class="s1">' doesn'</span>t exist trying to live without them
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:23.322097Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010361<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Fatal error: Illegal or unknown default <span class="nb">time</span> zone <span class="s1">'Asia/Tokyo'</span>
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:23.322247Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010119<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Aborting
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:25.183207Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010910<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld: Shutdown <span class="nb">complete</span> <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span>  MySQL Community Server - GPL.
+fufu_db exited with code <span class="m">1</span>
+db_1   <span class="p">|</span> Initializing database
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:51.840057Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011070<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> <span class="s1">'Disabling symbolic links using --skip-symbolic-links (or equivalent) is the default. Consider not using this option as it'</span> is deprecated and will be removed in a future release.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:51.840160Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-013169<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span> initializing of server in progress as process <span class="m">31</span>
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:53.441764Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010361<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Fatal error: Illegal or unknown default <span class="nb">time</span> zone <span class="s1">'Asia/Tokyo'</span>
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:53.441886Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-013236<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Newly created data directory /var/lib/mysql/ is unusable. You can safely remove it.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:53.441926Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010119<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Aborting
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:55.045197Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010910<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld: Shutdown <span class="nb">complete</span> <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span>  MySQL Community Server - GPL.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:57.680035Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011070<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> <span class="s1">'Disabling symbolic links using --skip-symbolic-links (or equivalent) is the default. Consider not using this option as it'</span> is deprecated and will be removed in a future release.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:57.680129Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010116<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span> starting as process <span class="m">1</span>
+db_1   <span class="p">|</span> mysqld: Table <span class="s1">'mysql.plugin'</span> doesn<span class="s1">'t exist</span>
+<span class="s1">db_1   | 2019-01-20T11:55:57.942301Z 0 [ERROR] [MY-010735] [Server] Can'</span>t open the mysql.plugin table. Please run mysql_upgrade to create it.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:58.026899Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010015<span class="o">]</span> <span class="o">[</span>Repl<span class="o">]</span> Gtid table is not ready to be used. Table <span class="s1">'mysql.gtid_executed'</span> cannot be opened.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:58.029078Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010068<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> CA certificate ca.pem is self signed.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:58.031090Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011810<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Insecure configuration <span class="k">for</span> --pid-file: Location <span class="s1">'/var/run/mysqld'</span> in the path is accessible to all OS users. Consider choosing a different directory.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:58.031510Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010441<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Failed to open optimizer cost constant tables
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:58.031827Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-013129<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> A message intended <span class="k">for</span> a client cannot be sent there as no client-session is attached. Therefore, we<span class="s1">'re sending the information to the error-log instead: MY-001146 - Table '</span>mysql.component<span class="s1">' doesn'</span>t exist
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:58.031895Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-013129<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> A message intended <span class="k">for</span> a client cannot be sent there as no client-session is attached. Therefore, we<span class="s1">'re sending the information to the error-log instead: MY-003543 - The mysql.component table is missing or has an incorrect definition.</span>
+<span class="s1">db_1   | 2019-01-20T11:55:58.032460Z 0 [ERROR] [MY-010326] [Server] Fatal error: Can'</span>t open and lock privilege tables: Table <span class="s1">'mysql.user'</span> doesn<span class="s1">'t exist</span>
+<span class="s1">db_1   | 2019-01-20T11:55:58.032548Z 0 [Warning] [MY-010952] [Server] The privilege system failed to initialize correctly. If you have upgraded your server, make sure you'</span>re executing mysql_upgrade to correct the issue.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:58.032782Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010357<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Can<span class="s1">'t open and lock time zone table: Table '</span>mysql.time_zone_leap_second<span class="s1">' doesn'</span>t exist trying to live without them
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:58.032832Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010361<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Fatal error: Illegal or unknown default <span class="nb">time</span> zone <span class="s1">'Asia/Tokyo'</span>
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:58.032975Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010119<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Aborting
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:55:59.851741Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010910<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld: Shutdown <span class="nb">complete</span> <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span>  MySQL Community Server - GPL.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.499663Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011070<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> <span class="s1">'Disabling symbolic links using --skip-symbolic-links (or equivalent) is the default. Consider not using this option as it'</span> is deprecated and will be removed in a future release.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.499753Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010116<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span> starting as process <span class="m">1</span>
+db_1   <span class="p">|</span> mysqld: Table <span class="s1">'mysql.plugin'</span> doesn<span class="s1">'t exist</span>
+<span class="s1">db_1   | 2019-01-20T11:56:02.758687Z 0 [ERROR] [MY-010735] [Server] Can'</span>t open the mysql.plugin table. Please run mysql_upgrade to create it.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.841674Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010015<span class="o">]</span> <span class="o">[</span>Repl<span class="o">]</span> Gtid table is not ready to be used. Table <span class="s1">'mysql.gtid_executed'</span> cannot be opened.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.844213Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010068<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> CA certificate ca.pem is self signed.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.846178Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011810<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Insecure configuration <span class="k">for</span> --pid-file: Location <span class="s1">'/var/run/mysqld'</span> in the path is accessible to all OS users. Consider choosing a different directory.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.846616Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010441<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Failed to open optimizer cost constant tables
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.846911Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-013129<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> A message intended <span class="k">for</span> a client cannot be sent there as no client-session is attached. Therefore, we<span class="s1">'re sending the information to the error-log instead: MY-001146 - Table '</span>mysql.component<span class="s1">' doesn'</span>t exist
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.846948Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-013129<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> A message intended <span class="k">for</span> a client cannot be sent there as no client-session is attached. Therefore, we<span class="s1">'re sending the information to the error-log instead: MY-003543 - The mysql.component table is missing or has an incorrect definition.</span>
+<span class="s1">db_1   | 2019-01-20T11:56:02.847441Z 0 [ERROR] [MY-010326] [Server] Fatal error: Can'</span>t open and lock privilege tables: Table <span class="s1">'mysql.user'</span> doesn<span class="s1">'t exist</span>
+<span class="s1">db_1   | 2019-01-20T11:56:02.847506Z 0 [Warning] [MY-010952] [Server] The privilege system failed to initialize correctly. If you have upgraded your server, make sure you'</span>re executing mysql_upgrade to correct the issue.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.847644Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010357<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Can<span class="s1">'t open and lock time zone table: Table '</span>mysql.time_zone_leap_second<span class="s1">' doesn'</span>t exist trying to live without them
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.847671Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010361<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Fatal error: Illegal or unknown default <span class="nb">time</span> zone <span class="s1">'Asia/Tokyo'</span>
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:02.847769Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010119<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Aborting
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:04.258157Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010910<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld: Shutdown <span class="nb">complete</span> <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span>  MySQL Community Server - GPL.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:06.885337Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011070<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> <span class="s1">'Disabling symbolic links using --skip-symbolic-links (or equivalent) is the default. Consider not using this option as it'</span> is deprecated and will be removed in a future release.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:06.885434Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010116<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span> starting as process <span class="m">1</span>
+db_1   <span class="p">|</span> mysqld: Table <span class="s1">'mysql.plugin'</span> doesn<span class="s1">'t exist</span>
+<span class="s1">db_1   | 2019-01-20T11:56:07.153069Z 0 [ERROR] [MY-010735] [Server] Can'</span>t open the mysql.plugin table. Please run mysql_upgrade to create it.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:07.236161Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010015<span class="o">]</span> <span class="o">[</span>Repl<span class="o">]</span> Gtid table is not ready to be used. Table <span class="s1">'mysql.gtid_executed'</span> cannot be opened.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:07.238540Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010068<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> CA certificate ca.pem is self signed.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:07.240561Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011810<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Insecure configuration <span class="k">for</span> --pid-file: Location <span class="s1">'/var/run/mysqld'</span> in the path is accessible to all OS users. Consider choosing a different directory.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:07.240967Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010441<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Failed to open optimizer cost constant tables
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:07.241151Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-013129<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> A message intended <span class="k">for</span> a client cannot be sent there as no client-session is attached. Therefore, we<span class="s1">'re sending the information to the error-log instead: MY-001146 - Table '</span>mysql.component<span class="s1">' doesn'</span>t exist
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:07.241186Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-013129<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> A message intended <span class="k">for</span> a client cannot be sent there as no client-session is attached. Therefore, we<span class="s1">'re sending the information to the error-log instead: MY-003543 - The mysql.component table is missing or has an incorrect definition.</span>
+<span class="s1">db_1   | 2019-01-20T11:56:07.241673Z 0 [ERROR] [MY-010326] [Server] Fatal error: Can'</span>t open and lock privilege tables: Table <span class="s1">'mysql.user'</span> doesn<span class="s1">'t exist</span>
+<span class="s1">db_1   | 2019-01-20T11:56:07.241732Z 0 [Warning] [MY-010952] [Server] The privilege system failed to initialize correctly. If you have upgraded your server, make sure you'</span>re executing mysql_upgrade to correct the issue.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:07.241871Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010357<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Can<span class="s1">'t open and lock time zone table: Table '</span>mysql.time_zone_leap_second<span class="s1">' doesn'</span>t exist trying to live without them
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:07.241902Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010361<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Fatal error: Illegal or unknown default <span class="nb">time</span> zone <span class="s1">'Asia/Tokyo'</span>
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:07.241995Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010119<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Aborting
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:09.048029Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010910<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld: Shutdown <span class="nb">complete</span> <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span>  MySQL Community Server - GPL.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:11.651915Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011070<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> <span class="s1">'Disabling symbolic links using --skip-symbolic-links (or equivalent) is the default. Consider not using this option as it'</span> is deprecated and will be removed in a future release.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:11.652007Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010116<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span> starting as process <span class="m">1</span>
+db_1   <span class="p">|</span> mysqld: Table <span class="s1">'mysql.plugin'</span> doesn<span class="s1">'t exist</span>
+<span class="s1">db_1   | 2019-01-20T11:56:11.912327Z 0 [ERROR] [MY-010735] [Server] Can'</span>t open the mysql.plugin table. Please run mysql_upgrade to create it.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:11.994607Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010015<span class="o">]</span> <span class="o">[</span>Repl<span class="o">]</span> Gtid table is not ready to be used. Table <span class="s1">'mysql.gtid_executed'</span> cannot be opened.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:11.996767Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010068<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> CA certificate ca.pem is self signed.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:11.998486Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011810<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Insecure configuration <span class="k">for</span> --pid-file: Location <span class="s1">'/var/run/mysqld'</span> in the path is accessible to all OS users. Consider choosing a different directory.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:11.998844Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010441<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Failed to open optimizer cost constant tables
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:11.999016Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-013129<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> A message intended <span class="k">for</span> a client cannot be sent there as no client-session is attached. Therefore, we<span class="s1">'re sending the information to the error-log instead: MY-001146 - Table '</span>mysql.component<span class="s1">' doesn'</span>t exist
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:11.999047Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-013129<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> A message intended <span class="k">for</span> a client cannot be sent there as no client-session is attached. Therefore, we<span class="s1">'re sending the information to the error-log instead: MY-003543 - The mysql.component table is missing or has an incorrect definition.</span>
+<span class="s1">db_1   | 2019-01-20T11:56:11.999541Z 0 [ERROR] [MY-010326] [Server] Fatal error: Can'</span>t open and lock privilege tables: Table <span class="s1">'mysql.user'</span> doesn<span class="s1">'t exist</span>
+<span class="s1">db_1   | 2019-01-20T11:56:11.999601Z 0 [Warning] [MY-010952] [Server] The privilege system failed to initialize correctly. If you have upgraded your server, make sure you'</span>re executing mysql_upgrade to correct the issue.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:11.999753Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010357<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Can<span class="s1">'t open and lock time zone table: Table '</span>mysql.time_zone_leap_second<span class="s1">' doesn'</span>t exist trying to live without them
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:11.999778Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010361<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Fatal error: Illegal or unknown default <span class="nb">time</span> zone <span class="s1">'Asia/Tokyo'</span>
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:11.999874Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010119<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Aborting
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:13.815771Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010910<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld: Shutdown <span class="nb">complete</span> <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span>  MySQL Community Server - GPL.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:16.554707Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011070<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> <span class="s1">'Disabling symbolic links using --skip-symbolic-links (or equivalent) is the default. Consider not using this option as it'</span> is deprecated and will be removed in a future release.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:16.554806Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010116<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span> starting as process <span class="m">1</span>
+db_1   <span class="p">|</span> mysqld: Table <span class="s1">'mysql.plugin'</span> doesn<span class="s1">'t exist</span>
+<span class="s1">db_1   | 2019-01-20T11:56:16.812075Z 0 [ERROR] [MY-010735] [Server] Can'</span>t open the mysql.plugin table. Please run mysql_upgrade to create it.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:16.895053Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010015<span class="o">]</span> <span class="o">[</span>Repl<span class="o">]</span> Gtid table is not ready to be used. Table <span class="s1">'mysql.gtid_executed'</span> cannot be opened.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:16.897313Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010068<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> CA certificate ca.pem is self signed.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:16.899059Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011810<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Insecure configuration <span class="k">for</span> --pid-file: Location <span class="s1">'/var/run/mysqld'</span> in the path is accessible to all OS users. Consider choosing a different directory.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:16.899390Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010441<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Failed to open optimizer cost constant tables
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:16.899657Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-013129<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> A message intended <span class="k">for</span> a client cannot be sent there as no client-session is attached. Therefore, we<span class="s1">'re sending the information to the error-log instead: MY-001146 - Table '</span>mysql.component<span class="s1">' doesn'</span>t exist
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:16.899694Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-013129<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> A message intended <span class="k">for</span> a client cannot be sent there as no client-session is attached. Therefore, we<span class="s1">'re sending the information to the error-log instead: MY-003543 - The mysql.component table is missing or has an incorrect definition.</span>
+<span class="s1">db_1   | 2019-01-20T11:56:16.900291Z 0 [ERROR] [MY-010326] [Server] Fatal error: Can'</span>t open and lock privilege tables: Table <span class="s1">'mysql.user'</span> doesn<span class="s1">'t exist</span>
+<span class="s1">db_1   | 2019-01-20T11:56:16.900354Z 0 [Warning] [MY-010952] [Server] The privilege system failed to initialize correctly. If you have upgraded your server, make sure you'</span>re executing mysql_upgrade to correct the issue.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:16.900626Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010357<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Can<span class="s1">'t open and lock time zone table: Table '</span>mysql.time_zone_leap_second<span class="s1">' doesn'</span>t exist trying to live without them
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:16.900654Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010361<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Fatal error: Illegal or unknown default <span class="nb">time</span> zone <span class="s1">'Asia/Tokyo'</span>
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:16.900826Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010119<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Aborting
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:18.720970Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010910<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld: Shutdown <span class="nb">complete</span> <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span>  MySQL Community Server - GPL.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:23.019641Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011070<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> <span class="s1">'Disabling symbolic links using --skip-symbolic-links (or equivalent) is the default. Consider not using this option as it'</span> is deprecated and will be removed in a future release.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:23.019736Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010116<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span> starting as process <span class="m">1</span>
+db_1   <span class="p">|</span> mysqld: Table <span class="s1">'mysql.plugin'</span> doesn<span class="s1">'t exist</span>
+<span class="s1">db_1   | 2019-01-20T11:56:23.282147Z 0 [ERROR] [MY-010735] [Server] Can'</span>t open the mysql.plugin table. Please run mysql_upgrade to create it.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:23.310746Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010015<span class="o">]</span> <span class="o">[</span>Repl<span class="o">]</span> Gtid table is not ready to be used. Table <span class="s1">'mysql.gtid_executed'</span> cannot be opened.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:23.317461Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010068<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> CA certificate ca.pem is self signed.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:23.319319Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011810<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Insecure configuration <span class="k">for</span> --pid-file: Location <span class="s1">'/var/run/mysqld'</span> in the path is accessible to all OS users. Consider choosing a different directory.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:23.320932Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010441<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Failed to open optimizer cost constant tables
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:23.321207Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-013129<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> A message intended <span class="k">for</span> a client cannot be sent there as no client-session is attached. Therefore, we<span class="s1">'re sending the information to the error-log instead: MY-001146 - Table '</span>mysql.component<span class="s1">' doesn'</span>t exist
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:23.321237Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-013129<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> A message intended <span class="k">for</span> a client cannot be sent there as no client-session is attached. Therefore, we<span class="s1">'re sending the information to the error-log instead: MY-003543 - The mysql.component table is missing or has an incorrect definition.</span>
+<span class="s1">db_1   | 2019-01-20T11:56:23.321817Z 0 [ERROR] [MY-010326] [Server] Fatal error: Can'</span>t open and lock privilege tables: Table <span class="s1">'mysql.user'</span> doesn<span class="s1">'t exist</span>
+<span class="s1">db_1   | 2019-01-20T11:56:23.321890Z 0 [Warning] [MY-010952] [Server] The privilege system failed to initialize correctly. If you have upgraded your server, make sure you'</span>re executing mysql_upgrade to correct the issue.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:23.322074Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010357<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Can<span class="s1">'t open and lock time zone table: Table '</span>mysql.time_zone_leap_second<span class="s1">' doesn'</span>t exist trying to live without them
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:23.322097Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010361<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Fatal error: Illegal or unknown default <span class="nb">time</span> zone <span class="s1">'Asia/Tokyo'</span>
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:23.322247Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010119<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Aborting
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:25.183207Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010910<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld: Shutdown <span class="nb">complete</span> <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span>  MySQL Community Server - GPL.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:32.657838Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011070<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> <span class="s1">'Disabling symbolic links using --skip-symbolic-links (or equivalent) is the default. Consider not using this option as it'</span> is deprecated and will be removed in a future release.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:32.657925Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010116<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span> starting as process <span class="m">1</span>
+db_1   <span class="p">|</span> mysqld: Table <span class="s1">'mysql.plugin'</span> doesn<span class="s1">'t exist</span>
+<span class="s1">db_1   | 2019-01-20T11:56:32.919082Z 0 [ERROR] [MY-010735] [Server] Can'</span>t open the mysql.plugin table. Please run mysql_upgrade to create it.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:33.002849Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010015<span class="o">]</span> <span class="o">[</span>Repl<span class="o">]</span> Gtid table is not ready to be used. Table <span class="s1">'mysql.gtid_executed'</span> cannot be opened.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:33.005166Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010068<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> CA certificate ca.pem is self signed.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:33.006884Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011810<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Insecure configuration <span class="k">for</span> --pid-file: Location <span class="s1">'/var/run/mysqld'</span> in the path is accessible to all OS users. Consider choosing a different directory.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:33.007190Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010441<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Failed to open optimizer cost constant tables
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:33.007365Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-013129<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> A message intended <span class="k">for</span> a client cannot be sent there as no client-session is attached. Therefore, we<span class="s1">'re sending the information to the error-log instead: MY-001146 - Table '</span>mysql.component<span class="s1">' doesn'</span>t exist
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:33.007399Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-013129<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> A message intended <span class="k">for</span> a client cannot be sent there as no client-session is attached. Therefore, we<span class="s1">'re sending the information to the error-log instead: MY-003543 - The mysql.component table is missing or has an incorrect definition.</span>
+<span class="s1">db_1   | 2019-01-20T11:56:33.007897Z 0 [ERROR] [MY-010326] [Server] Fatal error: Can'</span>t open and lock privilege tables: Table <span class="s1">'mysql.user'</span> doesn<span class="s1">'t exist</span>
+<span class="s1">db_1   | 2019-01-20T11:56:33.007959Z 0 [Warning] [MY-010952] [Server] The privilege system failed to initialize correctly. If you have upgraded your server, make sure you'</span>re executing mysql_upgrade to correct the issue.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:33.008121Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010357<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Can<span class="s1">'t open and lock time zone table: Table '</span>mysql.time_zone_leap_second<span class="s1">' doesn'</span>t exist trying to live without them
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:33.008148Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010361<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Fatal error: Illegal or unknown default <span class="nb">time</span> zone <span class="s1">'Asia/Tokyo'</span>
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:33.008248Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010119<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Aborting
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:34.819455Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010910<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld: Shutdown <span class="nb">complete</span> <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span>  MySQL Community Server - GPL.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:48.777104Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011070<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> <span class="s1">'Disabling symbolic links using --skip-symbolic-links (or equivalent) is the default. Consider not using this option as it'</span> is deprecated and will be removed in a future release.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:48.777198Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010116<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span> starting as process <span class="m">1</span>
+db_1   <span class="p">|</span> mysqld: Table <span class="s1">'mysql.plugin'</span> doesn<span class="s1">'t exist</span>
+<span class="s1">db_1   | 2019-01-20T11:56:49.036122Z 0 [ERROR] [MY-010735] [Server] Can'</span>t open the mysql.plugin table. Please run mysql_upgrade to create it.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:49.117775Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010015<span class="o">]</span> <span class="o">[</span>Repl<span class="o">]</span> Gtid table is not ready to be used. Table <span class="s1">'mysql.gtid_executed'</span> cannot be opened.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:49.120188Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010068<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> CA certificate ca.pem is self signed.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:49.122183Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-011810<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Insecure configuration <span class="k">for</span> --pid-file: Location <span class="s1">'/var/run/mysqld'</span> in the path is accessible to all OS users. Consider choosing a different directory.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:49.122556Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010441<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Failed to open optimizer cost constant tables
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:49.122852Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-013129<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> A message intended <span class="k">for</span> a client cannot be sent there as no client-session is attached. Therefore, we<span class="s1">'re sending the information to the error-log instead: MY-001146 - Table '</span>mysql.component<span class="s1">' doesn'</span>t exist
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:49.122890Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-013129<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> A message intended <span class="k">for</span> a client cannot be sent there as no client-session is attached. Therefore, we<span class="s1">'re sending the information to the error-log instead: MY-003543 - The mysql.component table is missing or has an incorrect definition.</span>
+<span class="s1">db_1   | 2019-01-20T11:56:49.123460Z 0 [ERROR] [MY-010326] [Server] Fatal error: Can'</span>t open and lock privilege tables: Table <span class="s1">'mysql.user'</span> doesn<span class="s1">'t exist</span>
+<span class="s1">db_1   | 2019-01-20T11:56:49.123544Z 0 [Warning] [MY-010952] [Server] The privilege system failed to initialize correctly. If you have upgraded your server, make sure you'</span>re executing mysql_upgrade to correct the issue.
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:49.123830Z <span class="m">0</span> <span class="o">[</span>Warning<span class="o">]</span> <span class="o">[</span>MY-010357<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Can<span class="s1">'t open and lock time zone table: Table '</span>mysql.time_zone_leap_second<span class="s1">' doesn'</span>t exist trying to live without them
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:49.123863Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010361<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Fatal error: Illegal or unknown default <span class="nb">time</span> zone <span class="s1">'Asia/Tokyo'</span>
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:49.124062Z <span class="m">0</span> <span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>MY-010119<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> Aborting
+db_1   <span class="p">|</span> <span class="m">2019</span>-01-20T11:56:50.944319Z <span class="m">0</span> <span class="o">[</span>System<span class="o">]</span> <span class="o">[</span>MY-010910<span class="o">]</span> <span class="o">[</span>Server<span class="o">]</span> /usr/sbin/mysqld: Shutdown <span class="nb">complete</span> <span class="o">(</span>mysqld <span class="m">8</span>.0.13<span class="o">)</span>  MySQL Community Server - GPL.
+fufu_db exited with code <span class="m">1</span>
+</pre></div>
+</div>
+</li>
+<li><p>わたしの場合は、 docker-compose ファイルでこう↓しているので、デフォルト状態では存在した <span class="docutils literal">/etc/mysql/conf.d/docker.cnf</span> を抹殺してしまっている</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">volumes</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="s">"./mysql/conf.d:/etc/mysql/conf.d"</span>
+</pre></div>
+</div>
+</li>
+<li><p>しかたがないので、自分の <span class="docutils literal">mysql.cnf</span> に転記することにした</p></li>
+<li><p>このふたつがないとどうしてこのエラーになるのかわたしにはわかりません、だって全然関係ないこと言ってるように見えるのに...</p></li>
+<li><p>このふたつの説明はここです: <a class="reference external" href="https://dev.mysql.com/doc/refman/8.0/en/host-cache.html">https://dev.mysql.com/doc/refman/8.0/en/host-cache.html</a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id9">
+<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_2d2_index_2erst_13"></div><h1><a class="toc-backref" href="#id22">使い方メモ</a></h1>
+<div class="section" id="image">
+<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_2d2_index_2erst_14"></div><h2><a class="toc-backref" href="#id23">再び image ビルドしたくなったら</a></h2>
+<div class="code-block">
+<div class="highlight"><pre><span></span>$ docker-compose run web django-admin.py startproject config .
+</pre></div>
+</div>
+<p>とか</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span>$ docker-compose run web django-admin.py startproject config .
+$ docker-compose up
+</pre></div>
+</div>
+<p>したあとに、再び image ビルドしたくなったら、</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="c1"># web をビルド</span>
+$ docker-compose build web
+
+<span class="c1"># db をビルド</span>
+$ docker-compose build db
+</pre></div>
+</div>
+</div>
+</div>
+    </div>
+  </main>
+</div>
+</div>
+    </div>
+  </body>
+
+</html>
