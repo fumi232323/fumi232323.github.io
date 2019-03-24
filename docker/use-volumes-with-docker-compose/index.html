@@ -100,6 +100,10 @@
           <ul>
             
               <li class="nav-article">
+                <a href="../connect-from-sqla-to-mysqldb/">Docker Compose で MySQL DB をつくり Compose 外 (非 docker) の SQLAlchemy から接続する</a>
+              </li>
+            
+              <li class="nav-article">
                 <a href="../create-django-env-with-docker-compose-mysql-2/">Docker Compose で Django/MySQL 環境をつくる その2</a>
               </li>
             
@@ -385,7 +389,7 @@
 </ul>
 </div>
 </details><div class="section" id="id1">
-<div class="header_target" id="h_docker_use_2dvolumes_2dwith_2ddocker_2dcompose_index_2erst_1"></div><h1><a class="toc-backref" href="#id3">リファレンス</a></h1>
+<div class="md_header_block" id="h_%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9"><a class="md_header_anchor" id="a_%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9"></a><h1><a class="toc-backref" href="#id3">リファレンス</a></h1></div>
 <ul class="simple">
 <li><p><a class="reference external" href="https://docs.docker.com/storage/volumes/">Use volumes</a></p></li>
 <li><p><a class="reference external" href="https://docs.docker.com/storage/volumes/#create-and-manage-volumes">Create and manage volumes</a></p></li>
@@ -395,12 +399,12 @@
 </ul>
 </div>
 <div class="section" id="id2">
-<div class="header_target" id="h_docker_use_2dvolumes_2dwith_2ddocker_2dcompose_index_2erst_2"></div><h1><a class="toc-backref" href="#id4">手順</a></h1>
+<div class="md_header_block" id="h_%E6%89%8B%E9%A0%86"><a class="md_header_anchor" id="a_%E6%89%8B%E9%A0%86"></a><h1><a class="toc-backref" href="#id4">手順</a></h1></div>
 <p><span class="docutils literal">web</span> のイメージをビルド...するところは、
 <a href="../create-django-env-with-docker-compose/">Docker Compose で Django/PostgreSQL 環境をつくる</a>
 を参照のこと。</p>
 <div class="section" id="volume">
-<div class="header_target" id="h_docker_use_2dvolumes_2dwith_2ddocker_2dcompose_index_2erst_3"></div><h2><a class="toc-backref" href="#id5">1. volume を作成する</a></h2>
+<div class="md_header_block" id="h_1.volume%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B"><a class="md_header_anchor" id="a_1.volume%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B"></a><h2><a class="toc-backref" href="#id5">1. volume を作成する</a></h2></div>
 <p><span class="docutils literal"><span class="pre">db-data</span></span> という名前の volume を作成する。</p>
 <div class="code-block">
 <div class="highlight"><pre><span></span>$ docker volume create db-data
@@ -442,40 +446,40 @@ DRIVER              VOLUME NAME
 </ul>
 </div>
 <div class="section" id="docker-compose-yml-volume">
-<div class="header_target" id="h_docker_use_2dvolumes_2dwith_2ddocker_2dcompose_index_2erst_4"></div><h2><a class="toc-backref" href="#id6">2. <span class="docutils literal"><span class="pre">docker-compose.yml</span></span> に作成した volume を指定する</a></h2>
+<div class="md_header_block" id="h_2.dockercompose.yml%E3%81%AB%E4%BD%9C%E6%88%90%E3%81%97%E3%81%9Fvolume%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%99%E3%82%8B"><a class="md_header_anchor" id="a_2.dockercompose.yml%E3%81%AB%E4%BD%9C%E6%88%90%E3%81%97%E3%81%9Fvolume%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%99%E3%82%8B"></a><h2><a class="toc-backref" href="#id6">2. <span class="docutils literal"><span class="pre">docker-compose.yml</span></span> に作成した volume を指定する</a></h2></div>
 <div class="code-block">
-<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span> <span class="s">'3'</span>
+<div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span> <span class="s">'3'</span>
 
-<span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">db</span><span class="p p-Indicator">:</span>
-    <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">postgres:latest</span>
-    <span class="l l-Scalar l-Scalar-Plain">volumes</span><span class="p p-Indicator">:</span>
+<span class="nt">services</span><span class="p">:</span>
+  <span class="nt">db</span><span class="p">:</span>
+    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">postgres:latest</span>
+    <span class="nt">volumes</span><span class="p">:</span>
       <span class="c1"># コンテナの `/var/lib/postgresql/data` を、volume `db-data` にマウントする。</span>
       <span class="p p-Indicator">-</span> <span class="s">"db-data:/var/lib/postgresql/data"</span>
     <span class="c1"># 環境変数を追加する</span>
-    <span class="l l-Scalar l-Scalar-Plain">environment</span><span class="p p-Indicator">:</span>
+    <span class="nt">environment</span><span class="p">:</span>
       <span class="c1"># postgres のパスワードを設定する</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">POSTGRES_PASSWORD=postgres</span>
-  <span class="l l-Scalar l-Scalar-Plain">web</span><span class="p p-Indicator">:</span>
-    <span class="l l-Scalar l-Scalar-Plain">build</span><span class="p p-Indicator">:</span>
-      <span class="l l-Scalar l-Scalar-Plain">context</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">.</span>
-      <span class="l l-Scalar l-Scalar-Plain">dockerfile</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Dockerfile-web</span>
-    <span class="l l-Scalar l-Scalar-Plain">command</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">python3 manage.py runserver 0.0.0.0:8000</span>
-    <span class="l l-Scalar l-Scalar-Plain">volumes</span><span class="p p-Indicator">:</span>
+  <span class="nt">web</span><span class="p">:</span>
+    <span class="nt">build</span><span class="p">:</span>
+      <span class="nt">context</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">.</span>
+      <span class="nt">dockerfile</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Dockerfile-web</span>
+    <span class="nt">command</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">python3 manage.py runserver 0.0.0.0:8000</span>
+    <span class="nt">volumes</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">.:/code</span>
-    <span class="l l-Scalar l-Scalar-Plain">ports</span><span class="p p-Indicator">:</span>
+    <span class="nt">ports</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="s">"3236:8000"</span>
-    <span class="l l-Scalar l-Scalar-Plain">depends_on</span><span class="p p-Indicator">:</span>
+    <span class="nt">depends_on</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">db</span>
 
 <span class="c1"># volumes を定義する</span>
-<span class="l l-Scalar l-Scalar-Plain">volumes</span><span class="p p-Indicator">:</span>
+<span class="nt">volumes</span><span class="p">:</span>
   <span class="c1"># volume の名前を指定</span>
-  <span class="l l-Scalar l-Scalar-Plain">db-data</span><span class="p p-Indicator">:</span>
+  <span class="nt">db-data</span><span class="p">:</span>
     <span class="c1"># Compose の外ですでに作成済みの volume を指定する場合は ture を設定する。</span>
     <span class="c1"># そうすると、 docker-compose up 時に Compose は volume を作成しようとしません。</span>
     <span class="c1"># かつ、指定した volume が存在しないとエラーを raise します。</span>
-    <span class="l l-Scalar l-Scalar-Plain">external</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="nt">external</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -485,7 +489,7 @@ DRIVER              VOLUME NAME
 </ul>
 </div>
 <div class="section" id="settings-py-database">
-<div class="header_target" id="h_docker_use_2dvolumes_2dwith_2ddocker_2dcompose_index_2erst_5"></div><h2><a class="toc-backref" href="#id7">3. <span class="docutils literal">settings.py</span> に DATABASE を定義する</a></h2>
+<div class="md_header_block" id="h_3.settings.py%E3%81%ABDATABASE%E3%82%92%E5%AE%9A%E7%BE%A9%E3%81%99%E3%82%8B"><a class="md_header_anchor" id="a_3.settings.py%E3%81%ABDATABASE%E3%82%92%E5%AE%9A%E7%BE%A9%E3%81%99%E3%82%8B"></a><h2><a class="toc-backref" href="#id7">3. <span class="docutils literal">settings.py</span> に DATABASE を定義する</a></h2></div>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">'default'</span><span class="p">:</span> <span class="p">{</span>
@@ -501,14 +505,14 @@ DRIVER              VOLUME NAME
 </div>
 </div>
 <div class="section" id="docker">
-<div class="header_target" id="h_docker_use_2dvolumes_2dwith_2ddocker_2dcompose_index_2erst_6"></div><h2><a class="toc-backref" href="#id8">4. Docker コンテナを実行する</a></h2>
+<div class="md_header_block" id="h_4.Docker%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%99%E3%82%8B"><a class="md_header_anchor" id="a_4.Docker%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%99%E3%82%8B"></a><h2><a class="toc-backref" href="#id8">4. Docker コンテナを実行する</a></h2></div>
 <div class="code-block">
 <div class="highlight"><pre><span></span>$ docker-compose up
 </pre></div>
 </div>
 </div>
 <div class="section" id="db">
-<div class="header_target" id="h_docker_use_2dvolumes_2dwith_2ddocker_2dcompose_index_2erst_7"></div><h2><a class="toc-backref" href="#id9">5. DB コンテナのなかに入って、テーブルを作成 &amp; データを挿入する</a></h2>
+<div class="md_header_block" id="h_5.DB%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E3%81%AE%E3%81%AA%E3%81%8B%E3%81%AB%E5%85%A5%E3%81%A3%E3%81%A6%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E3%82%92%E4%BD%9C%E6%88%90%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E6%8C%BF%E5%85%A5%E3%81%99%E3%82%8B"><a class="md_header_anchor" id="a_5.DB%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E3%81%AE%E3%81%AA%E3%81%8B%E3%81%AB%E5%85%A5%E3%81%A3%E3%81%A6%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E3%82%92%E4%BD%9C%E6%88%90%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E6%8C%BF%E5%85%A5%E3%81%99%E3%82%8B"></a><h2><a class="toc-backref" href="#id9">5. DB コンテナのなかに入って、テーブルを作成 &amp; データを挿入する</a></h2></div>
 <p>1). <span class="docutils literal">db</span> コンテナのなかに入る</p>
 <blockquote>
 <div class="code-block">
@@ -553,7 +557,7 @@ $ docker container <span class="nb">exec</span> -it fffff_db_1 sh
 </blockquote>
 </div>
 <div class="section" id="shutdown">
-<div class="header_target" id="h_docker_use_2dvolumes_2dwith_2ddocker_2dcompose_index_2erst_8"></div><h2><a class="toc-backref" href="#id10">6. 安全に shutdown する</a></h2>
+<div class="md_header_block" id="h_6.%E5%AE%89%E5%85%A8%E3%81%ABshutdown%E3%81%99%E3%82%8B"><a class="md_header_anchor" id="a_6.%E5%AE%89%E5%85%A8%E3%81%ABshutdown%E3%81%99%E3%82%8B"></a><h2><a class="toc-backref" href="#id10">6. 安全に shutdown する</a></h2></div>
 <p>コンテナは停止・削除される。</p>
 <div class="code-block">
 <div class="highlight"><pre><span></span>$ docker-compose down
@@ -561,7 +565,7 @@ $ docker container <span class="nb">exec</span> -it fffff_db_1 sh
 </div>
 </div>
 <div class="section" id="docker-compose-up">
-<div class="header_target" id="h_docker_use_2dvolumes_2dwith_2ddocker_2dcompose_index_2erst_9"></div><h2><a class="toc-backref" href="#id11">7. 再度 <span class="docutils literal"><span class="pre">docker-compose</span> up</span> して、先ほど登録したテーブル &amp; データを見てみる</a></h2>
+<div class="md_header_block" id="h_7.%E5%86%8D%E5%BA%A6dockercomposeup%E3%81%97%E3%81%A6%E5%85%88%E3%81%BB%E3%81%A9%E7%99%BB%E9%8C%B2%E3%81%97%E3%81%9F%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB"><a class="md_header_anchor" id="a_7.%E5%86%8D%E5%BA%A6dockercomposeup%E3%81%97%E3%81%A6%E5%85%88%E3%81%BB%E3%81%A9%E7%99%BB%E9%8C%B2%E3%81%97%E3%81%9F%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB"></a><h2><a class="toc-backref" href="#id11">7. 再度 <span class="docutils literal"><span class="pre">docker-compose</span> up</span> して、先ほど登録したテーブル &amp; データを見てみる</a></h2></div>
 <p>先ほど作成したテーブルとデータがありました。</p>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="gp">$</span> docker-compose up

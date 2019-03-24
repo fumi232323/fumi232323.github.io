@@ -100,6 +100,10 @@
           <ul>
             
               <li class="nav-article">
+                <a href="../../docker/connect-from-sqla-to-mysqldb/">Docker Compose で MySQL DB をつくり Compose 外 (非 docker) の SQLAlchemy から接続する</a>
+              </li>
+            
+              <li class="nav-article">
                 <a href="../../docker/create-django-env-with-docker-compose-mysql-2/">Docker Compose で Django/MySQL 環境をつくる その2</a>
               </li>
             
@@ -394,13 +398,13 @@
 </ul>
 </div>
 </details><div class="section" id="pytest">
-<div class="header_target" id="h_python_2dtest_note_index_2erst_1"></div><h1><a class="toc-backref" href="#id6">pytest</a></h1>
+<div class="md_header_block" id="h_pytest"><a class="md_header_anchor" id="a_pytest"></a><h1><a class="toc-backref" href="#id6">pytest</a></h1></div>
 <div class="section" id="id1">
-<div class="header_target" id="h_python_2dtest_note_index_2erst_2"></div><h2><a class="toc-backref" href="#id7">リファレンス</a></h2>
+<div class="md_header_block" id="h_%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9"><a class="md_header_anchor" id="a_%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9"></a><h2><a class="toc-backref" href="#id7">リファレンス</a></h2></div>
 <p><a class="reference external" href="https://docs.pytest.org/en/latest/">https://docs.pytest.org/en/latest/</a></p>
 </div>
 <div class="section" id="id2">
-<div class="header_target" id="h_python_2dtest_note_index_2erst_3"></div><h2><a class="toc-backref" href="#id8">例外のテストはこれ</a></h2>
+<div class="md_header_block" id="h_%E4%BE%8B%E5%A4%96%E3%81%AE%E3%83%86%E3%82%B9%E3%83%88%E3%81%AF%E3%81%93%E3%82%8C"><a class="md_header_anchor" id="a_%E4%BE%8B%E5%A4%96%E3%81%AE%E3%83%86%E3%82%B9%E3%83%88%E3%81%AF%E3%81%93%E3%82%8C"></a><h2><a class="toc-backref" href="#id8">例外のテストはこれ</a></h2></div>
 <p><a class="reference external" href="https://docs.pytest.org/en/latest/reference.html#pytest-raises">https://docs.pytest.org/en/latest/reference.html#pytest-raises</a></p>
 <ul>
 <li><p><span class="docutils literal">with pytest.raises(RuntimeError) as excinfo:</span> の <span class="docutils literal">excinfo</span> には、 <a class="reference external" href="https://docs.pytest.org/en/latest/reference.html#exceptioninfo">ExceptionInfo</a> が入ってくる</p></li>
@@ -417,23 +421,23 @@
 </ul>
 </div>
 <div class="section" id="parametrize">
-<div class="header_target" id="h_python_2dtest_note_index_2erst_4"></div><h2><a class="toc-backref" href="#id9">parametrize</a></h2>
+<div class="md_header_block" id="h_parametrize"><a class="md_header_anchor" id="a_parametrize"></a><h2><a class="toc-backref" href="#id9">parametrize</a></h2></div>
 <p><span class="docutils literal">unittest.TestCase</span> を継承したテストクラス内では、 <span class="docutils literal">@pytest.mark.parametrize</span> を使えない。</p>
 </div>
 <div class="section" id="pytest-fixture">
-<div class="header_target" id="h_python_2dtest_note_index_2erst_5"></div><h2><a class="toc-backref" href="#id10">pytest.fixture</a></h2>
+<div class="md_header_block" id="h_pytest.fixture"><a class="md_header_anchor" id="a_pytest.fixture"></a><h2><a class="toc-backref" href="#id10">pytest.fixture</a></h2></div>
 <p><a class="reference external" href="https://docs.pytest.org/en/latest/fixture.html">https://docs.pytest.org/en/latest/fixture.html</a></p>
 <pre class="literal-block">Test functions can receive fixture objects by naming them as an input argument. For each argument name, a fixture function with that name provides the fixture object. Fixture functions are registered by marking them with @pytest.fixture.</pre>
 </div>
 </div>
 <div class="section" id="testfixtures">
-<div class="header_target" id="h_python_2dtest_note_index_2erst_6"></div><h1><a class="toc-backref" href="#id11">testfixtures</a></h1>
+<div class="md_header_block" id="h_testfixtures"><a class="md_header_anchor" id="a_testfixtures"></a><h1><a class="toc-backref" href="#id11">testfixtures</a></h1></div>
 <div class="section" id="id3">
-<div class="header_target" id="h_python_2dtest_note_index_2erst_7"></div><h2><a class="toc-backref" href="#id12">リファレンス</a></h2>
+<div class="md_header_block" id="h_%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9_1"><a class="md_header_anchor" id="a_%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9_1"></a><h2><a class="toc-backref" href="#id12">リファレンス</a></h2></div>
 <p><a class="reference external" href="https://testfixtures.readthedocs.io/en/latest/index.html">https://testfixtures.readthedocs.io/en/latest/index.html</a></p>
 </div>
 <div class="section" id="date-datetime-mock">
-<div class="header_target" id="h_python_2dtest_note_index_2erst_8"></div><h2><a class="toc-backref" href="#id13">date と datetime を mock できる</a></h2>
+<div class="md_header_block" id="h_date%E3%81%A8datetime%E3%82%92mock%E3%81%A7%E3%81%8D%E3%82%8B"><a class="md_header_anchor" id="a_date%E3%81%A8datetime%E3%82%92mock%E3%81%A7%E3%81%8D%E3%82%8B"></a><h2><a class="toc-backref" href="#id13">date と datetime を mock できる</a></h2></div>
 <ul class="simple">
 <li><p><a class="reference external" href="https://testfixtures.readthedocs.io/en/latest/datetime.html">https://testfixtures.readthedocs.io/en/latest/datetime.html</a></p></li>
 <li><p><a class="reference external" href="https://testfixtures.readthedocs.io/en/latest/api.html#testfixtures.test_date">https://testfixtures.readthedocs.io/en/latest/api.html#testfixtures.test_date</a></p></li>
@@ -447,13 +451,13 @@
 </div>
 </div>
 <div class="section" id="flake8-3-6">
-<div class="header_target" id="h_python_2dtest_note_index_2erst_9"></div><h1><a class="toc-backref" href="#id14">flake8 3.6 対応がわかりやすい</a></h1>
+<div class="md_header_block" id="h_flake83.6%E5%AF%BE%E5%BF%9C%E3%81%8C%E3%82%8F%E3%81%8B%E3%82%8A%E3%82%84%E3%81%99%E3%81%84"><a class="md_header_anchor" id="a_flake83.6%E5%AF%BE%E5%BF%9C%E3%81%8C%E3%82%8F%E3%81%8B%E3%82%8A%E3%82%84%E3%81%99%E3%81%84"></a><h1><a class="toc-backref" href="#id14">flake8 3.6 対応がわかりやすい</a></h1></div>
 <p><a class="reference external" href="https://scrapbox.io/shimizukawa/flake8-3.6.0_%E3%81%AB%E6%9B%B4%E6%96%B0%E3%81%97%E3%81%9F%E3%82%89%E8%AD%A6%E5%91%8A%E3%81%9F%E3%81%8F%E3%81%95%E3%82%93%E5%87%BA%E3%81%A6%E3%81%8D%E3%81%9F">https://scrapbox.io/shimizukawa/flake8-3.6.0_%E3%81%AB%E6%9B%B4%E6%96%B0%E3%81%97%E3%81%9F%E3%82%89%E8%AD%A6%E5%91%8A%E3%81%9F%E3%81%8F%E3%81%95%E3%82%93%E5%87%BA%E3%81%A6%E3%81%8D%E3%81%9F</a></p>
 </div>
 <div class="section" id="id4">
-<div class="header_target" id="h_python_2dtest_note_index_2erst_10"></div><h1><a class="toc-backref" href="#id15">あれこれ</a></h1>
+<div class="md_header_block" id="h_%E3%81%82%E3%82%8C%E3%81%93%E3%82%8C"><a class="md_header_anchor" id="a_%E3%81%82%E3%82%8C%E3%81%93%E3%82%8C"></a><h1><a class="toc-backref" href="#id15">あれこれ</a></h1></div>
 <div class="section" id="a">
-<div class="header_target" id="h_python_2dtest_note_index_2erst_11"></div><h2><a class="toc-backref" href="#id16">3a スタイル</a></h2>
+<div class="md_header_block" id="h_3a%E3%82%B9%E3%82%BF%E3%82%A4%E3%83%AB"><a class="md_header_anchor" id="a_3a%E3%82%B9%E3%82%BF%E3%82%A4%E3%83%AB"></a><h2><a class="toc-backref" href="#id16">3a スタイル</a></h2></div>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="c1"># arrange</span>
 <span class="c1"># act</span>
@@ -463,14 +467,14 @@
 <p><a class="reference external" href="http://wiki.c2.com/?arrangeactassert">http://wiki.c2.com/?arrangeactassert</a> (つながらない)</p>
 </div>
 <div class="section" id="testpyramid">
-<div class="header_target" id="h_python_2dtest_note_index_2erst_12"></div><h2><a class="toc-backref" href="#id17">TestPyramid</a></h2>
+<div class="md_header_block" id="h_TestPyramid"><a class="md_header_anchor" id="a_TestPyramid"></a><h2><a class="toc-backref" href="#id17">TestPyramid</a></h2></div>
 <p>UI 寄りのテストは、コストと実行時間が長くなってしまうので、いきなり書かない方がいい</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://martinfowler.com/bliki/TestPyramid.html">https://martinfowler.com/bliki/TestPyramid.html</a></p></li>
 </ul>
 </div>
 <div class="section" id="id5">
-<div class="header_target" id="h_python_2dtest_note_index_2erst_13"></div><h2><a class="toc-backref" href="#id18">テストターゲットの取得方法</a></h2>
+<div class="md_header_block" id="h_%E3%83%86%E3%82%B9%E3%83%88%E3%82%BF%E3%83%BC%E3%82%B2%E3%83%83%E3%83%88%E3%81%AE%E5%8F%96%E5%BE%97%E6%96%B9%E6%B3%95"><a class="md_header_anchor" id="a_%E3%83%86%E3%82%B9%E3%83%88%E3%82%BF%E3%83%BC%E3%82%B2%E3%83%83%E3%83%88%E3%81%AE%E5%8F%96%E5%BE%97%E6%96%B9%E6%B3%95"></a><h2><a class="toc-backref" href="#id18">テストターゲットの取得方法</a></h2></div>
 <p><a class="reference external" href="http://pelican.aodag.jp/xiao-guo-de-naunittest-mataha-callfutnomi-mi.html">http://pelican.aodag.jp/xiao-guo-de-naunittest-mataha-callfutnomi-mi.html</a></p>
 </div>
 </div>

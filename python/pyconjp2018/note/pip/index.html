@@ -100,6 +100,10 @@
           <ul>
             
               <li class="nav-article">
+                <a href="../../../../docker/connect-from-sqla-to-mysqldb/">Docker Compose で MySQL DB をつくり Compose 外 (非 docker) の SQLAlchemy から接続する</a>
+              </li>
+            
+              <li class="nav-article">
                 <a href="../../../../docker/create-django-env-with-docker-compose-mysql-2/">Docker Compose で Django/MySQL 環境をつくる その2</a>
               </li>
             
@@ -367,18 +371,18 @@
     </div>
     <div class="text">
       <div class="section" id="id1">
-<div class="header_target" id="h_python_pyconjp2018_note_pip_index_2erst_1"></div><h1>はじめに</h1>
+<div class="md_header_block" id="h_%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><a class="md_header_anchor" id="a_%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"></a><h1>はじめに</h1></div>
 <p>グ を忘れた</p>
 </div>
 <div class="section" id="pip">
-<div class="header_target" id="h_python_pyconjp2018_note_pip_index_2erst_2"></div><h1>今日のpip</h1>
+<div class="md_header_block" id="h_%E4%BB%8A%E6%97%A5%E3%81%AEpip"><a class="md_header_anchor" id="a_%E4%BB%8A%E6%97%A5%E3%81%AEpip"></a><h1>今日のpip</h1></div>
 <ul class="simple">
 <li><p>10 -&gt; 18</p></li>
 <li><p>いきなりあがったけど、びっくりしないこと</p></li>
 </ul>
 </div>
 <div class="section" id="setuptools">
-<div class="header_target" id="h_python_pyconjp2018_note_pip_index_2erst_3"></div><h1>setuptools</h1>
+<div class="md_header_block" id="h_setuptools"><a class="md_header_anchor" id="a_setuptools"></a><h1>setuptools</h1></div>
 <ul class="simple">
 <li><p>名前空間パッケージ</p></li>
 <li><p>モジュールとかをまとめてるディレクトリのこと = 名前空間</p></li>
@@ -389,7 +393,7 @@
 </ul>
 </div>
 <div class="section" id="pypi-org">
-<div class="header_target" id="h_python_pyconjp2018_note_pip_index_2erst_4"></div><h1>pypi.org</h1>
+<div class="md_header_block" id="h_pypi.org"><a class="md_header_anchor" id="a_pypi.org"></a><h1>pypi.org</h1></div>
 <ul class="simple">
 <li><p>pip と virtualenv</p></li>
 <li><p>pip は単なるインストーラー</p></li>
@@ -397,7 +401,7 @@
 </ul>
 </div>
 <div class="section" id="pipenv">
-<div class="header_target" id="h_python_pyconjp2018_note_pip_index_2erst_5"></div><h1>pipenv</h1>
+<div class="md_header_block" id="h_pipenv"><a class="md_header_anchor" id="a_pipenv"></a><h1>pipenv</h1></div>
 <ul class="simple">
 <li><p>遅い</p></li>
 <li><p>virtualenv を外から管理する</p></li>
@@ -410,7 +414,7 @@
 </ul>
 </div>
 <div class="section" id="pep517-pep518">
-<div class="header_target" id="h_python_pyconjp2018_note_pip_index_2erst_6"></div><h1>PEP517, PEP518</h1>
+<div class="md_header_block" id="h_PEP517PEP518"><a class="md_header_anchor" id="a_PEP517PEP518"></a><h1>PEP517, PEP518</h1></div>
 <ul class="simple">
 <li></li>
 <li><p>flit というのがある</p></li>
@@ -418,13 +422,13 @@
 </ul>
 </div>
 <div class="section" id="mypy">
-<div class="header_target" id="h_python_pyconjp2018_note_pip_index_2erst_7"></div><h1>mypy</h1>
+<div class="md_header_block" id="h_mypy"><a class="md_header_anchor" id="a_mypy"></a><h1>mypy</h1></div>
 <ul class="simple">
 <li><p>アノテーション</p></li>
 <li><p>py.typed と言うファイルがあると、このパッケージはタイプアノテーション入ってるよ、というお知らせになる</p></li>
 </ul>
 <div class="section" id="stub">
-<div class="header_target" id="h_python_pyconjp2018_note_pip_index_2erst_8"></div><h2>stub なんやら</h2>
+<div class="md_header_block" id="h_stub%E3%81%AA%E3%82%93%E3%82%84%E3%82%89"><a class="md_header_anchor" id="a_stub%E3%81%AA%E3%82%93%E3%82%84%E3%82%89"></a><h2>stub なんやら</h2></div>
 <ul class="simple">
 <li><p>タイプアノテーションを外付けできる</p></li>
 <li><p>ほかのファイルにしておける、別々に配布できる</p></li>
@@ -432,14 +436,14 @@
 </div>
 </div>
 <div class="section" id="id2">
-<div class="header_target" id="h_python_pyconjp2018_note_pip_index_2erst_9"></div><h1>まとめ</h1>
+<div class="md_header_block" id="h_%E3%81%BE%E3%81%A8%E3%82%81"><a class="md_header_anchor" id="a_%E3%81%BE%E3%81%A8%E3%82%81"></a><h1>まとめ</h1></div>
 <ul class="simple">
 <li><p>pipenv 説明する側からは便利これさえやっておけばいいんだよ</p></li>
 <li><p>pipfile pyproject.toml 両方使う、というわけじゃない</p></li>
 </ul>
 </div>
 <div class="section" id="id3">
-<div class="header_target" id="h_python_pyconjp2018_note_pip_index_2erst_10"></div><h1>質疑応答</h1>
+<div class="md_header_block" id="h_%E8%B3%AA%E7%96%91%E5%BF%9C%E7%AD%94"><a class="md_header_anchor" id="a_%E8%B3%AA%E7%96%91%E5%BF%9C%E7%AD%94"></a><h1>質疑応答</h1></div>
 <ul class="simple">
 <li><p>実行環境ごとパッキングして持ってける形式にしてくれるツールあるか</p>
 <ul>

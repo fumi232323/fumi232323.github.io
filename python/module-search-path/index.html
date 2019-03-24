@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>Mac のメモ/32imuf.com</title>
+    <title>Python のモジュール検索パス/32imuf.com</title>
     <link rel="shortcut icon" href="/static/icons/favicon.ico">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Griffy">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Vollkorn:400,700">
@@ -100,10 +100,6 @@
           <ul>
             
               <li class="nav-article">
-                <a href="../../docker/connect-from-sqla-to-mysqldb/">Docker Compose で MySQL DB をつくり Compose 外 (非 docker) の SQLAlchemy から接続する</a>
-              </li>
-            
-              <li class="nav-article">
                 <a href="../../docker/create-django-env-with-docker-compose-mysql-2/">Docker Compose で Django/MySQL 環境をつくる その2</a>
               </li>
             
@@ -176,7 +172,7 @@
           <ul>
             
               <li class="nav-article">
-                <a href="./">Mac のメモ</a>
+                <a href="../../mac/note/">Mac のメモ</a>
               </li>
             
           </ul>
@@ -232,15 +228,19 @@
           <ul>
             
               <li class="nav-article">
-                <a href="../../python/etc/">Python いろいろメモ</a>
+                <a href="./">Python のモジュール検索パス</a>
               </li>
             
               <li class="nav-article">
-                <a href="../../python/note/">Python のメモ</a>
+                <a href="../etc/">Python いろいろメモ</a>
               </li>
             
               <li class="nav-article">
-                <a href="../../python/pyconjp2018/">PyConJP 2018 で聞いた講演</a>
+                <a href="../note/">Python のメモ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../pyconjp2018/">PyConJP 2018 で聞いた講演</a>
               </li>
             
           </ul>
@@ -359,54 +359,24 @@
 </header></div>
       <div class="main">
 <div class="article-content">
-  <main class="item item-article item-mac">
-    <time class="date" datetime="2018-11-19 00:00:00+09:00">
-      2018-11-19 Mon
+  <main class="item item-article item-python">
+    <time class="date" datetime="2019-02-23 00:00:00+09:00">
+      2019-02-23 Sat
     </time>
-    <div class="title">Mac のメモ</div>
+    <div class="title">Python のモジュール検索パス</div>
     <div class="category">
-      <a href="/index_category_category_mac.html">
-          mac
+      <a href="/index_category_category_python.html">
+          python
       </a>
     </div>
     <div class="text">
-      <div class="section" id="id1">
-<div class="md_header_block" id="h_%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E6%93%8D%E4%BD%9C"><a class="md_header_anchor" id="a_%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E6%93%8D%E4%BD%9C"></a><h1>ファイル操作</h1></div>
-<div class="section" id="id2">
-<div class="md_header_block" id="h_%E6%96%87%E5%AD%97%E3%82%B3%E3%83%BC%E3%83%89%E3%82%92%E5%A4%89%E6%8F%9B"><a class="md_header_anchor" id="a_%E6%96%87%E5%AD%97%E3%82%B3%E3%83%BC%E3%83%89%E3%82%92%E5%A4%89%E6%8F%9B"></a><h2>文字コードを変換</h2></div>
-<div class="code-block">
-<div class="highlight"><pre><span></span><span class="gp">$</span> iconv -f Shift-JIS -t UTF-8 &lt;変換前のファイル名&gt; &lt;変換後のファイル名&gt;
-</pre></div>
-</div>
-</div>
-<div class="section" id="gz">
-<div class="md_header_block" id="h_.gz%E3%81%AB%E5%9C%A7%E7%B8%AE"><a class="md_header_anchor" id="a_.gz%E3%81%AB%E5%9C%A7%E7%B8%AE"></a><h2>.gz に圧縮</h2></div>
-<div class="code-block">
-<div class="highlight"><pre><span></span><span class="gp">$</span> gzip &lt;ファイル名&gt;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="id3">
-<div class="md_header_block" id="h_%E7%92%B0%E5%A2%83%E5%A4%89%E6%95%B0"><a class="md_header_anchor" id="a_%E7%92%B0%E5%A2%83%E5%A4%89%E6%95%B0"></a><h1>環境変数</h1></div>
-<div class="section" id="id4">
-<div class="md_header_block" id="h_%E7%92%B0%E5%A2%83%E5%A4%89%E6%95%B0%E3%81%AE%E4%B8%80%E8%A6%A7%E3%82%92%E8%A1%A8%E7%A4%BA%E3%81%99%E3%82%8B"><a class="md_header_anchor" id="a_%E7%92%B0%E5%A2%83%E5%A4%89%E6%95%B0%E3%81%AE%E4%B8%80%E8%A6%A7%E3%82%92%E8%A1%A8%E7%A4%BA%E3%81%99%E3%82%8B"></a><h2>環境変数の一覧を表示する</h2></div>
-<div class="code-block">
-<div class="highlight"><pre><span></span><span class="gp">$</span> printenv
-</pre></div>
-</div>
-</div>
-<div class="section" id="id5">
-<div class="md_header_block" id="h_%E7%92%B0%E5%A2%83%E5%A4%89%E6%95%B0%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%99%E3%82%8B"><a class="md_header_anchor" id="a_%E7%92%B0%E5%A2%83%E5%A4%89%E6%95%B0%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%99%E3%82%8B"></a><h2>環境変数を追加する</h2></div>
-<p>やりかたがわからない</p>
-</div>
-</div>
-<div class="section" id="id6">
-<div class="md_header_block" id="h_%E6%9C%AC%E4%BD%93%E3%81%8C%E3%81%A9%E3%81%93%E3%81%AB%E8%A1%8C%E3%81%A3%E3%81%9F%E3%81%8B%E3%82%8F%E3%81%8B%E3%82%89%E3%81%AA%E3%81%8F%E3%81%AA%E3%81%A3%E3%81%9F%E3%81%A8%E3%81%8D"><a class="md_header_anchor" id="a_%E6%9C%AC%E4%BD%93%E3%81%8C%E3%81%A9%E3%81%93%E3%81%AB%E8%A1%8C%E3%81%A3%E3%81%9F%E3%81%8B%E3%82%8F%E3%81%8B%E3%82%89%E3%81%AA%E3%81%8F%E3%81%AA%E3%81%A3%E3%81%9F%E3%81%A8%E3%81%8D"></a><h1>本体がどこに行ったかわからなくなったとき</h1></div>
-<div class="code-block">
-<div class="highlight"><pre><span></span><span class="gp">$</span> which python
-</pre></div>
-</div>
+      <p>import 文でモジュールをインポートするとき、 sys モジュールの sys.path に指定されたディレクトリを参照します
+sys.path はディレクトリ名を格納したリストオブジェクトで、先頭のディレクトリ名から順にモジュールを検索します。</p>
+<div class="section" id="id1">
+<div class="md_header_block" id="h_%E5%8F%82%E8%80%83%E6%9B%B8%E7%B1%8D"><a class="md_header_anchor" id="a_%E5%8F%82%E8%80%83%E6%9B%B8%E7%B1%8D"></a><h1>参考書籍</h1></div>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.amazon.co.jp/gp/product/4873116880">Python文法詳解</a></p></li>
+</ul>
 </div>
     </div>
   </main>

@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Docker Compose で MySQL DB をつくり Compose 外 (非 docker) の SQLAlchemy から接続する/32imuf.com</title>
+    <link rel="shortcut icon" href="/static/icons/favicon.ico">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Griffy">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Vollkorn:400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/style.css?20181123">
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="header"><header class="item item-header">
+  <h1>
+    <a href="/">
+      <img class="logo" src="/static/images/inuu.png" alt="犬">
+    </a>
+  </h1>
+  <nav class="nav">
+    <ul>
+      <li class="nav-category"><a href="/">HOME</a></li>
+      
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_aws.html">aws</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../aws/what-is-amazon-aurora/">Amazon Aurora とはなんですか？</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../aws/s3-response-error/">S3ResponseError の原因はなんと時刻ずれだった</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_blog.html">blog</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../blog/rules/">ブログを書くときの注意点</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_css.html">css</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../html-css/css/note/">CSS のメモ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../html-css/configure-stylus-output-directory/">PyCharm の File Watcher で、 Stylus の CSS ファイル生成先ディレクトリを指定する。</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../html-css/stylus/">Stylus を使う</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../html-css/html5-css3-modern-coding/">『HTML5/CSS3モダンコーディング フロントエンドエンジニアが教える3つの本格レイアウト スタンダード・グリッド・シングルページレイアウトの作り方』を読んで気になったことメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_django.html">django</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../django/note/">Django のメモ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../django/django_orm/">Django ORM のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_docker.html">docker</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="./">Docker Compose で MySQL DB をつくり Compose 外 (非 docker) の SQLAlchemy から接続する</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../create-django-env-with-docker-compose-mysql-2/">Docker Compose で Django/MySQL 環境をつくる その2</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../create-django-env-with-docker-compose-mysql/">Docker Compose で Django/MySQL 環境をつくる</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../use-volumes-with-docker-compose/">Docker Compose で Volumes をつかう</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../create-django-env-with-docker-compose/">Docker Compose で Django/PostgreSQL 環境をつくる</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_git.html">git</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../git/command/merge/">git merge</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../git/command/rebase-i/">git rebase -i</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../git/command/rebase/">git rebase</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../git/note/">Git のメモ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../git/configuration/">Git の設定まとめ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../git/command/">Git のコマンドまとめ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_github.html">github</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../github/how-to-create-new-repository/">GitHub に新しいリポジトリを作成して、pushする</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../github/github-pages-custom-domain-setting/">GitHub Pages にカスタムドメインを設定する</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_mac.html">mac</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../mac/note/">Mac のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_miyadaiku.html">miyadaiku</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../miyadaiku/build/">Miyadaiku ビルドするときのコマンド</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../miyadaiku/article-directory-structure/">article の置きかた</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_pycharm.html">pycharm</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../pycharm/django-support/">Pycharm の Django support を使う</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../pycharm/add-psql-var-to-user-params-for-db-console/">PyCharm の Database Console で PostgreSQL のプレースホルダー (インタポレーション) を SQL パラメーターとして使えるようにする</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../pycharm/connect-db-using-ssh-tunnel/">PyCharm で SSH tunnel して Amazon Redshift につなぐ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../pycharm/useful-menu-and-shortcuts/">PyCharm ショートカットと便利メニュー</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../pycharm/configuration/">PyCharm の設定</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_python.html">python</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../python/etc/">Python いろいろメモ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../python/note/">Python のメモ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../python/pyconjp2018/">PyConJP 2018 で聞いた講演</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_redshift.html">redshift</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../redshift/note/">Redshift のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_sample.html">sample</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../2018/sample-table/">table の sample</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../2018/sample-h1-h2-h3-li/">h1, h2, h3, リストの sample</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../2018/sample-code-block/">code-block, 引用の sample</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_sql.html">sql</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../sql/note/">SQL のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_ssh.html">ssh</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../ssh/command/ssh-keygen/">ssh-keygen</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../ssh/command/ssh-add/">ssh-add</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../ssh/command/ssh/">ssh のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_test.html">test</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../python-test/tox/">tox</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../python-test/mypy/">mypy</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../python-test/note/">Python テストのメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_vagrant.html">vagrant</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../vagrant/note/">Vagrant のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_vim.html">vim</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../vim/command/">Vim のコマンド</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+    </ul>
+  </nav>
+</header></div>
+      <div class="main">
+<div class="article-content">
+  <main class="item item-article item-docker">
+    <time class="date" datetime="2019-03-24 00:00:00+09:00">
+      2019-03-24 Sun
+    </time>
+    <div class="title">Docker Compose で MySQL DB をつくり Compose 外 (非 docker) の SQLAlchemy から接続する</div>
+    <div class="category">
+      <a href="/index_category_category_docker.html">
+          docker
+      </a>
+    </div>
+    <div class="text">
+      <details>
+<summary>目次</summary><div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#id1" id="id18">リファレンス・ガイド</a></p>
+<ul>
+<li><p><a class="reference internal" href="#sqlalchemy" id="id19">SQLAlchemy</a></p></li>
+<li><p><a class="reference internal" href="#docker-hub" id="id20">Docker Hub</a></p></li>
+<li><p><a class="reference internal" href="#pypi" id="id21">PyPI</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#mysql-db" id="id22">MySQL DB をつくる</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id2" id="id23">1. 準備</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id3" id="id24">ディレクトリ構成</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id25">設定ファイル</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id5" id="id26">2. 起動</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id6" id="id27">SQLAlchemy の設定</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id7" id="id28">mysqlclient</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id8" id="id29">接続文字列</a></p></li>
+<li><p><a class="reference internal" href="#id9" id="id30">事前準備</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id10" id="id31">PyMySQL</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id11" id="id32">接続文字列</a></p></li>
+<li><p><a class="reference internal" href="#id12" id="id33">事前準備</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id13" id="id34">mysql-connector-python</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id14" id="id35">接続文字列</a></p></li>
+<li><p><a class="reference internal" href="#id15" id="id36">事前準備</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id16" id="id37">使ったメモ</a></p>
+<ul>
+<li><p><a class="reference internal" href="#note-aborted-connection" id="id38">※1. [Note] Aborted connection ...</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id17" id="id39">参考ページ</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</details><div class="section" id="id1">
+<div class="md_header_block" id="h_%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9%E3%82%AC%E3%82%A4%E3%83%89"><a class="md_header_anchor" id="a_%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9%E3%82%AC%E3%82%A4%E3%83%89"></a><h1><a class="toc-backref" href="#id18">リファレンス・ガイド</a></h1></div>
+<div class="section" id="sqlalchemy">
+<div class="md_header_block" id="h_SQLAlchemy"><a class="md_header_anchor" id="a_SQLAlchemy"></a><h2><a class="toc-backref" href="#id19">SQLAlchemy</a></h2></div>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.sqlalchemy.org/en/latest/dialects/mysql.html">SQLAlchemy 1.3 Documentation: MySQL</a></p></li>
+</ul>
+</div>
+<div class="section" id="docker-hub">
+<div class="md_header_block" id="h_DockerHub"><a class="md_header_anchor" id="a_DockerHub"></a><h2><a class="toc-backref" href="#id20">Docker Hub</a></h2></div>
+<ul class="simple">
+<li><p><a class="reference external" href="https://hub.docker.com/_/mysql">mysql Docker Official Images</a></p></li>
+</ul>
+</div>
+<div class="section" id="pypi">
+<div class="md_header_block" id="h_PyPI"><a class="md_header_anchor" id="a_PyPI"></a><h2><a class="toc-backref" href="#id21">PyPI</a></h2></div>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pypi.org/project/mysqlclient/">mysqlclient</a></p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/PyMySQL/">PyMySQL</a></p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/mysql-connector-python/">mysql-connector-python</a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="mysql-db">
+<div class="md_header_block" id="h_MySQLDB%E3%82%92%E3%81%A4%E3%81%8F%E3%82%8B"><a class="md_header_anchor" id="a_MySQLDB%E3%82%92%E3%81%A4%E3%81%8F%E3%82%8B"></a><h1><a class="toc-backref" href="#id22">MySQL DB をつくる</a></h1></div>
+<div class="section" id="id2">
+<div class="md_header_block" id="h_1.%E6%BA%96%E5%82%99"><a class="md_header_anchor" id="a_1.%E6%BA%96%E5%82%99"></a><h2><a class="toc-backref" href="#id23">1. 準備</a></h2></div>
+<div class="section" id="id3">
+<div class="md_header_block" id="h_%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA%E6%A7%8B%E6%88%90"><a class="md_header_anchor" id="a_%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA%E6%A7%8B%E6%88%90"></a><h3><a class="toc-backref" href="#id24">ディレクトリ構成</a></h3></div>
+<div class="code-block">
+<div class="highlight"><pre><span></span>$ tree mmm
+mmm
+├── Dockerfile-mysql
+└── docker-compose.yml
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<div class="md_header_block" id="h_%E8%A8%AD%E5%AE%9A%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB"><a class="md_header_anchor" id="a_%E8%A8%AD%E5%AE%9A%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB"></a><h3><a class="toc-backref" href="#id25">設定ファイル</a></h3></div>
+<ul>
+<li><p>Dockerfile-mysql</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="k">FROM</span><span class="s"> mysql:5.7.12</span>
+<span class="c"># `5.7.12` は自分の使いたいイメージのタグ</span>
+<span class="k">RUN</span> apt-get clean <span class="o">&amp;&amp;</span> apt-get update <span class="o">&amp;&amp;</span> apt-get install -y locales locales-all vim
+<span class="c"># ↑のイメージそのままだと vi も vim も入っていなくて不便だったので vim も入れておく</span>
+<span class="k">RUN</span> locale-gen ja_JP.UTF-8
+<span class="k">ENV</span> LANG ja_JP.UTF-8
+<span class="k">ENV</span> LANGUAGE ja_JP:en
+<span class="k">ENV</span> LC_ALL ja_JP.UTF-8
+<span class="k">RUN</span> ln -sf /usr/share/zoneinfo/Japan /etc/localtime
+</pre></div>
+</div>
+</li>
+<li><p>docker-compose.yml</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span> <span class="s">'3'</span>
+
+<span class="nt">services</span><span class="p">:</span>
+  <span class="nt">db</span><span class="p">:</span>
+    <span class="nt">container_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mmm_db</span>
+    <span class="nt">build</span><span class="p">:</span>
+      <span class="nt">context</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">.</span>
+      <span class="nt">dockerfile</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Dockerfile-mysql</span>
+    <span class="c1"># 文字コードの設定をしておく</span>
+    <span class="nt">command</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">--character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci</span>
+    <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
+    <span class="nt">volumes</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="s">"db-data:/var/lib/mysql"</span>
+    <span class="nt">environment</span><span class="p">:</span>
+      <span class="nt">MYSQL_ROOT_PASSWORD</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mmm</span>
+      <span class="nt">MYSQL_DATABASE</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mmm</span>
+      <span class="nt">MYSQL_USER</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mmm</span>
+      <span class="nt">MYSQL_PASSWORD</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mmm</span>
+    <span class="nt">ports</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="s">"3306:3306"</span>  <span class="c1"># 大事。ここを書いておかないと、 compose の外から繋げない。</span>
+
+<span class="nt">volumes</span><span class="p">:</span>
+  <span class="nt">db-data</span><span class="p">:</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id5">
+<div class="md_header_block" id="h_2.%E8%B5%B7%E5%8B%95"><a class="md_header_anchor" id="a_2.%E8%B5%B7%E5%8B%95"></a><h2><a class="toc-backref" href="#id26">2. 起動</a></h2></div>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="c1"># mmm 直下で実行する</span>
+$ docker-compose up
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id6">
+<div class="md_header_block" id="h_SQLAlchemy%E3%81%AE%E8%A8%AD%E5%AE%9A"><a class="md_header_anchor" id="a_SQLAlchemy%E3%81%AE%E8%A8%AD%E5%AE%9A"></a><h1><a class="toc-backref" href="#id27">SQLAlchemy の設定</a></h1></div>
+<div class="section" id="id7">
+<div class="md_header_block" id="h_mysqlclient"><a class="md_header_anchor" id="a_mysqlclient"></a><h2><a class="toc-backref" href="#id28">mysqlclient</a></h2></div>
+<div class="section" id="id8">
+<div class="md_header_block" id="h_%E6%8E%A5%E7%B6%9A%E6%96%87%E5%AD%97%E5%88%97"><a class="md_header_anchor" id="a_%E6%8E%A5%E7%B6%9A%E6%96%87%E5%AD%97%E5%88%97"></a><h3><a class="toc-backref" href="#id29">接続文字列</a></h3></div>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="n">mysql</span><span class="o">+</span><span class="n">mysqldb</span><span class="p">:</span><span class="o">//</span><span class="n">mmm</span><span class="p">:</span><span class="n">mmm</span><span class="nd">@127.0.0.1</span><span class="p">:</span><span class="mi">3306</span><span class="o">/</span><span class="n">mmm</span><span class="err">?</span><span class="n">charset</span><span class="o">=</span><span class="n">utf8mb4</span>
+<span class="c1"># mysql+mysqldb://&lt;user&gt;:&lt;password&gt;@&lt;host&gt;[:&lt;port&gt;]/&lt;dbname&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id9">
+<div class="md_header_block" id="h_%E4%BA%8B%E5%89%8D%E6%BA%96%E5%82%99"><a class="md_header_anchor" id="a_%E4%BA%8B%E5%89%8D%E6%BA%96%E5%82%99"></a><h3><a class="toc-backref" href="#id30">事前準備</a></h3></div>
+<ol class="arabic simple">
+<li><p>Python3 他のインストール</p></li>
+</ol>
+<blockquote>
+<ul>
+<li><p>sudo apt-get install python3-dev default-libmysqlclient-dev ＃Debian / Ubuntu</p></li>
+<li><p>sudo yum install python3-devel mysql-devel ＃Red Hat / CentOS</p></li>
+<li><p>brew install mysql-connector-c # macOS (Homebrew) (Currently, it has bug. See below)</p>
+<blockquote>
+<ul class="simple">
+<li><p>macOS の場合はバグあるらしくちょっと小細工が必要</p>
+<ul>
+<li><p><span class="docutils literal">/usr/local/bin/mysql_config</span> を編集しないといけない (PyPI の Project description, GitHub の README に書いてある)</p></li>
+<li><p><span class="docutils literal">mysql_config</span> は <span class="docutils literal">$ which mysql_config</span> で探せる</p></li>
+</ul>
+</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<ol class="arabic" start="2">
+<li><p>mysqlclient のインストール</p>
+<blockquote>
+<div class="code-block">
+<div class="highlight"><pre><span></span>pip install mysqlclient
+</pre></div>
+</div>
+</blockquote>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="id10">
+<div class="md_header_block" id="h_PyMySQL"><a class="md_header_anchor" id="a_PyMySQL"></a><h2><a class="toc-backref" href="#id31">PyMySQL</a></h2></div>
+<div class="section" id="id11">
+<div class="md_header_block" id="h_%E6%8E%A5%E7%B6%9A%E6%96%87%E5%AD%97%E5%88%97_1"><a class="md_header_anchor" id="a_%E6%8E%A5%E7%B6%9A%E6%96%87%E5%AD%97%E5%88%97_1"></a><h3><a class="toc-backref" href="#id32">接続文字列</a></h3></div>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="n">mysql</span><span class="o">+</span><span class="n">pymysql</span><span class="p">:</span><span class="o">//</span><span class="n">mmm</span><span class="p">:</span><span class="n">mmm</span><span class="nd">@127.0.0.1</span><span class="p">:</span><span class="mi">3306</span><span class="o">/</span><span class="n">mmm</span><span class="err">?</span><span class="n">charset</span><span class="o">=</span><span class="n">utf8mb4</span>
+<span class="c1"># mysql+pymysql://&lt;username&gt;:&lt;password&gt;@&lt;host&gt;/&lt;dbname&gt;[?&lt;options&gt;]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id12">
+<div class="md_header_block" id="h_%E4%BA%8B%E5%89%8D%E6%BA%96%E5%82%99_1"><a class="md_header_anchor" id="a_%E4%BA%8B%E5%89%8D%E6%BA%96%E5%82%99_1"></a><h3><a class="toc-backref" href="#id33">事前準備</a></h3></div>
+<p>PyMySQL のインストール</p>
+<blockquote>
+<div class="code-block">
+<div class="highlight"><pre><span></span>pip install PyMySQL
+</pre></div>
+</div>
+</blockquote>
+</div>
+</div>
+<div class="section" id="id13">
+<div class="md_header_block" id="h_mysqlconnectorpython"><a class="md_header_anchor" id="a_mysqlconnectorpython"></a><h2><a class="toc-backref" href="#id34">mysql-connector-python</a></h2></div>
+<div class="section" id="id14">
+<div class="md_header_block" id="h_%E6%8E%A5%E7%B6%9A%E6%96%87%E5%AD%97%E5%88%97_1_2"><a class="md_header_anchor" id="a_%E6%8E%A5%E7%B6%9A%E6%96%87%E5%AD%97%E5%88%97_1_2"></a><h3><a class="toc-backref" href="#id35">接続文字列</a></h3></div>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="n">mysql</span><span class="o">+</span><span class="n">mysqlconnector</span><span class="p">:</span><span class="o">//</span><span class="n">mmm</span><span class="p">:</span><span class="n">mmm</span><span class="nd">@127.0.0.1</span><span class="p">:</span><span class="mi">3306</span><span class="o">/</span><span class="n">mmm</span><span class="err">?</span><span class="n">charset</span><span class="o">=</span><span class="n">utf8mb4</span><span class="s2">"</span>
+<span class="c1"># mysql+mysqlconnector://&lt;user&gt;:&lt;password&gt;@&lt;host&gt;[:&lt;port&gt;]/&lt;dbname&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id15">
+<div class="md_header_block" id="h_%E4%BA%8B%E5%89%8D%E6%BA%96%E5%82%99_1_2"><a class="md_header_anchor" id="a_%E4%BA%8B%E5%89%8D%E6%BA%96%E5%82%99_1_2"></a><h3><a class="toc-backref" href="#id36">事前準備</a></h3></div>
+<p>mysql-connector-python のインストール</p>
+<blockquote>
+<div class="code-block">
+<div class="highlight"><pre><span></span>pip install mysql-connector-python
+</pre></div>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="id16">
+<div class="md_header_block" id="h_%E4%BD%BF%E3%81%A3%E3%81%9F%E3%83%A1%E3%83%A2"><a class="md_header_anchor" id="a_%E4%BD%BF%E3%81%A3%E3%81%9F%E3%83%A1%E3%83%A2"></a><h1><a class="toc-backref" href="#id37">使ったメモ</a></h1></div>
+<table class="colwidths-auto">
+<thead>
+<tr><th class="head stub"><p>項目</p></th>
+<th class="head"><p>mysqlclient</p></th>
+<th class="head"><p>PyMySQL</p></th>
+<th class="head"><p>mysql-connector-python</p></th>
+</tr>
+</thead>
+<tbody>
+<tr><th class="stub"><p>準備</p></th>
+<td><p>ただの Python3 だけでは済まない</p></td>
+<td><p>ただの Python3 だけで済む</p></td>
+<td><p>ただの Python3 だけで済む</p></td>
+</tr>
+<tr><th class="stub"><p>[Note] Aborted connection ※1</p></th>
+<td><p><span class="docutils literal">log_warnings = 2</span> でも出ない</p></td>
+<td><p><span class="docutils literal">log_warnings = 2</span> だと出る, 1 だと出ない</p></td>
+<td><p><span class="docutils literal">log_warnings = 2</span> だと出る, 1 だと出ない</p></td>
+</tr>
+<tr><th class="stub"><p>SQLAlchemy のおし具合</p></th>
+<td><ul class="simple">
+<li><p><cite>mysqlclient supports Python 2 and Python 3 and is very stable.</cite></p></li>
+<li><p>一番おすすめに見える (個人の感想)</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p><cite>The pymysql DBAPI is a pure Python port of the MySQL-python (MySQLdb) driver, and targets 100% compatibility.</cite></p></li>
+<li><p>二番目におすすめに見える (個人の感想)</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>特記事項なし</p></li>
+<li><p>付け加えて言いたいことがないようなので、ふつうかな (個人の感想)</p></li>
+</ul>
+</td>
+</tr>
+<tr><th class="stub"><p>わたしの感想</p></th>
+<td><ul class="simple">
+<li><p>ただの Python3 だけでは済まないのが手軽感減少、Mac だとけっこうめんどう。どうにかしてほしい。</p></li>
+<li><p>でも <span class="docutils literal">Aborted connection</span> が出ないのはなるほどと思った</p></li>
+<li><p>Django もこれをおすすめしていたので、できればこれが良いが、インストールのところがどうしてもひっかかる。</p></li>
+</ul>
+</td>
+<td><p>install が手軽でよい。 <span class="docutils literal">Aborted connection</span> はあまり気にしなくて良さそうでもあるし、 SQLA さんも二番目におすすめしている (空想) のでこれがいいかなあ。</p></td>
+<td><p>install が手軽でよい。ほかはとくになし。</p></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="note-aborted-connection">
+<div class="md_header_block" id="h_1.NoteAbortedconnection..."><a class="md_header_anchor" id="a_1.NoteAbortedconnection..."></a><h2><a class="toc-backref" href="#id38">※1. [Note] Aborted connection ...</a></h2></div>
+<ul>
+<li><p><a class="reference external" href="https://dev.mysql.com/doc/refman/5.7/en/communication-errors.html">B.6.2.10 Communication Errors and Aborted Connections</a></p>
+<div class="code-block">
+<div class="highlight"><pre><span></span>db_1  <span class="p">|</span> <span class="m">2019</span>-03-24T06:38:23.691896Z <span class="m">2</span> <span class="o">[</span>Note<span class="o">]</span> Aborted connection <span class="m">2</span> to db: <span class="s1">'mmm'</span> user: <span class="s1">'mmm'</span> host: <span class="s1">'172.27.0.1'</span> <span class="o">(</span>Got an error reading communication packets<span class="o">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>クライアントの接続方法とか切断方法に何か問題があるらしい</p></li>
+<li><p>わたしの場合、同じコードでもドライバーによって出たり出なかったりする</p></li>
+<li><p>ログレベルを下げると出なくなる</p></li>
+<li><p>同じ事象のひとが世界中にけっこういる</p></li>
+<li><p>このログが出ていても、(ワーニングログがたくさん出ること以外に)「困った!」というひとはあまりいなそう</p></li>
+</ul>
+</li>
+</ul>
+<div class="section" id="id17">
+<div class="md_header_block" id="h_%E5%8F%82%E8%80%83%E3%83%9A%E3%83%BC%E3%82%B8"><a class="md_header_anchor" id="a_%E5%8F%82%E8%80%83%E3%83%9A%E3%83%BC%E3%82%B8"></a><h3><a class="toc-backref" href="#id39">参考ページ</a></h3></div>
+<ul class="simple">
+<li><p><a class="reference external" href="https://weblabo.oscasierra.net/mysql-error-reading-communication-packets/">MySQLで「Got an error reading communication packets」というエラーが出力される原因と対策</a></p></li>
+<li><p><a class="reference external" href="https://qiita.com/hit/items/da50428ca4b4162162a8">[MariaDB] Aborted connectionのワーニング対応に大いにハマる・・</a></p></li>
+</ul>
+<p>などなど... ありがとうございました。</p>
+</div>
+</div>
+</div>
+    </div>
+  </main>
+</div>
+</div>
+    </div>
+  </body>
+
+</html>

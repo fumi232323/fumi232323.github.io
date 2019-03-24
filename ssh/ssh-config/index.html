@@ -100,6 +100,10 @@
           <ul>
             
               <li class="nav-article">
+                <a href="../../docker/connect-from-sqla-to-mysqldb/">Docker Compose で MySQL DB をつくり Compose 外 (非 docker) の SQLAlchemy から接続する</a>
+              </li>
+            
+              <li class="nav-article">
                 <a href="../../docker/create-django-env-with-docker-compose-mysql-2/">Docker Compose で Django/MySQL 環境をつくる その2</a>
               </li>
             
@@ -369,7 +373,7 @@
       <p>TODO: 整理中
 TODO: ssh config のメモとして整理しようと思う</p>
 <div class="section" id="id1">
-<div class="header_target" id="h_ssh_ssh_2dconfig_index_2erst_1"></div><h1>リファレンス</h1>
+<div class="md_header_block" id="h_%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9"><a class="md_header_anchor" id="a_%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9"></a><h1>リファレンス</h1></div>
 <p>ubuntu のやつ</p>
 <ul class="simple">
 <li><p><a class="reference external" href="http://manpages.ubuntu.com/manpages/bionic/en/man5/ssh_config.5.html">ssh_config</a></p></li>
@@ -379,16 +383,16 @@ TODO: ssh config のメモとして整理しようと思う</p>
 <li><p><a class="reference external" href="https://www.freebsd.org/cgi/man.cgi?query=ssh&amp;apropos=0&amp;sektion=0&amp;manpath=CentOS+6.5&amp;arch=default&amp;format=html">SSH(1)</a></p></li>
 </ul>
 <div class="section" id="id3">
-<div class="header_target" id="h_ssh_ssh_2dconfig_index_2erst_2"></div><h2>~/.ssh/config</h2>
+<div class="md_header_block" id="h_.sshconfig"><a class="md_header_anchor" id="a_.sshconfig"></a><h2>~/.ssh/config</h2></div>
 <p>ユーザごとの個人用設定ファイルです。ファイル形式は上で説明されています。このファイルは SSH クライアントによって使われます。このファイルは潜在的に悪用される危険性があるため、パーミッションは厳しくしておくのがいいでしょう。所有者のみが読み書き可能で、他からはアクセスできないようにしておくべきです。 |</p>
 </div>
 <div class="section" id="etc-ssh-ssh-config">
-<div class="header_target" id="h_ssh_ssh_2dconfig_index_2erst_3"></div><h2>/etc/ssh/ssh_config</h2>
+<div class="md_header_block" id="h_etcsshssh_config"><a class="md_header_anchor" id="a_etcsshssh_config"></a><h2>/etc/ssh/ssh_config</h2></div>
 <p>システム全体にわたる設定ファイルです。このファイルはユーザの設定ファイルでは指定されなかった値を提供し、また設定ファイルを持たないユーザのためのデフォルトにもなります。このファイルは誰にでも読み込み可能でなければいけません。</p>
 </div>
 </div>
 <div class="section" id="proxycommand">
-<div class="header_target" id="h_ssh_ssh_2dconfig_index_2erst_4"></div><h1>ProxyCommand</h1>
+<div class="md_header_block" id="h_ProxyCommand"><a class="md_header_anchor" id="a_ProxyCommand"></a><h1>ProxyCommand</h1></div>
 <p>ローカルから、B へ ssh する</p>
 <div class="code-block">
 <div class="highlight"><pre><span></span>$ ssh-add ~/.ssh/id_rsa
@@ -426,7 +430,7 @@ $ ssh my-host
 <li></li>
 </ol>
 <div class="section" id="id4">
-<div class="header_target" id="h_ssh_ssh_2dconfig_index_2erst_5"></div><h2>キーワードやオプションの意味</h2>
+<div class="md_header_block" id="h_%E3%82%AD%E3%83%BC%E3%83%AF%E3%83%BC%E3%83%89%E3%82%84%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E6%84%8F%E5%91%B3"><a class="md_header_anchor" id="a_%E3%82%AD%E3%83%BC%E3%83%AF%E3%83%BC%E3%83%89%E3%82%84%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E6%84%8F%E5%91%B3"></a><h2>キーワードやオプションの意味</h2></div>
 <ul>
 <li><p>ssh_config のマニュアルページの <span class="docutils literal">ProxyCommand</span> の説明</p>
 <pre class="literal-block">Specifies the command to use to connect to the server.
@@ -441,14 +445,14 @@ The command can be basically anything, and should read from its standard input a
 </ul>
 </div>
 <div class="section" id="id5">
-<div class="header_target" id="h_ssh_ssh_2dconfig_index_2erst_6"></div><h2>参考</h2>
+<div class="md_header_block" id="h_%E5%8F%82%E8%80%83"><a class="md_header_anchor" id="a_%E5%8F%82%E8%80%83"></a><h2>参考</h2></div>
 <ul class="simple">
 <li><p><a class="reference external" href="http://note.crohaco.net/2017/ssh-tunnel/#proxycommand">ProxyCommand</a></p></li>
 </ul>
 </div>
 </div>
 <div class="section" id="forwardagent-yes">
-<div class="header_target" id="h_ssh_ssh_2dconfig_index_2erst_7"></div><h1>ForwardAgent yes</h1>
+<div class="md_header_block" id="h_ForwardAgentyes"><a class="md_header_anchor" id="a_ForwardAgentyes"></a><h1>ForwardAgent yes</h1></div>
 <p>ForwardAgent (エージェント転送)
 認証エージェントへの接続を、(それが存在する時は) リモートマシン上に転送するかどうかを指定します。この引数の値は"yes"あるいは"no"でなければならず、デフォルトは"no (エージェント転送をおこなわない)"です。
 認証エージェントの転送には注意が必要です。リモートホスト上で (エージェントの UNIX ドメインソケットに対する)ファイルアクセス権限を無視できてしまうユーザがいる場合は、転送された接続を介してローカル側の認証エージェントにアクセスできてしまうことになります。攻撃側は認証エージェントから鍵そのものを盗むことはできませんが、認証エージェントがもっている鍵に認証をおこなわせることはできます。</p>

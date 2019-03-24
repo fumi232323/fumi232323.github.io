@@ -100,6 +100,10 @@
           <ul>
             
               <li class="nav-article">
+                <a href="../../../docker/connect-from-sqla-to-mysqldb/">Docker Compose で MySQL DB をつくり Compose 外 (非 docker) の SQLAlchemy から接続する</a>
+              </li>
+            
+              <li class="nav-article">
                 <a href="../../../docker/create-django-env-with-docker-compose-mysql-2/">Docker Compose で Django/MySQL 環境をつくる その2</a>
               </li>
             
@@ -367,7 +371,7 @@
     </div>
     <div class="text">
       <div class="section" id="id1">
-<div class="header_target" id="h_ssh_command_ssh_2dkeygen_index_2erst_1"></div><h1>リファレンス</h1>
+<div class="md_header_block" id="h_%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9"><a class="md_header_anchor" id="a_%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9"></a><h1>リファレンス</h1></div>
 <p>ubuntu のやつ</p>
 <ul class="simple">
 <li><p><a class="reference external" href="http://manpages.ubuntu.com/manpages/bionic/en/man1/ssh-keygen.1.html">ssh-keygen</a></p></li>
@@ -378,10 +382,10 @@
 </ul>
 </div>
 <div class="section" id="id3">
-<div class="header_target" id="h_ssh_command_ssh_2dkeygen_index_2erst_2"></div><h1>ssh-keygen</h1>
+<div class="md_header_block" id="h_sshkeygen"><a class="md_header_anchor" id="a_sshkeygen"></a><h1>ssh-keygen</h1></div>
 <p>認証鍵の生成と管理・変換が役割</p>
 <div class="section" id="id4">
-<div class="header_target" id="h_ssh_command_ssh_2dkeygen_index_2erst_3"></div><h2>秘密鍵・公開鍵のペアを作る</h2>
+<div class="md_header_block" id="h_%E7%A7%98%E5%AF%86%E9%8D%B5%E5%85%AC%E9%96%8B%E9%8D%B5%E3%81%AE%E3%83%9A%E3%82%A2%E3%82%92%E4%BD%9C%E3%82%8B"><a class="md_header_anchor" id="a_%E7%A7%98%E5%AF%86%E9%8D%B5%E5%85%AC%E9%96%8B%E9%8D%B5%E3%81%AE%E3%83%9A%E3%82%A2%E3%82%92%E4%BD%9C%E3%82%8B"></a><h2>秘密鍵・公開鍵のペアを作る</h2></div>
 <div class="code-block">
 <div class="highlight"><pre><span></span>$ ssh-keygen -t rsa
 </pre></div>
@@ -399,19 +403,19 @@
 <li><p><span class="docutils literal"><span class="pre">-C</span> comment</span> : コメント</p></li>
 </ul>
 <div class="section" id="id5">
-<div class="header_target" id="h_ssh_command_ssh_2dkeygen_index_2erst_4"></div><h3>サーバ側の公開鍵の置き場所</h3>
+<div class="md_header_block" id="h_%E3%82%B5%E3%83%BC%E3%83%90%E5%81%B4%E3%81%AE%E5%85%AC%E9%96%8B%E9%8D%B5%E3%81%AE%E7%BD%AE%E3%81%8D%E5%A0%B4%E6%89%80"><a class="md_header_anchor" id="a_%E3%82%B5%E3%83%BC%E3%83%90%E5%81%B4%E3%81%AE%E5%85%AC%E9%96%8B%E9%8D%B5%E3%81%AE%E7%BD%AE%E3%81%8D%E5%A0%B4%E6%89%80"></a><h3>サーバ側の公開鍵の置き場所</h3></div>
 <p>$HOME/.ssh/authorized_keys</p>
 </div>
 </div>
 <div class="section" id="id6">
-<div class="header_target" id="h_ssh_command_ssh_2dkeygen_index_2erst_5"></div><h2>秘密鍵から公開鍵を取り出す</h2>
+<div class="md_header_block" id="h_%E7%A7%98%E5%AF%86%E9%8D%B5%E3%81%8B%E3%82%89%E5%85%AC%E9%96%8B%E9%8D%B5%E3%82%92%E5%8F%96%E3%82%8A%E5%87%BA%E3%81%99"><a class="md_header_anchor" id="a_%E7%A7%98%E5%AF%86%E9%8D%B5%E3%81%8B%E3%82%89%E5%85%AC%E9%96%8B%E9%8D%B5%E3%82%92%E5%8F%96%E3%82%8A%E5%87%BA%E3%81%99"></a><h2>秘密鍵から公開鍵を取り出す</h2></div>
 <div class="code-block">
 <div class="highlight"><pre><span></span>$ ssh-keygen -y -f private_key_file
 </pre></div>
 </div>
 </div>
 <div class="section" id="fingerprint">
-<div class="header_target" id="h_ssh_command_ssh_2dkeygen_index_2erst_6"></div><h2>公開鍵から fingerprint を表示</h2>
+<div class="md_header_block" id="h_%E5%85%AC%E9%96%8B%E9%8D%B5%E3%81%8B%E3%82%89fingerprint%E3%82%92%E8%A1%A8%E7%A4%BA"><a class="md_header_anchor" id="a_%E5%85%AC%E9%96%8B%E9%8D%B5%E3%81%8B%E3%82%89fingerprint%E3%82%92%E8%A1%A8%E7%A4%BA"></a><h2>公開鍵から fingerprint を表示</h2></div>
 <p>fingerprint は、公開鍵にくっついているものらしい。</p>
 <ul>
 <li><p>カレントディレクトリ配下の公開鍵ファイルを指定して表示</p>
@@ -431,14 +435,14 @@
 </ul>
 </div>
 <div class="section" id="known-hosts-file">
-<div class="header_target" id="h_ssh_command_ssh_2dkeygen_index_2erst_7"></div><h2>known_hosts file からキーを削除</h2>
+<div class="md_header_block" id="h_known_hostsfile%E3%81%8B%E3%82%89%E3%82%AD%E3%83%BC%E3%82%92%E5%89%8A%E9%99%A4"><a class="md_header_anchor" id="a_known_hostsfile%E3%81%8B%E3%82%89%E3%82%AD%E3%83%BC%E3%82%92%E5%89%8A%E9%99%A4"></a><h2>known_hosts file からキーを削除</h2></div>
 <div class="code-block">
 <div class="highlight"><pre><span></span>$ ssh-keygen -R hostname <span class="o">[</span>-f known_hosts_file<span class="o">]</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id7">
-<div class="header_target" id="h_ssh_command_ssh_2dkeygen_index_2erst_8"></div><h2>ためしてみる</h2>
+<div class="md_header_block" id="h_%E3%81%9F%E3%82%81%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B"><a class="md_header_anchor" id="a_%E3%81%9F%E3%82%81%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B"></a><h2>ためしてみる</h2></div>
 <ol class="arabic simple">
 <li><p>カレントディレクトリに、↓で rsa 鍵のペアを作成する。</p></li>
 </ol>
@@ -509,7 +513,7 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDfq5BPUHIRnrxBX1b3sp8OFTzFh3k9e1VZ3OXlRQRA
 <li><p>公開鍵のほうは、RSA認証で接続したいサーバーの <span class="docutils literal"><span class="pre">~/.ssh/authorized_keys</span></span> に追記する。</p></li>
 </ol>
 <div class="section" id="id8">
-<div class="header_target" id="h_ssh_command_ssh_2dkeygen_index_2erst_9"></div><h3>参考</h3>
+<div class="md_header_block" id="h_%E5%8F%82%E8%80%83"><a class="md_header_anchor" id="a_%E5%8F%82%E8%80%83"></a><h3>参考</h3></div>
 <p><a class="reference external" href="http://note.crohaco.net/2014/public-key-basic-config/">http://note.crohaco.net/2014/public-key-basic-config/</a></p>
 </div>
 </div>

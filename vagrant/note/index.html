@@ -100,6 +100,10 @@
           <ul>
             
               <li class="nav-article">
+                <a href="../../docker/connect-from-sqla-to-mysqldb/">Docker Compose で MySQL DB をつくり Compose 外 (非 docker) の SQLAlchemy から接続する</a>
+              </li>
+            
+              <li class="nav-article">
                 <a href="../../docker/create-django-env-with-docker-compose-mysql-2/">Docker Compose で Django/MySQL 環境をつくる その2</a>
               </li>
             
@@ -367,12 +371,12 @@
     </div>
     <div class="text">
       <div class="section" id="synced-folder">
-<div class="header_target" id="h_vagrant_note_index_2erst_1"></div><h1>synced_folder が効かなくなった</h1>
+<div class="md_header_block" id="h_synced_folder%E3%81%8C%E5%8A%B9%E3%81%8B%E3%81%AA%E3%81%8F%E3%81%AA%E3%81%A3%E3%81%9F"><a class="md_header_anchor" id="a_synced_folder%E3%81%8C%E5%8A%B9%E3%81%8B%E3%81%AA%E3%81%8F%E3%81%AA%E3%81%A3%E3%81%9F"></a><h1>synced_folder が効かなくなった</h1></div>
 <div class="section" id="id1">
-<div class="header_target" id="h_vagrant_note_index_2erst_2"></div><h2>現象</h2>
+<div class="md_header_block" id="h_%E7%8F%BE%E8%B1%A1"><a class="md_header_anchor" id="a_%E7%8F%BE%E8%B1%A1"></a><h2>現象</h2></div>
 <p>ホスト OS 側のディレクトリ構成を変えたので、 <span class="docutils literal">_repo_file</span> を書き換えて、 <span class="docutils literal">vagrant reload</span> したのに、エラーになった。</p>
 <div class="section" id="id2">
-<div class="header_target" id="h_vagrant_note_index_2erst_3"></div><h3>エラー内容</h3>
+<div class="md_header_block" id="h_%E3%82%A8%E3%83%A9%E3%83%BC%E5%86%85%E5%AE%B9"><a class="md_header_anchor" id="a_%E3%82%A8%E3%83%A9%E3%83%BC%E5%86%85%E5%AE%B9"></a><h3>エラー内容</h3></div>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="gp">FumienoMacBook-Pro:ansible fumi23$</span> vagrant reload
 <span class="go">==&gt; default: Attempting graceful shutdown of VM...</span>
@@ -420,7 +424,7 @@
 </div>
 </div>
 <div class="section" id="id3">
-<div class="header_target" id="h_vagrant_note_index_2erst_4"></div><h2>解決策</h2>
+<div class="md_header_block" id="h_%E8%A7%A3%E6%B1%BA%E7%AD%96"><a class="md_header_anchor" id="a_%E8%A7%A3%E6%B1%BA%E7%AD%96"></a><h2>解決策</h2></div>
 <p><span class="docutils literal">/etc/exports</span> を新しい情報に書き変えた。</p>
 <ul>
 <li><p>元の /etc/exports</p>
@@ -444,7 +448,7 @@
 </ul>
 </div>
 <div class="section" id="id4">
-<div class="header_target" id="h_vagrant_note_index_2erst_5"></div><h2>参考</h2>
+<div class="md_header_block" id="h_%E5%8F%82%E8%80%83"><a class="md_header_anchor" id="a_%E5%8F%82%E8%80%83"></a><h2>参考</h2></div>
 <p>助かりました。ありがとうございました。</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://blog.kazu69.net/2014/07/16/by-vagrant-nfs-exports-error-has-occurred/">VagrantのNFS設定でexportsのエラーが発生した</a></p></li>
@@ -452,14 +456,14 @@
 </div>
 </div>
 <div class="section" id="id5">
-<div class="header_target" id="h_vagrant_note_index_2erst_6"></div><h1>ログを詳細に出す</h1>
+<div class="md_header_block" id="h_%E3%83%AD%E3%82%B0%E3%82%92%E8%A9%B3%E7%B4%B0%E3%81%AB%E5%87%BA%E3%81%99"><a class="md_header_anchor" id="a_%E3%83%AD%E3%82%B0%E3%82%92%E8%A9%B3%E7%B4%B0%E3%81%AB%E5%87%BA%E3%81%99"></a><h1>ログを詳細に出す</h1></div>
 <div class="code-block">
 <div class="highlight"><pre><span></span>$ <span class="nv">VAGRANT_LOG</span><span class="o">=</span>DEBUG vagrant <span class="o">[</span>command<span class="o">]</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="virtualbox">
-<div class="header_target" id="h_vagrant_note_index_2erst_7"></div><h1>VirtualBox の仮想マシンの保存先を変更する</h1>
+<div class="md_header_block" id="h_VirtualBox%E3%81%AE%E4%BB%AE%E6%83%B3%E3%83%9E%E3%82%B7%E3%83%B3%E3%81%AE%E4%BF%9D%E5%AD%98%E5%85%88%E3%82%92%E5%A4%89%E6%9B%B4%E3%81%99%E3%82%8B"><a class="md_header_anchor" id="a_VirtualBox%E3%81%AE%E4%BB%AE%E6%83%B3%E3%83%9E%E3%82%B7%E3%83%B3%E3%81%AE%E4%BF%9D%E5%AD%98%E5%85%88%E3%82%92%E5%A4%89%E6%9B%B4%E3%81%99%E3%82%8B"></a><h1>VirtualBox の仮想マシンの保存先を変更する</h1></div>
 <ul>
 <li><p><a class="reference external" href="http://kiraba.jp/change-save-point-vagrant-box-and-virtual-machine/">Vagrant BOXとVMの保存先を変更する方法</a></p>
 <pre class="literal-block">環境設定 &gt; 一般 にあるデフォルトの仮想マシンフォルダーを任意のパスに変更すればVMは指定したフォルダーに保存されます。</pre>
@@ -467,32 +471,32 @@
 </ul>
 </div>
 <div class="section" id="vagrant-home">
-<div class="header_target" id="h_vagrant_note_index_2erst_8"></div><h1>VAGRANT_HOME</h1>
+<div class="md_header_block" id="h_VAGRANT_HOME"><a class="md_header_anchor" id="a_VAGRANT_HOME"></a><h1>VAGRANT_HOME</h1></div>
 <p>環境変数: <span class="docutils literal">VAGRANT_HOME</span> を設定すれば、 <span class="docutils literal"><span class="pre">~/.vagrant.d</span></span> の場所を好きなところに変えられそう</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.vagrantup.com/docs/other/environmental-variables.html#vagrant_home">VAGRANT_HOME</a></p></li>
 </ul>
 </div>
 <div class="section" id="ssh">
-<div class="header_target" id="h_vagrant_note_index_2erst_9"></div><h1>ハイフンふたつの後は、普通にSSHのオプションを指定できる。</h1>
+<div class="md_header_block" id="h_%E3%83%8F%E3%82%A4%E3%83%95%E3%83%B3%E3%81%B5%E3%81%9F%E3%81%A4%E3%81%AE%E5%BE%8C%E3%81%AF%E6%99%AE%E9%80%9A%E3%81%ABSSH%E3%81%AE%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%A7%E3%81%8D%E3%82%8B"><a class="md_header_anchor" id="a_%E3%83%8F%E3%82%A4%E3%83%95%E3%83%B3%E3%81%B5%E3%81%9F%E3%81%A4%E3%81%AE%E5%BE%8C%E3%81%AF%E6%99%AE%E9%80%9A%E3%81%ABSSH%E3%81%AE%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%A7%E3%81%8D%E3%82%8B"></a><h1>ハイフンふたつの後は、普通にSSHのオプションを指定できる。</h1></div>
 <div class="code-block">
 <div class="highlight"><pre><span></span>$ vagrant ssh -- -A
 </pre></div>
 </div>
 </div>
 <div class="section" id="vmbox">
-<div class="header_target" id="h_vagrant_note_index_2erst_10"></div><h1>VMとboxは違う</h1>
+<div class="md_header_block" id="h_VM%E3%81%A8box%E3%81%AF%E9%81%95%E3%81%86"><a class="md_header_anchor" id="a_VM%E3%81%A8box%E3%81%AF%E9%81%95%E3%81%86"></a><h1>VMとboxは違う</h1></div>
 <pre class="literal-block">vagrant destroy で消えるのは VM 自体、 vagrant box というのは VM 作成の素になるものです。
 VM がインスタンスだとすると、 box はクラス的な。</pre>
 </div>
 <div class="section" id="id7">
-<div class="header_target" id="h_vagrant_note_index_2erst_11"></div><h1>調べる</h1>
+<div class="md_header_block" id="h_%E8%AA%BF%E3%81%B9%E3%82%8B"><a class="md_header_anchor" id="a_%E8%AA%BF%E3%81%B9%E3%82%8B"></a><h1>調べる</h1></div>
 <ul class="simple">
 <li><p>Vagrant Userの鍵認証のところがわからない</p></li>
 </ul>
 </div>
 <div class="section" id="todo">
-<div class="header_target" id="h_vagrant_note_index_2erst_12"></div><h1>TODO</h1>
+<div class="md_header_block" id="h_TODO"><a class="md_header_anchor" id="a_TODO"></a><h1>TODO</h1></div>
 <ul class="simple">
 <li><p>paper から移動する</p></li>
 </ul>

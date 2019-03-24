@@ -100,6 +100,10 @@
           <ul>
             
               <li class="nav-article">
+                <a href="../../docker/connect-from-sqla-to-mysqldb/">Docker Compose で MySQL DB をつくり Compose 外 (非 docker) の SQLAlchemy から接続する</a>
+              </li>
+            
+              <li class="nav-article">
                 <a href="../../docker/create-django-env-with-docker-compose-mysql-2/">Docker Compose で Django/MySQL 環境をつくる その2</a>
               </li>
             
@@ -423,7 +427,7 @@
 </ul>
 </div>
 </details><div class="section" id="id1">
-<div class="header_target" id="h_django_note_index_2erst_1"></div><h1><a class="toc-backref" href="#id17">マイグレーションを間違えたときのリカバリ方法</a></h1>
+<div class="md_header_block" id="h_%E3%83%9E%E3%82%A4%E3%82%B0%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%92%E9%96%93%E9%81%95%E3%81%88%E3%81%9F%E3%81%A8%E3%81%8D%E3%81%AE%E3%83%AA%E3%82%AB%E3%83%90%E3%83%AA%E6%96%B9%E6%B3%95"><a class="md_header_anchor" id="a_%E3%83%9E%E3%82%A4%E3%82%B0%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%92%E9%96%93%E9%81%95%E3%81%88%E3%81%9F%E3%81%A8%E3%81%8D%E3%81%AE%E3%83%AA%E3%82%AB%E3%83%90%E3%83%AA%E6%96%B9%E6%B3%95"></a><h1><a class="toc-backref" href="#id17">マイグレーションを間違えたときのリカバリ方法</a></h1></div>
 <ol class="arabic">
 <li><p>DjangoのDBシェルでローカルのポスグレにつなぐ</p>
 <blockquote>
@@ -464,15 +468,15 @@
 </ol>
 </div>
 <div class="section" id="django-admin-manage-py">
-<div class="header_target" id="h_django_note_index_2erst_2"></div><h1><a class="toc-backref" href="#id18">django-admin と manage.py</a></h1>
+<div class="md_header_block" id="h_djangoadmin%E3%81%A8manage.py"><a class="md_header_anchor" id="a_djangoadmin%E3%81%A8manage.py"></a><h1><a class="toc-backref" href="#id18">django-admin と manage.py</a></h1></div>
 <div class="section" id="id2">
-<div class="header_target" id="h_django_note_index_2erst_3"></div><h2><a class="toc-backref" href="#id19">リファレンス</a></h2>
+<div class="md_header_block" id="h_%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9"><a class="md_header_anchor" id="a_%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9"></a><h2><a class="toc-backref" href="#id19">リファレンス</a></h2></div>
 <p><a class="reference external" href="https://docs.djangoproject.com/ja/2.1/ref/django-admin/#cmdoption-shell-command">https://docs.djangoproject.com/ja/2.1/ref/django-admin/#cmdoption-shell-command</a></p>
 </div>
 <div class="section" id="id3">
-<div class="header_target" id="h_django_note_index_2erst_4"></div><h2><a class="toc-backref" href="#id20">Django をインタラクティブモードで実行する</a></h2>
+<div class="md_header_block" id="h_Django%E3%82%92%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%A9%E3%82%AF%E3%83%86%E3%82%A3%E3%83%96%E3%83%A2%E3%83%BC%E3%83%89%E3%81%A7%E5%AE%9F%E8%A1%8C%E3%81%99%E3%82%8B"><a class="md_header_anchor" id="a_Django%E3%82%92%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%A9%E3%82%AF%E3%83%86%E3%82%A3%E3%83%96%E3%83%A2%E3%83%BC%E3%83%89%E3%81%A7%E5%AE%9F%E8%A1%8C%E3%81%99%E3%82%8B"></a><h2><a class="toc-backref" href="#id20">Django をインタラクティブモードで実行する</a></h2></div>
 <div class="section" id="id4">
-<div class="header_target" id="h_django_note_index_2erst_5"></div><h3><a class="toc-backref" href="#id21">使い方</a></h3>
+<div class="md_header_block" id="h_%E4%BD%BF%E3%81%84%E6%96%B9"><a class="md_header_anchor" id="a_%E4%BD%BF%E3%81%84%E6%96%B9"></a><h3><a class="toc-backref" href="#id21">使い方</a></h3></div>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="c1"># こうとか</span>
 $ <span class="nv">DJANGO_SETTINGS_MODULE</span><span class="o">=</span>settings._ python manage.py shell
@@ -482,7 +486,7 @@ $ python manage.py shell --settings<span class="o">=</span>settings._
 </div>
 </div>
 <div class="section" id="id5">
-<div class="header_target" id="h_django_note_index_2erst_6"></div><h3><a class="toc-backref" href="#id22">使用例</a></h3>
+<div class="md_header_block" id="h_%E4%BD%BF%E7%94%A8%E4%BE%8B"><a class="md_header_anchor" id="a_%E4%BD%BF%E7%94%A8%E4%BE%8B"></a><h3><a class="toc-backref" href="#id22">使用例</a></h3></div>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="n">venv</span><span class="p">)</span> <span class="p">[</span><span class="n">vagrant</span><span class="nd">@localhost</span> <span class="n">apps</span><span class="p">]</span><span class="err">$</span> <span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">shell</span> <span class="o">--</span><span class="n">settings</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">_</span>
 <span class="n">Python</span> <span class="mf">2.7</span><span class="o">.</span><span class="mi">7</span> <span class="p">(</span><span class="n">default</span><span class="p">,</span> <span class="n">Dec</span> <span class="mi">11</span> <span class="mi">2017</span><span class="p">,</span> <span class="mi">18</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mi">38</span><span class="p">)</span>
@@ -501,21 +505,21 @@ $ python manage.py shell --settings<span class="o">=</span>settings._
 </div>
 </div>
 <div class="section" id="django-dbdb">
-<div class="header_target" id="h_django_note_index_2erst_7"></div><h2><a class="toc-backref" href="#id23">Django の DBシェルでローカルDBにつなぐ</a></h2>
+<div class="md_header_block" id="h_Django%E3%81%AEDB%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%A7%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%ABDB%E3%81%AB%E3%81%A4%E3%81%AA%E3%81%90"><a class="md_header_anchor" id="a_Django%E3%81%AEDB%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%A7%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%ABDB%E3%81%AB%E3%81%A4%E3%81%AA%E3%81%90"></a><h2><a class="toc-backref" href="#id23">Django の DBシェルでローカルDBにつなぐ</a></h2></div>
 <div class="section" id="id6">
-<div class="header_target" id="h_django_note_index_2erst_8"></div><h3><a class="toc-backref" href="#id24">使い方</a></h3>
+<div class="md_header_block" id="h_%E4%BD%BF%E3%81%84%E6%96%B9_1"><a class="md_header_anchor" id="a_%E4%BD%BF%E3%81%84%E6%96%B9_1"></a><h3><a class="toc-backref" href="#id24">使い方</a></h3></div>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="gp">$</span> python manage.py dbshell --settings<span class="o">=</span>settings.local
 </pre></div>
 </div>
 </div>
 <div class="section" id="id7">
-<div class="header_target" id="h_django_note_index_2erst_9"></div><h3><a class="toc-backref" href="#id25">ガイド</a></h3>
+<div class="md_header_block" id="h_%E3%82%AC%E3%82%A4%E3%83%89"><a class="md_header_anchor" id="a_%E3%82%AC%E3%82%A4%E3%83%89"></a><h3><a class="toc-backref" href="#id25">ガイド</a></h3></div>
 <p><a class="reference external" href="https://docs.djangoproject.com/ja/2.1/ref/django-admin/#dbshell">https://docs.djangoproject.com/ja/2.1/ref/django-admin/#dbshell</a></p>
 </div>
 </div>
 <div class="section" id="system-check-framework-django">
-<div class="header_target" id="h_django_note_index_2erst_10"></div><h2><a class="toc-backref" href="#id26">System check framework を使って、Django プロジェクトの一般的な問題を検査する</a></h2>
+<div class="md_header_block" id="h_Systemcheckframework%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6Django%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF"><a class="md_header_anchor" id="a_Systemcheckframework%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6Django%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF"></a><h2><a class="toc-backref" href="#id26">System check framework を使って、Django プロジェクトの一般的な問題を検査する</a></h2></div>
 <p><a class="reference external" href="https://docs.djangoproject.com/ja/1.11/ref/django-admin/#check">check</a> ,
 <a class="reference external" href="https://docs.djangoproject.com/ja/1.11/ref/checks/#system-check-framework">System check framework</a></p>
 <ul>
@@ -534,9 +538,9 @@ $ python manage.py shell --settings<span class="o">=</span>settings._
 </div>
 </div>
 <div class="section" id="template">
-<div class="header_target" id="h_django_note_index_2erst_11"></div><h1><a class="toc-backref" href="#id27">template</a></h1>
+<div class="md_header_block" id="h_template"><a class="md_header_anchor" id="a_template"></a><h1><a class="toc-backref" href="#id27">template</a></h1></div>
 <div class="section" id="id8">
-<div class="header_target" id="h_django_note_index_2erst_12"></div><h2><a class="toc-backref" href="#id28">独自のテンプレートタグとフィルタ</a></h2>
+<div class="md_header_block" id="h_%E7%8B%AC%E8%87%AA%E3%81%AE%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E3%82%BF%E3%82%B0%E3%81%A8%E3%83%95%E3%82%A3%E3%83%AB%E3%82%BF"><a class="md_header_anchor" id="a_%E7%8B%AC%E8%87%AA%E3%81%AE%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E3%82%BF%E3%82%B0%E3%81%A8%E3%83%95%E3%82%A3%E3%83%AB%E3%82%BF"></a><h2><a class="toc-backref" href="#id28">独自のテンプレートタグとフィルタ</a></h2></div>
 <p>カスタムタグやカスタムフィルタをつくることができる。</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://docs.djangoproject.com/ja/1.11/howto/custom-template-tags/#custom-template-tags-and-filters">独自のテンプレートタグとフィルタ</a></p></li>
@@ -544,22 +548,22 @@ $ python manage.py shell --settings<span class="o">=</span>settings._
 </div>
 </div>
 <div class="section" id="class-based-views">
-<div class="header_target" id="h_django_note_index_2erst_13"></div><h1><a class="toc-backref" href="#id29">Class-based views</a></h1>
+<div class="md_header_block" id="h_Classbasedviews"><a class="md_header_anchor" id="a_Classbasedviews"></a><h1><a class="toc-backref" href="#id29">Class-based views</a></h1></div>
 <pre class="literal-block">関数形式の view はコンテキスト、テンプレート、フォーム、全部変えしてあげないといけなかった。つまり全部関数内に書く必要があった。
 必要なものを切り離して属性として定義できるようにしたのが genericview (class based view)。</pre>
 <div class="section" id="id10">
-<div class="header_target" id="h_django_note_index_2erst_14"></div><h2><a class="toc-backref" href="#id30">リファレンス</a></h2>
+<div class="md_header_block" id="h_%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9_1"><a class="md_header_anchor" id="a_%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9_1"></a><h2><a class="toc-backref" href="#id30">リファレンス</a></h2></div>
 <p><a class="reference external" href="https://docs.djangoproject.com/ja/2.1/topics/class-based-views/">https://docs.djangoproject.com/ja/2.1/topics/class-based-views/</a></p>
 </div>
 <div class="section" id="formview">
-<div class="header_target" id="h_django_note_index_2erst_15"></div><h2><a class="toc-backref" href="#id31">FormView</a></h2>
+<div class="md_header_block" id="h_FormView"><a class="md_header_anchor" id="a_FormView"></a><h2><a class="toc-backref" href="#id31">FormView</a></h2></div>
 <ul class="simple">
 <li><p><span class="docutils literal">genericview</span> はたくさん種類がある。</p></li>
 <li><p>何らかの登録・更新処理で <span class="docutils literal">form</span> を使ったバリデーションが必要なら 大体 <span class="docutils literal">FormView</span> を使う</p></li>
 </ul>
 </div>
 <div class="section" id="as-view">
-<div class="header_target" id="h_django_note_index_2erst_16"></div><h2><a class="toc-backref" href="#id32">as_view</a></h2>
+<div class="md_header_block" id="h_as_view"><a class="md_header_anchor" id="a_as_view"></a><h2><a class="toc-backref" href="#id32">as_view</a></h2></div>
 <p><a class="reference external" href="https://github.com/django/django/blob/master/django/views/generic/base.py#L49">https://github.com/django/django/blob/master/django/views/generic/base.py#L49</a></p>
 <ul class="simple">
 <li><p>as_view は view 関数を生成して返している</p></li>
@@ -574,16 +578,16 @@ $ python manage.py shell --settings<span class="o">=</span>settings._
 </ul>
 </div>
 <div class="section" id="get-context-data">
-<div class="header_target" id="h_django_note_index_2erst_17"></div><h2><a class="toc-backref" href="#id33">get_context_data</a></h2>
+<div class="md_header_block" id="h_get_context_data"><a class="md_header_anchor" id="a_get_context_data"></a><h2><a class="toc-backref" href="#id33">get_context_data</a></h2></div>
 <ul class="simple">
 <li><p>大抵の場合、ビューというのはレンダリングに必要なコンテキストを組み立てるものなので 大体の処理は <span class="docutils literal">get_context_data</span> というメソッドに書く。</p></li>
 </ul>
 </div>
 </div>
 <div class="section" id="id11">
-<div class="header_target" id="h_django_note_index_2erst_18"></div><h1><a class="toc-backref" href="#id34">こんなのある</a></h1>
+<div class="md_header_block" id="h_%E3%81%93%E3%82%93%E3%81%AA%E3%81%AE%E3%81%82%E3%82%8B"><a class="md_header_anchor" id="a_%E3%81%93%E3%82%93%E3%81%AA%E3%81%AE%E3%81%82%E3%82%8B"></a><h1><a class="toc-backref" href="#id34">こんなのある</a></h1></div>
 <div class="section" id="id12">
-<div class="header_target" id="h_django_note_index_2erst_19"></div><h2><a class="toc-backref" href="#id35">インラインフォームセット</a></h2>
+<div class="md_header_block" id="h_%E3%82%A4%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0%E3%82%BB%E3%83%83%E3%83%88"><a class="md_header_anchor" id="a_%E3%82%A4%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0%E3%82%BB%E3%83%83%E3%83%88"></a><h2><a class="toc-backref" href="#id35">インラインフォームセット</a></h2></div>
 <p>使い方はよくわかっていない</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://docs.djangoproject.com/ja/1.11/topics/forms/modelforms/#inline-formsets">https://docs.djangoproject.com/ja/1.11/topics/forms/modelforms/#inline-formsets</a></p></li>
@@ -591,7 +595,7 @@ $ python manage.py shell --settings<span class="o">=</span>settings._
 </ul>
 </div>
 <div class="section" id="multivaluedict">
-<div class="header_target" id="h_django_note_index_2erst_20"></div><h2><a class="toc-backref" href="#id36">MultiValueDict</a></h2>
+<div class="md_header_block" id="h_MultiValueDict"><a class="md_header_anchor" id="a_MultiValueDict"></a><h2><a class="toc-backref" href="#id36">MultiValueDict</a></h2></div>
 <p>なにがうれしいのかさっぱりわからない =&gt; <cite>MultiValueDict を継承してる QueryDict とか見るとユースケースはなんとなく想像つくと思います</cite> と教えて頂いた。</p>
 <ul>
 <li><p><a class="reference external" href="https://docs.djangoproject.com/ja/2.1/_modules/django/utils/datastructures/">https://docs.djangoproject.com/ja/2.1/_modules/django/utils/datastructures/</a></p>
@@ -614,7 +618,7 @@ $ python manage.py shell --settings<span class="o">=</span>settings._
 </ul>
 </div>
 <div class="section" id="querydict">
-<div class="header_target" id="h_django_note_index_2erst_21"></div><h2><a class="toc-backref" href="#id37">QueryDict オブジェクト</a></h2>
+<div class="md_header_block" id="h_QueryDict%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88"><a class="md_header_anchor" id="a_QueryDict%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88"></a><h2><a class="toc-backref" href="#id37">QueryDict オブジェクト</a></h2></div>
 <p><cite>In an HttpRequest object, the GET and POST attributes are instances of django.http.QueryDict</cite> だそうです。</p>
 <blockquote>
 <ul>
@@ -625,10 +629,10 @@ $ python manage.py shell --settings<span class="o">=</span>settings._
 </blockquote>
 </div>
 <div class="section" id="usermanager">
-<div class="header_target" id="h_django_note_index_2erst_22"></div><h2><a class="toc-backref" href="#id38">UserManager</a></h2>
+<div class="md_header_block" id="h_UserManager"><a class="md_header_anchor" id="a_UserManager"></a><h2><a class="toc-backref" href="#id38">UserManager</a></h2></div>
 <p><a class="reference external" href="https://docs.djangoproject.com/ja/1.11/ref/contrib/auth/#manager-methods">マネージャメソッド</a></p>
 <div class="section" id="url">
-<div class="header_target" id="h_django_note_index_2erst_23"></div><h3><a class="toc-backref" href="#id39">参考 URL</a></h3>
+<div class="md_header_block" id="h_%E5%8F%82%E8%80%83URL"><a class="md_header_anchor" id="a_%E5%8F%82%E8%80%83URL"></a><h3><a class="toc-backref" href="#id39">参考 URL</a></h3></div>
 <ul>
 <li><p><a class="reference external" href="https://github.com/django/django/blob/master/django/contrib/auth/models.py#L131">https://github.com/django/django/blob/master/django/contrib/auth/models.py#L131</a></p></li>
 <li><p><a class="reference external" href="https://docs.djangoproject.com/ja/1.11/topics/auth/customizing/#a-full-example">https://docs.djangoproject.com/ja/1.11/topics/auth/customizing/#a-full-example</a></p>
@@ -645,14 +649,14 @@ $ python manage.py shell --settings<span class="o">=</span>settings._
 </div>
 </div>
 <div class="section" id="requestfactory">
-<div class="header_target" id="h_django_note_index_2erst_24"></div><h2><a class="toc-backref" href="#id40">RequestFactory</a></h2>
+<div class="md_header_block" id="h_RequestFactory"><a class="md_header_anchor" id="a_RequestFactory"></a><h2><a class="toc-backref" href="#id40">RequestFactory</a></h2></div>
 <p><a class="reference external" href="https://docs.djangoproject.com/en/2.1/topics/testing/advanced/#django.test.RequestFactory">https://docs.djangoproject.com/en/2.1/topics/testing/advanced/#django.test.RequestFactory</a></p>
 </div>
 </div>
 <div class="section" id="id15">
-<div class="header_target" id="h_django_note_index_2erst_25"></div><h1><a class="toc-backref" href="#id41">便利さん</a></h1>
+<div class="md_header_block" id="h_%E4%BE%BF%E5%88%A9%E3%81%95%E3%82%93"><a class="md_header_anchor" id="a_%E4%BE%BF%E5%88%A9%E3%81%95%E3%82%93"></a><h1><a class="toc-backref" href="#id41">便利さん</a></h1></div>
 <div class="section" id="id16">
-<div class="header_target" id="h_django_note_index_2erst_26"></div><h2><a class="toc-backref" href="#id42">django に便利コマンド追加してくれるさん</a></h2>
+<div class="md_header_block" id="h_django%E3%81%AB%E4%BE%BF%E5%88%A9%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E8%BF%BD%E5%8A%A0%E3%81%97%E3%81%A6%E3%81%8F%E3%82%8C%E3%82%8B%E3%81%95%E3%82%93"><a class="md_header_anchor" id="a_django%E3%81%AB%E4%BE%BF%E5%88%A9%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E8%BF%BD%E5%8A%A0%E3%81%97%E3%81%A6%E3%81%8F%E3%82%8C%E3%82%8B%E3%81%95%E3%82%93"></a><h2><a class="toc-backref" href="#id42">django に便利コマンド追加してくれるさん</a></h2></div>
 <ul class="simple">
 <li><p><a class="reference external" href="https://django-extensions.readthedocs.io/en/latest/">django-extensions</a></p></li>
 </ul>

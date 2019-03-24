@@ -100,6 +100,10 @@
           <ul>
             
               <li class="nav-article">
+                <a href="../../docker/connect-from-sqla-to-mysqldb/">Docker Compose で MySQL DB をつくり Compose 外 (非 docker) の SQLAlchemy から接続する</a>
+              </li>
+            
+              <li class="nav-article">
                 <a href="../../docker/create-django-env-with-docker-compose-mysql-2/">Docker Compose で Django/MySQL 環境をつくる その2</a>
               </li>
             
@@ -381,7 +385,7 @@
 </ul>
 </div>
 </details><div class="section" id="id1">
-<div class="header_target" id="h_python_2dtest_tox_index_2erst_1"></div><h1><a class="toc-backref" href="#id7">tox とは</a></h1>
+<div class="md_header_block" id="h_tox%E3%81%A8%E3%81%AF"><a class="md_header_anchor" id="a_tox%E3%81%A8%E3%81%AF"></a><h1><a class="toc-backref" href="#id7">tox とは</a></h1></div>
 <p><cite>これをテストに使いたいとは限らないのでもうテスト用に環境分けちゃおうぜ的なツール</cite></p>
 <ul class="simple">
 <li><p>別々の virtualenv にそれぞれテスト環境を構築してくれる</p></li>
@@ -392,20 +396,20 @@
 </ul>
 </div>
 <div class="section" id="id2">
-<div class="header_target" id="h_python_2dtest_tox_index_2erst_2"></div><h1><a class="toc-backref" href="#id8">リファレンス</a></h1>
+<div class="md_header_block" id="h_%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9"><a class="md_header_anchor" id="a_%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9"></a><h1><a class="toc-backref" href="#id8">リファレンス</a></h1></div>
 <ul class="simple">
 <li><p><a class="reference external" href="https://tox.readthedocs.io/en/latest/config.html">https://tox.readthedocs.io/en/latest/config.html</a></p></li>
 </ul>
 </div>
 <div class="section" id="id3">
-<div class="header_target" id="h_python_2dtest_tox_index_2erst_3"></div><h1><a class="toc-backref" href="#id9">インストール</a></h1>
+<div class="md_header_block" id="h_%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB"><a class="md_header_anchor" id="a_%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB"></a><h1><a class="toc-backref" href="#id9">インストール</a></h1></div>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="gp">$</span> pip install tox
 </pre></div>
 </div>
 </div>
 <div class="section" id="tox-ini">
-<div class="header_target" id="h_python_2dtest_tox_index_2erst_4"></div><h1><a class="toc-backref" href="#id10">tox.ini</a></h1>
+<div class="md_header_block" id="h_tox.ini"><a class="md_header_anchor" id="a_tox.ini"></a><h1><a class="toc-backref" href="#id10">tox.ini</a></h1></div>
 <p>テスト実行環境の設定を記述するファイル</p>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="k">[tox]</span>
@@ -494,7 +498,7 @@
 </div>
 </div>
 <div class="section" id="id4">
-<div class="header_target" id="h_python_2dtest_tox_index_2erst_5"></div><h1><a class="toc-backref" href="#id11">実行</a></h1>
+<div class="md_header_block" id="h_%E5%AE%9F%E8%A1%8C"><a class="md_header_anchor" id="a_%E5%AE%9F%E8%A1%8C"></a><h1><a class="toc-backref" href="#id11">実行</a></h1></div>
 <p>全部実行する。 tox.ini ファイルのあるディレクトリで実行する!!</p>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="gp">$</span> tox
@@ -519,7 +523,7 @@ $ tox -e flake8, typecheck
 </div>
 </div>
 <div class="section" id="id5">
-<div class="header_target" id="h_python_2dtest_tox_index_2erst_6"></div><h1><a class="toc-backref" href="#id12">テスト用仮想環境の再作成</a></h1>
+<div class="md_header_block" id="h_%E3%83%86%E3%82%B9%E3%83%88%E7%94%A8%E4%BB%AE%E6%83%B3%E7%92%B0%E5%A2%83%E3%81%AE%E5%86%8D%E4%BD%9C%E6%88%90"><a class="md_header_anchor" id="a_%E3%83%86%E3%82%B9%E3%83%88%E7%94%A8%E4%BB%AE%E6%83%B3%E7%92%B0%E5%A2%83%E3%81%AE%E5%86%8D%E4%BD%9C%E6%88%90"></a><h1><a class="toc-backref" href="#id12">テスト用仮想環境の再作成</a></h1></div>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="gp">$</span> tox -r
 </pre></div>
@@ -538,7 +542,7 @@ $ tox -e flake8, typecheck
 </ul>
 </div>
 <div class="section" id="pytest-pythonpath">
-<div class="header_target" id="h_python_2dtest_tox_index_2erst_7"></div><h1><a class="toc-backref" href="#id13">pytest-pythonpath</a></h1>
+<div class="md_header_block" id="h_pytestpythonpath"><a class="md_header_anchor" id="a_pytestpythonpath"></a><h1><a class="toc-backref" href="#id13">pytest-pythonpath</a></h1></div>
 <p>テスト実行の前に、 pytests.ini に指定した検索パスを <span class="docutils literal">PYTHONPATH</span> に追加してくれるプラグイン</p>
 <blockquote>
 <ul class="simple">
@@ -548,7 +552,7 @@ $ tox -e flake8, typecheck
 </blockquote>
 </div>
 <div class="section" id="id6">
-<div class="header_target" id="h_python_2dtest_tox_index_2erst_8"></div><h1><a class="toc-backref" href="#id14">参考書籍, サイト</a></h1>
+<div class="md_header_block" id="h_%E5%8F%82%E8%80%83%E6%9B%B8%E7%B1%8D%E3%82%B5%E3%82%A4%E3%83%88"><a class="md_header_anchor" id="a_%E5%8F%82%E8%80%83%E6%9B%B8%E7%B1%8D%E3%82%B5%E3%82%A4%E3%83%88"></a><h1><a class="toc-backref" href="#id14">参考書籍, サイト</a></h1></div>
 <ul class="simple">
 <li><p>Python プロフェッショナル プログラミング 第3版: P.249, 274</p></li>
 <li><p><a class="reference external" href="http://note.crohaco.net/2016/python-tox/">http://note.crohaco.net/2016/python-tox/</a></p></li>

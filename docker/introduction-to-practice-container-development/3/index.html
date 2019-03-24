@@ -100,6 +100,10 @@
           <ul>
             
               <li class="nav-article">
+                <a href="../../connect-from-sqla-to-mysqldb/">Docker Compose で MySQL DB をつくり Compose 外 (非 docker) の SQLAlchemy から接続する</a>
+              </li>
+            
+              <li class="nav-article">
                 <a href="../../create-django-env-with-docker-compose-mysql-2/">Docker Compose で Django/MySQL 環境をつくる その2</a>
               </li>
             
@@ -439,16 +443,16 @@
 </ul>
 </div>
 </details><div class="section" id="id2">
-<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_1"></div><h1><a class="toc-backref" href="#id21">3.1 アプリケーションとコンテナの粒度</a></h1>
+<div class="md_header_block" id="h_3.1%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%A8%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E3%81%AE%E7%B2%92%E5%BA%A6"><a class="md_header_anchor" id="a_3.1%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%A8%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E3%81%AE%E7%B2%92%E5%BA%A6"></a><h1><a class="toc-backref" href="#id21">3.1 アプリケーションとコンテナの粒度</a></h1></div>
 <p>アプリケーションをコンテナの中にどのように配置するかを意識することが重要</p>
 <div class="section" id="id3">
-<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_2"></div><h2><a class="toc-backref" href="#id22">3.1.1 1コンテナ = 1プロセス?</a></h2>
+<div class="md_header_block" id="h_3.1.11%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A1%E3%83%97%E3%83%AD%E3%82%BB%E3%82%B9%3F"><a class="md_header_anchor" id="a_3.1.11%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A1%E3%83%97%E3%83%AD%E3%82%BB%E3%82%B9%3F"></a><h2><a class="toc-backref" href="#id22">3.1.1 1コンテナ = 1プロセス?</a></h2></div>
 <ul class="simple">
 <li><p>1コンテナ = 1プロセス を絶対条件とはしない</p></li>
 <li><p>子プロセスまで意識するのは本末転倒</p></li>
 </ul>
 <div class="section" id="id4">
-<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_3"></div><h3><a class="toc-backref" href="#id23">定期的にジョブを実行するアプリケーション</a></h3>
+<div class="md_header_block" id="h_%E5%AE%9A%E6%9C%9F%E7%9A%84%E3%81%AB%E3%82%B8%E3%83%A7%E3%83%96%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%99%E3%82%8B%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3"><a class="md_header_anchor" id="a_%E5%AE%9A%E6%9C%9F%E7%9A%84%E3%81%AB%E3%82%B8%E3%83%A7%E3%83%96%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%99%E3%82%8B%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3"></a><h3><a class="toc-backref" href="#id23">定期的にジョブを実行するアプリケーション</a></h3></div>
 <ol class="arabic">
 <li><p>ジョブ <span class="docutils literal">task.sh</span> を作る</p>
 <blockquote>
@@ -478,13 +482,13 @@
 <span class="k">RUN</span> apt install -y cron
 
 <span class="c"># task.sh と cron-example を追加する</span>
-COPY task.sh /usr/local/bin/
-COPY cron-example /etc/cron.d/
+<span class="k">COPY</span> task.sh /usr/local/bin/
+<span class="k">COPY</span> cron-example /etc/cron.d/
 <span class="c"># cron-example に 644 パーミッションを設定する</span>
 <span class="k">RUN</span> chmod <span class="m">0644</span> /etc/cron.d/cron-example
 
 <span class="c"># cron を実行</span>
-<span class="k">CMD</span><span class="s"> ["cron", "-f"]</span>
+<span class="k">CMD</span> <span class="p">[</span><span class="s2">"cron"</span><span class="p">,</span> <span class="s2">"-f"</span><span class="p">]</span>
 </pre></div>
 </div>
 </blockquote>
@@ -663,7 +667,7 @@ COPY cron-example /etc/cron.d/
 </li>
 </ol>
 <div class="section" id="id5">
-<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_4"></div><h4><a class="toc-backref" href="#id24">参考にしたサイト</a></h4>
+<div class="md_header_block" id="h_%E5%8F%82%E8%80%83%E3%81%AB%E3%81%97%E3%81%9F%E3%82%B5%E3%82%A4%E3%83%88"><a class="md_header_anchor" id="a_%E5%8F%82%E8%80%83%E3%81%AB%E3%81%97%E3%81%9F%E3%82%B5%E3%82%A4%E3%83%88"></a><h4><a class="toc-backref" href="#id24">参考にしたサイト</a></h4></div>
 <p>ありがとうございました!!!</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://teratail.com/questions/62291">ubuntuでcrontabに設定した反映が実行されない</a></p></li>
@@ -673,7 +677,7 @@ COPY cron-example /etc/cron.d/
 </div>
 </div>
 <div class="section" id="id6">
-<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_5"></div><h2><a class="toc-backref" href="#id25">3.1.2 1コンテナに1つの関心事</a></h2>
+<div class="md_header_block" id="h_3.1.21%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E3%81%AB1%E3%81%A4%E3%81%AE%E9%96%A2%E5%BF%83%E4%BA%8B"><a class="md_header_anchor" id="a_3.1.21%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E3%81%AB1%E3%81%A4%E3%81%AE%E9%96%A2%E5%BF%83%E4%BA%8B"></a><h2><a class="toc-backref" href="#id25">3.1.2 1コンテナに1つの関心事</a></h2></div>
 <p><cite>Each container should have only one concern</cite></p>
 <p>コンテナは一つの関心事だけに集中すべきだ ( <a class="reference external" href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">https://docs.docker.com/develop/develop-images/dockerfile_best-practices/</a> )</p>
 <ul class="simple">
@@ -683,7 +687,7 @@ COPY cron-example /etc/cron.d/
 </div>
 </div>
 <div class="section" id="id7">
-<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_6"></div><h1><a class="toc-backref" href="#id26">3.2 コンテナのポータビリティ</a></h1>
+<div class="md_header_block" id="h_3.2%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E3%81%AE%E3%83%9D%E3%83%BC%E3%82%BF%E3%83%93%E3%83%AA%E3%83%86%E3%82%A3"><a class="md_header_anchor" id="a_3.2%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E3%81%AE%E3%83%9D%E3%83%BC%E3%82%BF%E3%83%93%E3%83%AA%E3%83%86%E3%82%A3"></a><h1><a class="toc-backref" href="#id26">3.2 コンテナのポータビリティ</a></h1></div>
 <p>Docker の大きな利点はポータビリティ (可搬性) にある。</p>
 <ul class="simple">
 <li><p>アプリケーションとインフラをコンテナという単位で分離できる</p></li>
@@ -693,14 +697,14 @@ COPY cron-example /etc/cron.d/
 <li><p>Docker のポータビリティは完璧なものではなく、いくつかの例外が存在する</p></li>
 </ul>
 <div class="section" id="kernel">
-<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_7"></div><h2><a class="toc-backref" href="#id27">3.2.1 Kernel・アーキテクチャの違い</a></h2>
+<div class="md_header_block" id="h_3.2.1Kernel%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3%E3%81%AE%E9%81%95%E3%81%84"><a class="md_header_anchor" id="a_3.2.1Kernel%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3%E3%81%AE%E9%81%95%E3%81%84"></a><h2><a class="toc-backref" href="#id27">3.2.1 Kernel・アーキテクチャの違い</a></h2></div>
 <ul class="simple">
 <li><p>ホスト型仮想技術のようにハードウェアを演算によって再現する方式とは違い、Docker のコンテナ型貸そうか技術ではホストOSとカーネルのリソースを共有している</p></li>
 <li><p>ある特定のCPUアーキテクチャやOSの前提の上に成立している</p></li>
 </ul>
 </div>
 <div class="section" id="id8">
-<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_8"></div><h2><a class="toc-backref" href="#id28">3.2.2 ライブラリ・ダイナミックリンクの課題</a></h2>
+<div class="md_header_block" id="h_3.2.2%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA%E3%83%80%E3%82%A4%E3%83%8A%E3%83%9F%E3%83%83%E3%82%AF%E3%83%AA%E3%83%B3%E3%82%AF%E3%81%AE%E8%AA%B2%E9%A1%8C"><a class="md_header_anchor" id="a_3.2.2%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA%E3%83%80%E3%82%A4%E3%83%8A%E3%83%9F%E3%83%83%E3%82%AF%E3%83%AA%E3%83%B3%E3%82%AF%E3%81%AE%E8%AA%B2%E9%A1%8C"></a><h2><a class="toc-backref" href="#id28">3.2.2 ライブラリ・ダイナミックリンクの課題</a></h2></div>
 <ul class="simple">
 <li><p>アプリケーションが利用しているライブラリによっても、ポータビリティが損なわれるケースが存在する</p></li>
 <li><p>ネイティブライブラリをダイナミックリンクするようなケース</p></li>
@@ -710,10 +714,10 @@ COPY cron-example /etc/cron.d/
 </div>
 </div>
 <div class="section" id="docker">
-<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_9"></div><h1><a class="toc-backref" href="#id29">3.3 Docker フレンドリなアプリケーション</a></h1>
+<div class="md_header_block" id="h_3.3Docker%E3%83%95%E3%83%AC%E3%83%B3%E3%83%89%E3%83%AA%E3%81%AA%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3"><a class="md_header_anchor" id="a_3.3Docker%E3%83%95%E3%83%AC%E3%83%B3%E3%83%89%E3%83%AA%E3%81%AA%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3"></a><h1><a class="toc-backref" href="#id29">3.3 Docker フレンドリなアプリケーション</a></h1></div>
 <p>コンテナ化の恩恵を最大限受けるには。</p>
 <div class="section" id="id9">
-<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_10"></div><h2><a class="toc-backref" href="#id30">3.3.1 環境変数を活用する</a></h2>
+<div class="md_header_block" id="h_3.3.1%E7%92%B0%E5%A2%83%E5%A4%89%E6%95%B0%E3%82%92%E6%B4%BB%E7%94%A8%E3%81%99%E3%82%8B"><a class="md_header_anchor" id="a_3.3.1%E7%92%B0%E5%A2%83%E5%A4%89%E6%95%B0%E3%82%92%E6%B4%BB%E7%94%A8%E3%81%99%E3%82%8B"></a><h2><a class="toc-backref" href="#id30">3.3.1 環境変数を活用する</a></h2></div>
 <p>アプリケーションの挙動を環境変数で制御するのがおすすめ。</p>
 <ul class="simple">
 <li><p>環境変数は、アプリケーションとは別のリポジトリで管理するのが一般的</p></li>
@@ -724,13 +728,13 @@ COPY cron-example /etc/cron.d/
 </div>
 </div>
 <div class="section" id="id10">
-<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_11"></div><h1><a class="toc-backref" href="#id31">3.4 永続化データをどう扱うか</a></h1>
+<div class="md_header_block" id="h_3.4%E6%B0%B8%E7%B6%9A%E5%8C%96%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E3%81%A9%E3%81%86%E6%89%B1%E3%81%86%E3%81%8B"><a class="md_header_anchor" id="a_3.4%E6%B0%B8%E7%B6%9A%E5%8C%96%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E3%81%A9%E3%81%86%E6%89%B1%E3%81%86%E3%81%8B"></a><h1><a class="toc-backref" href="#id31">3.4 永続化データをどう扱うか</a></h1></div>
 <p>Docker コンテナを実行中に書き込まれたファイルは、ホスト側にファイル・ディレクトリをマウントしない限りコンテナを廃棄したタイミングでディスクから消去される。</p>
 <ul class="simple">
 <li><p>Data Volume で各コンテナとホストで永続化データを共有するほかに、 Data Volume コンテナという永続化データ用のコンテナを起動する手法もある。</p></li>
 </ul>
 <div class="section" id="data-volume">
-<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_12"></div><h2><a class="toc-backref" href="#id32">3.4.1 Data Volume</a></h2>
+<div class="md_header_block" id="h_3.4.1DataVolume"><a class="md_header_anchor" id="a_3.4.1DataVolume"></a><h2><a class="toc-backref" href="#id32">3.4.1 Data Volume</a></h2></div>
 <p>Docker コンテナ内のディレクトリをディスクに永続化するための仕組み</p>
 <ul class="simple">
 <li><p>ホスト・コンテナ間のディレクトリの共有・再利用が可能になる</p></li>
@@ -739,7 +743,7 @@ COPY cron-example /etc/cron.d/
 <li><p>コンテナでステートフルなアプリケーションを実行する用途に向いている</p></li>
 </ul>
 <div class="section" id="id11">
-<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_13"></div><h3><a class="toc-backref" href="#id33">Data Volume の作成</a></h3>
+<div class="md_header_block" id="h_DataVolume%E3%81%AE%E4%BD%9C%E6%88%90"><a class="md_header_anchor" id="a_DataVolume%E3%81%AE%E4%BD%9C%E6%88%90"></a><h3><a class="toc-backref" href="#id33">Data Volume の作成</a></h3></div>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="gp">$</span> docker container run <span class="o">[</span>options<span class="o">]</span> -v ホスト側ディレクトリ:コンテナ側ディレクトリ リポジトリ名<span class="o">[</span>:タグ<span class="o">]</span> <span class="o">[</span>コマンド<span class="o">]</span> <span class="o">[</span>コマンド引数<span class="o">]</span>
 </pre></div>
@@ -767,7 +771,7 @@ COPY cron-example /etc/cron.d/
 </div>
 </div>
 <div class="section" id="id12">
-<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_14"></div><h2><a class="toc-backref" href="#id34">3.4.2 Data Volume コンテナ</a></h2>
+<div class="md_header_block" id="h_3.4.2DataVolume%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A"><a class="md_header_anchor" id="a_3.4.2DataVolume%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A"></a><h2><a class="toc-backref" href="#id34">3.4.2 Data Volume コンテナ</a></h2></div>
 <ul class="simple">
 <li><p>コンテナのデータ永続化手法として推奨されている</p></li>
 <li><p>Data Volume コンテナによって Data Volume への操作がカプセル化されるため、ホストをあまり意識せずに Data Volume を利用できる</p></li>
@@ -785,7 +789,7 @@ COPY cron-example /etc/cron.d/
 </li>
 </ul>
 <div class="section" id="mysql-data-volume">
-<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_15"></div><h3><a class="toc-backref" href="#id35">MySQL のデータを Data Volume コンテナに保持する</a></h3>
+<div class="md_header_block" id="h_MySQL%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92DataVolume%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E3%81%AB%E4%BF%9D%E6%8C%81%E3%81%99%E3%82%8B"><a class="md_header_anchor" id="a_MySQL%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92DataVolume%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E3%81%AB%E4%BF%9D%E6%8C%81%E3%81%99%E3%82%8B"></a><h3><a class="toc-backref" href="#id35">MySQL のデータを Data Volume コンテナに保持する</a></h3></div>
 <ol class="arabic">
 <li><p>Data Volume コンテナの Dockerfile を用意する</p>
 <blockquote>
@@ -795,7 +799,7 @@ COPY cron-example /etc/cron.d/
 
 <span class="k">VOLUME</span><span class="s"> /var/lib/mysql</span>
 
-<span class="k">CMD</span><span class="s"> ["bin/true"]</span>
+<span class="k">CMD</span> <span class="p">[</span><span class="s2">"bin/true"</span><span class="p">]</span>
 </pre></div>
 </div>
 </blockquote>
@@ -959,7 +963,7 @@ Successfully tagged example/mysql-data:latest
 </ol>
 </div>
 <div class="section" id="id13">
-<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_16"></div><h3><a class="toc-backref" href="#id36">データのエクスポートとリストア</a></h3>
+<div class="md_header_block" id="h_%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E3%81%A8%E3%83%AA%E3%82%B9%E3%83%88%E3%82%A2"><a class="md_header_anchor" id="a_%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E3%81%A8%E3%83%AA%E3%82%B9%E3%83%88%E3%82%A2"></a><h3><a class="toc-backref" href="#id36">データのエクスポートとリストア</a></h3></div>
 <ul>
 <li><p>Data Volume は同一 Docker ホスト内でのみ有効</p></li>
 <li><p>他の Docker ホストで使いたいときは、 Data Volume コンテナからデータをファイルとしてホストにエクスポートする</p>
@@ -979,14 +983,14 @@ Successfully tagged example/mysql-data:latest
 </div>
 </div>
 <div class="section" id="id14">
-<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_17"></div><h1><a class="toc-backref" href="#id37">3.5 コンテナ配置戦略</a></h1>
+<div class="md_header_block" id="h_3.5%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E9%85%8D%E7%BD%AE%E6%88%A6%E7%95%A5"><a class="md_header_anchor" id="a_3.5%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E9%85%8D%E7%BD%AE%E6%88%A6%E7%95%A5"></a><h1><a class="toc-backref" href="#id37">3.5 コンテナ配置戦略</a></h1></div>
 <p>多くのリクエストをさばく必要のある実用的なシステムでは複数のコンテナを複数のホストに配置させる必要がある</p>
 <ul class="simple">
 <li><p>コンテナをどのように配置すべきか</p></li>
 <li><p>複数の Docker ホストをどのように制御すべきか</p></li>
 </ul>
 <div class="section" id="docker-swarm">
-<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_18"></div><h2><a class="toc-backref" href="#id38">3.5.1 Docker Swarm</a></h2>
+<div class="md_header_block" id="h_3.5.1DockerSwarm"><a class="md_header_anchor" id="a_3.5.1DockerSwarm"></a><h2><a class="toc-backref" href="#id38">3.5.1 Docker Swarm</a></h2></div>
 <p>Docker Swarm:</p>
 <ul class="simple">
 <li><p>複数の Docker ホストを束ねてクラスタ化するためのツール</p></li>
@@ -1021,7 +1025,7 @@ Successfully tagged example/mysql-data:latest
 </tbody>
 </table>
 <div class="section" id="id15">
-<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_19"></div><h3><a class="toc-backref" href="#id39">複数の Docker ホストを用意し、 Swarm クラスタを構築する</a></h3>
+<div class="md_header_block" id="h_%E8%A4%87%E6%95%B0%E3%81%AEDocker%E3%83%9B%E3%82%B9%E3%83%88%E3%82%92%E7%94%A8%E6%84%8F%E3%81%97Swarm%E3%82%AF%E3%83%A9%E3%82%B9%E3%82%BF%E3%82%92%E6%A7%8B%E7%AF%89%E3%81%99%E3%82%8B"><a class="md_header_anchor" id="a_%E8%A4%87%E6%95%B0%E3%81%AEDocker%E3%83%9B%E3%82%B9%E3%83%88%E3%82%92%E7%94%A8%E6%84%8F%E3%81%97Swarm%E3%82%AF%E3%83%A9%E3%82%B9%E3%82%BF%E3%82%92%E6%A7%8B%E7%AF%89%E3%81%99%E3%82%8B"></a><h3><a class="toc-backref" href="#id39">複数の Docker ホストを用意し、 Swarm クラスタを構築する</a></h3></div>
 <p>Docker in Docker (dind):</p>
 <ul class="simple">
 <li><p>Docker ホストとして機能する Docker コンテナを複数個立てられる</p></li>
@@ -1031,73 +1035,73 @@ Successfully tagged example/mysql-data:latest
 <li><p><span class="docutils literal"><span class="pre">docker-compose.yml</span></span> を作成する。</p>
 <blockquote>
 <div class="code-block">
-<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span> <span class="s">"3"</span>
-<span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">registry</span><span class="p p-Indicator">:</span>  <span class="c1"># Docker レジストリ役のコンテナ</span>
-    <span class="l l-Scalar l-Scalar-Plain">container_name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">registry</span>
-    <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">registry:2.6</span>
-    <span class="l l-Scalar l-Scalar-Plain">ports</span><span class="p p-Indicator">:</span>
+<div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span> <span class="s">"3"</span>
+<span class="nt">services</span><span class="p">:</span>
+  <span class="nt">registry</span><span class="p">:</span>  <span class="c1"># Docker レジストリ役のコンテナ</span>
+    <span class="nt">container_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">registry</span>
+    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">registry:2.6</span>
+    <span class="nt">ports</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">5000:5000</span>
-    <span class="l l-Scalar l-Scalar-Plain">volumes</span><span class="p p-Indicator">:</span>
+    <span class="nt">volumes</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="s">"./registry-data:/var/lib/registry"</span>  <span class="c1"># 永続化のため、ホストにマウント</span>
 
-  <span class="l l-Scalar l-Scalar-Plain">manager</span><span class="p p-Indicator">:</span>  <span class="c1"># Swarm クラスタ全体を制御する役割</span>
-    <span class="l l-Scalar l-Scalar-Plain">container_name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">manager</span>
-    <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">docker:18.05.0-ce-dind</span>
-    <span class="l l-Scalar l-Scalar-Plain">privileged</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-    <span class="l l-Scalar l-Scalar-Plain">tty</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-    <span class="l l-Scalar l-Scalar-Plain">ports</span><span class="p p-Indicator">:</span>
+  <span class="nt">manager</span><span class="p">:</span>  <span class="c1"># Swarm クラスタ全体を制御する役割</span>
+    <span class="nt">container_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">manager</span>
+    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">docker:18.05.0-ce-dind</span>
+    <span class="nt">privileged</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="nt">tty</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="nt">ports</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">8000:80</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">9000:9000</span>
-    <span class="l l-Scalar l-Scalar-Plain">depends_on</span><span class="p p-Indicator">:</span>
+    <span class="nt">depends_on</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">registry</span>
-    <span class="l l-Scalar l-Scalar-Plain">expose</span><span class="p p-Indicator">:</span>
+    <span class="nt">expose</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">3375</span>
-    <span class="l l-Scalar l-Scalar-Plain">command</span><span class="p p-Indicator">:</span> <span class="s">"--insecure-registry</span><span class="nv"> </span><span class="s">registry:5000"</span>  <span class="c1"># HTTP でも利用できるようにしている</span>
-    <span class="l l-Scalar l-Scalar-Plain">volumes</span><span class="p p-Indicator">:</span>
+    <span class="nt">command</span><span class="p">:</span> <span class="s">"--insecure-registry</span><span class="nv"> </span><span class="s">registry:5000"</span>  <span class="c1"># HTTP でも利用できるようにしている</span>
+    <span class="nt">volumes</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="s">"./stack:/stack"</span>
 
-  <span class="l l-Scalar l-Scalar-Plain">worker01</span><span class="p p-Indicator">:</span>  <span class="c1"># ノードの役割</span>
-    <span class="l l-Scalar l-Scalar-Plain">container_name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">worker01</span>
-    <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">docker:18.05.0-ce-dind</span>
-    <span class="l l-Scalar l-Scalar-Plain">privileged</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-    <span class="l l-Scalar l-Scalar-Plain">tty</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-    <span class="l l-Scalar l-Scalar-Plain">depends_on</span><span class="p p-Indicator">:</span>
+  <span class="nt">worker01</span><span class="p">:</span>  <span class="c1"># ノードの役割</span>
+    <span class="nt">container_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">worker01</span>
+    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">docker:18.05.0-ce-dind</span>
+    <span class="nt">privileged</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="nt">tty</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="nt">depends_on</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">manager</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">registry</span>
-    <span class="l l-Scalar l-Scalar-Plain">expose</span><span class="p p-Indicator">:</span>
+    <span class="nt">expose</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">7946</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">7946/udp</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">4789/udp</span>
-    <span class="l l-Scalar l-Scalar-Plain">command</span><span class="p p-Indicator">:</span> <span class="s">"--insecure-registry</span><span class="nv"> </span><span class="s">registry:5000"</span>
+    <span class="nt">command</span><span class="p">:</span> <span class="s">"--insecure-registry</span><span class="nv"> </span><span class="s">registry:5000"</span>
 
-  <span class="l l-Scalar l-Scalar-Plain">worker02</span><span class="p p-Indicator">:</span>  <span class="c1"># ノードの役割</span>
-    <span class="l l-Scalar l-Scalar-Plain">container_name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">worker02</span>
-    <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">docker:18.05.0-ce-dind</span>
-    <span class="l l-Scalar l-Scalar-Plain">privileged</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-    <span class="l l-Scalar l-Scalar-Plain">tty</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-    <span class="l l-Scalar l-Scalar-Plain">depends_on</span><span class="p p-Indicator">:</span>
+  <span class="nt">worker02</span><span class="p">:</span>  <span class="c1"># ノードの役割</span>
+    <span class="nt">container_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">worker02</span>
+    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">docker:18.05.0-ce-dind</span>
+    <span class="nt">privileged</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="nt">tty</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="nt">depends_on</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">manager</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">registry</span>
-    <span class="l l-Scalar l-Scalar-Plain">expose</span><span class="p p-Indicator">:</span>
+    <span class="nt">expose</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">7946</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">7946/udp</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">4789/udp</span>
-    <span class="l l-Scalar l-Scalar-Plain">command</span><span class="p p-Indicator">:</span> <span class="s">"--insecure-registry</span><span class="nv"> </span><span class="s">registry:5000"</span>
+    <span class="nt">command</span><span class="p">:</span> <span class="s">"--insecure-registry</span><span class="nv"> </span><span class="s">registry:5000"</span>
 
-  <span class="l l-Scalar l-Scalar-Plain">worker03</span><span class="p p-Indicator">:</span>  <span class="c1"># ノードの役割</span>
-    <span class="l l-Scalar l-Scalar-Plain">container_name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">worker03</span>
-    <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">docker:18.05.0-ce-dind</span>
-    <span class="l l-Scalar l-Scalar-Plain">privileged</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-    <span class="l l-Scalar l-Scalar-Plain">tty</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-    <span class="l l-Scalar l-Scalar-Plain">depends_on</span><span class="p p-Indicator">:</span>
+  <span class="nt">worker03</span><span class="p">:</span>  <span class="c1"># ノードの役割</span>
+    <span class="nt">container_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">worker03</span>
+    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">docker:18.05.0-ce-dind</span>
+    <span class="nt">privileged</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="nt">tty</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="nt">depends_on</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">manager</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">registry</span>
-    <span class="l l-Scalar l-Scalar-Plain">expose</span><span class="p p-Indicator">:</span>
+    <span class="nt">expose</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">7946</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">7946/udp</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">4789/udp</span>
-    <span class="l l-Scalar l-Scalar-Plain">command</span><span class="p p-Indicator">:</span> <span class="s">"--insecure-registry</span><span class="nv"> </span><span class="s">registry:5000"</span>
+    <span class="nt">command</span><span class="p">:</span> <span class="s">"--insecure-registry</span><span class="nv"> </span><span class="s">registry:5000"</span>
 </pre></div>
 </div>
 </blockquote>
@@ -1170,7 +1174,7 @@ j91gerxg4um0r05wukdfoqwo1     cfffba103c8c        Ready               Active    
 </ol>
 </div>
 <div class="section" id="docker-push">
-<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_20"></div><h3><a class="toc-backref" href="#id40">Docker レジストリにイメージを Push する</a></h3>
+<div class="md_header_block" id="h_Docker%E3%83%AC%E3%82%B8%E3%82%B9%E3%83%88%E3%83%AA%E3%81%AB%E3%82%A4%E3%83%A1%E3%83%BC%E3%82%B8%E3%82%92Push%E3%81%99%E3%82%8B"><a class="md_header_anchor" id="a_Docker%E3%83%AC%E3%82%B8%E3%82%B9%E3%83%88%E3%83%AA%E3%81%AB%E3%82%A4%E3%83%A1%E3%83%BC%E3%82%B8%E3%82%92Push%E3%81%99%E3%82%8B"></a><h3><a class="toc-backref" href="#id40">Docker レジストリにイメージを Push する</a></h3></div>
 <ol class="arabic">
 <li><p>Docker イメージにタグをつける</p>
 <blockquote>
@@ -1219,7 +1223,7 @@ $ docker container <span class="nb">exec</span> -it worker01 docker image ls
 </div>
 </div>
 <div class="section" id="service">
-<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_21"></div><h2><a class="toc-backref" href="#id41">3.5.2 Service</a></h2>
+<div class="md_header_block" id="h_3.5.2Service"><a class="md_header_anchor" id="a_3.5.2Service"></a><h2><a class="toc-backref" href="#id41">3.5.2 Service</a></h2></div>
 <ul class="simple">
 <li><p>Service にレプリカ数の制御を指示すると、自動でコンテナを複製し、複数のノードにまたがって適切に配置してくれる。</p></li>
 <li><p>スケールアウトが容易</p></li>
@@ -1274,7 +1278,7 @@ mqkivzbb5j3e        echo.5              registry:5000/example/echo:latest   2722
 </div>
 </div>
 <div class="section" id="stack">
-<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_22"></div><h2><a class="toc-backref" href="#id42">3.5.3 Stack</a></h2>
+<div class="md_header_block" id="h_3.5.3Stack"><a class="md_header_anchor" id="a_3.5.3Stack"></a><h2><a class="toc-backref" href="#id42">3.5.3 Stack</a></h2></div>
 <p>Stack: 複数の Service をグルーピングした単位であり、アプリケーションの全体の構成を定義する。</p>
 <ul class="simple">
 <li><p>Service は１つのアプリケーションイメージしか扱うことができないが、複数の Service が強調して動作することで成立するアプリケーションも多くある</p></li>
@@ -1300,32 +1304,32 @@ ts9rcnez3tl5oi4z9p0qbc030
 <li><p>Stack を作成する。</p>
 <blockquote>
 <div class="code-block">
-<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span> <span class="s">"3"</span>
-<span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">nginx</span><span class="p p-Indicator">:</span>
-    <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">gihyodocker/nginx-proxy:latest</span>
-    <span class="l l-Scalar l-Scalar-Plain">deploy</span><span class="p p-Indicator">:</span>
-      <span class="l l-Scalar l-Scalar-Plain">replicas</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>                  <span class="c1"># レプリカ数</span>
-      <span class="l l-Scalar l-Scalar-Plain">placement</span><span class="p p-Indicator">:</span>                   <span class="c1"># コンテナの配置戦略</span>
-        <span class="l l-Scalar l-Scalar-Plain">constraints</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">node.role != manager</span><span class="p p-Indicator">]</span>  <span class="c1"># manager 以外のノードにコンテナを配置する</span>
-    <span class="l l-Scalar l-Scalar-Plain">environment</span><span class="p p-Indicator">:</span>
-      <span class="l l-Scalar l-Scalar-Plain">BACKEND_HOST</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">echo_api:8080</span>  <span class="c1"># リクエストの転送先</span>
-    <span class="l l-Scalar l-Scalar-Plain">depends_on</span><span class="p p-Indicator">:</span>
+<div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span> <span class="s">"3"</span>
+<span class="nt">services</span><span class="p">:</span>
+  <span class="nt">nginx</span><span class="p">:</span>
+    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gihyodocker/nginx-proxy:latest</span>
+    <span class="nt">deploy</span><span class="p">:</span>
+      <span class="nt">replicas</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>                  <span class="c1"># レプリカ数</span>
+      <span class="nt">placement</span><span class="p">:</span>                   <span class="c1"># コンテナの配置戦略</span>
+        <span class="nt">constraints</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">node.role != manager</span><span class="p p-Indicator">]</span>  <span class="c1"># manager 以外のノードにコンテナを配置する</span>
+    <span class="nt">environment</span><span class="p">:</span>
+      <span class="nt">BACKEND_HOST</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">echo_api:8080</span>  <span class="c1"># リクエストの転送先</span>
+    <span class="nt">depends_on</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">api</span>
-    <span class="l l-Scalar l-Scalar-Plain">networks</span><span class="p p-Indicator">:</span>
+    <span class="nt">networks</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ch03</span>
-  <span class="l l-Scalar l-Scalar-Plain">api</span><span class="p p-Indicator">:</span>
-    <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">registry:5000/example/echo:latest</span>
-    <span class="l l-Scalar l-Scalar-Plain">deploy</span><span class="p p-Indicator">:</span>
-      <span class="l l-Scalar l-Scalar-Plain">replicas</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>                  <span class="c1"># レプリカ数</span>
-      <span class="l l-Scalar l-Scalar-Plain">placement</span><span class="p p-Indicator">:</span>                   <span class="c1"># コンテナの配置戦略</span>
-        <span class="l l-Scalar l-Scalar-Plain">constraints</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">node.role != manager</span><span class="p p-Indicator">]</span>  <span class="c1"># manager 以外のノードにコンテナを配置する</span>
-    <span class="l l-Scalar l-Scalar-Plain">networks</span><span class="p p-Indicator">:</span>
+  <span class="nt">api</span><span class="p">:</span>
+    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">registry:5000/example/echo:latest</span>
+    <span class="nt">deploy</span><span class="p">:</span>
+      <span class="nt">replicas</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>                  <span class="c1"># レプリカ数</span>
+      <span class="nt">placement</span><span class="p">:</span>                   <span class="c1"># コンテナの配置戦略</span>
+        <span class="nt">constraints</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">node.role != manager</span><span class="p p-Indicator">]</span>  <span class="c1"># manager 以外のノードにコンテナを配置する</span>
+    <span class="nt">networks</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ch03</span>
 
-<span class="l l-Scalar l-Scalar-Plain">networks</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">ch03</span><span class="p p-Indicator">:</span>
-    <span class="l l-Scalar l-Scalar-Plain">external</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">networks</span><span class="p">:</span>
+  <span class="nt">ch03</span><span class="p">:</span>
+    <span class="nt">external</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
 </pre></div>
 </div>
 <table class="colwidths-auto">
@@ -1357,7 +1361,7 @@ ts9rcnez3tl5oi4z9p0qbc030
 </li>
 </ol>
 <div class="section" id="id16">
-<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_23"></div><h3><a class="toc-backref" href="#id43">Stack をデプロイする</a></h3>
+<div class="md_header_block" id="h_Stack%E3%82%92%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%81%99%E3%82%8B"><a class="md_header_anchor" id="a_Stack%E3%82%92%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%81%99%E3%82%8B"></a><h3><a class="toc-backref" href="#id43">Stack をデプロイする</a></h3></div>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="gp">$</span> docker stack deploy <span class="o">[</span>options<span class="o">]</span> stack名
 </pre></div>
@@ -1380,7 +1384,7 @@ Creating service echo_api
 </ol>
 </div>
 <div class="section" id="id17">
-<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_24"></div><h3><a class="toc-backref" href="#id44">デプロイされた Stack を確認する</a></h3>
+<div class="md_header_block" id="h_%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%81%95%E3%82%8C%E3%81%9FStack%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B"><a class="md_header_anchor" id="a_%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%81%95%E3%82%8C%E3%81%9FStack%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B"></a><h3><a class="toc-backref" href="#id44">デプロイされた Stack を確認する</a></h3></div>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="gp">$</span> docker stack services <span class="o">[</span>options<span class="o">]</span> Stack名
 </pre></div>
@@ -1400,7 +1404,7 @@ Creating service echo_api
 </ol>
 </div>
 <div class="section" id="id18">
-<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_25"></div><h3><a class="toc-backref" href="#id45">Stack でデプロイされたコンテナを確認する</a></h3>
+<div class="md_header_block" id="h_Stack%E3%81%A7%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%81%95%E3%82%8C%E3%81%9F%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B"><a class="md_header_anchor" id="a_Stack%E3%81%A7%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%81%95%E3%82%8C%E3%81%9F%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B"></a><h3><a class="toc-backref" href="#id45">Stack でデプロイされたコンテナを確認する</a></h3></div>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="gp">$</span> docker stack ps <span class="o">[</span>options<span class="o">]</span> Stack名
 </pre></div>
@@ -1417,24 +1421,24 @@ Creating service echo_api
 </ol>
 </div>
 <div class="section" id="visualizer">
-<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_26"></div><h3><a class="toc-backref" href="#id46">visualizer で配置されているコンテナを可視化する</a></h3>
+<div class="md_header_block" id="h_visualizer%E3%81%A7%E9%85%8D%E7%BD%AE%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E3%82%92%E5%8F%AF%E8%A6%96%E5%8C%96%E3%81%99%E3%82%8B"><a class="md_header_anchor" id="a_visualizer%E3%81%A7%E9%85%8D%E7%BD%AE%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E3%82%92%E5%8F%AF%E8%A6%96%E5%8C%96%E3%81%99%E3%82%8B"></a><h3><a class="toc-backref" href="#id46">visualizer で配置されているコンテナを可視化する</a></h3></div>
 <ol class="arabic">
 <li><p><span class="docutils literal">visualizer.yml</span> を作成する。</p>
 <blockquote>
 <div class="code-block">
-<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span> <span class="s">"3"</span>
+<div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span> <span class="s">"3"</span>
 
-<span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">app</span><span class="p p-Indicator">:</span>
-    <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">dockersamples/visualizer</span>
-    <span class="l l-Scalar l-Scalar-Plain">ports</span><span class="p p-Indicator">:</span>
+<span class="nt">services</span><span class="p">:</span>
+  <span class="nt">app</span><span class="p">:</span>
+    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">dockersamples/visualizer</span>
+    <span class="nt">ports</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="s">"9000:8080"</span>                          <span class="c1"># ポートフォワード (manager &lt;=&gt; visualizer)</span>
-    <span class="l l-Scalar l-Scalar-Plain">volumes</span><span class="p p-Indicator">:</span>
+    <span class="nt">volumes</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/var/run/docker.sock:/var/run/docker.sock</span>
-    <span class="l l-Scalar l-Scalar-Plain">deploy</span><span class="p p-Indicator">:</span>
-      <span class="l l-Scalar l-Scalar-Plain">mode</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">global</span>                           <span class="c1"># 特定のコンテナをクラスタ上の全ノードに配置できる設定</span>
-      <span class="l l-Scalar l-Scalar-Plain">placement</span><span class="p p-Indicator">:</span>
-        <span class="l l-Scalar l-Scalar-Plain">constraints</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">node.role == manager</span><span class="p p-Indicator">]</span>  <span class="c1"># manager ノードだけに配置する</span>
+    <span class="nt">deploy</span><span class="p">:</span>
+      <span class="nt">mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">global</span>                           <span class="c1"># 特定のコンテナをクラスタ上の全ノードに配置できる設定</span>
+      <span class="nt">placement</span><span class="p">:</span>
+        <span class="nt">constraints</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">node.role == manager</span><span class="p p-Indicator">]</span>  <span class="c1"># manager ノードだけに配置する</span>
 </pre></div>
 </div>
 </blockquote>
@@ -1459,7 +1463,7 @@ Creating service echo_api
 </ol>
 </div>
 <div class="section" id="id19">
-<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_27"></div><h3><a class="toc-backref" href="#id47">Stack の削除</a></h3>
+<div class="md_header_block" id="h_Stack%E3%81%AE%E5%89%8A%E9%99%A4"><a class="md_header_anchor" id="a_Stack%E3%81%AE%E5%89%8A%E9%99%A4"></a><h3><a class="toc-backref" href="#id47">Stack の削除</a></h3></div>
 <p>デプロイした Stack を Service ごと削除する。</p>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="gp">$</span> docker container <span class="nb">exec</span> -it manager docker stack rm <span class="nb">echo</span>
@@ -1470,7 +1474,7 @@ Creating service echo_api
 </div>
 </div>
 <div class="section" id="service-swarm">
-<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_28"></div><h2><a class="toc-backref" href="#id48">3.5.4 Service を Swarm クラスタ外から利用する</a></h2>
+<div class="md_header_block" id="h_3.5.4Service%E3%82%92Swarm%E3%82%AF%E3%83%A9%E3%82%B9%E3%82%BF%E5%A4%96%E3%81%8B%E3%82%89%E5%88%A9%E7%94%A8%E3%81%99%E3%82%8B"><a class="md_header_anchor" id="a_3.5.4Service%E3%82%92Swarm%E3%82%AF%E3%83%A9%E3%82%B9%E3%82%BF%E5%A4%96%E3%81%8B%E3%82%89%E5%88%A9%E7%94%A8%E3%81%99%E3%82%8B"></a><h2><a class="toc-backref" href="#id48">3.5.4 Service を Swarm クラスタ外から利用する</a></h2></div>
 <p>複数のコンテナが複数のノードに分散して配置されている Service にホストからアクセスする。</p>
 <ul class="simple">
 <li><p>Service クラスタ外からのトラフィックを、目的の Service に転送するためのプロキシサーバーを置く</p>
@@ -1486,32 +1490,32 @@ Creating service echo_api
 </li>
 </ul>
 <div class="section" id="swarm-echo-nginx-service">
-<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_29"></div><h3><a class="toc-backref" href="#id49">Swarm クラスタ外から echo_nginx の Service にアクセスする</a></h3>
+<div class="md_header_block" id="h_Swarm%E3%82%AF%E3%83%A9%E3%82%B9%E3%82%BF%E5%A4%96%E3%81%8B%E3%82%89echo_nginx%E3%81%AEService%E3%81%AB%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9"><a class="md_header_anchor" id="a_Swarm%E3%82%AF%E3%83%A9%E3%82%B9%E3%82%BF%E5%A4%96%E3%81%8B%E3%82%89echo_nginx%E3%81%AEService%E3%81%AB%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9"></a><h3><a class="toc-backref" href="#id49">Swarm クラスタ外から echo_nginx の Service にアクセスする</a></h3></div>
 <ol class="arabic">
 <li><p><span class="docutils literal"><span class="pre">ch03-ingress.yml</span></span> を作成する。</p>
 <blockquote>
 <div class="code-block">
-<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span> <span class="s">"3"</span>
+<div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span> <span class="s">"3"</span>
 
-<span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">haproxy</span><span class="p p-Indicator">:</span>
-    <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">dockercloud/haproxy</span>
-    <span class="l l-Scalar l-Scalar-Plain">networks</span><span class="p p-Indicator">:</span>
+<span class="nt">services</span><span class="p">:</span>
+  <span class="nt">haproxy</span><span class="p">:</span>
+    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">dockercloud/haproxy</span>
+    <span class="nt">networks</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ch03</span>
-    <span class="l l-Scalar l-Scalar-Plain">volumes</span><span class="p p-Indicator">:</span>
+    <span class="nt">volumes</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/var/run/docker.sock:/var/run/docker.sock</span>
-    <span class="l l-Scalar l-Scalar-Plain">deploy</span><span class="p p-Indicator">:</span>
-      <span class="l l-Scalar l-Scalar-Plain">mode</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">global</span>                           <span class="c1"># 特定のコンテナをクラスタ上の全ノードに配置できる設定</span>
-      <span class="l l-Scalar l-Scalar-Plain">placement</span><span class="p p-Indicator">:</span>
-        <span class="l l-Scalar l-Scalar-Plain">constraints</span><span class="p p-Indicator">:</span>
+    <span class="nt">deploy</span><span class="p">:</span>
+      <span class="nt">mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">global</span>                           <span class="c1"># 特定のコンテナをクラスタ上の全ノードに配置できる設定</span>
+      <span class="nt">placement</span><span class="p">:</span>
+        <span class="nt">constraints</span><span class="p">:</span>
           <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">node.role == manager</span>  <span class="c1"># manager ノードだけに配置する</span>
-    <span class="l l-Scalar l-Scalar-Plain">ports</span><span class="p p-Indicator">:</span>
+    <span class="nt">ports</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="s">"80:80"</span>                          <span class="c1"># ポートフォワード</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">1936:1936</span>  <span class="c1"># for stats page (basic auth. stats:stats)</span>
 
-<span class="l l-Scalar l-Scalar-Plain">networks</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">ch03</span><span class="p p-Indicator">:</span>
-    <span class="l l-Scalar l-Scalar-Plain">external</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">networks</span><span class="p">:</span>
+  <span class="nt">ch03</span><span class="p">:</span>
+    <span class="nt">external</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
 </pre></div>
 </div>
 </blockquote>
@@ -1519,33 +1523,33 @@ Creating service echo_api
 <li><p><span class="docutils literal"><span class="pre">ch03-webapi.yml</span></span> の、 nginx の環境変数に <span class="docutils literal">SERVICE_PORTS</span> を追加する。</p>
 <blockquote>
 <div class="code-block">
-<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span> <span class="s">"3"</span>
-<span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">nginx</span><span class="p p-Indicator">:</span>
-    <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">gihyodocker/nginx-proxy:latest</span>
-    <span class="l l-Scalar l-Scalar-Plain">deploy</span><span class="p p-Indicator">:</span>
-      <span class="l l-Scalar l-Scalar-Plain">replicas</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>                  <span class="c1"># レプリカ数</span>
-      <span class="l l-Scalar l-Scalar-Plain">placement</span><span class="p p-Indicator">:</span>                   <span class="c1"># コンテナの配置戦略</span>
-        <span class="l l-Scalar l-Scalar-Plain">constraints</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">node.role != manager</span><span class="p p-Indicator">]</span>  <span class="c1"># manager 以外のノードにコンテナを配置する</span>
-    <span class="l l-Scalar l-Scalar-Plain">environment</span><span class="p p-Indicator">:</span>
-      <span class="l l-Scalar l-Scalar-Plain">SERVICE_PORTS</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">80</span>            <span class="c1"># HAProxy が Service を見つけ出すため</span>
-      <span class="l l-Scalar l-Scalar-Plain">BACKEND_HOST</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">echo_api:8080</span>  <span class="c1"># リクエストの転送先</span>
-    <span class="l l-Scalar l-Scalar-Plain">depends_on</span><span class="p p-Indicator">:</span>
+<div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span> <span class="s">"3"</span>
+<span class="nt">services</span><span class="p">:</span>
+  <span class="nt">nginx</span><span class="p">:</span>
+    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gihyodocker/nginx-proxy:latest</span>
+    <span class="nt">deploy</span><span class="p">:</span>
+      <span class="nt">replicas</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>                  <span class="c1"># レプリカ数</span>
+      <span class="nt">placement</span><span class="p">:</span>                   <span class="c1"># コンテナの配置戦略</span>
+        <span class="nt">constraints</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">node.role != manager</span><span class="p p-Indicator">]</span>  <span class="c1"># manager 以外のノードにコンテナを配置する</span>
+    <span class="nt">environment</span><span class="p">:</span>
+      <span class="nt">SERVICE_PORTS</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">80</span>            <span class="c1"># HAProxy が Service を見つけ出すため</span>
+      <span class="nt">BACKEND_HOST</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">echo_api:8080</span>  <span class="c1"># リクエストの転送先</span>
+    <span class="nt">depends_on</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">api</span>
-    <span class="l l-Scalar l-Scalar-Plain">networks</span><span class="p p-Indicator">:</span>
+    <span class="nt">networks</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ch03</span>
-  <span class="l l-Scalar l-Scalar-Plain">api</span><span class="p p-Indicator">:</span>
-    <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">registry:5000/example/echo:latest</span>
-    <span class="l l-Scalar l-Scalar-Plain">deploy</span><span class="p p-Indicator">:</span>
-      <span class="l l-Scalar l-Scalar-Plain">replicas</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>                  <span class="c1"># レプリカ数</span>
-      <span class="l l-Scalar l-Scalar-Plain">placement</span><span class="p p-Indicator">:</span>                   <span class="c1"># コンテナの配置戦略</span>
-        <span class="l l-Scalar l-Scalar-Plain">constraints</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">node.role != manager</span><span class="p p-Indicator">]</span>  <span class="c1"># manager 以外のノードにコンテナを配置する</span>
-    <span class="l l-Scalar l-Scalar-Plain">networks</span><span class="p p-Indicator">:</span>
+  <span class="nt">api</span><span class="p">:</span>
+    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">registry:5000/example/echo:latest</span>
+    <span class="nt">deploy</span><span class="p">:</span>
+      <span class="nt">replicas</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>                  <span class="c1"># レプリカ数</span>
+      <span class="nt">placement</span><span class="p">:</span>                   <span class="c1"># コンテナの配置戦略</span>
+        <span class="nt">constraints</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">node.role != manager</span><span class="p p-Indicator">]</span>  <span class="c1"># manager 以外のノードにコンテナを配置する</span>
+    <span class="nt">networks</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ch03</span>
 
-<span class="l l-Scalar l-Scalar-Plain">networks</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">ch03</span><span class="p p-Indicator">:</span>
-    <span class="l l-Scalar l-Scalar-Plain">external</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">networks</span><span class="p">:</span>
+  <span class="nt">ch03</span><span class="p">:</span>
+    <span class="nt">external</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
 </pre></div>
 </div>
 </blockquote>
@@ -1595,7 +1599,7 @@ Creating service echo_api
 </div>
 </div>
 <div class="section" id="id20">
-<div class="header_target" id="h_docker_introduction_2dto_2dpractice_2dcontainer_2ddevelopment_3_index_2erst_30"></div><h2><a class="toc-backref" href="#id50">Docker Swarm まとめ</a></h2>
+<div class="md_header_block" id="h_DockerSwarm%E3%81%BE%E3%81%A8%E3%82%81"><a class="md_header_anchor" id="a_DockerSwarm%E3%81%BE%E3%81%A8%E3%82%81"></a><h2><a class="toc-backref" href="#id50">Docker Swarm まとめ</a></h2></div>
 <ul class="simple">
 <li><p>Service はレプリカ数 (コンテナの数) を制御することで容易にコンテナを複製でき、複数のノードに配置できるため、スケールアウトへの親和性が高い</p></li>
 <li><p>Service によって管理される複数のレプリカは Service 名で名前解決でき、かつ、 Service へのトラフィックはレプリカへ分散される。</p></li>

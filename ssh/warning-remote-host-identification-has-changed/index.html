@@ -100,6 +100,10 @@
           <ul>
             
               <li class="nav-article">
+                <a href="../../docker/connect-from-sqla-to-mysqldb/">Docker Compose で MySQL DB をつくり Compose 外 (非 docker) の SQLAlchemy から接続する</a>
+              </li>
+            
+              <li class="nav-article">
                 <a href="../../docker/create-django-env-with-docker-compose-mysql-2/">Docker Compose で Django/MySQL 環境をつくる その2</a>
               </li>
             
@@ -368,7 +372,7 @@
     <div class="text">
       <p>TODO: 残りを整理する。</p>
 <div class="section" id="id1">
-<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_1"></div><h1>事象</h1>
+<div class="md_header_block" id="h_%E4%BA%8B%E8%B1%A1"><a class="md_header_anchor" id="a_%E4%BA%8B%E8%B1%A1"></a><h1>事象</h1></div>
 <p>サーバーに ssh 接続しようとしたら、こんなエラーが出た。</p>
 <blockquote>
 <ul>
@@ -396,7 +400,7 @@ ssh_exchange_identification: Connection closed by remote host
 </blockquote>
 </div>
 <div class="section" id="id2">
-<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_2"></div><h1>原因</h1>
+<div class="md_header_block" id="h_%E5%8E%9F%E5%9B%A0"><a class="md_header_anchor" id="a_%E5%8E%9F%E5%9B%A0"></a><h1>原因</h1></div>
 <p>チームの方が教えてくれました。 (ありがとうございました。)</p>
 <ul class="simple">
 <li><p>接続先サーバーの RSA 公開鍵のフィンガープリントが変わっていたため。</p>
@@ -409,7 +413,7 @@ ssh_exchange_identification: Connection closed by remote host
 </ul>
 </div>
 <div class="section" id="id3">
-<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_3"></div><h1>解決方法</h1>
+<div class="md_header_block" id="h_%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%B3%95"><a class="md_header_anchor" id="a_%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%B3%95"></a><h1>解決方法</h1></div>
 <ol class="arabic">
 <li><p>known_hostsファイルから、接続先サーバーの HostName に属する鍵をすべて取り除く。</p>
 <blockquote>
@@ -443,7 +447,7 @@ Last login: Fri Jul <span class="m">13</span> <span class="m">15</span>:43:09 <s
 <li><p>接続できました。</p></li>
 </ol>
 <div class="section" id="fingerprint">
-<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_4"></div><h2>fingerprint とは何ですか</h2>
+<div class="md_header_block" id="h_fingerprint%E3%81%A8%E3%81%AF%E4%BD%95%E3%81%A7%E3%81%99%E3%81%8B"><a class="md_header_anchor" id="a_fingerprint%E3%81%A8%E3%81%AF%E4%BD%95%E3%81%A7%E3%81%99%E3%81%8B"></a><h2>fingerprint とは何ですか</h2></div>
 <ul>
 <li><p>流れとしては、</p>
 <ol class="arabic">
@@ -507,13 +511,13 @@ Last login: Fri Jul <span class="m">13</span> <span class="m">15</span>:43:09 <s
 </div>
 </div>
 <div class="section" id="id4">
-<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_5"></div><h1>宿題</h1>
+<div class="md_header_block" id="h_%E5%AE%BF%E9%A1%8C"><a class="md_header_anchor" id="a_%E5%AE%BF%E9%A1%8C"></a><h1>宿題</h1></div>
 <ul class="simple">
 <li><p><span class="docutils literal">中間者攻撃</span> とは何ですか。</p></li>
 </ul>
 </div>
 <div class="section" id="id5">
-<div class="header_target" id="h_ssh_warning_2dremote_2dhost_2didentification_2dhas_2dchanged_index_2erst_6"></div><h1>参考サイト</h1>
+<div class="md_header_block" id="h_%E5%8F%82%E8%80%83%E3%82%B5%E3%82%A4%E3%83%88"><a class="md_header_anchor" id="a_%E5%8F%82%E8%80%83%E3%82%B5%E3%82%A4%E3%83%88"></a><h1>参考サイト</h1></div>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.freebsd.org/cgi/man.cgi?query=ssh-keygen&amp;apropos=0&amp;sektion=1&amp;manpath=CentOS+6.5&amp;arch=default&amp;format=html">SSH-KEYGEN(1)</a></p></li>
 <li><p><a class="reference external" href="http://note.crohaco.net/2014/public-key-basic-config/">秘密鍵/公開鍵の基本的な設定</a></p></li>

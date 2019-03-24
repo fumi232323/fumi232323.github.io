@@ -100,6 +100,10 @@
           <ul>
             
               <li class="nav-article">
+                <a href="../connect-from-sqla-to-mysqldb/">Docker Compose で MySQL DB をつくり Compose 外 (非 docker) の SQLAlchemy から接続する</a>
+              </li>
+            
+              <li class="nav-article">
                 <a href="../create-django-env-with-docker-compose-mysql-2/">Docker Compose で Django/MySQL 環境をつくる その2</a>
               </li>
             
@@ -393,7 +397,7 @@
 </ul>
 </div>
 </details><div class="section" id="id1">
-<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_index_2erst_1"></div><h1><a class="toc-backref" href="#id11">リファレンス・ガイド</a></h1>
+<div class="md_header_block" id="h_%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9%E3%82%AC%E3%82%A4%E3%83%89"><a class="md_header_anchor" id="a_%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9%E3%82%AC%E3%82%A4%E3%83%89"></a><h1><a class="toc-backref" href="#id11">リファレンス・ガイド</a></h1></div>
 <ul class="simple">
 <li><p><a class="reference external" href="https://docs.docker.com/compose/compose-file/">Compose file version 3 reference</a></p></li>
 <li><p><a class="reference external" href="https://hub.docker.com/_/mysql/">Docker Hub の MySQL 公式イメージぺージ</a></p>
@@ -432,9 +436,9 @@
 </ul>
 </div>
 <div class="section" id="id2">
-<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_index_2erst_2"></div><h1><a class="toc-backref" href="#id12">環境構築</a></h1>
+<div class="md_header_block" id="h_%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89"><a class="md_header_anchor" id="a_%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89"></a><h1><a class="toc-backref" href="#id12">環境構築</a></h1></div>
 <div class="section" id="id3">
-<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_index_2erst_3"></div><h2><a class="toc-backref" href="#id13">最初の1回だけ実行</a></h2>
+<div class="md_header_block" id="h_%E6%9C%80%E5%88%9D%E3%81%AE1%E5%9B%9E%E3%81%A0%E3%81%91%E5%AE%9F%E8%A1%8C"><a class="md_header_anchor" id="a_%E6%9C%80%E5%88%9D%E3%81%AE1%E5%9B%9E%E3%81%A0%E3%81%91%E5%AE%9F%E8%A1%8C"></a><h2><a class="toc-backref" href="#id13">最初の1回だけ実行</a></h2></div>
 <ol class="arabic">
 <li><p>web・db の docker image をビルド -&gt; web で startproject する。</p>
 <blockquote>
@@ -476,7 +480,7 @@
 </ol>
 </div>
 <div class="section" id="id4">
-<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_index_2erst_4"></div><h2><a class="toc-backref" href="#id14">2回目以降</a></h2>
+<div class="md_header_block" id="h_2%E5%9B%9E%E7%9B%AE%E4%BB%A5%E9%99%8D"><a class="md_header_anchor" id="a_2%E5%9B%9E%E7%9B%AE%E4%BB%A5%E9%99%8D"></a><h2><a class="toc-backref" href="#id14">2回目以降</a></h2></div>
 <ol class="arabic">
 <li><p>docker-compose up して mysql・web コンテナを起動する。</p>
 <blockquote>
@@ -497,56 +501,56 @@
 </ol>
 </div>
 <div class="section" id="id5">
-<span id="config-files"></span><div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_index_2erst_5"></div><h2><a class="toc-backref" href="#id15">設定ファイル</a></h2>
+<span id="config-files"></span><div class="md_header_block" id="h_%E8%A8%AD%E5%AE%9A%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB"><a class="md_header_anchor" id="a_%E8%A8%AD%E5%AE%9A%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB"></a><h2><a class="toc-backref" href="#id15">設定ファイル</a></h2></div>
 <ul>
 <li><p>fu/docker-compose.yml</p>
 <div class="code-block">
-<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span> <span class="s">'3'</span>
+<div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span> <span class="s">'3'</span>
 
-<span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">db</span><span class="p p-Indicator">:</span>
-    <span class="l l-Scalar l-Scalar-Plain">container_name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">fu_db</span>
-    <span class="l l-Scalar l-Scalar-Plain">build</span><span class="p p-Indicator">:</span>
-      <span class="l l-Scalar l-Scalar-Plain">context</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">.</span>
-      <span class="l l-Scalar l-Scalar-Plain">dockerfile</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Dockerfile-mysql</span>
-    <span class="l l-Scalar l-Scalar-Plain">restart</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
-    <span class="l l-Scalar l-Scalar-Plain">volumes</span><span class="p p-Indicator">:</span>
+<span class="nt">services</span><span class="p">:</span>
+  <span class="nt">db</span><span class="p">:</span>
+    <span class="nt">container_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">fu_db</span>
+    <span class="nt">build</span><span class="p">:</span>
+      <span class="nt">context</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">.</span>
+      <span class="nt">dockerfile</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Dockerfile-mysql</span>
+    <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
+    <span class="nt">volumes</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="s">"db-data:/var/lib/mysql"</span>
       <span class="c1"># mysql のカスタム設定ファイルもホスト &lt;-&gt; コンテナ間で同期しておく (編集するのに便利だから)</span>
       <span class="p p-Indicator">-</span> <span class="s">"./mysql/conf.d:/etc/mysql/conf.d"</span>
-    <span class="l l-Scalar l-Scalar-Plain">environment</span><span class="p p-Indicator">:</span>
-      <span class="l l-Scalar l-Scalar-Plain">MYSQL_ROOT_PASSWORD</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">fu</span>
-      <span class="l l-Scalar l-Scalar-Plain">MYSQL_DATABASE</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">fu</span>
-      <span class="l l-Scalar l-Scalar-Plain">MYSQL_USER</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">fu</span>
-      <span class="l l-Scalar l-Scalar-Plain">MYSQL_PASSWORD</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">fu</span>
+    <span class="nt">environment</span><span class="p">:</span>
+      <span class="nt">MYSQL_ROOT_PASSWORD</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">fu</span>
+      <span class="nt">MYSQL_DATABASE</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">fu</span>
+      <span class="nt">MYSQL_USER</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">fu</span>
+      <span class="nt">MYSQL_PASSWORD</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">fu</span>
 
-  <span class="l l-Scalar l-Scalar-Plain">web</span><span class="p p-Indicator">:</span>
-    <span class="l l-Scalar l-Scalar-Plain">container_name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">fu_web</span>
-    <span class="l l-Scalar l-Scalar-Plain">build</span><span class="p p-Indicator">:</span>
-      <span class="l l-Scalar l-Scalar-Plain">context</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">.</span>
-      <span class="l l-Scalar l-Scalar-Plain">dockerfile</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Dockerfile-web</span>
-    <span class="l l-Scalar l-Scalar-Plain">command</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">python3 manage.py runserver 0.0.0.0:8000 --settings=settings._</span>
-    <span class="l l-Scalar l-Scalar-Plain">volumes</span><span class="p p-Indicator">:</span>
+  <span class="nt">web</span><span class="p">:</span>
+    <span class="nt">container_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">fu_web</span>
+    <span class="nt">build</span><span class="p">:</span>
+      <span class="nt">context</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">.</span>
+      <span class="nt">dockerfile</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Dockerfile-web</span>
+    <span class="nt">command</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">python3 manage.py runserver 0.0.0.0:8000 --settings=settings._</span>
+    <span class="nt">volumes</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">.:/code</span>
-    <span class="l l-Scalar l-Scalar-Plain">ports</span><span class="p p-Indicator">:</span>
+    <span class="nt">ports</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="s">"3236:8000"</span>
-    <span class="l l-Scalar l-Scalar-Plain">depends_on</span><span class="p p-Indicator">:</span>
+    <span class="nt">depends_on</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">db</span>
 
-<span class="l l-Scalar l-Scalar-Plain">volumes</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">db-data</span><span class="p p-Indicator">:</span>
+<span class="nt">volumes</span><span class="p">:</span>
+  <span class="nt">db-data</span><span class="p">:</span>
 </pre></div>
 </div>
 </li>
 <li><p>fu/Dockerfile-web</p>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="k">FROM</span><span class="s"> python:3</span>
-<span class="k">ENV</span><span class="s"> PYTHONUNBUFFERED 1</span>
+<span class="k">ENV</span> PYTHONUNBUFFERED <span class="m">1</span>
 <span class="k">RUN</span> mkdir /code
 <span class="k">WORKDIR</span><span class="s"> /code</span>
-<span class="k">ADD</span><span class="s"> requirements.txt /code/</span>
+<span class="k">ADD</span> requirements.txt /code/
 <span class="k">RUN</span> pip install -r requirements.txt
-<span class="k">ADD</span><span class="s"> . /code/</span>
+<span class="k">ADD</span> . /code/
 </pre></div>
 </div>
 </li>
@@ -558,9 +562,9 @@
 <span class="c"># locale 定義ファイルをコンパイルする</span>
 <span class="k">RUN</span> locale-gen ja_JP.UTF-8
 <span class="c"># 日本語を設定する TODO: もしかして LANG だけでいいのかも...?</span>
-<span class="k">ENV</span><span class="s"> LANG ja_JP.UTF-8</span>
-<span class="k">ENV</span><span class="s"> LANGUAGE ja_JP:en</span>
-<span class="k">ENV</span><span class="s"> LC_ALL ja_JP.UTF-8</span>
+<span class="k">ENV</span> LANG ja_JP.UTF-8
+<span class="k">ENV</span> LANGUAGE ja_JP:en
+<span class="k">ENV</span> LC_ALL ja_JP.UTF-8
 <span class="c"># タイムゾーンに日本を設定する</span>
 <span class="k">RUN</span> ln -sf /usr/share/zoneinfo/Japan /etc/localtime
 </pre></div>
@@ -605,7 +609,7 @@
 </ul>
 </div>
 <div class="section" id="id6">
-<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_index_2erst_6"></div><h2><a class="toc-backref" href="#id16">ディレクトリ構成</a></h2>
+<div class="md_header_block" id="h_%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA%E6%A7%8B%E6%88%90"><a class="md_header_anchor" id="a_%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA%E6%A7%8B%E6%88%90"></a><h2><a class="toc-backref" href="#id16">ディレクトリ構成</a></h2></div>
 <div class="code-block">
 <div class="highlight"><pre><span></span>$ tree fu
 
@@ -629,9 +633,9 @@ fu
 </div>
 </div>
 <div class="section" id="id7">
-<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_index_2erst_7"></div><h1><a class="toc-backref" href="#id17">使い方メモ</a></h1>
+<div class="md_header_block" id="h_%E4%BD%BF%E3%81%84%E6%96%B9%E3%83%A1%E3%83%A2"><a class="md_header_anchor" id="a_%E4%BD%BF%E3%81%84%E6%96%B9%E3%83%A1%E3%83%A2"></a><h1><a class="toc-backref" href="#id17">使い方メモ</a></h1></div>
 <div class="section" id="id8">
-<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_index_2erst_8"></div><h2><a class="toc-backref" href="#id18">イメージビルドからやり直したい</a></h2>
+<div class="md_header_block" id="h_%E3%82%A4%E3%83%A1%E3%83%BC%E3%82%B8%E3%83%93%E3%83%AB%E3%83%89%E3%81%8B%E3%82%89%E3%82%84%E3%82%8A%E7%9B%B4%E3%81%97%E3%81%9F%E3%81%84"><a class="md_header_anchor" id="a_%E3%82%A4%E3%83%A1%E3%83%BC%E3%82%B8%E3%83%93%E3%83%AB%E3%83%89%E3%81%8B%E3%82%89%E3%82%84%E3%82%8A%E7%9B%B4%E3%81%97%E3%81%9F%E3%81%84"></a><h2><a class="toc-backref" href="#id18">イメージビルドからやり直したい</a></h2></div>
 <p>こんなときは...</p>
 <ul class="simple">
 <li><p>requirements.txt にライブラリを書き足したとき</p></li>
@@ -649,12 +653,12 @@ $ docker-compose up
 </div>
 </div>
 <div class="section" id="volume">
-<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_index_2erst_9"></div><h2><a class="toc-backref" href="#id19">volume は消さない限り再利用される</a></h2>
+<div class="md_header_block" id="h_volume%E3%81%AF%E6%B6%88%E3%81%95%E3%81%AA%E3%81%84%E9%99%90%E3%82%8A%E5%86%8D%E5%88%A9%E7%94%A8%E3%81%95%E3%82%8C%E3%82%8B"><a class="md_header_anchor" id="a_volume%E3%81%AF%E6%B6%88%E3%81%95%E3%81%AA%E3%81%84%E9%99%90%E3%82%8A%E5%86%8D%E5%88%A9%E7%94%A8%E3%81%95%E3%82%8C%E3%82%8B"></a><h2><a class="toc-backref" href="#id19">volume は消さない限り再利用される</a></h2></div>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="c1"># fu/docker-compose.yml</span>
 
-<span class="l l-Scalar l-Scalar-Plain">volumes</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">db-data</span><span class="p p-Indicator">:</span>
+<span class="nt">volumes</span><span class="p">:</span>
+  <span class="nt">db-data</span><span class="p">:</span>
 </pre></div>
 </div>
 <div class="code-block">
@@ -665,14 +669,14 @@ DRIVER              VOLUME NAME
 </div>
 </div>
 <div class="section" id="web">
-<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_index_2erst_10"></div><h2><a class="toc-backref" href="#id20">web のほうのコンテナだけ再起動したいとき</a></h2>
+<div class="md_header_block" id="h_web%E3%81%AE%E3%81%BB%E3%81%86%E3%81%AE%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E3%81%A0%E3%81%91%E5%86%8D%E8%B5%B7%E5%8B%95%E3%81%97%E3%81%9F%E3%81%84%E3%81%A8%E3%81%8D"><a class="md_header_anchor" id="a_web%E3%81%AE%E3%81%BB%E3%81%86%E3%81%AE%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E3%81%A0%E3%81%91%E5%86%8D%E8%B5%B7%E5%8B%95%E3%81%97%E3%81%9F%E3%81%84%E3%81%A8%E3%81%8D"></a><h2><a class="toc-backref" href="#id20">web のほうのコンテナだけ再起動したいとき</a></h2></div>
 <div class="code-block">
 <div class="highlight"><pre><span></span>$ docker container restart fu_web
 </pre></div>
 </div>
 </div>
 <div class="section" id="id9">
-<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_index_2erst_11"></div><h2><a class="toc-backref" href="#id21">web のほうのコンテナに入る</a></h2>
+<div class="md_header_block" id="h_web%E3%81%AE%E3%81%BB%E3%81%86%E3%81%AE%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E3%81%AB%E5%85%A5%E3%82%8B"><a class="md_header_anchor" id="a_web%E3%81%AE%E3%81%BB%E3%81%86%E3%81%AE%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E3%81%AB%E5%85%A5%E3%82%8B"></a><h2><a class="toc-backref" href="#id21">web のほうのコンテナに入る</a></h2></div>
 <p>VM の中に入るのと同じような気持ち。</p>
 <div class="code-block">
 <div class="highlight"><pre><span></span>$ docker container <span class="nb">exec</span> -it fu_web bash
@@ -699,7 +703,7 @@ root@eb1ab9a6dbdb:/code# locale
 </div>
 </div>
 <div class="section" id="mysql">
-<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_index_2erst_12"></div><h2><a class="toc-backref" href="#id22">mysql のほうのコンテナに入る</a></h2>
+<div class="md_header_block" id="h_mysql%E3%81%AE%E3%81%BB%E3%81%86%E3%81%AE%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E3%81%AB%E5%85%A5%E3%82%8B"><a class="md_header_anchor" id="a_mysql%E3%81%AE%E3%81%BB%E3%81%86%E3%81%AE%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E3%81%AB%E5%85%A5%E3%82%8B"></a><h2><a class="toc-backref" href="#id22">mysql のほうのコンテナに入る</a></h2></div>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="c1"># mysql のコンテナに入る</span>
 $ docker container <span class="nb">exec</span> -it fu_db bash
@@ -725,7 +729,7 @@ root@dcc8b4d2cd21:/# locale
 </div>
 </div>
 <div class="section" id="id10">
-<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_index_2erst_13"></div><h2><a class="toc-backref" href="#id23">mysql に入る</a></h2>
+<div class="md_header_block" id="h_mysql%E3%81%AB%E5%85%A5%E3%82%8B"><a class="md_header_anchor" id="a_mysql%E3%81%AB%E5%85%A5%E3%82%8B"></a><h2><a class="toc-backref" href="#id23">mysql に入る</a></h2></div>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="c1"># mysql のコンテナに入る</span>
 $ docker container <span class="nb">exec</span> -it fu_db bash
@@ -790,7 +794,7 @@ Threads: <span class="m">3</span>  Questions: <span class="m">40</span>  Slow qu
 </div>
 </div>
 <div class="section" id="todo">
-<div class="header_target" id="h_docker_create_2ddjango_2denv_2dwith_2ddocker_2dcompose_2dmysql_index_2erst_14"></div><h1><a class="toc-backref" href="#id24">TODO</a></h1>
+<div class="md_header_block" id="h_TODO"><a class="md_header_anchor" id="a_TODO"></a><h1><a class="toc-backref" href="#id24">TODO</a></h1></div>
 <p>web コンテナのほうの locale と タイムゾーンは db コンテナと合わせなくて大丈夫なんだろうか...</p>
 </div>
     </div>
