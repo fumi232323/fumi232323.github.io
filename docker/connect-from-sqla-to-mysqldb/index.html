@@ -374,51 +374,52 @@
 <summary>目次</summary><div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#id1" id="id18">リファレンス・ガイド</a></p>
+<li><p><a class="reference internal" href="#id1" id="id19">リファレンス・ガイド</a></p>
 <ul>
-<li><p><a class="reference internal" href="#sqlalchemy" id="id19">SQLAlchemy</a></p></li>
-<li><p><a class="reference internal" href="#docker-hub" id="id20">Docker Hub</a></p></li>
-<li><p><a class="reference internal" href="#pypi" id="id21">PyPI</a></p></li>
+<li><p><a class="reference internal" href="#sqlalchemy" id="id20">SQLAlchemy</a></p></li>
+<li><p><a class="reference internal" href="#docker-hub" id="id21">Docker Hub</a></p></li>
+<li><p><a class="reference internal" href="#pypi" id="id22">PyPI</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#mysql-db" id="id22">MySQL DB をつくる</a></p>
+<li><p><a class="reference internal" href="#mysql-db" id="id23">MySQL DB をつくる</a></p>
 <ul>
-<li><p><a class="reference internal" href="#id2" id="id23">1. 準備</a></p>
+<li><p><a class="reference internal" href="#id2" id="id24">1. 準備</a></p>
 <ul>
-<li><p><a class="reference internal" href="#id3" id="id24">ディレクトリ構成</a></p></li>
-<li><p><a class="reference internal" href="#id4" id="id25">設定ファイル</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id25">ディレクトリ構成</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id26">設定ファイル</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#id5" id="id26">2. 起動</a></p></li>
+<li><p><a class="reference internal" href="#id5" id="id27">2. 起動</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#id6" id="id27">SQLAlchemy の設定</a></p>
+<li><p><a class="reference internal" href="#id6" id="id28">SQLAlchemy の設定</a></p>
 <ul>
-<li><p><a class="reference internal" href="#id7" id="id28">mysqlclient</a></p>
+<li><p><a class="reference internal" href="#id7" id="id29">mysqlclient</a></p>
 <ul>
-<li><p><a class="reference internal" href="#id8" id="id29">接続文字列</a></p></li>
-<li><p><a class="reference internal" href="#id9" id="id30">事前準備</a></p></li>
+<li><p><a class="reference internal" href="#id8" id="id30">接続文字列</a></p></li>
+<li><p><a class="reference internal" href="#id9" id="id31">事前準備</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#id10" id="id31">PyMySQL</a></p>
+<li><p><a class="reference internal" href="#id10" id="id32">PyMySQL</a></p>
 <ul>
-<li><p><a class="reference internal" href="#id11" id="id32">接続文字列</a></p></li>
-<li><p><a class="reference internal" href="#id12" id="id33">事前準備</a></p></li>
+<li><p><a class="reference internal" href="#id11" id="id33">接続文字列</a></p></li>
+<li><p><a class="reference internal" href="#id12" id="id34">事前準備</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#id13" id="id34">mysql-connector-python</a></p>
+<li><p><a class="reference internal" href="#id13" id="id35">mysql-connector-python</a></p>
 <ul>
-<li><p><a class="reference internal" href="#id14" id="id35">接続文字列</a></p></li>
-<li><p><a class="reference internal" href="#id15" id="id36">事前準備</a></p></li>
+<li><p><a class="reference internal" href="#id14" id="id36">接続文字列</a></p></li>
+<li><p><a class="reference internal" href="#id15" id="id37">事前準備</a></p></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#id16" id="id37">使ったメモ</a></p>
+<li><p><a class="reference internal" href="#id16" id="id38">使ったメモ</a></p>
 <ul>
-<li><p><a class="reference internal" href="#note-aborted-connection" id="id38">※1. [Note] Aborted connection ...</a></p>
+<li><p><a class="reference internal" href="#id17" id="id39">※ 1.</a></p></li>
+<li><p><a class="reference internal" href="#note-aborted-connection" id="id40">※ 2. [Note] Aborted connection ...</a></p>
 <ul>
-<li><p><a class="reference internal" href="#id17" id="id39">参考ページ</a></p></li>
+<li><p><a class="reference internal" href="#id18" id="id41">参考ページ</a></p></li>
 </ul>
 </li>
 </ul>
@@ -426,21 +427,21 @@
 </ul>
 </div>
 </details><div class="section" id="id1">
-<div class="md_header_block" id="h_%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9%E3%82%AC%E3%82%A4%E3%83%89"><a class="md_header_anchor" id="a_%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9%E3%82%AC%E3%82%A4%E3%83%89"></a><h1><a class="toc-backref" href="#id18">リファレンス・ガイド</a></h1></div>
+<div class="md_header_block" id="h_%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9%E3%82%AC%E3%82%A4%E3%83%89"><a class="md_header_anchor" id="a_%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9%E3%82%AC%E3%82%A4%E3%83%89"></a><h1><a class="toc-backref" href="#id19">リファレンス・ガイド</a></h1></div>
 <div class="section" id="sqlalchemy">
-<div class="md_header_block" id="h_SQLAlchemy"><a class="md_header_anchor" id="a_SQLAlchemy"></a><h2><a class="toc-backref" href="#id19">SQLAlchemy</a></h2></div>
+<div class="md_header_block" id="h_SQLAlchemy"><a class="md_header_anchor" id="a_SQLAlchemy"></a><h2><a class="toc-backref" href="#id20">SQLAlchemy</a></h2></div>
 <ul class="simple">
 <li><p><a class="reference external" href="https://docs.sqlalchemy.org/en/latest/dialects/mysql.html">SQLAlchemy 1.3 Documentation: MySQL</a></p></li>
 </ul>
 </div>
 <div class="section" id="docker-hub">
-<div class="md_header_block" id="h_DockerHub"><a class="md_header_anchor" id="a_DockerHub"></a><h2><a class="toc-backref" href="#id20">Docker Hub</a></h2></div>
+<div class="md_header_block" id="h_DockerHub"><a class="md_header_anchor" id="a_DockerHub"></a><h2><a class="toc-backref" href="#id21">Docker Hub</a></h2></div>
 <ul class="simple">
 <li><p><a class="reference external" href="https://hub.docker.com/_/mysql">mysql Docker Official Images</a></p></li>
 </ul>
 </div>
 <div class="section" id="pypi">
-<div class="md_header_block" id="h_PyPI"><a class="md_header_anchor" id="a_PyPI"></a><h2><a class="toc-backref" href="#id21">PyPI</a></h2></div>
+<div class="md_header_block" id="h_PyPI"><a class="md_header_anchor" id="a_PyPI"></a><h2><a class="toc-backref" href="#id22">PyPI</a></h2></div>
 <ul class="simple">
 <li><p><a class="reference external" href="https://pypi.org/project/mysqlclient/">mysqlclient</a></p></li>
 <li><p><a class="reference external" href="https://pypi.org/project/PyMySQL/">PyMySQL</a></p></li>
@@ -449,11 +450,11 @@
 </div>
 </div>
 <div class="section" id="mysql-db">
-<div class="md_header_block" id="h_MySQLDB%E3%82%92%E3%81%A4%E3%81%8F%E3%82%8B"><a class="md_header_anchor" id="a_MySQLDB%E3%82%92%E3%81%A4%E3%81%8F%E3%82%8B"></a><h1><a class="toc-backref" href="#id22">MySQL DB をつくる</a></h1></div>
+<div class="md_header_block" id="h_MySQLDB%E3%82%92%E3%81%A4%E3%81%8F%E3%82%8B"><a class="md_header_anchor" id="a_MySQLDB%E3%82%92%E3%81%A4%E3%81%8F%E3%82%8B"></a><h1><a class="toc-backref" href="#id23">MySQL DB をつくる</a></h1></div>
 <div class="section" id="id2">
-<div class="md_header_block" id="h_1.%E6%BA%96%E5%82%99"><a class="md_header_anchor" id="a_1.%E6%BA%96%E5%82%99"></a><h2><a class="toc-backref" href="#id23">1. 準備</a></h2></div>
+<div class="md_header_block" id="h_1.%E6%BA%96%E5%82%99"><a class="md_header_anchor" id="a_1.%E6%BA%96%E5%82%99"></a><h2><a class="toc-backref" href="#id24">1. 準備</a></h2></div>
 <div class="section" id="id3">
-<div class="md_header_block" id="h_%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA%E6%A7%8B%E6%88%90"><a class="md_header_anchor" id="a_%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA%E6%A7%8B%E6%88%90"></a><h3><a class="toc-backref" href="#id24">ディレクトリ構成</a></h3></div>
+<div class="md_header_block" id="h_%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA%E6%A7%8B%E6%88%90"><a class="md_header_anchor" id="a_%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA%E6%A7%8B%E6%88%90"></a><h3><a class="toc-backref" href="#id25">ディレクトリ構成</a></h3></div>
 <div class="code-block">
 <div class="highlight"><pre><span></span>$ tree mmm
 mmm
@@ -463,7 +464,7 @@ mmm
 </div>
 </div>
 <div class="section" id="id4">
-<div class="md_header_block" id="h_%E8%A8%AD%E5%AE%9A%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB"><a class="md_header_anchor" id="a_%E8%A8%AD%E5%AE%9A%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB"></a><h3><a class="toc-backref" href="#id25">設定ファイル</a></h3></div>
+<div class="md_header_block" id="h_%E8%A8%AD%E5%AE%9A%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB"><a class="md_header_anchor" id="a_%E8%A8%AD%E5%AE%9A%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB"></a><h3><a class="toc-backref" href="#id26">設定ファイル</a></h3></div>
 <ul>
 <li><p>Dockerfile-mysql</p>
 <div class="code-block">
@@ -511,7 +512,7 @@ mmm
 </div>
 </div>
 <div class="section" id="id5">
-<div class="md_header_block" id="h_2.%E8%B5%B7%E5%8B%95"><a class="md_header_anchor" id="a_2.%E8%B5%B7%E5%8B%95"></a><h2><a class="toc-backref" href="#id26">2. 起動</a></h2></div>
+<div class="md_header_block" id="h_2.%E8%B5%B7%E5%8B%95"><a class="md_header_anchor" id="a_2.%E8%B5%B7%E5%8B%95"></a><h2><a class="toc-backref" href="#id27">2. 起動</a></h2></div>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="c1"># mmm 直下で実行する</span>
 $ docker-compose up
@@ -520,11 +521,11 @@ $ docker-compose up
 </div>
 </div>
 <div class="section" id="id6">
-<div class="md_header_block" id="h_SQLAlchemy%E3%81%AE%E8%A8%AD%E5%AE%9A"><a class="md_header_anchor" id="a_SQLAlchemy%E3%81%AE%E8%A8%AD%E5%AE%9A"></a><h1><a class="toc-backref" href="#id27">SQLAlchemy の設定</a></h1></div>
+<div class="md_header_block" id="h_SQLAlchemy%E3%81%AE%E8%A8%AD%E5%AE%9A"><a class="md_header_anchor" id="a_SQLAlchemy%E3%81%AE%E8%A8%AD%E5%AE%9A"></a><h1><a class="toc-backref" href="#id28">SQLAlchemy の設定</a></h1></div>
 <div class="section" id="id7">
-<div class="md_header_block" id="h_mysqlclient"><a class="md_header_anchor" id="a_mysqlclient"></a><h2><a class="toc-backref" href="#id28">mysqlclient</a></h2></div>
+<div class="md_header_block" id="h_mysqlclient"><a class="md_header_anchor" id="a_mysqlclient"></a><h2><a class="toc-backref" href="#id29">mysqlclient</a></h2></div>
 <div class="section" id="id8">
-<div class="md_header_block" id="h_%E6%8E%A5%E7%B6%9A%E6%96%87%E5%AD%97%E5%88%97"><a class="md_header_anchor" id="a_%E6%8E%A5%E7%B6%9A%E6%96%87%E5%AD%97%E5%88%97"></a><h3><a class="toc-backref" href="#id29">接続文字列</a></h3></div>
+<div class="md_header_block" id="h_%E6%8E%A5%E7%B6%9A%E6%96%87%E5%AD%97%E5%88%97"><a class="md_header_anchor" id="a_%E6%8E%A5%E7%B6%9A%E6%96%87%E5%AD%97%E5%88%97"></a><h3><a class="toc-backref" href="#id30">接続文字列</a></h3></div>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="n">mysql</span><span class="o">+</span><span class="n">mysqldb</span><span class="p">:</span><span class="o">//</span><span class="n">mmm</span><span class="p">:</span><span class="n">mmm</span><span class="nd">@127.0.0.1</span><span class="p">:</span><span class="mi">3306</span><span class="o">/</span><span class="n">mmm</span><span class="err">?</span><span class="n">charset</span><span class="o">=</span><span class="n">utf8mb4</span>
 <span class="c1"># mysql+mysqldb://&lt;user&gt;:&lt;password&gt;@&lt;host&gt;[:&lt;port&gt;]/&lt;dbname&gt;</span>
@@ -532,7 +533,7 @@ $ docker-compose up
 </div>
 </div>
 <div class="section" id="id9">
-<div class="md_header_block" id="h_%E4%BA%8B%E5%89%8D%E6%BA%96%E5%82%99"><a class="md_header_anchor" id="a_%E4%BA%8B%E5%89%8D%E6%BA%96%E5%82%99"></a><h3><a class="toc-backref" href="#id30">事前準備</a></h3></div>
+<div class="md_header_block" id="h_%E4%BA%8B%E5%89%8D%E6%BA%96%E5%82%99"><a class="md_header_anchor" id="a_%E4%BA%8B%E5%89%8D%E6%BA%96%E5%82%99"></a><h3><a class="toc-backref" href="#id31">事前準備</a></h3></div>
 <ol class="arabic simple">
 <li><p>Python3 他のインストール</p></li>
 </ol>
@@ -567,9 +568,9 @@ $ docker-compose up
 </div>
 </div>
 <div class="section" id="id10">
-<div class="md_header_block" id="h_PyMySQL"><a class="md_header_anchor" id="a_PyMySQL"></a><h2><a class="toc-backref" href="#id31">PyMySQL</a></h2></div>
+<div class="md_header_block" id="h_PyMySQL"><a class="md_header_anchor" id="a_PyMySQL"></a><h2><a class="toc-backref" href="#id32">PyMySQL</a></h2></div>
 <div class="section" id="id11">
-<div class="md_header_block" id="h_%E6%8E%A5%E7%B6%9A%E6%96%87%E5%AD%97%E5%88%97_1"><a class="md_header_anchor" id="a_%E6%8E%A5%E7%B6%9A%E6%96%87%E5%AD%97%E5%88%97_1"></a><h3><a class="toc-backref" href="#id32">接続文字列</a></h3></div>
+<div class="md_header_block" id="h_%E6%8E%A5%E7%B6%9A%E6%96%87%E5%AD%97%E5%88%97_1"><a class="md_header_anchor" id="a_%E6%8E%A5%E7%B6%9A%E6%96%87%E5%AD%97%E5%88%97_1"></a><h3><a class="toc-backref" href="#id33">接続文字列</a></h3></div>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="n">mysql</span><span class="o">+</span><span class="n">pymysql</span><span class="p">:</span><span class="o">//</span><span class="n">mmm</span><span class="p">:</span><span class="n">mmm</span><span class="nd">@127.0.0.1</span><span class="p">:</span><span class="mi">3306</span><span class="o">/</span><span class="n">mmm</span><span class="err">?</span><span class="n">charset</span><span class="o">=</span><span class="n">utf8mb4</span>
 <span class="c1"># mysql+pymysql://&lt;username&gt;:&lt;password&gt;@&lt;host&gt;/&lt;dbname&gt;[?&lt;options&gt;]</span>
@@ -577,7 +578,7 @@ $ docker-compose up
 </div>
 </div>
 <div class="section" id="id12">
-<div class="md_header_block" id="h_%E4%BA%8B%E5%89%8D%E6%BA%96%E5%82%99_1"><a class="md_header_anchor" id="a_%E4%BA%8B%E5%89%8D%E6%BA%96%E5%82%99_1"></a><h3><a class="toc-backref" href="#id33">事前準備</a></h3></div>
+<div class="md_header_block" id="h_%E4%BA%8B%E5%89%8D%E6%BA%96%E5%82%99_1"><a class="md_header_anchor" id="a_%E4%BA%8B%E5%89%8D%E6%BA%96%E5%82%99_1"></a><h3><a class="toc-backref" href="#id34">事前準備</a></h3></div>
 <p>PyMySQL のインストール</p>
 <blockquote>
 <div class="code-block">
@@ -588,9 +589,9 @@ $ docker-compose up
 </div>
 </div>
 <div class="section" id="id13">
-<div class="md_header_block" id="h_mysqlconnectorpython"><a class="md_header_anchor" id="a_mysqlconnectorpython"></a><h2><a class="toc-backref" href="#id34">mysql-connector-python</a></h2></div>
+<div class="md_header_block" id="h_mysqlconnectorpython"><a class="md_header_anchor" id="a_mysqlconnectorpython"></a><h2><a class="toc-backref" href="#id35">mysql-connector-python</a></h2></div>
 <div class="section" id="id14">
-<div class="md_header_block" id="h_%E6%8E%A5%E7%B6%9A%E6%96%87%E5%AD%97%E5%88%97_1_2"><a class="md_header_anchor" id="a_%E6%8E%A5%E7%B6%9A%E6%96%87%E5%AD%97%E5%88%97_1_2"></a><h3><a class="toc-backref" href="#id35">接続文字列</a></h3></div>
+<div class="md_header_block" id="h_%E6%8E%A5%E7%B6%9A%E6%96%87%E5%AD%97%E5%88%97_1_2"><a class="md_header_anchor" id="a_%E6%8E%A5%E7%B6%9A%E6%96%87%E5%AD%97%E5%88%97_1_2"></a><h3><a class="toc-backref" href="#id36">接続文字列</a></h3></div>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="n">mysql</span><span class="o">+</span><span class="n">mysqlconnector</span><span class="p">:</span><span class="o">//</span><span class="n">mmm</span><span class="p">:</span><span class="n">mmm</span><span class="nd">@127.0.0.1</span><span class="p">:</span><span class="mi">3306</span><span class="o">/</span><span class="n">mmm</span><span class="err">?</span><span class="n">charset</span><span class="o">=</span><span class="n">utf8mb4</span><span class="s2">"</span>
 <span class="c1"># mysql+mysqlconnector://&lt;user&gt;:&lt;password&gt;@&lt;host&gt;[:&lt;port&gt;]/&lt;dbname&gt;</span>
@@ -598,7 +599,7 @@ $ docker-compose up
 </div>
 </div>
 <div class="section" id="id15">
-<div class="md_header_block" id="h_%E4%BA%8B%E5%89%8D%E6%BA%96%E5%82%99_1_2"><a class="md_header_anchor" id="a_%E4%BA%8B%E5%89%8D%E6%BA%96%E5%82%99_1_2"></a><h3><a class="toc-backref" href="#id36">事前準備</a></h3></div>
+<div class="md_header_block" id="h_%E4%BA%8B%E5%89%8D%E6%BA%96%E5%82%99_1_2"><a class="md_header_anchor" id="a_%E4%BA%8B%E5%89%8D%E6%BA%96%E5%82%99_1_2"></a><h3><a class="toc-backref" href="#id37">事前準備</a></h3></div>
 <p>mysql-connector-python のインストール</p>
 <blockquote>
 <div class="code-block">
@@ -610,22 +611,38 @@ $ docker-compose up
 </div>
 </div>
 <div class="section" id="id16">
-<div class="md_header_block" id="h_%E4%BD%BF%E3%81%A3%E3%81%9F%E3%83%A1%E3%83%A2"><a class="md_header_anchor" id="a_%E4%BD%BF%E3%81%A3%E3%81%9F%E3%83%A1%E3%83%A2"></a><h1><a class="toc-backref" href="#id37">使ったメモ</a></h1></div>
+<div class="md_header_block" id="h_%E4%BD%BF%E3%81%A3%E3%81%9F%E3%83%A1%E3%83%A2"><a class="md_header_anchor" id="a_%E4%BD%BF%E3%81%A3%E3%81%9F%E3%83%A1%E3%83%A2"></a><h1><a class="toc-backref" href="#id38">使ったメモ</a></h1></div>
 <table class="colwidths-auto">
 <thead>
-<tr><th class="head stub"><p>項目</p></th>
+<tr><th class="head stub"></th>
 <th class="head"><p>mysqlclient</p></th>
 <th class="head"><p>PyMySQL</p></th>
 <th class="head"><p>mysql-connector-python</p></th>
 </tr>
 </thead>
 <tbody>
-<tr><th class="stub"><p>準備</p></th>
-<td><p>ただの Python3 だけでは済まない</p></td>
-<td><p>ただの Python3 だけで済む</p></td>
+<tr><th class="stub"><p>準備 ※1</p></th>
+<td><p>ただの Python3 だけでは済まない、 <span class="docutils literal"><span class="pre">python3-dev</span></span> をインストールする必要がある</p>
+<blockquote>
+<ul class="simple">
+<li><p><span class="docutils literal">python3</span> パッケージ (実態は <span class="docutils literal">python3.7</span> とか) は実行に必要なものだけが入る</p></li>
+<li><p><span class="docutils literal">Python.h</span> などのヘッダファイルや <span class="docutils literal">python3.7.a</span> などのスタティックリンクライブラリは入っていない</p></li>
+<li><p>これらは、 <span class="docutils literal"><span class="pre">python3-dev</span></span> (<span class="docutils literal"><span class="pre">python3.7-dev</span></span>) でインストールされる。実行に必要がないため別れている。</p></li>
+<li><p>mysqlclient は C拡張を含んでるのでビルドする必要がある</p></li>
+<li><p>ビルドには <span class="docutils literal">Python.h</span> などのヘッダファイルが必要</p></li>
+<li><p>昨今は C拡張であってもビルド済の wheel が pypi にあがってたりしてインストール時にビルドが必要ないものも増えているが、 mysqlclient は SSL のリンクの都合上 wheel を提供していないよう</p></li>
+</ul>
+</blockquote>
+</td>
+<td><p>ただの Python3 だけで済む</p>
+<ul class="simple">
+<li><p>PyMySQL は C拡張を含まずピュア Python なのでビルドする必要がない</p></li>
+<li><p>この場合 SSL はpythonをインストールしたときにリンクしたものを使う</p></li>
+</ul>
+</td>
 <td><p>ただの Python3 だけで済む</p></td>
 </tr>
-<tr><th class="stub"><p>[Note] Aborted connection ※1</p></th>
+<tr><th class="stub"><p>[Note] Aborted connection ※2</p></th>
 <td><p><span class="docutils literal">log_warnings = 2</span> でも出ない</p></td>
 <td><p><span class="docutils literal">log_warnings = 2</span> だと出る, 1 だと出ない</p></td>
 <td><p><span class="docutils literal">log_warnings = 2</span> だと出る, 1 だと出ない</p></td>
@@ -657,10 +674,19 @@ $ docker-compose up
 <td><p>install が手軽でよい。 <span class="docutils literal">Aborted connection</span> はあまり気にしなくて良さそうでもあるし、 SQLA さんも二番目におすすめしている (空想) のでこれがいいかなあ。</p></td>
 <td><p>install が手軽でよい。ほかはとくになし。</p></td>
 </tr>
+<tr><th class="stub"><p>aodag さんに教えてもらったことメモ</p></th>
+<td></td>
+<td><p><strong>sqlalchemy で使うなら pymysql 使っとけ（断言）</strong></p></td>
+<td></td>
+</tr>
 </tbody>
 </table>
+<div class="section" id="id17">
+<div class="md_header_block" id="h_1."><a class="md_header_anchor" id="a_1."></a><h2><a class="toc-backref" href="#id39">※ 1.</a></h2></div>
+<p><span class="docutils literal"><span class="pre">python3-dev</span></span> が必要 or 不要な理由も aodag さんに教えていただきました。ありがとうございました。</p>
+</div>
 <div class="section" id="note-aborted-connection">
-<div class="md_header_block" id="h_1.NoteAbortedconnection..."><a class="md_header_anchor" id="a_1.NoteAbortedconnection..."></a><h2><a class="toc-backref" href="#id38">※1. [Note] Aborted connection ...</a></h2></div>
+<div class="md_header_block" id="h_2.NoteAbortedconnection..."><a class="md_header_anchor" id="a_2.NoteAbortedconnection..."></a><h2><a class="toc-backref" href="#id40">※ 2. [Note] Aborted connection ...</a></h2></div>
 <ul>
 <li><p><a class="reference external" href="https://dev.mysql.com/doc/refman/5.7/en/communication-errors.html">B.6.2.10 Communication Errors and Aborted Connections</a></p>
 <div class="code-block">
@@ -676,8 +702,8 @@ $ docker-compose up
 </ul>
 </li>
 </ul>
-<div class="section" id="id17">
-<div class="md_header_block" id="h_%E5%8F%82%E8%80%83%E3%83%9A%E3%83%BC%E3%82%B8"><a class="md_header_anchor" id="a_%E5%8F%82%E8%80%83%E3%83%9A%E3%83%BC%E3%82%B8"></a><h3><a class="toc-backref" href="#id39">参考ページ</a></h3></div>
+<div class="section" id="id18">
+<div class="md_header_block" id="h_%E5%8F%82%E8%80%83%E3%83%9A%E3%83%BC%E3%82%B8"><a class="md_header_anchor" id="a_%E5%8F%82%E8%80%83%E3%83%9A%E3%83%BC%E3%82%B8"></a><h3><a class="toc-backref" href="#id41">参考ページ</a></h3></div>
 <ul class="simple">
 <li><p><a class="reference external" href="https://weblabo.oscasierra.net/mysql-error-reading-communication-packets/">MySQLで「Got an error reading communication packets」というエラーが出力される原因と対策</a></p></li>
 <li><p><a class="reference external" href="https://qiita.com/hit/items/da50428ca4b4162162a8">[MariaDB] Aborted connectionのワーニング対応に大いにハマる・・</a></p></li>
