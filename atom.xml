@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>32imuf.com</title><link href="https://32imuf.com/" rel="alternate"></link><link href="https://32imuf.com/atom.xml" rel="self"></link><id>https://32imuf.com/</id><updated>2019-04-17T00:00:00+09:00</updated><entry><title>SQLAlchemy メモ</title><link href="https://32imuf.com/sqlalchemy/note/" rel="alternate"></link><published>2019-04-17T00:00:00+09:00</published><updated>2019-04-17T00:00:00+09:00</updated><id>tag:32imuf.com,2019-04-17:/sqlalchemy/note/</id><summary type="html">&lt;details&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>32imuf.com</title><link href="https://32imuf.com/" rel="alternate"></link><link href="https://32imuf.com/atom.xml" rel="self"></link><id>https://32imuf.com/</id><updated>2019-04-20T00:00:00+09:00</updated><entry><title>Python のメモ</title><link href="https://32imuf.com/python/note/" rel="alternate"></link><published>2019-04-20T00:00:00+09:00</published><updated>2019-04-20T00:00:00+09:00</updated><id>tag:32imuf.com,2019-04-20:/python/note/</id><summary type="html">&lt;div class="section" id="id1"&gt;
+&lt;div class="md_header_block" id="h_%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9"&gt;&lt;a class="md_header_anchor" id="a_%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9"&gt;&lt;/a&gt;&lt;h1&gt;リファレンス&lt;/h1&gt;&lt;/div&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://docs.python.org/ja/3/genindex.html"&gt;頭文字別索引:&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://docs.python.org/ja/3/py-modindex.html"&gt;Pythonモジュール索引&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://docs.python.org/ja/3/library/functions.html#built-in-functions"&gt;組み込み関数&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://docs.python.org/ja/3/library/index.html"&gt;Python 標準ライブラリ&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="http"&gt;
+&lt;div class="md_header_block" id="h_%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%AB%E3%81%ABHTTP%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC%E3%82%92%E7%AB%8B%E3%81%A6%E3%82%8B"&gt;&lt;a class="md_header_anchor" id="a_%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%AB%E3%81%ABHTTP%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC%E3%82%92%E7%AB%8B%E3%81%A6%E3%82%8B"&gt;&lt;/a&gt;&lt;h1&gt;ローカルに HTTP サーバーを立てる&lt;/h1&gt;&lt;/div&gt;
+&lt;div class="code-block"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# ポートを指定 (現在のディレクトリのファイルを提供)&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;server&lt;/span&gt; &lt;span class="mi"&gt;8000&lt;/span&gt;
+&lt;span class="c1"&gt;# バインドするアドレスを指定 (現在のディレクトリのファイルを提供)&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;server&lt;/span&gt; &lt;span class="mi"&gt;8000&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="mf"&gt;127.0&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mf"&gt;0.1&lt;/span&gt;
+&lt;span class="c1"&gt;# ファイルを提供するディレクトリを指定&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;server&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;directory&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;tmp&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id6"&gt;
+&lt;div class="md_header_block" id="h_%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9_1"&gt;&lt;a class="md_header_anchor" id="a_%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9_1"&gt;&lt;/a&gt;&lt;h2&gt;リファレンス&lt;/h2&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</summary></entry><entry><title>SQLAlchemy メモ</title><link href="https://32imuf.com/sqlalchemy/note/" rel="alternate"></link><published>2019-04-17T00:00:00+09:00</published><updated>2019-04-17T00:00:00+09:00</updated><id>tag:32imuf.com,2019-04-17:/sqlalchemy/note/</id><summary type="html">&lt;details&gt;
 &lt;summary&gt;目次&lt;/summary&gt;&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
@@ -277,29 +298,4 @@
 &lt;li&gt;&lt;p&gt;別々の virtualenv にそれぞれテスト環境を構築してくれる&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;構築した virtualenv の中でテストを実行して、結果を表示してくれる&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;テストツールや環境変数などをまとめておける&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;span class="docutils literal"&gt;tox&lt;/span&gt; コマンドを実行するだけで、必要なテストを簡単に、まとめて実行できるようになる&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</summary></entry><entry><title>mypy</title><link href="https://32imuf.com/python-test/mypy/" rel="alternate"></link><published>2018-11-17T00:00:00+09:00</published><updated>2018-11-17T00:00:00+09:00</updated><id>tag:32imuf.com,2018-11-17:/python-test/mypy/</id><summary type="html">&lt;details&gt;
-&lt;summary&gt;目次&lt;/summary&gt;&lt;div class="contents topic" id="contents"&gt;
-&lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference internal" href="#id1" id="id5"&gt;リファレンス&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference internal" href="#type-hints" id="id6"&gt;Type hints 覚書き&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference internal" href="#id2" id="id7"&gt;これ&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference internal" href="#id3" id="id8"&gt;Type hints はどこに必要か、どこに書くべきか&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference internal" href="#python3" id="id9"&gt;python3 ではこういうふうに書ける&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference internal" href="#tips" id="id10"&gt;Tips&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference internal" href="#id4" id="id11"&gt;情報&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;div class="section" id="id1"&gt;
-&lt;div class="md_header_block" id="h_%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9"&gt;&lt;a class="md_header_anchor" id="a_%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9"&gt;&lt;/a&gt;&lt;h1&gt;&lt;a class="toc-backref" href="#id5"&gt;リファレンス&lt;/a&gt;&lt;/h1&gt;&lt;/div&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://mypy.readthedocs.io/en/latest/index.html"&gt;https://mypy.readthedocs.io/en/latest/index.html&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="type-hints"&gt;
-&lt;div class="md_header_block" id="h_Typehints%E8%A6%9A%E6%9B%B8%E3%81%8D"&gt;&lt;a class="md_header_anchor" id="a_Typehints%E8%A6%9A%E6%9B%B8%E3%81%8D"&gt;&lt;/a&gt;&lt;h1&gt;&lt;a class="toc-backref" href="#id6"&gt;Type hints 覚書き&lt;/a&gt;&lt;/h1&gt;&lt;/div&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html"&gt;Type hints cheat sheet (Python 3)&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://mypy.readthedocs.io/en/latest/cheat_sheet.html"&gt;Type hints cheat sheet (Python 2)&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;dl class="field-list simple"&gt;
-&lt;dt&gt;Union[int, str]&lt;/dt&gt;
-&lt;dd&gt;&lt;p&gt;&lt;span class="docutils literal"&gt;int&lt;/span&gt; or &lt;span class="docutils literal"&gt;str&lt;/span&gt; の意。とり得る型が全部わかっているなら、 &lt;/p&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;/div&gt;</summary></entry></feed>
+&lt;li&gt;&lt;p&gt;&lt;span class="docutils literal"&gt;tox&lt;/span&gt; コマンドを実行するだけで、必要なテストを簡単に、まとめて実行できるようになる&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</summary></entry></feed>
