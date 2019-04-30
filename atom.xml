@@ -1,5 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>32imuf.com</title><link href="https://32imuf.com/" rel="alternate"></link><link href="https://32imuf.com/atom.xml" rel="self"></link><id>https://32imuf.com/</id><updated>2019-04-20T00:00:00+09:00</updated><entry><title>Python のメモ</title><link href="https://32imuf.com/python/note/" rel="alternate"></link><published>2019-04-20T00:00:00+09:00</published><updated>2019-04-20T00:00:00+09:00</updated><id>tag:32imuf.com,2019-04-20:/python/note/</id><summary type="html">&lt;div class="section" id="id1"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>32imuf.com</title><link href="https://32imuf.com/" rel="alternate"></link><link href="https://32imuf.com/atom.xml" rel="self"></link><id>https://32imuf.com/</id><updated>2019-04-30T00:00:00+09:00</updated><entry><title>MySQL のメモ</title><link href="https://32imuf.com/mysql/note/" rel="alternate"></link><published>2019-04-30T00:00:00+09:00</published><updated>2019-04-30T00:00:00+09:00</updated><id>tag:32imuf.com,2019-04-30:/mysql/note/</id><summary type="html">&lt;div class="section" id="id1"&gt;
+&lt;div class="md_header_block" id="h_%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9"&gt;&lt;a class="md_header_anchor" id="a_%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9"&gt;&lt;/a&gt;&lt;h1&gt;リファレンス&lt;/h1&gt;&lt;/div&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://dev.mysql.com/doc/refman/8.0/en/"&gt;MySQL 8.0 Reference Manual&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://dev.mysql.com/doc/refman/8.0/en/information-schema.html"&gt;Chapter 25 INFORMATION_SCHEMA Tables&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://dev.mysql.com/doc/refman/8.0/en/mysqldump.html"&gt;4.5.4 mysqldump&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://dev.mysql.com/doc/refman/8.0/en/window-functions.html"&gt;12.21 Window Functions&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id2"&gt;
+&lt;div class="md_header_block" id="h_%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3"&gt;&lt;a class="md_header_anchor" id="a_%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3"&gt;&lt;/a&gt;&lt;h1&gt;ログイン&lt;/h1&gt;&lt;/div&gt;
+&lt;div class="code-block"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# ログイン&lt;/span&gt;
+$ mysql -u user_name -D db_mame -p
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id3"&gt;
+&lt;div class="md_header_block" id="h_%E4%BE%BF%E5%88%A9"&gt;&lt;a class="md_header_anchor" id="a_%E4%BE%BF%E5%88%A9"&gt;&lt;/a&gt;&lt;h1&gt;便利&lt;/h1&gt;&lt;/div&gt;
+&lt;div class="code-block"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;-- 拡張表示&lt;/span&gt;
+&lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;users&lt;/span&gt; &lt;span class="k"&gt;WHERE&lt;/span&gt; &lt;span class="n"&gt;login&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'fumi23'&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;G&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id4"&gt;
+&lt;div class="md_header_block" id="h_%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9"&gt;&lt;a class="md_header_anchor" id="a_%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9"&gt;&lt;/a&gt;&lt;h1&gt;データベース&lt;/h1&gt;&lt;/div&gt;
+&lt;div class="code-block"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;-- データベース一覧&lt;/span&gt;
+&lt;span class="k"&gt;SHOW&lt;/span&gt; &lt;span class="k"&gt;DATABASES&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="c1"&gt;-- データベースの切り替え&lt;/span&gt;
+&lt;span class="k"&gt;USE&lt;/span&gt; &lt;span class="n"&gt;db_mame&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</summary></entry><entry><title>Python のメモ</title><link href="https://32imuf.com/python/note/" rel="alternate"></link><published>2019-04-20T00:00:00+09:00</published><updated>2019-04-20T00:00:00+09:00</updated><id>tag:32imuf.com,2019-04-20:/python/note/</id><summary type="html">&lt;div class="section" id="id1"&gt;
 &lt;div class="md_header_block" id="h_%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9"&gt;&lt;a class="md_header_anchor" id="a_%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9"&gt;&lt;/a&gt;&lt;h1&gt;リファレンス&lt;/h1&gt;&lt;/div&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://docs.python.org/ja/3/genindex.html"&gt;頭文字別索引:&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
@@ -277,25 +309,4 @@
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; which python
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</summary></entry><entry><title>tox</title><link href="https://32imuf.com/python-test/tox/" rel="alternate"></link><published>2018-11-17T00:00:00+09:00</published><updated>2018-11-17T00:00:00+09:00</updated><id>tag:32imuf.com,2018-11-17:/python-test/tox/</id><summary type="html">&lt;details&gt;
-&lt;summary&gt;目次&lt;/summary&gt;&lt;div class="contents topic" id="contents"&gt;
-&lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference internal" href="#id1" id="id7"&gt;tox とは&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference internal" href="#id2" id="id8"&gt;リファレンス&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference internal" href="#id3" id="id9"&gt;インストール&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference internal" href="#tox-ini" id="id10"&gt;tox.ini&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference internal" href="#id4" id="id11"&gt;実行&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference internal" href="#id5" id="id12"&gt;テスト用仮想環境の再作成&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference internal" href="#pytest-pythonpath" id="id13"&gt;pytest-pythonpath&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference internal" href="#id6" id="id14"&gt;参考書籍, サイト&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;div class="section" id="id1"&gt;
-&lt;div class="md_header_block" id="h_tox%E3%81%A8%E3%81%AF"&gt;&lt;a class="md_header_anchor" id="a_tox%E3%81%A8%E3%81%AF"&gt;&lt;/a&gt;&lt;h1&gt;&lt;a class="toc-backref" href="#id7"&gt;tox とは&lt;/a&gt;&lt;/h1&gt;&lt;/div&gt;
-&lt;p&gt;&lt;cite&gt;これをテストに使いたいとは限らないのでもうテスト用に環境分けちゃおうぜ的なツール&lt;/cite&gt;&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;別々の virtualenv にそれぞれテスト環境を構築してくれる&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;構築した virtualenv の中でテストを実行して、結果を表示してくれる&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;テストツールや環境変数などをまとめておける&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;span class="docutils literal"&gt;tox&lt;/span&gt; コマンドを実行するだけで、必要なテストを簡単に、まとめて実行できるようになる&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</summary></entry></feed>
+&lt;/div&gt;</summary></entry></feed>
