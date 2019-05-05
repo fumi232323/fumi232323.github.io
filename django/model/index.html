@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Django: Model, Django ORM/32imuf.com</title>
+    <link rel="shortcut icon" href="/static/icons/favicon.ico">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Griffy">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Vollkorn:400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/style.css?20190429">
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="header"><header class="item item-header">
+  <h1>
+    <a href="/">
+      <img class="logo" src="/static/images/inuu.png" alt="犬">
+    </a>
+  </h1>
+  <nav class="nav">
+    <ul>
+      <li class="nav-category"><a href="/">HOME</a></li>
+      
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_aws.html">aws</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../aws/what-is-amazon-aurora/">Amazon Aurora とはなんですか？</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../aws/s3-response-error/">S3ResponseError の原因はなんと時刻ずれだった</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_blog.html">blog</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../blog/rules/">ブログを書くときの注意点</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_css.html">css</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../html-css/css/note/">CSS のメモ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../html-css/configure-stylus-output-directory/">PyCharm の File Watcher で、 Stylus の CSS ファイル生成先ディレクトリを指定する。</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../html-css/stylus/">Stylus を使う</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../html-css/html5-css3-modern-coding/">『HTML5/CSS3モダンコーディング フロントエンドエンジニアが教える3つの本格レイアウト スタンダード・グリッド・シングルページレイアウトの作り方』を読んで気になったことメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_django.html">django</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../view/">Django: View</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../urlconf/">Django: URL ディスパッチャ, URLconf</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="./">Django: Model, Django ORM</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../note/">Django なんでもメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_docker.html">docker</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../docker/create-django-env-with-docker-compose-2/">Docker Compose で Django 環境をつくろう その2</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../docker/connect-from-sqla-to-mysqldb/">Docker Compose で MySQL DB をつくり Compose 外 (非 docker) の SQLAlchemy から接続する</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../docker/create-django-env-with-docker-compose-mysql-2/">Docker Compose で Django/MySQL 環境をつくる その2</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../docker/create-django-env-with-docker-compose-mysql/">Docker Compose で Django/MySQL 環境をつくる</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../docker/use-volumes-with-docker-compose/">Docker Compose で Volumes をつかう</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../docker/create-django-env-with-docker-compose/">Docker Compose で Django/PostgreSQL 環境をつくる</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_git.html">git</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../git/command/merge/">git merge</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../git/command/rebase-i/">git rebase -i</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../git/command/rebase/">git rebase</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../git/note/">Git のメモ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../git/configuration/">Git の設定まとめ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../git/command/">Git のコマンドまとめ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_github.html">github</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../github/how-to-create-new-repository/">GitHub に新しいリポジトリを作成して、pushする</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../github/github-pages-custom-domain-setting/">GitHub Pages にカスタムドメインを設定する</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_mac.html">mac</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../mac/note/">Mac のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_miyadaiku.html">miyadaiku</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../miyadaiku/build/">Miyadaiku ビルドするときのコマンド</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../miyadaiku/article-directory-structure/">article の置きかた</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_mysql.html">mysql</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../mysql/note/">MySQL のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_pycharm.html">pycharm</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../pycharm/django-support/">Pycharm の Django support を使う</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../pycharm/add-psql-var-to-user-params-for-db-console/">PyCharm の Database Console で PostgreSQL のプレースホルダー (インタポレーション) を SQL パラメーターとして使えるようにする</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../pycharm/connect-db-using-ssh-tunnel/">PyCharm で SSH tunnel して Amazon Redshift につなぐ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../pycharm/useful-menu-and-shortcuts/">PyCharm ショートカットと便利メニュー</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../pycharm/configuration/">PyCharm の設定</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_python.html">python</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../python/note/">Python のメモ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../python/etc/">Python いろいろメモ</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../python/pyconjp2018/">PyConJP 2018 で聞いた講演</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_redshift.html">redshift</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../redshift/note/">Redshift のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_sample.html">sample</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../2018/sample-table/">table の sample</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../2018/sample-h1-h2-h3-li/">h1, h2, h3, リストの sample</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../2018/sample-code-block/">code-block, 引用の sample</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_sql.html">sql</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../sql/note/">SQL のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_sqlalchemy.html">sqlalchemy</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../sqlalchemy/note/">SQLAlchemy メモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_ssh.html">ssh</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../ssh/command/ssh-keygen/">ssh-keygen</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../ssh/command/ssh-add/">ssh-add</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../ssh/command/ssh/">ssh のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_test.html">test</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../python-test/tox/">tox</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../python-test/mypy/">mypy</a>
+              </li>
+            
+              <li class="nav-article">
+                <a href="../../python-test/note/">Python テストのメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_vagrant.html">vagrant</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../vagrant/note/">Vagrant のメモ</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        
+        <li class="nav-category">
+          <a href="/index_category_category_vim.html">vim</a>
+          <ul>
+            
+              <li class="nav-article">
+                <a href="../../vim/command/">Vim のコマンド</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+    </ul>
+  </nav>
+</header></div>
+      <div class="main">
+<div class="article-content">
+  <main class="item item-article item-django">
+    <time class="date" datetime="2019-05-05 00:00:00+09:00">
+      2019-05-05 Sun
+    </time>
+    <div class="title">Django: Model, Django ORM</div>
+    <div class="category">
+      <a href="/index_category_category_django.html">
+          django
+      </a>
+    </div>
+    <div class="text">
+      <details>
+<summary>目次</summary><div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#id1" id="id13">リファレンス</a></p></li>
+<li><p><a class="reference internal" href="#model" id="id14">Model</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id2" id="id15">リレーションまとめ</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id16">Model の実装例</a></p></li>
+<li><p><a class="reference internal" href="#on-delete" id="id17">on_delete</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#django-orm" id="id18">Django ORM</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id4" id="id19">1件だけ取得する</a></p></li>
+<li><p><a class="reference internal" href="#id5" id="id20">全件取得する</a></p></li>
+<li><p><a class="reference internal" href="#id6" id="id21">検索条件をつけて取得する</a></p>
+<ul>
+<li><p><a class="reference internal" href="#filter" id="id22">filter をつなげる例</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#and" id="id23">AND 条件</a></p></li>
+<li><p><a class="reference internal" href="#or" id="id24">OR 条件</a></p></li>
+<li><p><a class="reference internal" href="#id7" id="id25">&gt;, &lt;, &gt;=, &lt;=</a></p></li>
+<li><p><a class="reference internal" href="#in" id="id26">IN</a></p></li>
+<li><p><a class="reference internal" href="#like" id="id27">LIKE</a></p></li>
+<li><p><a class="reference internal" href="#exists" id="id28">EXISTS</a></p></li>
+<li><p><a class="reference internal" href="#order-by" id="id29">ORDER BY</a></p></li>
+<li><p><a class="reference internal" href="#q-object" id="id30">Q Object</a></p></li>
+<li><p><a class="reference internal" href="#id8" id="id31">リレーション先のモデルを使った条件検索</a></p></li>
+<li><p><a class="reference internal" href="#set" id="id32">モデルクラス名を全部小文字にしたのに <span class="docutils literal">_set</span> がつく</a></p></li>
+<li><p><a class="reference internal" href="#values-values-list" id="id33">values() と values_list()</a></p>
+<ul>
+<li><p><a class="reference internal" href="#values" id="id34">values()</a></p></li>
+<li><p><a class="reference internal" href="#values-list" id="id35">values_list()</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#aggregate-annotate" id="id36">aggregate と annotate</a></p></li>
+<li><p><a class="reference internal" href="#left-outer-join" id="id37">LEFT OUTER JOIN</a></p></li>
+<li><p><a class="reference internal" href="#select-related-prefetch-related" id="id38">select_related, prefetch_related</a></p></li>
+<li><p><a class="reference internal" href="#id10" id="id39">遅延評価</a></p></li>
+<li><p><a class="reference internal" href="#id11" id="id40">トランザクション</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#user" id="id41">User モデルを拡張したい</a></p></li>
+<li><p><a class="reference internal" href="#id12" id="id42">発行されるクエリを見たい</a></p></li>
+</ul>
+</div>
+</details><div class="section" id="id1">
+<div class="md_header_block" id="h_%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9"><a class="md_header_anchor" id="a_%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9"></a><h1><a class="toc-backref" href="#id13">リファレンス</a></h1></div>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.djangoproject.com/ja/2.2/ref/models/fields/">Django documentation &gt; モデルフィールドリファレンス</a></p></li>
+<li><p><a class="reference external" href="https://docs.djangoproject.com/ja/2.2/ref/models/querysets/">Django documentation &gt; QuerySet API reference</a></p></li>
+<li><p><a class="reference external" href="https://www.amazon.co.jp/dp/B07GK7BWB7/">現場で使える Django の教科書</a></p></li>
+</ul>
+</div>
+<div class="section" id="model">
+<div class="md_header_block" id="h_Model"><a class="md_header_anchor" id="a_Model"></a><h1><a class="toc-backref" href="#id14">Model</a></h1></div>
+<ul class="simple">
+<li><p>複合キーは主キーにできない</p></li>
+</ul>
+<div class="section" id="id2">
+<div class="md_header_block" id="h_%E3%83%AA%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%BE%E3%81%A8%E3%82%81"><a class="md_header_anchor" id="a_%E3%83%AA%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%BE%E3%81%A8%E3%82%81"></a><h2><a class="toc-backref" href="#id15">リレーションまとめ</a></h2></div>
+<table class="colwidths-auto">
+<thead>
+<tr><th class="head stub"><p>リレーション</p></th>
+<th class="head"><p>使うフィールド</p></th>
+<th class="head"><p>使い方</p></th>
+</tr>
+</thead>
+<tbody>
+<tr><th class="stub"><p>一対一</p></th>
+<td><p>OneToOneField</p></td>
+<td><p>どちらか一方のモデルに OneToOneField をくっつける</p></td>
+</tr>
+<tr><th class="stub"><p>多対一</p></th>
+<td><p>ForeignKey</p></td>
+<td><p>多側に ForeignKey をくっつける</p></td>
+</tr>
+<tr><th class="stub"><p>多対多</p></th>
+<td><p>ManyToManyField</p></td>
+<td><p>どちらか一方のモデルに ManyToManyField をくっつける</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id3">
+<div class="md_header_block" id="h_Model%E3%81%AE%E5%AE%9F%E8%A3%85%E4%BE%8B"><a class="md_header_anchor" id="a_Model%E3%81%AE%E5%AE%9F%E8%A3%85%E4%BE%8B"></a><h2><a class="toc-backref" href="#id16">Model の実装例</a></h2></div>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+
+
+<span class="k">class</span> <span class="nc">Publisher</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">"""出版社モデル"""</span>
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">db_table</span> <span class="o">=</span> <span class="s1">'publisher'</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">verbose_name</span><span class="o">=</span><span class="s1">'出版社名'</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+
+
+<span class="k">class</span> <span class="nc">Author</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">"""著者モデル"""</span>
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">db_table</span> <span class="o">=</span> <span class="s1">'author'</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">verbose_name</span><span class="o">=</span><span class="s1">'著者名'</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+
+
+<span class="k">class</span> <span class="nc">Book</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">"""本モデル"""</span>
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="sd">"""</span>
+<span class="sd">        対応するテーブルや、複数カラムに対するインデックスやユニーク制約などの</span>
+<span class="sd">        モデル全体に対する付加情報を記述する</span>
+<span class="sd">        """</span>
+        <span class="c1"># テーブル名を定義</span>
+        <span class="c1"># 定義しないと、 `アプリケーション名_モデルのクラス名をスネークケースにした文字列` がテーブル名になる</span>
+        <span class="n">db_table</span> <span class="o">=</span> <span class="s1">'book'</span>
+
+    <span class="n">title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">verbose_name</span><span class="o">=</span><span class="s1">'タイトル'</span><span class="p">,</span>  <span class="c1"># フィールド名</span>
+        <span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span>  <span class="c1"># 文字列の最大文字数</span>
+        <span class="c1"># choices: フォーム利用時にセレクトボックスに表示する選択肢</span>
+        <span class="c1"># validators: 文字種チェックなどのバリデーションを指定</span>
+        <span class="n">error_messages</span><span class="o">=</span><span class="p">{</span><span class="s1">'invalid'</span><span class="p">:</span> <span class="s1">'title ちがうよー'</span><span class="p">}</span>  <span class="c1"># バリデーションNGの場合のエラーメッセージ</span>
+    <span class="p">)</span>
+    <span class="n">publisher</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span>
+        <span class="c1"># 多対一のリレーション: 多側に ForeignKey をくっつける</span>
+        <span class="n">Publisher</span><span class="p">,</span> <span class="n">verbose_name</span><span class="o">=</span><span class="s1">'出版社'</span><span class="p">,</span>
+        <span class="c1"># ForeignKey と OneToOneField には on_delete をつける癖をつけよう</span>
+        <span class="n">on_delete</span><span class="o">=</span><span class="n">models</span><span class="o">.</span><span class="n">PROTECT</span><span class="p">,</span>  <span class="c1"># 自身のレコードは削除されない</span>
+    <span class="p">)</span>
+    <span class="n">authors</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span>
+        <span class="c1"># 多対多のリレーション: 一方のモデルに ManyToManyField をくっつける</span>
+        <span class="c1">#   * マイグレーション実行すると Django が自動的に中間テーブルを作成してくれる</span>
+        <span class="n">Author</span><span class="p">,</span> <span class="n">verbose_name</span><span class="o">=</span><span class="s1">'著者'</span>
+    <span class="p">)</span>
+    <span class="n">price</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span>
+        <span class="n">verbose_name</span><span class="o">=</span><span class="s1">'価格'</span><span class="p">,</span>
+        <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>       <span class="c1"># NULL制約</span>
+        <span class="n">unique</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>    <span class="c1"># ユニーク制約</span>
+        <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>      <span class="c1"># フォーム利用時に入力必須にするかどうか</span>
+        <span class="n">db_index</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>  <span class="c1"># DB のインデックスを設定するかどうか</span>
+        <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>       <span class="c1"># レコード登録時に値が指定されなかったときのデフォルト値</span>
+    <span class="p">)</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">(</span><span class="n">verbose_name</span><span class="o">=</span><span class="s1">'概要'</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">publisher_date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateField</span><span class="p">(</span><span class="n">verbose_name</span><span class="o">=</span><span class="s1">'出版日'</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># 管理サイトに表示されるよ</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">title</span>
+
+
+<span class="k">class</span> <span class="nc">BookStock</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">"""本の在庫モデル"""</span>
+    <span class="n">book</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">OneToOneField</span><span class="p">(</span>
+        <span class="c1"># 一対一のリレーション: どちらか一方のテーブルに OneToOneField をくっつける</span>
+        <span class="n">Book</span><span class="p">,</span> <span class="n">verbose_name</span><span class="o">=</span><span class="s1">'本'</span><span class="p">,</span>
+        <span class="n">on_delete</span><span class="o">=</span><span class="n">models</span><span class="o">.</span><span class="n">CASCADE</span>  <span class="c1"># 自身のレコードも削除される</span>
+    <span class="p">)</span>
+    <span class="n">quantity</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">verbose_name</span><span class="o">=</span><span class="s1">'在庫数'</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="on-delete">
+<div class="md_header_block" id="h_on_delete"><a class="md_header_anchor" id="a_on_delete"></a><h2><a class="toc-backref" href="#id17">on_delete</a></h2></div>
+<p><a class="reference external" href="https://docs.djangoproject.com/ja/2.2/ref/models/fields/#django.db.models.ForeignKey.on_delete">ForeignKey.on_delete</a></p>
+<ul class="simple">
+<li><p>6種類くらいあって、用途に応じて選べる</p></li>
+<li><p>Django 2.0 から、必須の引数となる</p></li>
+<li><p>それ以前のバージョンでは、デフォルトで <span class="docutils literal">CASCADE</span></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="django-orm">
+<div class="md_header_block" id="h_DjangoORM"><a class="md_header_anchor" id="a_DjangoORM"></a><h1><a class="toc-backref" href="#id18">Django ORM</a></h1></div>
+<ul class="simple">
+<li><p>単体のオブジェクトを保存・更新するような行レベルのクエリ操作: モデルオブジェクトのメソッドを利用する</p></li>
+<li><p>データベースのテーブルレベルのクエリ操作: モデルの「モデルマネージャー」 ( <span class="docutils literal">objects</span> ) を利用する</p>
+<ul>
+<li><p>モデルマネージャーは通常、モデルクラスに <span class="docutils literal">objects</span> という名前で保存されている</p></li>
+</ul>
+</li>
+</ul>
+<div class="section" id="id4">
+<div class="md_header_block" id="h_1%E4%BB%B6%E3%81%A0%E3%81%91%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B"><a class="md_header_anchor" id="a_1%E4%BB%B6%E3%81%A0%E3%81%91%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B"></a><h2><a class="toc-backref" href="#id19">1件だけ取得する</a></h2></div>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>  <span class="c1"># この `objects` がモデルマネージャー</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>モデルが返る</p></li>
+<li><p>1件も見つからないと <span class="docutils literal">DoesNotExist</span></p></li>
+<li><p>2件以上見つかると <span class="docutils literal">MultipleObjectsReturn</span></p></li>
+</ul>
+</div>
+<div class="section" id="id5">
+<div class="md_header_block" id="h_%E5%85%A8%E4%BB%B6%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B"><a class="md_header_anchor" id="a_%E5%85%A8%E4%BB%B6%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B"></a><h2><a class="toc-backref" href="#id20">全件取得する</a></h2></div>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>即座にデータベースにはアクセスせず、クエリセットオブジェクトを返す</p></li>
+<li><p>しかるべきタイミングでデータベースアクセスする = 遅延評価</p></li>
+<li><p>1件も見つからなくても例外発生しない、空のリストを返す</p></li>
+</ul>
+</div>
+<div class="section" id="id6">
+<div class="md_header_block" id="h_%E6%A4%9C%E7%B4%A2%E6%9D%A1%E4%BB%B6%E3%82%92%E3%81%A4%E3%81%91%E3%81%A6%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B"><a class="md_header_anchor" id="a_%E6%A4%9C%E7%B4%A2%E6%9D%A1%E4%BB%B6%E3%82%92%E3%81%A4%E3%81%91%E3%81%A6%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B"></a><h2><a class="toc-backref" href="#id21">検索条件をつけて取得する</a></h2></div>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">is_active</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>即座にデータベースにはアクセスせず、クエリセットオブジェクトを返す</p></li>
+<li><p><span class="docutils literal">filter()</span> を何度も繋げて書ける</p></li>
+</ul>
+<div class="section" id="filter">
+<div class="md_header_block" id="h_filter%E3%82%92%E3%81%A4%E3%81%AA%E3%81%92%E3%82%8B%E4%BE%8B"><a class="md_header_anchor" id="a_filter%E3%82%92%E3%81%A4%E3%81%AA%E3%81%92%E3%82%8B%E4%BE%8B"></a><h3><a class="toc-backref" href="#id22">filter をつなげる例</a></h3></div>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="n">keyword</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'keyword'</span><span class="p">)</span>
+<span class="n">queryset</span> <span class="o">=</span> <span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">keyword</span><span class="p">:</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">queryset</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">keyword</span><span class="p">)</span>
+
+<span class="c1"># ここでクエリが発行される (print すると発行される)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">queryset</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>この例の場合、発行されるクエリの総数は1本</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="and">
+<div class="md_header_block" id="h_AND%E6%9D%A1%E4%BB%B6"><a class="md_header_anchor" id="a_AND%E6%9D%A1%E4%BB%B6"></a><h2><a class="toc-backref" href="#id23">AND 条件</a></h2></div>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">'Django Book'</span><span class="p">,</span> <span class="n">price</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>検索条件を列挙すれば AND 条件</p></li>
+</ul>
+</div>
+<div class="section" id="or">
+<div class="md_header_block" id="h_OR%E6%9D%A1%E4%BB%B6"><a class="md_header_anchor" id="a_OR%E6%9D%A1%E4%BB%B6"></a><h2><a class="toc-backref" href="#id24">OR 条件</a></h2></div>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.db.models</span> <span class="kn">import</span> <span class="n">Q</span>
+<span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">Q</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">'Django Book'</span><span class="p">)</span> <span class="o">|</span> <span class="n">Q</span><span class="p">(</span><span class="n">price</span><span class="o">=</span><span class="mi">1000</span><span class="p">))</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><span class="docutils literal">Q</span> と <span class="docutils literal">|</span> (パイプ) を使う</p></li>
+</ul>
+</div>
+<div class="section" id="id7">
+<div class="md_header_block" id="h_"><a class="md_header_anchor" id="a_"></a><h2><a class="toc-backref" href="#id25">&gt;, &lt;, &gt;=, &lt;=</a></h2></div>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">price__gt</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>  <span class="c1"># &gt;1000</span>
+<span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">price__lt</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>  <span class="c1"># &lt;1000</span>
+<span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">price__gte</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>  <span class="c1"># &gt;=1000</span>
+<span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">price__lte</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>  <span class="c1"># &lt;=1000</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><span class="docutils literal">__</span> (アンダーバー2つ) でフィールド名とキーワード (<span class="docutils literal">gt</span>, <span class="docutils literal">lt</span>, <span class="docutils literal">gte</span>, <span class="docutils literal">lte</span>) をつなぐ</p></li>
+</ul>
+</div>
+<div class="section" id="in">
+<div class="md_header_block" id="h_IN"><a class="md_header_anchor" id="a_IN"></a><h2><a class="toc-backref" href="#id26">IN</a></h2></div>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">price__in</span><span class="o">=</span><span class="p">[</span><span class="mi">900</span><span class="p">,</span> <span class="mi">1000</span><span class="p">])</span>  <span class="c1"># IN(900, 1000)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><span class="docutils literal">__</span> (アンダーバー2つ) でフィールド名とキーワード (<span class="docutils literal">in</span>) をつなぐ</p></li>
+<li><p>IN 句の中身はリストで書く</p></li>
+</ul>
+</div>
+<div class="section" id="like">
+<div class="md_header_block" id="h_LIKE"><a class="md_header_anchor" id="a_LIKE"></a><h2><a class="toc-backref" href="#id27">LIKE</a></h2></div>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">title__icontains</span><span class="o">=</span><span class="s1">'Django'</span><span class="p">)</span>  <span class="c1"># ILIKE '%Django%'</span>
+<span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">title__contains</span><span class="o">=</span><span class="s1">'Django'</span><span class="p">)</span>  <span class="c1"># LIKE '%Django%'</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><span class="docutils literal">__</span> (アンダーバー2つ) でフィールド名とキーワード (<span class="docutils literal">icontains</span>, <span class="docutils literal">contains</span>) をつなぐ</p></li>
+<li><p>大文字と小文字を区別しない: <span class="docutils literal">icontains</span></p></li>
+<li><p>大文字と小文字を区別する: <span class="docutils literal">contains</span></p></li>
+</ul>
+</div>
+<div class="section" id="exists">
+<div class="md_header_block" id="h_EXISTS"><a class="md_header_anchor" id="a_EXISTS"></a><h2><a class="toc-backref" href="#id28">EXISTS</a></h2></div>
+<ul class="simple">
+<li><p>exists: レコードが存在するか否か True/False で返す</p></li>
+</ul>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span>
+<span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">title__icontains</span><span class="o">=</span><span class="s1">'Django'</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="order-by">
+<div class="md_header_block" id="h_ORDERBY"><a class="md_header_anchor" id="a_ORDERBY"></a><h2><a class="toc-backref" href="#id29">ORDER BY</a></h2></div>
+<ul class="simple">
+<li><p>order_by:</p></li>
+</ul>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="c1"># 降順はフィールド名の前に ``-`` つける</span>
+<span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">'-price'</span><span class="p">)</span>
+
+<span class="c1"># 複数フィールドでソートするときはカンマ区切り</span>
+<span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">'price'</span><span class="p">,</span> <span class="s1">'publish_date'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="q-object">
+<div class="md_header_block" id="h_QObject"><a class="md_header_anchor" id="a_QObject"></a><h2><a class="toc-backref" href="#id30">Q Object</a></h2></div>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.djangoproject.com/ja/2.2/topics/db/queries/#complex-lookups-with-q">Q オブジェクトを用いた複雑な検索</a></p></li>
+</ul>
+</div>
+<div class="section" id="id8">
+<div class="md_header_block" id="h_%E3%83%AA%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E5%85%88%E3%81%AE%E3%83%A2%E3%83%87%E3%83%AB%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%9F%E6%9D%A1%E4%BB%B6%E6%A4%9C%E7%B4%A2"><a class="md_header_anchor" id="a_%E3%83%AA%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E5%85%88%E3%81%AE%E3%83%A2%E3%83%87%E3%83%AB%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%9F%E6%9D%A1%E4%BB%B6%E6%A4%9C%E7%B4%A2"></a><h2><a class="toc-backref" href="#id31">リレーション先のモデルを使った条件検索</a></h2></div>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">publisher__name</span><span class="o">=</span><span class="s1">'自費出版社'</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><span class="docutils literal">OneToOneField</span>, <span class="docutils literal">ForeignKey</span>, <span class="docutils literal">ManyToManyField</span> でリレーションしていると、
+<span class="docutils literal">リレーションつけたフィールド名__リレーション先モデルのフィールド名</span> で JOIN できる</p></li>
+</ul>
+</div>
+<div class="section" id="set">
+<div class="md_header_block" id="h_%E3%83%A2%E3%83%87%E3%83%AB%E3%82%AF%E3%83%A9%E3%82%B9%E5%90%8D%E3%82%92%E5%85%A8%E9%83%A8%E5%B0%8F%E6%96%87%E5%AD%97%E3%81%AB%E3%81%97%E3%81%9F%E3%81%AE%E3%81%AB_set%E3%81%8C%E3%81%A4%E3%81%8F"><a class="md_header_anchor" id="a_%E3%83%A2%E3%83%87%E3%83%AB%E3%82%AF%E3%83%A9%E3%82%B9%E5%90%8D%E3%82%92%E5%85%A8%E9%83%A8%E5%B0%8F%E6%96%87%E5%AD%97%E3%81%AB%E3%81%97%E3%81%9F%E3%81%AE%E3%81%AB_set%E3%81%8C%E3%81%A4%E3%81%8F"></a><h2><a class="toc-backref" href="#id32">モデルクラス名を全部小文字にしたのに <span class="docutils literal">_set</span> がつく</a></h2></div>
+<p><a class="reference external" href="https://docs.djangoproject.com/ja/1.11/ref/models/relations/">Related objects reference</a></p>
+<ul class="simple">
+<li><p><span class="docutils literal">_set</span> というのは子テーブルのデータを参照する django の機能</p></li>
+<li><p>モデルクラス名を全部小文字にしたのに <span class="docutils literal">_set</span> がつく</p></li>
+</ul>
+</div>
+<div class="section" id="values-values-list">
+<div class="md_header_block" id="h_values%E3%81%A8values_list"><a class="md_header_anchor" id="a_values%E3%81%A8values_list"></a><h2><a class="toc-backref" href="#id33">values() と values_list()</a></h2></div>
+<div class="section" id="values">
+<div class="md_header_block" id="h_values"><a class="md_header_anchor" id="a_values"></a><h3><a class="toc-backref" href="#id34">values()</a></h3></div>
+<p>辞書のクエリセットで取得できる。</p>
+<ul>
+<li><p><a class="reference external" href="https://docs.djangoproject.com/ja/2.1/ref/models/querysets/#values">https://docs.djangoproject.com/ja/2.1/ref/models/querysets/#values</a></p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">Blog</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">name__startswith</span><span class="o">=</span><span class="s1">'Beatles'</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+<span class="o">&lt;</span><span class="n">QuerySet</span> <span class="p">[{</span><span class="s1">'id'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'name'</span><span class="p">:</span> <span class="s1">'Beatles Blog'</span><span class="p">,</span> <span class="s1">'tagline'</span><span class="p">:</span> <span class="s1">'All the latest Beatles news.'</span><span class="p">}]</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="values-list">
+<div class="md_header_block" id="h_values_list"><a class="md_header_anchor" id="a_values_list"></a><h3><a class="toc-backref" href="#id35">values_list()</a></h3></div>
+<p>タプルのリストのクエリセットで取得できる。</p>
+<ul>
+<li><p><a class="reference external" href="https://docs.djangoproject.com/ja/2.1/ref/models/querysets/#values-list">https://docs.djangoproject.com/ja/2.1/ref/models/querysets/#values-list</a></p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">Entry</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s1">'id'</span><span class="p">,</span> <span class="s1">'headline'</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">QuerySet</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">'First entry'</span><span class="p">),</span> <span class="o">...</span><span class="p">]</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<ul>
+<li><p>1カラムしか取得しない場合は、 <span class="docutils literal">flat=True</span> をつけると、リストのクエリセットで取得できる。</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">Entry</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s1">'id'</span><span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">'id'</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">QuerySet</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="aggregate-annotate">
+<div class="md_header_block" id="h_aggregate%E3%81%A8annotate"><a class="md_header_anchor" id="a_aggregate%E3%81%A8annotate"></a><h2><a class="toc-backref" href="#id36">aggregate と annotate</a></h2></div>
+<p><span class="docutils literal">aggregate</span> と <span class="docutils literal">annotate</span> の違いがわかりやすい</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://note.crohaco.net/2014/django-aggregate/">Djangoの集計について</a></p></li>
+</ul>
+</div>
+<div class="section" id="left-outer-join">
+<div class="md_header_block" id="h_LEFTOUTERJOIN"><a class="md_header_anchor" id="a_LEFTOUTERJOIN"></a><h2><a class="toc-backref" href="#id37">LEFT OUTER JOIN</a></h2></div>
+<p>Django のクエリセットは LEFT OUTER JOIN を表現できない</p>
+<ul class="simple">
+<li><p>SQLAlchemy でやろう</p></li>
+</ul>
+</div>
+<div class="section" id="select-related-prefetch-related">
+<div class="md_header_block" id="h_select_relatedprefetch_related"><a class="md_header_anchor" id="a_select_relatedprefetch_related"></a><h2><a class="toc-backref" href="#id38">select_related, prefetch_related</a></h2></div>
+<table class="colwidths-given">
+<colgroup>
+<col style="width: 50%"/>
+<col style="width: 50%"/>
+</colgroup>
+<thead>
+<tr><th class="head"><p>select_related</p></th>
+<th class="head"><p>prefetch_related</p></th>
+</tr>
+</thead>
+<tbody>
+<tr><td><p><span class="docutils literal">一</span> や <span class="docutils literal">多</span> 側から <span class="docutils literal">一</span> のリレーションのモデルオブジェクトをJOINで取得</p></td>
+<td><p><span class="docutils literal">一</span> や <span class="docutils literal">多</span> 側から <span class="docutils literal">多</span> のリレーションのモデルオブジェクトを取得してキャッシュに保持</p></td>
+</tr>
+<tr><td><p>リレーション先のオブジェクトを取得するために JOIN を使ったクエリを発行できる</p></td>
+<td><p>取得したオブジェクト群をオブジェクト内部のキャッシュに保持し、それを使い回すことで同じクエリが何度も発行されないようにする</p></td>
+</tr>
+<tr><td>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">select_related</span><span class="p">(</span><span class="s1">'publisher'</span><span class="p">)</span>
+</pre></div>
+</div>
+</td>
+<td>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">prefetch_related</span><span class="p">(</span><span class="s1">'authors'</span><span class="p">)</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>クエリの本数を減らそう!</p>
+<ul>
+<li><p><span class="docutils literal">N+1問題</span></p></li>
+<li><p>特にリレーションを持ったモデルの検索結果 (クエリセットオブジェクト) をループ処理する場合に起こりがち</p></li>
+<li><p>後続の処理で何度もアクセスされそうなオブジェクトに対して前もって処理を施しておくことでクエリの本数を減らそう</p></li>
+<li><p>その他参考: <a class="reference external" href="http://tokibito.hatenablog.com/entry/20140718/1405691738">偏った言語信者の垂れ流し &gt; Djangoでprefetch_relatedを使ってクエリ数を減らす</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id10">
+<div class="md_header_block" id="h_%E9%81%85%E5%BB%B6%E8%A9%95%E4%BE%A1"><a class="md_header_anchor" id="a_%E9%81%85%E5%BB%B6%E8%A9%95%E4%BE%A1"></a><h2><a class="toc-backref" href="#id39">遅延評価</a></h2></div>
+<p>クエリセットを返す <span class="docutils literal">all()</span> や <span class="docutils literal">filter()</span> がクエリを発行するタイミング (データベースアクセスするタイミング) はこれら</p>
+<ul class="simple">
+<li><p><span class="docutils literal">for</span> ループなどイテレーションが開始されたタイミング</p></li>
+<li><p><span class="docutils literal">[]</span> を使ってスライスしたタイミング</p>
+<ul>
+<li><p><span class="docutils literal">[0:5]</span> のように範囲指定するとクエリは即時発行されない</p></li>
+</ul>
+</li>
+<li><p>オブジェクトを直列化したタイミング</p></li>
+<li><p>オブジェクトを <span class="docutils literal">REPL</span> や <span class="docutils literal">print()</span> で表示したタイミング</p></li>
+<li><p><span class="docutils literal">len()</span> でサイズを取得したタイミング</p></li>
+<li><p><span class="docutils literal">list()</span> で強制的にリストに変換したタイミング</p></li>
+<li><p><span class="docutils literal">bool()</span> で強制的に <span class="docutils literal">Boolean</span> に変換したタイミング</p></li>
+</ul>
+</div>
+<div class="section" id="id11">
+<div class="md_header_block" id="h_%E3%83%88%E3%83%A9%E3%83%B3%E3%82%B6%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3"><a class="md_header_anchor" id="a_%E3%83%88%E3%83%A9%E3%83%B3%E3%82%B6%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3"></a><h2><a class="toc-backref" href="#id40">トランザクション</a></h2></div>
+<ul>
+<li><p>デフォルト設定では、オブジェクトの保存・更新・削除は即時反映 (実行した時点でデータベースに反映される)</p></li>
+<li><p>トランザクションの範囲指定する場合は、</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">transaction</span>
+<span class="k">with</span> <span class="n">transaction</span><span class="o">.</span><span class="n">atomic</span><span class="p">():</span>
+    <span class="n">User</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s1">'fumi23'</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+    <span class="n">User</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s1">'fumi23'</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>トランザクションのデフォルト設定を変更できる</p>
+<ul>
+<li><p>settings.py</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="n">DATABASES</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">'default'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1"># リクエストの開始から終了までに設定</span>
+        <span class="s1">'ATOMIC_REQUESTS'</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="user">
+<div class="md_header_block" id="h_User%E3%83%A2%E3%83%87%E3%83%AB%E3%82%92%E6%8B%A1%E5%BC%B5%E3%81%97%E3%81%9F%E3%81%84"><a class="md_header_anchor" id="a_User%E3%83%A2%E3%83%87%E3%83%AB%E3%82%92%E6%8B%A1%E5%BC%B5%E3%81%97%E3%81%9F%E3%81%84"></a><h1><a class="toc-backref" href="#id41">User モデルを拡張したい</a></h1></div>
+<ul class="simple">
+<li><p>現場で使える Django の教科書《基礎編》 P.63 参照のこと</p></li>
+</ul>
+</div>
+<div class="section" id="id12">
+<div class="md_header_block" id="h_%E7%99%BA%E8%A1%8C%E3%81%95%E3%82%8C%E3%82%8B%E3%82%AF%E3%82%A8%E3%83%AA%E3%82%92%E8%A6%8B%E3%81%9F%E3%81%84"><a class="md_header_anchor" id="a_%E7%99%BA%E8%A1%8C%E3%81%95%E3%82%8C%E3%82%8B%E3%82%AF%E3%82%A8%E3%83%AA%E3%82%92%E8%A6%8B%E3%81%9F%E3%81%84"></a><h1><a class="toc-backref" href="#id42">発行されるクエリを見たい</a></h1></div>
+<ul>
+<li><p>Django シェル</p>
+<div class="code-block">
+<div class="highlight"><pre><span></span>$ python manage.py shell --settings<span class="o">=</span>settings._
+&gt;&gt;&gt; print<span class="o">(</span>Book.objects.filter<span class="o">(</span><span class="nv">title__icontains</span><span class="o">=</span><span class="s1">'Django'</span><span class="o">)</span>.query<span class="o">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>ロギング</p></li>
+<li><p>django-debug-toolbar</p></li>
+</ul>
+</div>
+    </div>
+  </main>
+</div>
+</div>
+    </div>
+  </body>
+
+</html>
