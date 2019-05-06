@@ -84,6 +84,10 @@
           <ul>
             
               <li class="nav-article">
+                <a href="../manage/">Django: django-admin.py, manage.py</a>
+              </li>
+            
+              <li class="nav-article">
                 <a href="../view/">Django: View</a>
               </li>
             
@@ -416,42 +420,43 @@
 <li><p><a class="reference internal" href="#id2" id="id15">リレーションまとめ</a></p></li>
 <li><p><a class="reference internal" href="#id3" id="id16">Model の実装例</a></p></li>
 <li><p><a class="reference internal" href="#on-delete" id="id17">on_delete</a></p></li>
+<li><p><a class="reference internal" href="#usermanager" id="id18">UserManager</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#django-orm" id="id18">Django ORM</a></p>
+<li><p><a class="reference internal" href="#django-orm" id="id19">Django ORM</a></p>
 <ul>
-<li><p><a class="reference internal" href="#id4" id="id19">1件だけ取得する</a></p></li>
-<li><p><a class="reference internal" href="#id5" id="id20">全件取得する</a></p></li>
-<li><p><a class="reference internal" href="#id6" id="id21">検索条件をつけて取得する</a></p>
+<li><p><a class="reference internal" href="#id4" id="id20">1件だけ取得する</a></p></li>
+<li><p><a class="reference internal" href="#id5" id="id21">全件取得する</a></p></li>
+<li><p><a class="reference internal" href="#id6" id="id22">検索条件をつけて取得する</a></p>
 <ul>
-<li><p><a class="reference internal" href="#filter" id="id22">filter をつなげる例</a></p></li>
+<li><p><a class="reference internal" href="#filter" id="id23">filter をつなげる例</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#and" id="id23">AND 条件</a></p></li>
-<li><p><a class="reference internal" href="#or" id="id24">OR 条件</a></p></li>
-<li><p><a class="reference internal" href="#id7" id="id25">&gt;, &lt;, &gt;=, &lt;=</a></p></li>
-<li><p><a class="reference internal" href="#in" id="id26">IN</a></p></li>
-<li><p><a class="reference internal" href="#like" id="id27">LIKE</a></p></li>
-<li><p><a class="reference internal" href="#exists" id="id28">EXISTS</a></p></li>
-<li><p><a class="reference internal" href="#order-by" id="id29">ORDER BY</a></p></li>
-<li><p><a class="reference internal" href="#q-object" id="id30">Q Object</a></p></li>
-<li><p><a class="reference internal" href="#id8" id="id31">リレーション先のモデルを使った条件検索</a></p></li>
-<li><p><a class="reference internal" href="#set" id="id32">モデルクラス名を全部小文字にしたのに <span class="docutils literal">_set</span> がつく</a></p></li>
-<li><p><a class="reference internal" href="#values-values-list" id="id33">values() と values_list()</a></p>
+<li><p><a class="reference internal" href="#and" id="id24">AND 条件</a></p></li>
+<li><p><a class="reference internal" href="#or" id="id25">OR 条件</a></p></li>
+<li><p><a class="reference internal" href="#id7" id="id26">&gt;, &lt;, &gt;=, &lt;=</a></p></li>
+<li><p><a class="reference internal" href="#in" id="id27">IN</a></p></li>
+<li><p><a class="reference internal" href="#like" id="id28">LIKE</a></p></li>
+<li><p><a class="reference internal" href="#exists" id="id29">EXISTS</a></p></li>
+<li><p><a class="reference internal" href="#order-by" id="id30">ORDER BY</a></p></li>
+<li><p><a class="reference internal" href="#q-object" id="id31">Q Object</a></p></li>
+<li><p><a class="reference internal" href="#id8" id="id32">リレーション先のモデルを使った条件検索</a></p></li>
+<li><p><a class="reference internal" href="#set" id="id33">モデルクラス名を全部小文字にしたのに <span class="docutils literal">_set</span> がつく</a></p></li>
+<li><p><a class="reference internal" href="#values-values-list" id="id34">values() と values_list()</a></p>
 <ul>
-<li><p><a class="reference internal" href="#values" id="id34">values()</a></p></li>
-<li><p><a class="reference internal" href="#values-list" id="id35">values_list()</a></p></li>
+<li><p><a class="reference internal" href="#values" id="id35">values()</a></p></li>
+<li><p><a class="reference internal" href="#values-list" id="id36">values_list()</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#aggregate-annotate" id="id36">aggregate と annotate</a></p></li>
-<li><p><a class="reference internal" href="#left-outer-join" id="id37">LEFT OUTER JOIN</a></p></li>
-<li><p><a class="reference internal" href="#select-related-prefetch-related" id="id38">select_related, prefetch_related</a></p></li>
-<li><p><a class="reference internal" href="#id10" id="id39">遅延評価</a></p></li>
-<li><p><a class="reference internal" href="#id11" id="id40">トランザクション</a></p></li>
+<li><p><a class="reference internal" href="#aggregate-annotate" id="id37">aggregate と annotate</a></p></li>
+<li><p><a class="reference internal" href="#left-outer-join" id="id38">LEFT OUTER JOIN</a></p></li>
+<li><p><a class="reference internal" href="#select-related-prefetch-related" id="id39">select_related, prefetch_related</a></p></li>
+<li><p><a class="reference internal" href="#id10" id="id40">遅延評価</a></p></li>
+<li><p><a class="reference internal" href="#id11" id="id41">トランザクション</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#user" id="id41">User モデルを拡張したい</a></p></li>
-<li><p><a class="reference internal" href="#id12" id="id42">発行されるクエリを見たい</a></p></li>
+<li><p><a class="reference internal" href="#user" id="id42">User モデルを拡張したい</a></p></li>
+<li><p><a class="reference internal" href="#id12" id="id43">発行されるクエリを見たい</a></p></li>
 </ul>
 </div>
 </details><div class="section" id="id1">
@@ -585,19 +590,36 @@
 <li><p>それ以前のバージョンでは、デフォルトで <span class="docutils literal">CASCADE</span></p></li>
 </ul>
 </div>
+<div class="section" id="usermanager">
+<div class="md_header_block" id="h_UserManager"><a class="md_header_anchor" id="a_UserManager"></a><h2><a class="toc-backref" href="#id18">UserManager</a></h2></div>
+<ul>
+<li><p><a class="reference external" href="https://docs.djangoproject.com/ja/2.2/ref/contrib/auth/#manager-methods">Django documentation &gt; django.contrib.auth &gt; マネージャメソッド</a></p></li>
+<li><p><a class="reference external" href="https://docs.djangoproject.com/ja/2.2/topics/auth/customizing/#a-full-example">Django documentation &gt; Django の認証方法のカスタマイズ &gt; 完全な具体例</a></p></li>
+<li><p><a class="reference external" href="https://github.com/django/django/blob/master/django/contrib/auth/models.py#L131">https://github.com/django/django/blob/master/django/contrib/auth/models.py#L131</a></p></li>
+<li><p>こうすると登録できる</p>
+<blockquote>
+<div class="code-block">
+<div class="highlight"><pre><span></span><span class="n">objects</span> <span class="o">=</span> <span class="n">MyUserManager</span><span class="p">()</span>
+</pre></div>
+</div>
+</blockquote>
+</li>
+<li><p>TODO: これは Model のところじゃなくて、認証のところかもしれない。いったんここに置いておく。</p></li>
+</ul>
+</div>
 </div>
 <div class="section" id="django-orm">
-<div class="md_header_block" id="h_DjangoORM"><a class="md_header_anchor" id="a_DjangoORM"></a><h1><a class="toc-backref" href="#id18">Django ORM</a></h1></div>
+<div class="md_header_block" id="h_DjangoORM"><a class="md_header_anchor" id="a_DjangoORM"></a><h1><a class="toc-backref" href="#id19">Django ORM</a></h1></div>
 <ul class="simple">
 <li><p>単体のオブジェクトを保存・更新するような行レベルのクエリ操作: モデルオブジェクトのメソッドを利用する</p></li>
-<li><p>データベースのテーブルレベルのクエリ操作: モデルの「モデルマネージャー」 ( <span class="docutils literal">objects</span> ) を利用する</p>
+<li><p>データベースのテーブルレベルのクエリ操作: モデルの「モデルマネージャー」 ( <span class="docutils literal">objects</span> ) を経由してクエリセットAPI のメソッドを利用する</p>
 <ul>
 <li><p>モデルマネージャーは通常、モデルクラスに <span class="docutils literal">objects</span> という名前で保存されている</p></li>
 </ul>
 </li>
 </ul>
 <div class="section" id="id4">
-<div class="md_header_block" id="h_1%E4%BB%B6%E3%81%A0%E3%81%91%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B"><a class="md_header_anchor" id="a_1%E4%BB%B6%E3%81%A0%E3%81%91%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B"></a><h2><a class="toc-backref" href="#id19">1件だけ取得する</a></h2></div>
+<div class="md_header_block" id="h_1%E4%BB%B6%E3%81%A0%E3%81%91%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B"><a class="md_header_anchor" id="a_1%E4%BB%B6%E3%81%A0%E3%81%91%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B"></a><h2><a class="toc-backref" href="#id20">1件だけ取得する</a></h2></div>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>  <span class="c1"># この `objects` がモデルマネージャー</span>
 </pre></div>
@@ -609,7 +631,7 @@
 </ul>
 </div>
 <div class="section" id="id5">
-<div class="md_header_block" id="h_%E5%85%A8%E4%BB%B6%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B"><a class="md_header_anchor" id="a_%E5%85%A8%E4%BB%B6%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B"></a><h2><a class="toc-backref" href="#id20">全件取得する</a></h2></div>
+<div class="md_header_block" id="h_%E5%85%A8%E4%BB%B6%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B"><a class="md_header_anchor" id="a_%E5%85%A8%E4%BB%B6%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B"></a><h2><a class="toc-backref" href="#id21">全件取得する</a></h2></div>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
 </pre></div>
@@ -621,7 +643,7 @@
 </ul>
 </div>
 <div class="section" id="id6">
-<div class="md_header_block" id="h_%E6%A4%9C%E7%B4%A2%E6%9D%A1%E4%BB%B6%E3%82%92%E3%81%A4%E3%81%91%E3%81%A6%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B"><a class="md_header_anchor" id="a_%E6%A4%9C%E7%B4%A2%E6%9D%A1%E4%BB%B6%E3%82%92%E3%81%A4%E3%81%91%E3%81%A6%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B"></a><h2><a class="toc-backref" href="#id21">検索条件をつけて取得する</a></h2></div>
+<div class="md_header_block" id="h_%E6%A4%9C%E7%B4%A2%E6%9D%A1%E4%BB%B6%E3%82%92%E3%81%A4%E3%81%91%E3%81%A6%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B"><a class="md_header_anchor" id="a_%E6%A4%9C%E7%B4%A2%E6%9D%A1%E4%BB%B6%E3%82%92%E3%81%A4%E3%81%91%E3%81%A6%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B"></a><h2><a class="toc-backref" href="#id22">検索条件をつけて取得する</a></h2></div>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">is_active</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
@@ -631,7 +653,7 @@
 <li><p><span class="docutils literal">filter()</span> を何度も繋げて書ける</p></li>
 </ul>
 <div class="section" id="filter">
-<div class="md_header_block" id="h_filter%E3%82%92%E3%81%A4%E3%81%AA%E3%81%92%E3%82%8B%E4%BE%8B"><a class="md_header_anchor" id="a_filter%E3%82%92%E3%81%A4%E3%81%AA%E3%81%92%E3%82%8B%E4%BE%8B"></a><h3><a class="toc-backref" href="#id22">filter をつなげる例</a></h3></div>
+<div class="md_header_block" id="h_filter%E3%82%92%E3%81%A4%E3%81%AA%E3%81%92%E3%82%8B%E4%BE%8B"><a class="md_header_anchor" id="a_filter%E3%82%92%E3%81%A4%E3%81%AA%E3%81%92%E3%82%8B%E4%BE%8B"></a><h3><a class="toc-backref" href="#id23">filter をつなげる例</a></h3></div>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="n">keyword</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'keyword'</span><span class="p">)</span>
 <span class="n">queryset</span> <span class="o">=</span> <span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">()</span>
@@ -648,7 +670,7 @@
 </div>
 </div>
 <div class="section" id="and">
-<div class="md_header_block" id="h_AND%E6%9D%A1%E4%BB%B6"><a class="md_header_anchor" id="a_AND%E6%9D%A1%E4%BB%B6"></a><h2><a class="toc-backref" href="#id23">AND 条件</a></h2></div>
+<div class="md_header_block" id="h_AND%E6%9D%A1%E4%BB%B6"><a class="md_header_anchor" id="a_AND%E6%9D%A1%E4%BB%B6"></a><h2><a class="toc-backref" href="#id24">AND 条件</a></h2></div>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">'Django Book'</span><span class="p">,</span> <span class="n">price</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
 </pre></div>
@@ -658,7 +680,7 @@
 </ul>
 </div>
 <div class="section" id="or">
-<div class="md_header_block" id="h_OR%E6%9D%A1%E4%BB%B6"><a class="md_header_anchor" id="a_OR%E6%9D%A1%E4%BB%B6"></a><h2><a class="toc-backref" href="#id24">OR 条件</a></h2></div>
+<div class="md_header_block" id="h_OR%E6%9D%A1%E4%BB%B6"><a class="md_header_anchor" id="a_OR%E6%9D%A1%E4%BB%B6"></a><h2><a class="toc-backref" href="#id25">OR 条件</a></h2></div>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.db.models</span> <span class="kn">import</span> <span class="n">Q</span>
 <span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">Q</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">'Django Book'</span><span class="p">)</span> <span class="o">|</span> <span class="n">Q</span><span class="p">(</span><span class="n">price</span><span class="o">=</span><span class="mi">1000</span><span class="p">))</span>
@@ -669,7 +691,7 @@
 </ul>
 </div>
 <div class="section" id="id7">
-<div class="md_header_block" id="h_"><a class="md_header_anchor" id="a_"></a><h2><a class="toc-backref" href="#id25">&gt;, &lt;, &gt;=, &lt;=</a></h2></div>
+<div class="md_header_block" id="h_"><a class="md_header_anchor" id="a_"></a><h2><a class="toc-backref" href="#id26">&gt;, &lt;, &gt;=, &lt;=</a></h2></div>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">price__gt</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>  <span class="c1"># &gt;1000</span>
 <span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">price__lt</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>  <span class="c1"># &lt;1000</span>
@@ -682,7 +704,7 @@
 </ul>
 </div>
 <div class="section" id="in">
-<div class="md_header_block" id="h_IN"><a class="md_header_anchor" id="a_IN"></a><h2><a class="toc-backref" href="#id26">IN</a></h2></div>
+<div class="md_header_block" id="h_IN"><a class="md_header_anchor" id="a_IN"></a><h2><a class="toc-backref" href="#id27">IN</a></h2></div>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">price__in</span><span class="o">=</span><span class="p">[</span><span class="mi">900</span><span class="p">,</span> <span class="mi">1000</span><span class="p">])</span>  <span class="c1"># IN(900, 1000)</span>
 </pre></div>
@@ -693,7 +715,7 @@
 </ul>
 </div>
 <div class="section" id="like">
-<div class="md_header_block" id="h_LIKE"><a class="md_header_anchor" id="a_LIKE"></a><h2><a class="toc-backref" href="#id27">LIKE</a></h2></div>
+<div class="md_header_block" id="h_LIKE"><a class="md_header_anchor" id="a_LIKE"></a><h2><a class="toc-backref" href="#id28">LIKE</a></h2></div>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">title__icontains</span><span class="o">=</span><span class="s1">'Django'</span><span class="p">)</span>  <span class="c1"># ILIKE '%Django%'</span>
 <span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">title__contains</span><span class="o">=</span><span class="s1">'Django'</span><span class="p">)</span>  <span class="c1"># LIKE '%Django%'</span>
@@ -706,7 +728,7 @@
 </ul>
 </div>
 <div class="section" id="exists">
-<div class="md_header_block" id="h_EXISTS"><a class="md_header_anchor" id="a_EXISTS"></a><h2><a class="toc-backref" href="#id28">EXISTS</a></h2></div>
+<div class="md_header_block" id="h_EXISTS"><a class="md_header_anchor" id="a_EXISTS"></a><h2><a class="toc-backref" href="#id29">EXISTS</a></h2></div>
 <ul class="simple">
 <li><p>exists: レコードが存在するか否か True/False で返す</p></li>
 </ul>
@@ -717,7 +739,7 @@
 </div>
 </div>
 <div class="section" id="order-by">
-<div class="md_header_block" id="h_ORDERBY"><a class="md_header_anchor" id="a_ORDERBY"></a><h2><a class="toc-backref" href="#id29">ORDER BY</a></h2></div>
+<div class="md_header_block" id="h_ORDERBY"><a class="md_header_anchor" id="a_ORDERBY"></a><h2><a class="toc-backref" href="#id30">ORDER BY</a></h2></div>
 <ul class="simple">
 <li><p>order_by:</p></li>
 </ul>
@@ -731,13 +753,13 @@
 </div>
 </div>
 <div class="section" id="q-object">
-<div class="md_header_block" id="h_QObject"><a class="md_header_anchor" id="a_QObject"></a><h2><a class="toc-backref" href="#id30">Q Object</a></h2></div>
+<div class="md_header_block" id="h_QObject"><a class="md_header_anchor" id="a_QObject"></a><h2><a class="toc-backref" href="#id31">Q Object</a></h2></div>
 <ul class="simple">
 <li><p><a class="reference external" href="https://docs.djangoproject.com/ja/2.2/topics/db/queries/#complex-lookups-with-q">Q オブジェクトを用いた複雑な検索</a></p></li>
 </ul>
 </div>
 <div class="section" id="id8">
-<div class="md_header_block" id="h_%E3%83%AA%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E5%85%88%E3%81%AE%E3%83%A2%E3%83%87%E3%83%AB%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%9F%E6%9D%A1%E4%BB%B6%E6%A4%9C%E7%B4%A2"><a class="md_header_anchor" id="a_%E3%83%AA%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E5%85%88%E3%81%AE%E3%83%A2%E3%83%87%E3%83%AB%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%9F%E6%9D%A1%E4%BB%B6%E6%A4%9C%E7%B4%A2"></a><h2><a class="toc-backref" href="#id31">リレーション先のモデルを使った条件検索</a></h2></div>
+<div class="md_header_block" id="h_%E3%83%AA%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E5%85%88%E3%81%AE%E3%83%A2%E3%83%87%E3%83%AB%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%9F%E6%9D%A1%E4%BB%B6%E6%A4%9C%E7%B4%A2"><a class="md_header_anchor" id="a_%E3%83%AA%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E5%85%88%E3%81%AE%E3%83%A2%E3%83%87%E3%83%AB%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%9F%E6%9D%A1%E4%BB%B6%E6%A4%9C%E7%B4%A2"></a><h2><a class="toc-backref" href="#id32">リレーション先のモデルを使った条件検索</a></h2></div>
 <div class="code-block">
 <div class="highlight"><pre><span></span><span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">publisher__name</span><span class="o">=</span><span class="s1">'自費出版社'</span><span class="p">)</span>
 </pre></div>
@@ -748,7 +770,7 @@
 </ul>
 </div>
 <div class="section" id="set">
-<div class="md_header_block" id="h_%E3%83%A2%E3%83%87%E3%83%AB%E3%82%AF%E3%83%A9%E3%82%B9%E5%90%8D%E3%82%92%E5%85%A8%E9%83%A8%E5%B0%8F%E6%96%87%E5%AD%97%E3%81%AB%E3%81%97%E3%81%9F%E3%81%AE%E3%81%AB_set%E3%81%8C%E3%81%A4%E3%81%8F"><a class="md_header_anchor" id="a_%E3%83%A2%E3%83%87%E3%83%AB%E3%82%AF%E3%83%A9%E3%82%B9%E5%90%8D%E3%82%92%E5%85%A8%E9%83%A8%E5%B0%8F%E6%96%87%E5%AD%97%E3%81%AB%E3%81%97%E3%81%9F%E3%81%AE%E3%81%AB_set%E3%81%8C%E3%81%A4%E3%81%8F"></a><h2><a class="toc-backref" href="#id32">モデルクラス名を全部小文字にしたのに <span class="docutils literal">_set</span> がつく</a></h2></div>
+<div class="md_header_block" id="h_%E3%83%A2%E3%83%87%E3%83%AB%E3%82%AF%E3%83%A9%E3%82%B9%E5%90%8D%E3%82%92%E5%85%A8%E9%83%A8%E5%B0%8F%E6%96%87%E5%AD%97%E3%81%AB%E3%81%97%E3%81%9F%E3%81%AE%E3%81%AB_set%E3%81%8C%E3%81%A4%E3%81%8F"><a class="md_header_anchor" id="a_%E3%83%A2%E3%83%87%E3%83%AB%E3%82%AF%E3%83%A9%E3%82%B9%E5%90%8D%E3%82%92%E5%85%A8%E9%83%A8%E5%B0%8F%E6%96%87%E5%AD%97%E3%81%AB%E3%81%97%E3%81%9F%E3%81%AE%E3%81%AB_set%E3%81%8C%E3%81%A4%E3%81%8F"></a><h2><a class="toc-backref" href="#id33">モデルクラス名を全部小文字にしたのに <span class="docutils literal">_set</span> がつく</a></h2></div>
 <p><a class="reference external" href="https://docs.djangoproject.com/ja/1.11/ref/models/relations/">Related objects reference</a></p>
 <ul class="simple">
 <li><p><span class="docutils literal">_set</span> というのは子テーブルのデータを参照する django の機能</p></li>
@@ -756,9 +778,9 @@
 </ul>
 </div>
 <div class="section" id="values-values-list">
-<div class="md_header_block" id="h_values%E3%81%A8values_list"><a class="md_header_anchor" id="a_values%E3%81%A8values_list"></a><h2><a class="toc-backref" href="#id33">values() と values_list()</a></h2></div>
+<div class="md_header_block" id="h_values%E3%81%A8values_list"><a class="md_header_anchor" id="a_values%E3%81%A8values_list"></a><h2><a class="toc-backref" href="#id34">values() と values_list()</a></h2></div>
 <div class="section" id="values">
-<div class="md_header_block" id="h_values"><a class="md_header_anchor" id="a_values"></a><h3><a class="toc-backref" href="#id34">values()</a></h3></div>
+<div class="md_header_block" id="h_values"><a class="md_header_anchor" id="a_values"></a><h3><a class="toc-backref" href="#id35">values()</a></h3></div>
 <p>辞書のクエリセットで取得できる。</p>
 <ul>
 <li><p><a class="reference external" href="https://docs.djangoproject.com/ja/2.1/ref/models/querysets/#values">https://docs.djangoproject.com/ja/2.1/ref/models/querysets/#values</a></p>
@@ -771,7 +793,7 @@
 </ul>
 </div>
 <div class="section" id="values-list">
-<div class="md_header_block" id="h_values_list"><a class="md_header_anchor" id="a_values_list"></a><h3><a class="toc-backref" href="#id35">values_list()</a></h3></div>
+<div class="md_header_block" id="h_values_list"><a class="md_header_anchor" id="a_values_list"></a><h3><a class="toc-backref" href="#id36">values_list()</a></h3></div>
 <p>タプルのリストのクエリセットで取得できる。</p>
 <ul>
 <li><p><a class="reference external" href="https://docs.djangoproject.com/ja/2.1/ref/models/querysets/#values-list">https://docs.djangoproject.com/ja/2.1/ref/models/querysets/#values-list</a></p>
@@ -794,21 +816,21 @@
 </div>
 </div>
 <div class="section" id="aggregate-annotate">
-<div class="md_header_block" id="h_aggregate%E3%81%A8annotate"><a class="md_header_anchor" id="a_aggregate%E3%81%A8annotate"></a><h2><a class="toc-backref" href="#id36">aggregate と annotate</a></h2></div>
+<div class="md_header_block" id="h_aggregate%E3%81%A8annotate"><a class="md_header_anchor" id="a_aggregate%E3%81%A8annotate"></a><h2><a class="toc-backref" href="#id37">aggregate と annotate</a></h2></div>
 <p><span class="docutils literal">aggregate</span> と <span class="docutils literal">annotate</span> の違いがわかりやすい</p>
 <ul class="simple">
 <li><p><a class="reference external" href="http://note.crohaco.net/2014/django-aggregate/">Djangoの集計について</a></p></li>
 </ul>
 </div>
 <div class="section" id="left-outer-join">
-<div class="md_header_block" id="h_LEFTOUTERJOIN"><a class="md_header_anchor" id="a_LEFTOUTERJOIN"></a><h2><a class="toc-backref" href="#id37">LEFT OUTER JOIN</a></h2></div>
+<div class="md_header_block" id="h_LEFTOUTERJOIN"><a class="md_header_anchor" id="a_LEFTOUTERJOIN"></a><h2><a class="toc-backref" href="#id38">LEFT OUTER JOIN</a></h2></div>
 <p>Django のクエリセットは LEFT OUTER JOIN を表現できない</p>
 <ul class="simple">
 <li><p>SQLAlchemy でやろう</p></li>
 </ul>
 </div>
 <div class="section" id="select-related-prefetch-related">
-<div class="md_header_block" id="h_select_relatedprefetch_related"><a class="md_header_anchor" id="a_select_relatedprefetch_related"></a><h2><a class="toc-backref" href="#id38">select_related, prefetch_related</a></h2></div>
+<div class="md_header_block" id="h_select_relatedprefetch_related"><a class="md_header_anchor" id="a_select_relatedprefetch_related"></a><h2><a class="toc-backref" href="#id39">select_related, prefetch_related</a></h2></div>
 <table class="colwidths-given">
 <colgroup>
 <col style="width: 50%"/>
@@ -853,7 +875,7 @@
 </ul>
 </div>
 <div class="section" id="id10">
-<div class="md_header_block" id="h_%E9%81%85%E5%BB%B6%E8%A9%95%E4%BE%A1"><a class="md_header_anchor" id="a_%E9%81%85%E5%BB%B6%E8%A9%95%E4%BE%A1"></a><h2><a class="toc-backref" href="#id39">遅延評価</a></h2></div>
+<div class="md_header_block" id="h_%E9%81%85%E5%BB%B6%E8%A9%95%E4%BE%A1"><a class="md_header_anchor" id="a_%E9%81%85%E5%BB%B6%E8%A9%95%E4%BE%A1"></a><h2><a class="toc-backref" href="#id40">遅延評価</a></h2></div>
 <p>クエリセットを返す <span class="docutils literal">all()</span> や <span class="docutils literal">filter()</span> がクエリを発行するタイミング (データベースアクセスするタイミング) はこれら</p>
 <ul class="simple">
 <li><p><span class="docutils literal">for</span> ループなどイテレーションが開始されたタイミング</p></li>
@@ -870,7 +892,7 @@
 </ul>
 </div>
 <div class="section" id="id11">
-<div class="md_header_block" id="h_%E3%83%88%E3%83%A9%E3%83%B3%E3%82%B6%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3"><a class="md_header_anchor" id="a_%E3%83%88%E3%83%A9%E3%83%B3%E3%82%B6%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3"></a><h2><a class="toc-backref" href="#id40">トランザクション</a></h2></div>
+<div class="md_header_block" id="h_%E3%83%88%E3%83%A9%E3%83%B3%E3%82%B6%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3"><a class="md_header_anchor" id="a_%E3%83%88%E3%83%A9%E3%83%B3%E3%82%B6%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3"></a><h2><a class="toc-backref" href="#id41">トランザクション</a></h2></div>
 <ul>
 <li><p>デフォルト設定では、オブジェクトの保存・更新・削除は即時反映 (実行した時点でデータベースに反映される)</p></li>
 <li><p>トランザクションの範囲指定する場合は、</p>
@@ -901,13 +923,13 @@
 </div>
 </div>
 <div class="section" id="user">
-<div class="md_header_block" id="h_User%E3%83%A2%E3%83%87%E3%83%AB%E3%82%92%E6%8B%A1%E5%BC%B5%E3%81%97%E3%81%9F%E3%81%84"><a class="md_header_anchor" id="a_User%E3%83%A2%E3%83%87%E3%83%AB%E3%82%92%E6%8B%A1%E5%BC%B5%E3%81%97%E3%81%9F%E3%81%84"></a><h1><a class="toc-backref" href="#id41">User モデルを拡張したい</a></h1></div>
+<div class="md_header_block" id="h_User%E3%83%A2%E3%83%87%E3%83%AB%E3%82%92%E6%8B%A1%E5%BC%B5%E3%81%97%E3%81%9F%E3%81%84"><a class="md_header_anchor" id="a_User%E3%83%A2%E3%83%87%E3%83%AB%E3%82%92%E6%8B%A1%E5%BC%B5%E3%81%97%E3%81%9F%E3%81%84"></a><h1><a class="toc-backref" href="#id42">User モデルを拡張したい</a></h1></div>
 <ul class="simple">
 <li><p>現場で使える Django の教科書《基礎編》 P.63 参照のこと</p></li>
 </ul>
 </div>
 <div class="section" id="id12">
-<div class="md_header_block" id="h_%E7%99%BA%E8%A1%8C%E3%81%95%E3%82%8C%E3%82%8B%E3%82%AF%E3%82%A8%E3%83%AA%E3%82%92%E8%A6%8B%E3%81%9F%E3%81%84"><a class="md_header_anchor" id="a_%E7%99%BA%E8%A1%8C%E3%81%95%E3%82%8C%E3%82%8B%E3%82%AF%E3%82%A8%E3%83%AA%E3%82%92%E8%A6%8B%E3%81%9F%E3%81%84"></a><h1><a class="toc-backref" href="#id42">発行されるクエリを見たい</a></h1></div>
+<div class="md_header_block" id="h_%E7%99%BA%E8%A1%8C%E3%81%95%E3%82%8C%E3%82%8B%E3%82%AF%E3%82%A8%E3%83%AA%E3%82%92%E8%A6%8B%E3%81%9F%E3%81%84"><a class="md_header_anchor" id="a_%E7%99%BA%E8%A1%8C%E3%81%95%E3%82%8C%E3%82%8B%E3%82%AF%E3%82%A8%E3%83%AA%E3%82%92%E8%A6%8B%E3%81%9F%E3%81%84"></a><h1><a class="toc-backref" href="#id43">発行されるクエリを見たい</a></h1></div>
 <ul>
 <li><p>Django シェル</p>
 <div class="code-block">
